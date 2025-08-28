@@ -11,14 +11,14 @@ function SimpleNewsSection({ title, news }) {
                     <ChevronRight className="w-6 h-6" />
                 </h2>
             </div>
-            <div className="space-y-3 font-serif">
+            <div className="space-y-3">
                 {news.map((item) => (
                     <SimpleNewsCard
-                        key={item.id}
-                        title={item.title}
-                        source={item.source}
-                        timeAgo={item.timeAgo}
-                        image={item.image}
+                        key={item.news_id}
+                        title={item.news_title}
+                        source={item.news_writer}
+                        timeAgo={item.news_datepub}
+                        image={item.news_image_new}
                     />
                 ))}
             </div>

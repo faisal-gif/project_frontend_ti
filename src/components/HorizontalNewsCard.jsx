@@ -7,7 +7,7 @@ function HorizontalNewsCard({
     id,
     image,
     title,
-    description,
+    url,
     datepub,
     author,
     views,
@@ -20,9 +20,37 @@ function HorizontalNewsCard({
             .trim()
             .replace(/\s+/g, '-');
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date; // selisih dalam ms
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        if (diffMinutes < 1) {
+            return "just now";
+        } else if (diffMinutes < 60) {
+            return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+        } else if (diffHours < 24) {
+            return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        } else if (diffDays < 7) {
+            return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        }
+
+        // fallback pakai format lokal
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    };
+
     return (
         <Card key={id} className="w-full max-w-sm bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 ease-in-out">
-            <Link href={`/news/${id}/${slugify(title)}`} className="block h-full">
+            <Link href={url} className="block h-full">
                 <div className="relative overflow-hidden">
                     <img
                         src={image}
@@ -41,11 +69,11 @@ function HorizontalNewsCard({
                             {title}
                         </h3>
 
-                        
+
                     </div>
 
                     <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-2 ">
-                        <time>{datepub}</time>
+                        <time>{formatDate(datepub)}</time>
                         <span>By {author}</span>
                     </div>
                 </div>

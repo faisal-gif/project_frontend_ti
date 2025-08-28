@@ -8,9 +8,7 @@ function FeaturedNewsCard({
     source,
     timeAgo,
     image,
-    comments = 0,
     views = 4,
-    likes = 0,
     className = ""
 }) {
     return (
@@ -31,8 +29,12 @@ function FeaturedNewsCard({
                     <div className="flex items-center gap-4">
                         <span className="text-sm opacity-90">{timeAgo}</span>
                         <div className="flex items-center gap-1">
-                            <div className="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-                                TOI
+                            <div className="avatar avatar-placeholder">
+                                <div className="bg-neutral text-neutral-content w-8 rounded-full">
+                                    <span className="text-xs">
+                                        {source.charAt(0).toUpperCase()}
+                                    </span>
+                                </div>
                             </div>
                             <span className="text-sm font-medium opacity-90">{source}</span>
                         </div>
@@ -40,17 +42,10 @@ function FeaturedNewsCard({
 
                     <div className="flex items-center gap-4 text-sm opacity-90">
                         <div className="flex items-center gap-1">
-                            <MessageCircle className="w-4 h-4" />
-                            <span>{comments}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
                             <Eye className="w-4 h-4" />
-                            <span>{views}</span>
+                            <span>{views.toLocaleString()}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                            <Heart className="w-4 h-4" />
-                            <span>{likes}</span>
-                        </div>
+
                     </div>
                 </div>
             </div>

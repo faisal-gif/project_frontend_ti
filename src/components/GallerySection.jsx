@@ -37,7 +37,7 @@ function GallerySection() {
                                     datepub={article.gal_datepub}
                                     gal_cover={article.gal_cover}
                                     gal_title={article.gal_title}
-                                    gal_view={article.gal_view}
+                                    gal_view={Number(article.gal_view)}
                                 />
                             </div>
                         </Carousel.Item>

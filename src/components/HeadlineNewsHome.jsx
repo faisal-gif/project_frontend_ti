@@ -1,59 +1,74 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Carousel from './ui/Carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import FeaturedNewsCard from './FeaturedNewsCard';
 import Fade from 'embla-carousel-fade';
+import { apiNews } from '@/lib/api';
+import { getAllNews } from '@/lib/api/newsApi';
 
 function HeadlineNewsHome() {
-    const sportsNews = [
-        {
-            id: "1",
-            title: "Just a coincidence: Tendulkar on India winning without Bumrah",
-            source: "Times of India",
-            timeAgo: "16 hours ago",
-            image: "https://cdn-1.timesmedia.co.id/images/2025/08/07/Dunia-Voli-Putri-U-21.jpg",
-        },
-        {
-            id: "2",
-            title: "That mentality...': Sacked by BCCI, ex-India coach finally breaks silence",
-            source: "Times of India",
-            timeAgo: "17 hours ago",
-            image: "https://cdn-1.timesmedia.co.id/images/2025/08/07/Dunia-Voli-Putri-U-21.jpg",
-        },
-        {
-            id: "3",
-            title: "Cricket Rankings: Siraj achieves career-high ranking; Prasidh climbs...",
-            source: "Times of India",
-            timeAgo: "17 hours ago",
-            image: "https://cdn-1.timesmedia.co.id/images/2025/08/07/Dunia-Voli-Putri-U-21.jpg",
-        },
-        {
-            id: "4",
-            title: "You are great': Virat Kohli's sister pens emotional note for Siraj - READ",
-            source: "Times of India",
-            timeAgo: "18 hours ago",
-            image: "https://cdn-1.timesmedia.co.id/images/2025/08/07/Dunia-Voli-Putri-U-21.jpg",
-        },
-    ];
+
+    const [headlineNews, setHeadlineNews] = useState([]);
+    useEffect(() => {
+        getAllNews({
+            news_type: "headline",
+            offset: 0,
+            limit: 10,
+        }).then(setHeadlineNews).catch(console.error);
+    }, []);
+
+    function formatRelativeTime(dateString) {
+        const date = new Date(dateString)
+        const now = new Date()
+        const diffMs = now - date // selisih dalam milidetik
+        const diffSec = Math.floor(diffMs / 1000)
+        const diffMin = Math.floor(diffSec / 60)
+        const diffHour = Math.floor(diffMin / 60)
+        const diffDay = Math.floor(diffHour / 24)
+
+        if (diffSec < 60) return `${diffSec} seconds ago`
+        if (diffMin < 60) return `${diffMin} minutes ago`
+        if (diffHour < 24) return `${diffHour} hours ago`
+        if (diffDay < 7) return `${diffDay} days ago`
+
+        // kalau lebih dari seminggu, tampilkan tanggal normal
+        return date.toLocaleDateString()
+    }
+
+    // map popular articles to a format suitable for rendering
+    const headlineArticle = headlineNews.map(article => ({
+        id: article.news_id,
+        image: article.news_image_new,
+        title: article.news_title,
+        author: article.news_writer,
+        timeAgo: formatRelativeTime(article.news_datepub),
+        views: Number(article.pageviews)
+    }));
 
     return (
         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
             <Carousel.Content>
-                {sportsNews.map((article) => (
+                {headlineArticle.map((article) => (
                     <Carousel.Item key={article.id}>
                         <FeaturedNewsCard
                             title={article.title}
-                            source={article.source}
+                            source={article.author}
+                            author={article.author}
                             timeAgo={article.timeAgo}
                             image={article.image}
-                            comments={article.comments}
+                            comments='0'
                             views={article.views}
-                            likes={article.likes}
+                            likes='1'
                         />
                     </Carousel.Item>
                 ))}
 
             </Carousel.Content>
+
+            <Carousel.Previous position={'inner'} />
+            <Carousel.Next position={'inner'} />
+
 
         </Carousel>
     )

@@ -2,6 +2,8 @@ import { EB_Garamond, Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link'
 import "./globals.css";
 import { Menu, Search } from 'lucide-react'
+import Footer from "@/components/Footer";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,7 +75,8 @@ export default function RootLayout({ children }) {
           <input id="drawer-nav" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             {/* Navbar */}
-            <div className="navbar md:px-12 bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-border">
+            <div className="navbar fixed z-50 md:px-12 bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-border">
+
               <div className="flex-none lg:hidden">
                 <label htmlFor="drawer-nav" aria-label="open sidebar" className="btn btn-ghost hover:bg-white/30 text-white">
                   <svg
@@ -121,10 +124,16 @@ export default function RootLayout({ children }) {
                   </label>
                 </div>
               </div>
+
             </div>
 
             {/* Page content here */}
-            {children}
+            <div className="my-12">
+              {children}
+            </div>
+
+            {/* Footer */}
+            <Footer />
           </div>
           <div className="drawer-side ">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
