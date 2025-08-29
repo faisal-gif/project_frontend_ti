@@ -118,15 +118,17 @@ const CarouselItem = forwardRef(({ className = "", ...props }, ref) => {
 })
 CarouselItem.displayName = "CarouselItem"
 
-const CarouselPrevious = forwardRef((props, ref) => {
+const CarouselPrevious = forwardRef(({ position, ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+
+    const positionClass = position === "outer" ? "bg-white -left-12 " : "bg-gray-300/80 left-8";
 
     return (
         <button
             ref={ref}
-            className={`absolute z-10 h-8 w-8 rounded-full bg-white shadow-md flex items-center justify-center
+            className={`absolute z-10 h-8 w-8 rounded-full shadow-md flex items-center justify-center
         ${orientation === "horizontal"
-                    ? "hidden sm:flex  sm:top-1/2 sm:-translate-y-1/2 sm:-left-12"
+                    ? "hidden sm:flex  sm:top-1/2 sm:-translate-y-1/2 " + positionClass
                     : "-top-12 left-1/2 -translate-x-1/2 rotate-90"
                 }
       `}
@@ -141,15 +143,17 @@ const CarouselPrevious = forwardRef((props, ref) => {
 })
 CarouselPrevious.displayName = "CarouselPrevious"
 
-const CarouselNext = forwardRef((props, ref) => {
+const CarouselNext = forwardRef(({ position, ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel()
+
+      const positionClass = position === "outer" ? "bg-white -right-12 " : "bg-gray-300/80 right-8";
 
     return (
         <button
             ref={ref}
-            className={`absolute z-10 h-8 w-8 rounded-full bg-white shadow-md flex items-center justify-center
+            className={`absolute z-10 h-8 w-8 rounded-full shadow-md flex items-center justify-center
         ${orientation === "horizontal"
-                    ? "hidden sm:flex sm:top-1/2 sm:-translate-y-1/2 sm:-right-12"
+                    ? "hidden sm:flex sm:top-1/2 sm:-translate-y-1/2 " + positionClass
                     : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90"
                 }
       `}

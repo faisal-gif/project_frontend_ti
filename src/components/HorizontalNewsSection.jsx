@@ -44,8 +44,8 @@ function HorizontalNewsSection() {
                         </Carousel.Item>
                     ))}
                 </Carousel.Content>
-                <Carousel.Previous />
-                <Carousel.Next />
+                <Carousel.Previous position="outer" />
+                <Carousel.Next position="outer" />
             </Carousel>
         </section>
     )

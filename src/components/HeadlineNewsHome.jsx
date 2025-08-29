@@ -6,6 +6,7 @@ import FeaturedNewsCard from './FeaturedNewsCard';
 import Fade from 'embla-carousel-fade';
 import { apiNews } from '@/lib/api';
 import { getAllNews } from '@/lib/api/newsApi';
+import HeadlineCardSkeleton from './ui/HeadlineCardSkeleton';
 
 function HeadlineNewsHome() {
 
@@ -45,6 +46,11 @@ function HeadlineNewsHome() {
         timeAgo: formatRelativeTime(article.news_datepub),
         views: Number(article.pageviews)
     }));
+
+
+    if (headlineArticle.length === 0) {
+        return <HeadlineCardSkeleton />;
+    }
 
     return (
         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
