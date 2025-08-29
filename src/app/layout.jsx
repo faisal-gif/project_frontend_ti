@@ -44,7 +44,7 @@ const urlNav = [
   },
   {
     id: 'ekoran',
-    name: 'EKoran',
+    name: 'Ekoran',
     href: '/ekoran',
   },
   {

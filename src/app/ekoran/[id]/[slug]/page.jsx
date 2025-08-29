@@ -135,7 +135,7 @@ function EkoranDetail() {
           </Link>
           <span>/</span>
           <Link href="/ekoran" className="hover:text-black/60 transition-colors">
-            Galeri E-Koran
+            Ekoran
           </Link>
           <span>/</span>
           <span className="text-black/60">Detail</span>
@@ -252,9 +252,9 @@ function EkoranDetail() {
                 </div>
                 <div className="flex-1">
                   <div className="badge badge-ghost mb-2">Edisi Terbaru</div>
-                  <h2 className="text-xl font-bold text-foreground mb-1">
+                  <h1 className="text-xl font-bold text-foreground mb-1">
                     {ekoranArticle?.title}
-                  </h2>
+                  </h1>
                   <p className="text-sm text-black/60">
                     Berita Terkini & Terpercaya 
                   </p>
@@ -298,9 +298,9 @@ function EkoranDetail() {
           <Card className="mb-6 shadow-lg border border-base-300">
             <Card.Body className="p-6">
               <h3 className="font-semibold mb-4">Edisi Terkait</h3>
-              <div className="space-y-3">
+              <div className="space-y-1">
                 {[1, 2, 3].map((item) => (
-                  <div key={item} className="flex gap-3 p-3 rounded-lg hover:bg-muted transition-colors cursor-pointer">
+                  <div key={item} className="flex gap-3 p-1 rounded-lg hover:bg-muted transition-colors cursor-pointer">
                     <div className="w-12 h-16 bg-muted rounded overflow-hidden flex-shrink-0">
                       <img
                         src={ekoranArticle?.image[item - 1]}

@@ -26,17 +26,8 @@ function Home() {
     getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
   }, []);
 
-
-
-
-
-
-
-
   return (
     <div className="">
-
-
       <div className='max-w-7xl mx-auto gap-6 pt-10 pb-8 px-4'>
         <GoogleAds size='banner' />
       </div>

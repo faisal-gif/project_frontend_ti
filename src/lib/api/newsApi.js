@@ -1,10 +1,10 @@
-import axiosInstance from "./axiosInstance";
+import { clientAxios } from "./axiosInstance";
 
 const getAllNews = async (
     { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
 ) => {
     try {
-        const response = await axiosInstance.get("all_news/", {
+        const response = await clientAxios.get("news/all", {
             params: {
                 news_type: news_type,
                 cat_id: cat_id,
@@ -22,7 +22,7 @@ const getAllNews = async (
 
 const getNewsDetail = async ({ id }) => {
     try {
-        const response = await axiosInstance.get(`news_detail/${id}`);
+        const response = await clientAxios.get(`news/detail/${id}`);
         return response.data.data;
     } catch (error) {
         console.log(error);
@@ -31,7 +31,7 @@ const getNewsDetail = async ({ id }) => {
 
 const updateView = async ({ id }) => {
     try {
-        const response = await axiosInstance.get(`news_pageviews/${id}`);
+        const response = await clientAxios.get(`news/view/${id}`);
         return response.data.data;
     } catch (error) {
         console.log(error);
