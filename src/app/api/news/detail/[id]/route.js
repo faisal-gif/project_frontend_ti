@@ -2,6 +2,7 @@ import { serverAxios } from "@/lib/api/axiosInstance";
 import { NextResponse } from "next/server";
 
 export async function GET(_, { params }) {
+    const { params } = await context;   // ✅ tunggu params
     const { id } = params;
 
     try {

@@ -1,6 +1,7 @@
 'use client'
 import EKoranCard from '@/components/EkoranCard'
 import Button from '@/components/ui/Button'
+import CountUp from '@/components/ui/CountUp'
 import { getAllEkoran } from '@/lib/api/ekoran'
 import { Calendar, Eye, MessageCircle, Newspaper, Users } from 'lucide-react'
 import Link from 'next/link'
@@ -132,7 +133,17 @@ function Ekoran() {
                                 <p className="text-sm text-white/70 uppercase tracking-wide mb-2">TOTAL PELANGGAN</p>
                                 <div className="flex items-center justify-center gap-2">
                                     <Users className="h-6 w-6 text-white/80" />
-                                    <span className="text-3xl md:text-4xl font-bold">68,371</span>
+                                    <span className="text-3xl md:text-4xl font-bold">
+                                        <CountUp
+                                            from={0}
+                                            to={68371}
+                                            separator=","
+                                            direction="up"
+                                            duration={1}
+                                            className="count-up-text"
+                                        />
+
+                                    </span>
                                 </div>
                             </div>
 

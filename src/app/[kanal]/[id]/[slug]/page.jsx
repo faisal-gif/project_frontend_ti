@@ -29,6 +29,9 @@ function NewsDetail() {
         }
     }, [newsDetail]);
 
+    if (newsDetail) {
+        
+    }
     useEffect(() => {
         if (newsDetail) {
             updateView({ id: newsDetail.news_id });

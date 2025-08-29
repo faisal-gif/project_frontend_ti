@@ -9,7 +9,7 @@ const NewsDetailSkeleton = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-x-8 mt-8">
-        <div className="w-full md:w-4/6">
+        <div className="w-full">
           <div className="skeleton h-96 w-full mb-4"></div>
           <div className="skeleton h-4 w-full mt-4"></div>
           <div className="skeleton h-4 w-full mt-2"></div>
