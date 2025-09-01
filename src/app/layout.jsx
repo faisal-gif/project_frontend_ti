@@ -3,6 +3,7 @@ import Link from 'next/link'
 import "./globals.css";
 import { Menu, Search } from 'lucide-react'
 import Footer from "@/components/Footer";
+import FloatingFactCheck from "@/components/FloatingFactCheck";
 
 
 const geistSans = Geist({
@@ -152,7 +153,7 @@ export default function RootLayout({ children }) {
           </div>
         </div>
 
-
+<FloatingFactCheck />
       </body>
     </html>
   );

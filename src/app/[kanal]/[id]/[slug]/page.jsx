@@ -1,13 +1,16 @@
 'use client';
 import ArticleContent from '@/components/ArticleContent';
+import EkoranNewsDetailCard from '@/components/EkoranNewsDetailCard';
+import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import GoogleAds from '@/components/GoogleAds';
 import ModalShare from '@/components/ModalShare';
 import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
-import { getNewsDetail, updateView } from '@/lib/api/newsApi';
-import { Share, Share2, User, Volume2 } from 'lucide-react';
+import { getAllNews, getNewsDetail, updateView } from '@/lib/api/newsApi';
+import { getNewsSecondSections } from '@/lib/data';
+import { Car, Share, Share2, User, Volume2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -18,6 +21,7 @@ function NewsDetail() {
     const [size, setSize] = useState(2);
     const [newsDetail, setNewsDetail] = useState(null);
     const [editorDetail, setEditorDetail] = useState(null);
+    const [relatedNews, setRelatedNews] = useState([]);
 
     useEffect(() => {
         getNewsDetail({ id }).then(setNewsDetail).catch(console.error);
@@ -30,7 +34,7 @@ function NewsDetail() {
     }, [newsDetail]);
 
     if (newsDetail) {
-        
+
     }
     useEffect(() => {
         if (newsDetail) {
@@ -48,6 +52,17 @@ function NewsDetail() {
         if (!newsDetail || !newsDetail.news_tags) return [];
         return newsDetail.news_tags.split(',').map(tag => tag.trim()).filter(Boolean);
     };
+
+    const firstTag = getTags()[0] || '';
+
+    useEffect(() => {
+        if (firstTag) {
+            getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
+        }
+    }, [firstTag]);
+
+
+
 
     const getTextSizeClasses = () => {
         switch (size) {
@@ -89,6 +104,13 @@ function NewsDetail() {
             minute: '2-digit'
         });
     };
+
+    const [newsSecondSections, setNewsSecondSections] = useState([]);
+
+    useEffect(() => {
+        getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
+    }, []);
+
 
     return (
         <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24 ">
@@ -194,7 +216,7 @@ function NewsDetail() {
                                             </ul>
 
                                         </div>
-                                        <div className='md:hidden'>
+                                        <div className='lg:hidden'>
                                             <Card className="  py-2 flex flex-row items-center">
                                                 <div className="dropdown dropdown-end">
                                                     <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold">Aa</button>
@@ -235,7 +257,7 @@ function NewsDetail() {
                                             <img
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
-                                                className="w-full h-64 md:h-full"
+                                                className="w-full h-64 md:h-full object-contain"
                                             />
                                         </div>
                                         <div className="text-sm text-base-content/50 pt-2">{newsDetail.news_caption} </div>
@@ -244,6 +266,7 @@ function NewsDetail() {
                                         <ArticleContent
                                             htmlContent={newsDetail.news_content}
                                             getTextSizeClasses={getTextSizeClasses}
+                                            readAlsoArticles={relatedNews}
                                             className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
                                         />
                                     </div>
@@ -284,11 +307,13 @@ function NewsDetail() {
 
                             </article>
 
+                            <EkoranNewsDetailCard />
+
                             <ModalShare />
                         </main>
 
                         {/* Float Menu */}
-                        <div className="hidden md:block w-16">
+                        <div className="hidden lg:block w-16">
                             <Card className=" shadow-md py-2 sticky top-20 flex flex-col items-center gap-4 mt-[29rem]">
                                 <div className="dropdown dropdown-left">
                                     <button tabIndex={0} className="btn btn-ghost text-lg font-bold">Aa</button>
@@ -322,9 +347,7 @@ function NewsDetail() {
                     </>
 
                 )}
-                <aside className="lg:w-80">
-
-
+                <aside className="hidden lg:block w-80">
                     <div className=" sticky top-20">
                         <PopularNews />
                     </div>
@@ -332,7 +355,13 @@ function NewsDetail() {
             </div>
 
 
-
+            <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-3">
+                {newsSecondSections.map((section) => (
+                    <div key={section.title} className="space-y-8">
+                        <FirstHightlightNewsSection title={section.title} news={section.news} />
+                    </div>
+                ))}
+            </div>
 
         </div>
     )
