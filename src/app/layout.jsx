@@ -4,6 +4,7 @@ import "./globals.css";
 import { Menu, Search } from 'lucide-react'
 import Footer from "@/components/Footer";
 import FloatingFactCheck from "@/components/FloatingFactCheck";
+import Image from "next/image";
 
 
 const geistSans = Geist({
@@ -97,10 +98,13 @@ export default function RootLayout({ children }) {
               </div>
 
               <div className="flex-1">
-                <img
-                  src="https://timesindonesia.co.id/themes/times/assets/images/logo-timesindonesia-white-web.png"
+                <Image
+                  src="/logo.png"
                   alt="News Logo"
                   className="h-8 w-auto object-contain mx-auto lg:mx-0"
+                  width={100}
+                  height={100}
+                  priority 
                 />
               </div>
               <div className="flex gap-6 max-md:hidden">
@@ -153,7 +157,7 @@ export default function RootLayout({ children }) {
           </div>
         </div>
 
-<FloatingFactCheck />
+        <FloatingFactCheck />
       </body>
     </html>
   );
