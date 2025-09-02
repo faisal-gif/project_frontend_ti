@@ -5,6 +5,7 @@ import { Menu, Search } from 'lucide-react'
 import Footer from "@/components/Footer";
 import FloatingFactCheck from "@/components/FloatingFactCheck";
 import Image from "next/image";
+import TopLoader from "@/components/ui/TopLoader";
 
 
 const geistSans = Geist({
@@ -116,9 +117,9 @@ export default function RootLayout({ children }) {
                     </div>
                     <div
                       tabIndex={0}
-                      className="dropdown-content menu rounded-box w-sm mt-6 shadow-sm relative"
+                      className="dropdown-content menu bg-white rounded-box w-sm mt-6 shadow-sm relative"
                     >
-                      <label className="input w-full">
+                      <label className="input w-full z-80">
                         <Search className="w-6 h-6" />
                         <input type="search" className="grow" placeholder="Search" />
                       </label>
@@ -150,7 +151,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-
+            <TopLoader />
             {/* Page content here */}
             <div className="my-12">
               {children}

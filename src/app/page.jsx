@@ -58,9 +58,10 @@ function Home() {
 
 
       {/* Jurnalistik Fotografi */}
-      <section className="max-w-7xl mx-auto px-6 py-12 max-md:px-4 border-t-2 border-base-300" >
+      <section className="max-w-6xl mx-auto px-6 py-12 max-md:px-4 border-t-2 border-base-300" >
         <GallerySection />
       </section>
+      
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
         {newsSecondSections.map((section) => (
           <div key={section.title} className="space-y-8">
