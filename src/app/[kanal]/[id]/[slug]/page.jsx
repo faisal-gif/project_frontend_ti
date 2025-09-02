@@ -11,6 +11,7 @@ import { getEditorDetail } from '@/lib/api/editor';
 import { getAllNews, getNewsDetail, updateView } from '@/lib/api/newsApi';
 import { getNewsSecondSections } from '@/lib/data';
 import { Car, Share, Share2, User, Volume2 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -253,11 +254,16 @@ function NewsDetail() {
                                 <div className="flex flex-col md:flex-row gap-6">
                                     <div className='flex-1'>
                                         {/* Header Image */}
-                                        <div className="relative">
-                                            <img
+                                        <div className="flex justify-center items-center my-6">
+                                            <Image
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
-                                                className="w-full h-64 md:h-full object-contain"
+                                                width={800}          // kasih width biar aspect ratio tetap terjaga
+                                                height={0}           // boleh 0 kalau fill off, Next.js akan hitung otomatis
+                                                className="h-auto max-h-[500px] w-full object-contain"
+                                                priority
+                                                fetchPriority="high"
+                                                sizes="(max-width: 768px) 100vw, 800px"
                                             />
                                         </div>
                                         <div className="text-sm text-base-content/50 pt-2">{newsDetail.news_caption} </div>
