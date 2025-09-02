@@ -28,19 +28,19 @@ function Home() {
 
   return (
     <div className="">
-      <div className='max-w-7xl mx-auto gap-6 pt-10 pb-8 px-4'>
+      <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
         <GoogleAds size='banner' />
       </div>
       {/* Hero */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 pb-8 px-4 lg:grid-cols-4">
-        <div className="lg:col-span-3">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-8 px-4 md:grid-cols-4">
+        <div className="md:col-span-3">
           <HeadlineNewsHome />
         </div>
         <WeatherCard />
       </div>
 
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-8 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3">
         {newsFirstSections.map((section) => (
           <div key={section.title} className="space-y-8">
             <SimpleNewsSection title={section.title} news={section.news} />
@@ -48,16 +48,20 @@ function Home() {
         ))}
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 ">
+      <div className="mx-auto max-w-6xl px-4 py-8 ">
         <EKoranSection />
       </div>
 
-      <HorizontalNewsSection />
+      <section className="max-w-6xl mx-auto px-6 py-12 max-md:px-4 border-t-2 border-base-300" >
+        <HorizontalNewsSection />
+      </section>
+
+
       {/* Jurnalistik Fotografi */}
-
-      <GallerySection />
-
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-8 lg:grid-cols-3">
+      <section className="max-w-7xl mx-auto px-6 py-12 max-md:px-4 border-t-2 border-base-300" >
+        <GallerySection />
+      </section>
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
         {newsSecondSections.map((section) => (
           <div key={section.title} className="space-y-8">
             <FirstHightlightNewsSection title={section.title} news={section.news} />
@@ -67,13 +71,13 @@ function Home() {
 
       <VideoSection />
 
-      <div className="max-w-7xl mx-auto px-6 py-8 max-md:px-4">
-        <div className='grid grid-cols-1  gap-4 md:grid-cols-4 md:gap-4'>
-          <div className="md:col-span-3">
+      <div className="max-w-6xl mx-auto px-6 py-8 max-md:px-4">
+        <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
+          <div className="md:col-span-4 lg:col-span-4">
             <LastestNewsSection />
           </div>
 
-          <div className="md:col-span-1">
+          <div className="md:col-span-2 lg:col-span-2 ">
             <PopularNews />
             <GoogleAds size='rectangle' />
           </div>

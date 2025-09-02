@@ -29,41 +29,22 @@ export const metadata = {
 
 const urlNav = [
   {
-    id: 'home',
-    name: 'Home',
-    href: '/',
+    id: 'kanal',
+    name: 'Kanal',
+    href: '/kanal',
+  },
 
-  },
   {
-    id: 'news',
-    name: 'News',
-    href: '/news',
+    id: 'fokus',
+    name: 'Fokus',
+    href: '/fokus',
   },
-  {
-    id: 'podcast',
-    name: 'Podcasts',
-    href: '/podcasts',
-  },
+
   {
     id: 'ekoran',
     name: 'Ekoran',
     href: '/ekoran',
   },
-  {
-    id: 'kanal',
-    name: 'Kanal',
-    href: '/kanal',
-  },
-  {
-    id: 'headline',
-    name: 'Headline',
-    href: '/headline',
-  },
-  {
-    id: 'popular',
-    name: 'Terpopular',
-    href: '/popular',
-  }
 
 ]
 
@@ -77,60 +58,98 @@ export default function RootLayout({ children }) {
           <input id="drawer-nav" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             {/* Navbar */}
-            <div className="navbar fixed z-50 md:px-12 bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-border">
+            <div className="fixed top-0 w-full z-50">
+              {/* Navbar Atas */}
+              <div className="navbar md:px-12 bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-[#7a0f1f]">
+                <div className="max-w-6xl w-full mx-auto flex gap-4 items-center">
 
-              <div className="flex-none lg:hidden">
-                <label htmlFor="drawer-nav" aria-label="open sidebar" className="btn btn-ghost hover:bg-white/30 text-white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="inline-block h-6 w-6 stroke-current"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
-                  </svg>
-                </label>
-              </div>
+                  {/* Mobile Menu Button */}
+                  <div className="flex-none lg:hidden">
+                    <label
+                      htmlFor="drawer-nav"
+                      aria-label="open sidebar"
+                      className="btn btn-ghost hover:bg-white/30 text-white"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="inline-block h-6 w-6 stroke-current"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 6h16M4 12h16M4 18h16"
+                        ></path>
+                      </svg>
+                    </label>
+                  </div>
 
-              <div className="flex-1">
-                <Image
-                  src="/logo.png"
-                  alt="News Logo"
-                  className="h-8 w-auto object-contain mx-auto lg:mx-0"
-                  width={100}
-                  height={100}
-                  priority 
-                />
-              </div>
-              <div className="flex gap-6 max-md:hidden">
-                {urlNav.map((item) => (
-                  <Link key={item.id} href={item.href} className="hover:text-red-600 transition-colors whitespace-nowrap text-white">
-                    {item.name}
-                  </Link>
-                ))}
+                  {/* Logo + Menu Utama */}
+                  <div className="flex-1 flex items-center gap-6">
+                    <Image
+                      src="/logo.png"
+                      alt="News Logo"
+                      className="h-8 w-auto object-contain mx-auto lg:mx-0"
+                      width={100}
+                      height={100}
+                      priority
+                    />
+                    <div className="flex gap-6 max-md:hidden">
+                      {urlNav.map((item) => (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          className="hover:text-red-300 transition-colors whitespace-nowrap text-white"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
 
-
-              </div>
-
-              <div className="ml-4 dropdown dropdown-bottom dropdown-end">
-                <div tabIndex={0} role="button" className=" border-0"><Search className='w-4 h-4 text-white' /></div>
-                <div
-                  tabIndex={0}
-                  className="dropdown-content menu rounded-box w-sm mt-6 shadow-sm  relative"
-                >
-                  <label className="input w-full">
-                    <Search className='w-6 h-6' />
-                    <input type="search" className="grow" placeholder="Search" />
-                  </label>
+                  {/* Search */}
+                  <div className="ml-4 dropdown dropdown-bottom dropdown-end">
+                    <div tabIndex={0} role="button" className="border-0">
+                      <Search className="w-4 h-4 text-white" />
+                    </div>
+                    <div
+                      tabIndex={0}
+                      className="dropdown-content menu rounded-box w-sm mt-6 shadow-sm relative"
+                    >
+                      <label className="input w-full">
+                        <Search className="w-6 h-6" />
+                        <input type="search" className="grow" placeholder="Search" />
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
 
+              {/* Navbar Bawah */}
+              <div className="w-full bg-[#7a0f1f] shadow-sm border border-none">
+                <div className="max-w-6xl mx-auto flex gap-6 px-4 overflow-x-auto text-sm">
+                  {[
+                    "Politik",
+                    "Hukum",
+                    "Ekonomi",
+                    "Lingkungan",
+                    "Wawancara",
+                    "Investigasi",
+                  ].map((menu) => (
+                    <Link
+                      key={menu}
+                      href="#"
+                      className="py-2 text-white  hover:text-red-600 whitespace-nowrap"
+                    >
+                      {menu}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
+
 
             {/* Page content here */}
             <div className="my-12">
@@ -140,7 +159,7 @@ export default function RootLayout({ children }) {
             {/* Footer */}
             <Footer />
           </div>
-          <div className="drawer-side ">
+          <div className="drawer-side z-80">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
             <ul className="menu text-white bg-gradient-to-bl from-[#800b19] to-[#3e154f] min-h-full w-60 p-4">
               <li className="text-xl font-bold text-white mb-10"><img

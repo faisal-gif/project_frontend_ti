@@ -170,7 +170,7 @@ function VideoSection() {
                     >
                         <Carousel.Content className="-ml-2 md:-ml-4">
                             {videosData.map((video, index) => (
-                                <Carousel.Item key={video.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                                <Carousel.Item key={video.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 xl:basis-1/4">
                                     <div
                                         onClick={() => handleVideoSelect(index)}
                                         className={`cursor-pointer transition-all duration-300 ${index === currentVideoIndex ? 'scale-105' : 'hover:scale-105'}`}
