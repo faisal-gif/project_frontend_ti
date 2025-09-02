@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import Card from './ui/Card';
 import { Eye } from 'lucide-react';
+import Image from 'next/image';
 
 function HorizontalNewsCard({
     id,
@@ -51,11 +52,12 @@ function HorizontalNewsCard({
     return (
         <Card key={id} className="w-full max-w-sm bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 ease-in-out">
             <Link href={url} className="block h-full">
-                <div className="relative overflow-hidden">
-                    <img
+                <div className="relative overflow-hidden h-40 w-full">
+                    <Image
                         src={image}
                         alt={title}
-                        className="w-full h-40 object-cover transition-transform duration-300 hover:scale-105"
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
                         <Eye className="w-3 h-3" />

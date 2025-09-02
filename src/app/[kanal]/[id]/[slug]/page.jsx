@@ -113,7 +113,7 @@ function NewsDetail() {
 
 
     return (
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24 ">
+        <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
 
             <GoogleAds size='banner' />
 
@@ -128,7 +128,7 @@ function NewsDetail() {
                                 <span className="badge badge-primary badge-outline px-4 py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
                                 </span>
-                                <div className="p-4 md:p-6">
+                                <div className="py-4 md:py-2">
                                     {/* Title */}
                                     <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-4 leading-snug">
                                         {newsDetail.news_title}

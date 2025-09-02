@@ -106,7 +106,7 @@ function VideoSection() {
 
     return (
         <section className="w-full bg-neutral text-white py-8">
-            <div className="max-w-7xl mx-auto px-4">
+            <div className="max-w-6xl mx-auto px-4">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-4">

@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
             <div className="fixed top-0 w-full z-50">
               {/* Navbar Atas */}
               <div className="navbar md:px-12 bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-[#7a0f1f]">
-                <div className="max-w-6xl w-full mx-auto flex gap-4 items-center">
+                <div className="max-w-6xl w-full px-4 mx-auto flex gap-4 items-center">
 
                   {/* Mobile Menu Button */}
                   <div className="flex-none md:hidden">
@@ -94,13 +94,13 @@ export default function RootLayout({ children }) {
                   </div>
 
                   {/* Logo + Menu Utama */}
-                  <div className="lg:flex-1 flex items-center gap-6">
+                  <div className="flex-1 flex items-center gap-6">
                     <Image
                       src="/logo.png"
                       alt="News Logo"
-                      className="h-8 w-auto object-contain mx-auto lg:mx-0"
-                      width={100}
-                      height={100}
+                      className="h-10 w-auto object-contain mx-auto lg:mx-0"
+                      width={200}
+                      height={400}
                       priority
                     />
                     <div className="flex gap-6 max-md:hidden">

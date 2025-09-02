@@ -67,13 +67,13 @@ function Home() {
                 <EKoranSection />
             </div>
 
-            <section className="max-w-6xl mx-auto px-6 py-12 max-md:px-4 border-t-2 border-base-300" >
+            <section className="max-w-6xl mx-auto px-4 py-12 max-md:px-4 border-t-2 border-base-300" >
                 <HorizontalNewsSection />
             </section>
 
 
             {/* Jurnalistik Fotografi */}
-            <section className="max-w-6xl mx-auto px-6 py-12 max-md:px-4 border-t-2 border-base-300" >
+            <section className="max-w-6xl mx-auto px-4 py-12 max-md:px-4 border-t-2 border-base-300" >
                 <GallerySection />
             </section>
 
@@ -87,7 +87,7 @@ function Home() {
 
             <VideoSection />
 
-            <div className="max-w-6xl mx-auto px-6 py-8 max-md:px-4">
+            <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4">
                 <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
                     <div className="md:col-span-4 lg:col-span-4">
                         <LastestNewsSection />

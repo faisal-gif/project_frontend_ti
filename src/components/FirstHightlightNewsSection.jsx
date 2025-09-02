@@ -4,6 +4,7 @@ import Card from './ui/Card'
 import SimpleNewsCard from './SimpleNewsCard'
 import { ChevronRight, Eye, Heart, MessageCircle } from 'lucide-react'
 import Link from 'next/link';
+import Image from 'next/image';
 
 function FirstHightlightNewsSection({ title, news }) {
     const formatDate = (dateString) => {
@@ -47,9 +48,10 @@ function FirstHightlightNewsSection({ title, news }) {
                     <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg border-0 bg-card overflow-hidden">
                         <div className="relative">
                             <div className="aspect-[16/9] relative overflow-hidden">
-                                <img
+                                   <Image
                                     src={news[0].news_image_new}
                                     alt={news[0].news_title}
+                                    fill
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
