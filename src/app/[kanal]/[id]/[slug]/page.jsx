@@ -314,7 +314,7 @@ function NewsDetail() {
 
                         {/* Float Menu */}
                         <div className="hidden lg:block w-16">
-                            <Card className=" shadow-md py-2 sticky top-20 flex flex-col items-center gap-4 mt-[29rem]">
+                            <Card className=" shadow-md py-2 sticky top-28 flex flex-col items-center gap-4 mt-[29rem]">
                                 <div className="dropdown dropdown-left">
                                     <button tabIndex={0} className="btn btn-ghost text-lg font-bold">Aa</button>
                                     <div tabIndex={0} className="dropdown-content bg-white rounded-box w-52 p-3 shadow">
@@ -348,7 +348,7 @@ function NewsDetail() {
 
                 )}
                 <aside className="hidden lg:block w-80">
-                    <div className=" sticky top-20">
+                    <div className=" sticky top-28">
                         <PopularNews />
                     </div>
                 </aside>

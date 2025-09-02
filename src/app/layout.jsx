@@ -141,7 +141,7 @@ export default function RootLayout({ children }) {
                     <Link
                       key={menu}
                       href="#"
-                      className="py-2 text-white  hover:text-red-600 whitespace-nowrap"
+                      className="py-2 text-white/80  hover:text-white whitespace-nowrap"
                     >
                       {menu}
                     </Link>
