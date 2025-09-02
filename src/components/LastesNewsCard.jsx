@@ -2,6 +2,7 @@ import { Eye } from 'lucide-react';
 import Link from 'next/link'
 import React from 'react'
 import Card from './ui/Card';
+import Image from 'next/image';
 
 function LastesNewsCard({
     id,
@@ -53,22 +54,26 @@ function LastesNewsCard({
             <div className="grid grid-cols-5 gap-0">
                 <div className="col-span-5 md:col-span-1 relative overflow-hidden">
                     {/* Blurred background */}
-                    <div
-                        className="absolute inset-0 z-0"
-                        style={{
-                            backgroundImage: `url(${image})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            filter: 'blur(8px)',
-                            opacity: 0.5,
-                        }}
-                    />
+                    <div className="absolute inset-0 z-0 overflow-hidden">
+                        <Image
+                            src={image}
+                            alt={`${title} background`}
+                            fill
+                            className="object-cover blur-md opacity-50"
+                        />
+                    </div>
+
                     {/* Main image */}
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full h-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
-                    />
+                    <div className="relative z-10 w-full h-full">
+                        <Image
+                            src={image}
+                            alt={title}
+                            fill
+                            className="object-contain transition-transform duration-300 group-hover:scale-105"
+                        />
+                    </div>
+
+                    {/* Overlay info */}
                     <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1 z-20">
                         <Eye className="w-3 h-3" />
                         {views.toLocaleString()}
