@@ -8,6 +8,12 @@ const nextConfig = {
                 port: "", // optional
                 pathname: "/**", // allow semua path
             },
+             {
+                protocol: "https",
+                hostname: "cdn-1.tin.co.id",
+                port: "", // optional
+                pathname: "/**", // allow semua path
+            },
         ],
         minimumCacheTTL: 60, // cache di server 60 detik
     },
