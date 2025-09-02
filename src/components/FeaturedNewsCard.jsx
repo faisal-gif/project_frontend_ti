@@ -12,7 +12,7 @@ function FeaturedNewsCard({
     className = ""
 }) {
     return (
-        <Card className={`group relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[28rem] ${className}`}>
+        <Card className={`group relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[30rem] ${className}`}>
             <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110"
                 style={{ backgroundImage: `url(${image})` }}

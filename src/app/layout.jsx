@@ -1,7 +1,7 @@
 import { EB_Garamond, Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link'
 import "./globals.css";
-import { Menu, Search } from 'lucide-react'
+import { Focus, Home, List, Menu, Newspaper, Search } from 'lucide-react'
 import Footer from "@/components/Footer";
 import FloatingFactCheck from "@/components/FloatingFactCheck";
 import Image from "next/image";
@@ -27,20 +27,29 @@ const ebGaramond = EB_Garamond({
 
 const urlNav = [
   {
+    id: 'home',
+    name: 'Home',
+    icon: Home,
+    href: '/',
+  },
+  {
     id: 'kanal',
     name: 'Kanal',
+    icon: List,
     href: '/kanal',
   },
 
   {
     id: 'fokus',
     name: 'Fokus',
+    icon: Focus,
     href: '/fokus',
   },
 
   {
     id: 'ekoran',
     name: 'Ekoran',
+    icon: Newspaper,
     href: '/ekoran',
   },
 
@@ -62,7 +71,7 @@ export default function RootLayout({ children }) {
                 <div className="max-w-6xl w-full mx-auto flex gap-4 items-center">
 
                   {/* Mobile Menu Button */}
-                  <div className="flex-none lg:hidden">
+                  <div className="flex-none md:hidden">
                     <label
                       htmlFor="drawer-nav"
                       aria-label="open sidebar"
@@ -85,7 +94,7 @@ export default function RootLayout({ children }) {
                   </div>
 
                   {/* Logo + Menu Utama */}
-                  <div className="flex-1 flex items-center gap-6">
+                  <div className="lg:flex-1 flex items-center gap-6">
                     <Image
                       src="/logo.png"
                       alt="News Logo"
@@ -96,19 +105,22 @@ export default function RootLayout({ children }) {
                     />
                     <div className="flex gap-6 max-md:hidden">
                       {urlNav.map((item) => (
-                        <Link
-                          key={item.id}
-                          href={item.href}
-                          className="hover:text-red-300 transition-colors whitespace-nowrap text-white"
-                        >
-                          {item.name}
-                        </Link>
+                        <div key={item.id} className="flex items-center gap-2">
+                          <item.icon className="w-4 h-4 text-white" />
+                          <Link
+                            key={item.id}
+                            href={item.href}
+                            className="hover:text-red-300 transition-colors whitespace-nowrap text-white"
+                          >
+                            {item.name}
+                          </Link>
+                        </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Search */}
-                  <div className="ml-4 dropdown dropdown-bottom dropdown-end">
+                  <div className="md:ml-auto ml-4 dropdown dropdown-bottom dropdown-end">
                     <div tabIndex={0} role="button" className="border-0">
                       <Search className="w-4 h-4 text-white" />
                     </div>

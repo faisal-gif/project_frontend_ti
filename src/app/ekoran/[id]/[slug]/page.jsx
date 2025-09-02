@@ -126,7 +126,7 @@ function EkoranDetail() {
   }
 
   return (
-    <main className="max-w-7xl flex-1 mx-auto px-4 lg:px-8 py-16">
+    <main className="max-w-6xl flex-1 mx-auto px-4 lg:px-8 py-16">
       {/* Breadcrumb */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
