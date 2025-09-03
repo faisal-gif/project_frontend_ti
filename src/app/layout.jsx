@@ -67,8 +67,8 @@ export default function RootLayout({ children }) {
             {/* Navbar */}
             <div className="fixed top-0 w-full z-50">
               {/* Navbar Atas */}
-              <div className="navbar md:px-12 bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-[#7a0f1f]">
-                <div className="max-w-6xl w-full px-4 mx-auto flex gap-4 items-center">
+              <div className="navbar bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-[#7a0f1f]">
+                <div className="max-w-6xl w-full md:px-4 mx-auto flex gap-4 justify-between items-center">
 
                   {/* Mobile Menu Button */}
                   <div className="flex-none md:hidden">
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
                   </div>
 
                   {/* Logo + Menu Utama */}
-                  <div className="flex-1 flex items-center gap-6">
+                  <div className="lg:flex-1 flex items-center gap-6">
                     <Image
                       src="/logo.png"
                       alt="News Logo"
@@ -171,7 +171,7 @@ export default function RootLayout({ children }) {
           </div>
           <div className="drawer-side z-80">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu text-white bg-gradient-to-bl from-[#800b19] to-[#3e154f] min-h-full w-60 p-4">
+            <ul className="menu text-black bg-base-100  min-h-full w-60 p-4">
               <li className="text-xl font-bold text-white mb-10"><img
                 src="https://timesindonesia.co.id/themes/times/assets/images/logo-timesindonesia-white-web.png"
                 alt="News Logo"

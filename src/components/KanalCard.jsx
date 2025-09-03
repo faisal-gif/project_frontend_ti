@@ -30,7 +30,7 @@ function KanalCard({ id, name, url, description, news_count,Icon }) {
                         <span className="text-xs text-muted-foreground">
                             Klik untuk membaca
                         </span>
-                        <div className="w-6 h-0.5 bg-[#7a0f1f]/20 group-hover:bg-primary transition-colors"></div>
+                        <div className="w-6 h-0.5 bg-[#7a0f1f]/20 group-hover:bg-[#7a0f1f] transition-colors"></div>
                     </div>
                 </Card.Body>
             </Card>

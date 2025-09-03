@@ -70,6 +70,7 @@ function Kanal() {
         "kopi-times-forum-mahasiswa",
     ];
 
+
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
             {/* Header Section */}
@@ -99,8 +100,20 @@ function Kanal() {
                 </div>
             </div>
 
-            {/* Channels Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+            {channels.length === 0 ? (
+                <div className="text-center py-12">
+                    <div className="flex justify-center mb-4">
+                        <svg className="animate-spin h-8 w-8 text-[#7a0f1f]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold">Loading Kanal...</h2>
+                    <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
+                </div>
+            ) : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {channels
                     .filter(channel => !excludedSlugs.includes(channel.slug))
                     .map((channel) => {
@@ -118,8 +131,11 @@ function Kanal() {
                             />
                         )
                     }
-                )}
-            </div>
+                    )}
+            </div>)}
+
+
+
 
         </main>
     )
