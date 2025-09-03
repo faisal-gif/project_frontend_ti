@@ -1,15 +1,16 @@
-import axiosInstance from "./axiosInstance";
+import { clientAxios } from "./axiosInstance";
 
-const getDetailKanal = async (slug) => {
+
+const getAllKanal = async () => {
     try {
-        const response = await apiDetailKanal.get(`/cat_detail/${slug}`);
-        return response.data;
+        const response = await clientAxios.get("/kanal/all");
+        return response.data.data;
     } catch (error) {
-        console.error("Error fetching detail kanal:", error);
-        throw error;
+        console.log(error);
     }
-}
+};
 
-export default {
-    getDetailKanal
+
+export {
+    getAllKanal,
 };

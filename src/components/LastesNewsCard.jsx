@@ -64,7 +64,7 @@ function LastesNewsCard({
                     </div>
 
                     {/* Main image */}
-                    <div className="relative z-10 w-full h-full">
+                    <div className="relative z-10 w-full h-64 md:h-full">
                         <Image
                             src={image}
                             alt={title}

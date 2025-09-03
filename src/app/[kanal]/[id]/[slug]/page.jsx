@@ -258,8 +258,8 @@ function NewsDetail() {
                                             <Image
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
-                                                width={800}          // kasih width biar aspect ratio tetap terjaga
-                                                height={0}           // boleh 0 kalau fill off, Next.js akan hitung otomatis
+                                                width={1200}
+                                                height={800}         // boleh 0 kalau fill off, Next.js akan hitung otomatis
                                                 className="h-auto max-h-[500px] w-full object-contain"
                                                 priority
                                                 fetchPriority="high"
