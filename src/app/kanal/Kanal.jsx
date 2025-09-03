@@ -60,6 +60,16 @@ function Kanal() {
         getAllKanal().then(setChannels).catch(console.error);
     }, []);
 
+    // Slugs to exclude
+    const excludedSlugs = [
+        "kopi-times-opini",
+        "kopi-times-forum-dosen",
+        "kopi-times-resensi",
+        "kopi-times-forum-guru",
+        "kopi-times-jurnal",
+        "kopi-times-forum-mahasiswa",
+    ];
+
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
             {/* Header Section */}
@@ -91,22 +101,23 @@ function Kanal() {
 
             {/* Channels Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {channels.map((channel) => {
-
-                    const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
-                    return (
-                        <KanalCard
-                            key={channel.id}
-                            id={channel.id}
-                            name={channel.name}
-                            slug={channel.slug}
-                            url={channel.url}
-                            description={channel.description}
-                            news_count={channel.news_count}
-                            Icon={Icon} // lempar ke card
-                        />
-                    )
-                }
+                {channels
+                    .filter(channel => !excludedSlugs.includes(channel.slug))
+                    .map((channel) => {
+                        const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
+                        return (
+                            <KanalCard
+                                key={channel.id}
+                                id={channel.id}
+                                name={channel.name}
+                                slug={channel.slug}
+                                url={channel.url}
+                                description={channel.description}
+                                news_count={channel.news_count}
+                                Icon={Icon} // lempar ke card
+                            />
+                        )
+                    }
                 )}
             </div>
 
