@@ -8,16 +8,10 @@ export default function ReadAlso({ articles = [], className = '' }) {
         Baca Juga
       </h6>
 
-      <div className="space-y-2">
+      <div className="mt-4 space-y-2">
         {articles.map((article) => (
-          <Link key={article.news_id} href={article.url_ci4} className="group block">
-             <div className="flex-1 min-w-0" >
-              
-                <h4 className="text-sm font-medium text-base-content group-hover:text-red-600 transition-colors line-clamp-2 leading-relaxed">
-                  {article.news_title}
-                </h4>
-              </div>
-           
+          <Link key={article.news_id} href={article.url_ci4} className="group block text-sm font-medium hover:text-red-600 transition-colors hover:underline">
+           <span className=' line-clamp-1 leading-relaxed'>{article.news_title}</span> 
           </Link>
         ))}
       </div>

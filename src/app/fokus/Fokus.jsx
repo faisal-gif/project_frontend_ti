@@ -16,7 +16,7 @@ function Fokus() {
         getAllFocus(
             {
                 offset: 0,
-                limit: 12
+                limit: 10
             }
         ).then(setFocus).catch(console.error);
     }, []);
@@ -87,7 +87,7 @@ function Fokus() {
                     <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
                 </div>
             ) : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {focus.map((fokus) => {
+                {focus.slice(1).map((fokus) => {
                     return (
                         <FocusCard
                             key={fokus.focnews_id}
