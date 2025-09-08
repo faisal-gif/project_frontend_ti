@@ -25,9 +25,7 @@ const ebGaramond = EB_Garamond({
 
 
 export const metadata = {
-  icons: {
-    icon: '/times_icon.png', // Jalur relatif ke file Anda di public/
-  },
+  icons: '/times_icon.png',
   robots: {
     index: true,
     follow: true,
