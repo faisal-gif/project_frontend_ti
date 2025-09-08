@@ -11,7 +11,7 @@ export const metadata = {
     description: "Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
     keywords: "times indonesia, timesindonesia, portal berita, berita positif, berita terbaru, berita terkini, informasi terkini, informasi terbaru, peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
     type: "website",
-    url: 'timesindonesia.co.id',
+    url: 'https://timesindonesia.co.id/',
     siteName: 'TIMES Indonesia',
   },
 };
