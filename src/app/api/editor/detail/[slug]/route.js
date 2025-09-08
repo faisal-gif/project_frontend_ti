@@ -2,8 +2,7 @@ import { serverAxios } from "@/lib/api/axiosInstance";
 import { NextResponse } from "next/server";
 
 export async function GET(_, context) {
-    const { params } = await context;
-    const { slug } = params;
+    const { slug } = await context.params;
 
     try {
         const response = await serverAxios.get('/editor/', {

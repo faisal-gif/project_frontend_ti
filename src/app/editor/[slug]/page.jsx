@@ -136,6 +136,13 @@ function Editor() {
                                     image={item.news_image_new}
                                 />
                             ))}
+
+                            {/* Skeleton saat infinite scroll (bukan pertama) */}
+                            {isLoading && articles.length > 0 && (
+                                Array.from({ length: 4 }).map((_, index) => (
+                                    <LastestNewsCardSkeleton key={`scroll-${index}`} />
+                                ))
+                            )}
                         </div>
 
                         {/* Loader area */}
@@ -149,9 +156,9 @@ function Editor() {
                                 <button
                                     onClick={loadMoreManually}
                                     className="btn btn-error btn-outline"
-                                    disabled={isLoading}
+                                    hidden={isLoading}
                                 >
-                                    {isLoading ? 'Memuat...' : 'Berita Lainnya'}
+                                    Berita Lainnya
                                 </button>
                             </div>
                         )}

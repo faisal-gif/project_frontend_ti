@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Hash, Vote } from "lucide-react"
 import KanalCard from '@/components/KanalCard';
 import { getAllKanal } from '@/lib/api/kanalApi';
@@ -11,15 +11,51 @@ import { getAllFocus } from '@/lib/api/focus';
 function Fokus() {
 
     const [focus, setFocus] = useState([]);
+    const [offset, setOffset] = useState(0)
+    const [limit] = useState(10)
+    const [loadCount, setLoadCount] = useState(1)
+    const [hasMore, setHasMore] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
+    const loaderRef = useRef(null)
+
+
+    const fetchFokus = async (currentOffset) => {
+        try {
+            setIsLoading(true)
+            const res = await getAllFocus({
+                offset: currentOffset,
+                limit: limit
+            });
+            const newData = res || []
+
+            // Filter duplikat berdasarkan news_id
+            setFocus(prev => {
+                const existingIds = new Set(prev.map(item => item.focnews_id))
+                const filtered = newData.filter(item => !existingIds.has(item.focnews_id))
+                return [...prev, ...filtered]
+            })
+
+            // Kalau data kurang dari limit → tidak ada data lagi
+            if (newData.length < limit) {
+                setHasMore(false)
+            }
+        } catch (err) {
+            console.error(err)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     useEffect(() => {
-        getAllFocus(
-            {
-                offset: 0,
-                limit: 10
-            }
-        ).then(setFocus).catch(console.error);
-    }, []);
+        fetchFokus(offset)
+    }, [offset]);
+
+
+    const loadMoreManually = () => {
+        if (hasMore && !isLoading) {
+            setOffset(prev => prev + limit)
+        }
+    }
 
 
 
@@ -43,10 +79,10 @@ function Fokus() {
                     </div>
                     <div className="text-center md:text-left">
                         <h2 className="text-2xl font-bold text-foreground mb-2">
-                            {focus.length > 0 ? focus[0].focnews_title : 'Memahami Dinamika Pemilu 2024'}
+                            {focus.length > 0 ? focus[0].focnews_title : 'Memuat...'}
                         </h2>
                         <p className="text-black/60 mb-4">
-                            {focus.length > 0 ? focus[0].focnews_description : 'Analisis mendalam tentang proses, tantangan, dan implikasi dari Pemilu 2024 di Indonesia.'}
+                            {focus.length > 0 ? focus[0].focnews_description : 'Memuat...'}
                         </p>
                         <button className="bg-[#7a0f1f] text-white px-6 py-2 rounded-lg hover:bg-[#7a0f1f] transition-colors">
                             Baca Selengkapnya
@@ -75,7 +111,8 @@ function Fokus() {
                 </div>
             </div>
 
-            {focus.length === 0 ? (
+            {/* Empty State */}
+            {isLoading && focus.length === 0 && (
                 <div className="text-center py-12">
                     <div className="flex justify-center mb-4">
                         <svg className="animate-spin h-8 w-8 text-[#7a0f1f]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -86,25 +123,36 @@ function Fokus() {
                     <h2 className="text-2xl font-bold">Loading Fokus...</h2>
                     <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
                 </div>
-            ) : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {focus.slice(1).map((fokus) => {
-                    return (
-                        <FocusCard
-                            key={fokus.focnews_id}
-                            id={fokus.focnews_id}
-                            name={fokus.focnews_title}
-                            url={fokus.urlPath}
-                            description={fokus.focnews_description}
-                            Icon={Hash} // lempar ke card
-                        />
-                    )
-                }
-                )}
-            </div>)}
+            )}
 
-
-
-
+            {focus.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {focus.slice(1).map((fokus) => {
+                        return (
+                            <FocusCard
+                                key={fokus.focnews_id}
+                                id={fokus.focnews_id}
+                                name={fokus.focnews_title}
+                                url={fokus.urlPath}
+                                description={fokus.focnews_description}
+                                Icon={Hash} // lempar ke card
+                            />
+                        )
+                    }
+                    )}
+                </div>
+            )}
+          
+                <div className="text-center mt-6">
+                    <button
+                        onClick={loadMoreManually}
+                        className="btn btn-error btn-outline"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Memuat...' : 'Muat Lebih Banyak'}
+                    </button>
+                </div>
+          
         </main>
     )
 }
