@@ -1,178 +1,48 @@
-'use client'
-import DetailEditor from '@/components/DetailEditor';
-import LastesNewsCard from '@/components/LastesNewsCard';
-import PopularNews from '@/components/PopularNews';
-import LastestNewsCardSkeleton from '@/components/ui/LastestNewsCardSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
-import { getAllNews } from '@/lib/api/newsApi';
-import { useParams } from 'next/navigation';
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React from 'react'
+import EditorClient from './EditorClient';
 
-function Editor() {
-    const params = useParams();
+export async function generateMetadata({ params }) {
     const { slug } = params;
+    const editorDetail = await getEditorDetail({ slug });
 
-    const [editorDetail, setEditorDetail] = useState(null);
-    const [articles, setArticles] = useState([]);
-    const [offset, setOffset] = useState(0);
-    const [limit] = useState(10);
-    const [loadCount, setLoadCount] = useState(1);
-    const [hasMore, setHasMore] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
-    const loaderRef = useRef(null);
-
-    // Ambil detail editor
-    useEffect(() => {
-        if (!slug) return;
-        getEditorDetail({ slug })
-            .then(setEditorDetail)
-            .catch(console.error);
-    }, [slug]);
-
-    // Ambil berita berdasarkan offset
-    const fetchNews = useCallback(async (currentOffset) => {
-        if (!editorDetail) return;
-        try {
-            setIsLoading(true);
-            const res = await getAllNews({
-                news_type: 'editor',
-                editor_id: editorDetail.editor_id,
-                limit,
-                offset: currentOffset,
-            });
-            const newData = res || [];
-
-            setArticles(prev => {
-                const existingIds = new Set(prev.map(item => item.news_id));
-                const filtered = newData.filter(item => !existingIds.has(item.news_id));
-                return [...prev, ...filtered];
-            });
-
-            if (newData.length < limit) {
-                setHasMore(false);
-            }
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setIsLoading(false);
-        }
-    }, [editorDetail, limit]);
-
-    // Load data ketika offset berubah
-    useEffect(() => {
-        if (editorDetail) {
-            fetchNews(offset);
-        }
-    }, [offset, editorDetail, fetchNews]);
-
-    // Infinite scroll
-    const handleObserver = useCallback((entries) => {
-        const target = entries[0];
-        if (target.isIntersecting && loadCount < 4 && hasMore && !isLoading) {
-            setOffset(prev => prev + limit);
-            setLoadCount(prev => prev + 1);
-        }
-    }, [limit, loadCount, hasMore, isLoading]);
-
-    useEffect(() => {
-        const option = { root: null, rootMargin: '20px', threshold: 1.0 };
-        const observer = new IntersectionObserver(handleObserver, option);
-
-        const timer = setTimeout(() => {
-            if (loaderRef.current) observer.observe(loaderRef.current);
-        }, 500);
-
-        return () => {
-            clearTimeout(timer);
-            if (loaderRef.current) observer.unobserve(loaderRef.current);
+    if (!editorDetail) {
+        return {
+            title: "Editor tidak ditemukan - TIMES Indonesia",
+            description: "Editor yang Anda cari tidak tersedia.",
         };
-    }, [handleObserver]);
+    }
 
-    const loadMoreManually = () => {
-        if (hasMore && !isLoading) {
-            setOffset(prev => prev + limit);
-        }
+    return {
+        title: `${editorDetail.editor_name} - TIMES Indonesia`,
+        description: editorDetail.editor_description,
+        keywords: editorDetail.editor_alias,
+        openGraph: {
+            locale: 'id_ID',
+            title: editorDetail.editor_name,
+            description: editorDetail.editor_description,
+            images: [
+                {
+                    url: editorDetail.editor_image,
+                    width: 500,
+                    height: 500,
+                    alt: editorDetail.editor_name,
+                },
+            ],
+            type: "website",
+          },
+        twitter: {
+            card: "summary_large_image",
+            title: editorDetail.editor_name,
+            description: editorDetail.editor_description,
+            images: [editorDetail.editor_image],
+        },
     };
-
-    return (
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24">
-            {/* Tampilkan skeleton detail jika masih loading */}
-            {!editorDetail ? (
-                <div className="text-center py-10">Memuat editor...</div>
-            ) : (
-                <DetailEditor authorData={editorDetail} />
-            )}
-
-            {/* Articles Section */}
-            <div className="mb-8">
-                {editorDetail && (
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="w-1 h-8 bg-neutral rounded-full"></div>
-                        <h2 className="text-2xl font-bold text-foreground">
-                            Artikel yang disunting oleh {editorDetail.editor_name}
-                        </h2>
-                    </div>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="col-span-3">
-                        <div className="space-y-3">
-                            {/* Skeleton Loading */}
-                            {isLoading && articles.length === 0 &&
-                                Array.from({ length: 5 }).map((_, index) => (
-                                    <LastestNewsCardSkeleton key={index} />
-                                ))
-                            }
-
-                            {articles.map((item) => (
-                                <LastesNewsCard
-                                    key={item.news_id}
-                                    id={item.news_id}
-                                    title={item.news_title}
-                                    description={item.news_description}
-                                    author={item.news_writer}
-                                    datepub={item.news_datepub}
-                                    views={Number(item.pageviews)}
-                                    image={item.news_image_new}
-                                />
-                            ))}
-
-                            {/* Skeleton saat infinite scroll (bukan pertama) */}
-                            {isLoading && articles.length > 0 && (
-                                Array.from({ length: 4 }).map((_, index) => (
-                                    <LastestNewsCardSkeleton key={`scroll-${index}`} />
-                                ))
-                            )}
-                        </div>
-
-                        {/* Loader area */}
-                        {hasMore && loadCount < 4 && (
-                            <div ref={loaderRef} className="h-10" />
-                        )}
-
-                        {/* Manual Load Button */}
-                        {hasMore && loadCount >= 4 && (
-                            <div className="text-center mt-6">
-                                <button
-                                    onClick={loadMoreManually}
-                                    className="btn btn-error btn-outline"
-                                    hidden={isLoading}
-                                >
-                                    Berita Lainnya
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                    <div className="lg:col-span-1">
-                        <PopularNews />
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    )
 }
 
-export default Editor;
+
+export default async function page({ params }) {
+    const { slug } = params;
+    const editorDetail = await getEditorDetail({slug});
+    return <EditorClient initialEditorDetail={editorDetail} />;
+}
