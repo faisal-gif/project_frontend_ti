@@ -25,6 +25,9 @@ const ebGaramond = EB_Garamond({
 
 
 export const metadata = {
+  icons: {
+    icon: '/times_icon.png', // Jalur relatif ke file Anda di public/
+  },
   robots: {
     index: true,
     follow: true,
@@ -34,8 +37,6 @@ export const metadata = {
       follow: true,
     },
   },
-
-
 
   other: {
     "fb:app_id": "902622399777757",
