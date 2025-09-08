@@ -25,7 +25,6 @@ const ebGaramond = EB_Garamond({
 
 
 export const metadata = {
-  icons: '/times_icon.png',
   robots: {
     index: true,
     follow: true,
