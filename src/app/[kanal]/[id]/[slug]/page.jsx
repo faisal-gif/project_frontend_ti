@@ -31,8 +31,8 @@ export async function generateMetadata({ params }) {
                 },
             ],
             type: "article",
-            url: `https://timesindonesia.co.id/${newsDetail.url_ci4}`,
-            site_name: 'TIMES Indonesia',
+            url: `https://timesindonesia.co.id${newsDetail.url_ci4}`,
+            siteName: 'TIMES Indonesia',
         },
         twitter: {
             card: "summary_large_image",
