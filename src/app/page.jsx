@@ -21,7 +21,7 @@ export const metadata = {
     type: "web",
     url: 'https://timesindonesia.co.id',
     siteName: 'TIMES Indonesia',
-  }
+  },
 };
 
 function page() {
