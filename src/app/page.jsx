@@ -13,6 +13,14 @@ export const metadata = {
     type: "website",
     url: 'https://timesindonesia.co.id/',
     siteName: 'TIMES Indonesia',
+       images: [
+      {
+        url: "/times_icon.png",
+        width: 1200,
+        height: 630,
+        alt: "TIMES Indonesia",
+      },
+    ],
   },
 };
 
