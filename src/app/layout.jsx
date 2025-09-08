@@ -24,6 +24,25 @@ const ebGaramond = EB_Garamond({
 });
 
 
+export const metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+
+
+
+  other: {
+    "fb:app_id": "902622399777757",
+    "fb:admins": "1489514926",
+    "fb:pages": "258635271160588",
+  },
+};
 
 const urlNav = [
   {

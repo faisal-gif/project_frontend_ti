@@ -55,12 +55,10 @@ function page() {
     getKanalDetail({ slug }).then(setDetailKanal).catch(console.error);
   }, [slug]);
 
-
   useEffect(() => {
     if (!detailKanal) return;
     fetchNews(offset, detailKanal)
   }, [offset, detailKanal])
-
 
   const handleObserver = useCallback((entries) => {
     const target = entries[0]
@@ -91,8 +89,6 @@ function page() {
     }
   }
 
-
-
   return (
     <main className="max-w-6xl  mx-auto px-4 py-18">
       {/* Channel Header */}
@@ -113,10 +109,15 @@ function page() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-        <h2 className="text-2xl font-bold text-foreground">
-          Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
-        </h2>
+      <div className=" mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-black/60">
+            Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
+          </h2>
+          <div className="text-sm text-muted-foreground">
+              {kanalNews?.length || 'Memuat...'}
+            </div>
+        </div>
         <div className="flex items-center space-x-4">
           <Button variant="outline" size="sm">
             <Filter className="h-4 w-4 mr-2" />

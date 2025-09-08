@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Writer() {
+function page() {
   return (
-    <div>Writer</div>
+    <div>page</div>
   )
 }
 
-export default Writer
+export default page
