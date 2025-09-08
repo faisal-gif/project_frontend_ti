@@ -22,8 +22,17 @@ export async function generateMetadata({ params }) {
             locale: 'id_ID',
             title: newsDetail.news_title,
             description: newsDetail.news_description,
-            images: [newsDetail.news_image_new],
+            images: [
+                {
+                    url: newsDetail.news_image_new,
+                    width: 1200,
+                    height: 630,
+                    alt: newsDetail.news_title,
+                },
+            ],
             type: "article",
+            url: `https://timesindonesia.co.id/${newsDetail.url_ci4}`,
+            site_name: 'TIMES Indonesia',
         },
         twitter: {
             card: "summary_large_image",
@@ -37,5 +46,5 @@ export async function generateMetadata({ params }) {
 export default async function page({ params }) {
     const { id } = params;
     const newsDetail = await getNewsDetail({ id });
-    return <NewsDetailClient initialNewsDetail={newsDetail} /> ;
+    return <NewsDetailClient initialNewsDetail={newsDetail} />;
 }

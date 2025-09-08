@@ -112,30 +112,6 @@ function NewsDetailClient({ initialNewsDetail }) {
     return (
         <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
 
-            {newsDetail && (
-                <Head>
-                    {/* Title */}
-                    <title>{newsDetail.news_title} - TIMES Indonesia</title>
-
-                    {/* Meta SEO */}
-                    <meta name="description" content={newsDetail.news_description} />
-                    <meta name="keywords" content={newsDetail.news_tags} />
-                    <meta name="author" content={newsDetail.news_writer} />
-
-                    {/* Open Graph / Facebook */}
-                    <meta property="og:title" content={newsDetail.news_title} />
-                    <meta property="og:description" content={newsDetail.news_description} />
-                    <meta property="og:image" content={newsDetail.news_image_new} />
-                    <meta property="og:type" content="article" />
-
-                    {/* Twitter */}
-                    <meta name="twitter:card" content="summary_large_image" />
-                    <meta name="twitter:title" content={newsDetail.news_title} />
-                    <meta name="twitter:description" content={newsDetail.news_description} />
-                    <meta name="twitter:image" content={newsDetail.news_image_new} />
-                </Head>
-            )}
-
             <GoogleAds size='banner' />
 
 
