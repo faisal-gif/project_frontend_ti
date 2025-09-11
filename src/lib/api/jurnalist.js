@@ -1,13 +1,9 @@
-import axiosInstance from "./axiosInstance";
+import { clientAxios } from "./axiosInstance";
 
 
-const getJurnalistDetail = async ({ slug }) => {
+const getWriterDetail = async ({ slug }) => {
     try {
-        const response = await axiosInstance.get(`jurnalis/`, {
-            params: {
-                name: slug
-            },
-        });
+        const response = await clientAxios.get(`/writer/detail/${slug}`);
         return response.data.data;
     } catch (error) {
         console.log(error);
@@ -15,5 +11,5 @@ const getJurnalistDetail = async ({ slug }) => {
 };
 
 export {
-    getJurnalistDetail
+    getWriterDetail
 }

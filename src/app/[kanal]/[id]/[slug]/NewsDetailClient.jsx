@@ -18,7 +18,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 function NewsDetailClient({ initialNewsDetail }) {
-   
+
     const [size, setSize] = useState(2);
     const [newsDetail, setNewsDetail] = useState(initialNewsDetail);
     const [editorDetail, setEditorDetail] = useState(null);
@@ -40,7 +40,7 @@ function NewsDetailClient({ initialNewsDetail }) {
     }, [newsDetail]);
 
     const tim = [
-        { name: newsDetail?.news_writer || '', role: "Penulis", foto: null, url: `writer/${newsDetail?.writer_slug}` || '' },
+        { name: newsDetail?.news_writer || '', role: "Penulis", foto: null, url: `/writer/${newsDetail?.writer_slug}` || '' },
         { name: newsDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${newsDetail?.editor_alias}` || '' },
         { name: newsDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
     ];
@@ -57,8 +57,6 @@ function NewsDetailClient({ initialNewsDetail }) {
             getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
         }
     }, [firstTag]);
-
-
 
 
     const getTextSizeClasses = () => {
@@ -108,6 +106,15 @@ function NewsDetailClient({ initialNewsDetail }) {
         getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
     }, []);
 
+
+    const slugify = (text) =>
+        text
+            .toLowerCase()
+            .replace(/\s+/g, "-")       // ganti spasi dengan -
+            .replace(/[^\w\-]+/g, "")   // hapus karakter non-alfanumerik
+            .replace(/\-\-+/g, "-")     // ganti multiple - jadi satu
+            .replace(/^-+/, "")         // hapus - di awal
+            .replace(/-+$/, "");        // hapus - di akhir
 
     return (
         <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
@@ -243,10 +250,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                             </Card>
                                         </div>
                                     </div>
-
-
                                 </div>
-
                                 <div className="flex flex-col md:flex-row gap-6">
                                     <div className='flex-1'>
                                         {/* Header Image */}
@@ -273,12 +277,15 @@ function NewsDetailClient({ initialNewsDetail }) {
                                         />
                                     </div>
                                 </div>
-
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
                                     {getTags().map((tag) => (
-                                        <span key={tag} className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm">
+                                        <Link
+                                            key={tag}
+                                            href={`/tag/${slugify(tag)}`}
+                                            className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
+                                        >
                                             {tag}
-                                        </span>
+                                        </Link>
                                     ))}
                                 </div>
 

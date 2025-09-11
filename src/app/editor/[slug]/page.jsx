@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             locale: 'id_ID',
             title: editorDetail.editor_name,
-            description: editorDetail.editor_description,
+            description: "Editor TIMES Indonesia",
             images: [
                 {
                     url: editorDetail.editor_image,

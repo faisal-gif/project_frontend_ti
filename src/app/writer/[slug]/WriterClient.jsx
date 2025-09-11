@@ -1,14 +1,15 @@
 'use client'
 import DetailEditor from '@/components/DetailEditor';
+import DetailWriter from '@/components/DetailWriter';
 import LastesNewsCard from '@/components/LastesNewsCard';
 import PopularNews from '@/components/PopularNews';
 import LastestNewsCardSkeleton from '@/components/ui/LastestNewsCardSkeleton';
 import { getAllNews } from '@/lib/api/newsApi';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-function EditorClient({initialEditorDetail}) {
+function WriterClient({initialWriterDetail}) {
     
-    const [editorDetail, setEditorDetail] = useState(initialEditorDetail);
+    const [writerDetail, setWriterDetail] = useState(initialWriterDetail);
     const [articles, setArticles] = useState([]);
     const [offset, setOffset] = useState(0);
     const [limit] = useState(10);
@@ -20,13 +21,13 @@ function EditorClient({initialEditorDetail}) {
 
     // Ambil berita berdasarkan offset
     const fetchNews = useCallback(async (currentOffset) => {
-        if (!editorDetail) return;
+        if (!writerDetail) return;
         try {
             setIsLoading(true);
             const res = await getAllNews({
-                news_type: 'editor',
-                editor_id: editorDetail.editor_id,
-                limit,
+                news_type: 'writer',
+                title: writerDetail.name,
+                limit:limit,
                 offset: currentOffset,
             });
             const newData = res || [];
@@ -45,14 +46,14 @@ function EditorClient({initialEditorDetail}) {
         } finally {
             setIsLoading(false);
         }
-    }, [editorDetail, limit]);
+    }, [writerDetail, limit]);
 
     // Load data ketika offset berubah
     useEffect(() => {
-        if (editorDetail) {
+        if (writerDetail) {
             fetchNews(offset);
         }
-    }, [offset, editorDetail, fetchNews]);
+    }, [offset, writerDetail, fetchNews]);
 
     // Infinite scroll
     const handleObserver = useCallback((entries) => {
@@ -86,19 +87,19 @@ function EditorClient({initialEditorDetail}) {
     return (
         <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24">
             {/* Tampilkan skeleton detail jika masih loading */}
-            {!editorDetail ? (
-                <div className="text-center py-10">Memuat editor...</div>
+            {!writerDetail ? (
+                <div className="text-center py-10">Memuat Jurnalis...</div>
             ) : (
-                <DetailEditor authorData={editorDetail} />
+                <DetailWriter authorData={writerDetail} />
             )}
 
             {/* Articles Section */}
             <div className="mb-8">
-                {editorDetail && (
+                {writerDetail && (
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-1 h-8 bg-neutral rounded-full"></div>
                         <h2 className="text-2xl font-bold text-foreground">
-                            Artikel yang disunting oleh {editorDetail.editor_name}
+                            Artikel yang ditulis oleh {writerDetail.name}
                         </h2>
                     </div>
                 )}
@@ -164,4 +165,4 @@ function EditorClient({initialEditorDetail}) {
     )
 }
 
-export default EditorClient;
+export default WriterClient;

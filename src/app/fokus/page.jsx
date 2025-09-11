@@ -1,6 +1,29 @@
 import React from 'react'
 import Fokus from './Fokus'
 
+export const metadata = {
+  title: "Fokus TIMES Indonesia - Berita Positif Terbaru dan Terkini",
+  description: "Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
+  keywords: "times indonesia, timesindonesia, portal berita, berita positif, berita terbaru, berita terkini, informasi terkini, informasi terbaru, peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
+  openGraph: {
+    locale: 'id_ID',
+    title: "Fokus TIMES Indonesia - Berita Positif Terbaru dan Terkini",
+    description: "Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
+    keywords: "times indonesia, timesindonesia, portal berita, berita positif, berita terbaru, berita terkini, informasi terkini, informasi terbaru, peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
+    type: "website",
+    url: 'https://timesindonesia.co.id/',
+    siteName: 'TIMES Indonesia',
+    images: [
+      {
+        url: "/icon.png",
+        width: 500,
+        height: 500,
+        alt: "TIMES Indonesia Logo",
+      },
+    ],
+  },
+};
+
 function page() {
   return (
     <Fokus />

@@ -26,16 +26,28 @@ const ebGaramond = EB_Garamond({
 
 export const metadata = {
   icons: {
-    icon: "/favicon.ico",    
-    shortcut: "/icon.png",   
+    icon: "/favicon.ico",
+    shortcut: "/icon.png",
   },
+  // ✅ Robots
   robots: {
     index: true,
     follow: true,
-    nocache: true,
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+    },
+  },
+
+  // ✅ Verification
+  verification: {
+    google: "f_UQJ0dttE_Hbkmc7kY2eFeziynxv8c9PKr1HqidotA",
+    yandex: "c38836340e1bc1d9",
+    yahoo: "7efd2f6c70c35e36de7007d34b5ac59e",
+    other: {
+      "msvalidate.01": "C9F7D1AE364FEE927DA747F2ECE6F497",
+      "p:domain_verify": "7efd2f6c70c35e36de7007d34b5ac59e",
     },
   },
 
@@ -79,6 +91,41 @@ const urlNav = [
 export default function RootLayout({ children }) {
   return (
     <html lang="id" data-theme="light">
+      <head>
+
+        {/* Article metadata */}
+        <meta
+          property="article:publisher"
+          content="https://www.facebook.com/timesindonesia.co.id"
+        />
+        <meta
+          property="article:author"
+          content="https://www.facebook.com/timesindonesia.co.id"
+        />
+        <meta
+          property="article:tag"
+          content="times indonesia, timesindonesia, portal berita, berita positif, berita terbaru, berita terkini, informasi terkini, informasi terbaru, peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times"
+        />
+
+        {/* Extra SEO */}
+        <meta name="city" content="Jakarta" />
+        <meta name="language" content="id" />
+        <meta name="geo.country" content="id" />
+        <meta httpEquiv="content-language" content="In-Id" />
+        <meta name="geo.placename" content="Indonesia" />
+        <meta name="subject" content="News, Media" />
+        <meta name="copyright" content="TIMES Indonesia" />
+        <meta
+          name="standout"
+          content="https://timesindonesia.co.id/kanal"
+        />
+
+        {/* Microsoft tile */}
+        <meta
+          name="msapplication-TileImage"
+          content="https://timesindonesia.co.id/themes/times/assets/images/timesindonesia-favicon-144.png"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} antialiased`}
       >

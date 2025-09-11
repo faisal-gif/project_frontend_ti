@@ -3,7 +3,7 @@ import React from 'react'
 import NewsDetailClient from './NewsDetailClient';
 
 export async function generateMetadata({ params }) {
-    const { id } = params;
+    const { id } = await params;
     const newsDetail = await getNewsDetail({ id });
 
     if (!newsDetail) {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
-    const { id } = params;
+    const { id } = await params;
     const newsDetail = await getNewsDetail({ id });
     return <NewsDetailClient initialNewsDetail={newsDetail} />;
 }

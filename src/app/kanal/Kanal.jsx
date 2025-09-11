@@ -100,8 +100,6 @@ function Kanal() {
                 </div>
             </div>
 
-
-
             {channels.length === 0 ? (
                 <div className="text-center py-12">
                     <div className="flex justify-center mb-4">
