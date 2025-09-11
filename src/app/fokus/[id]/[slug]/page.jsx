@@ -1,4 +1,5 @@
 'use client'
+import GoogleAds from '@/components/GoogleAds';
 import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button';
 import { getFocusDetail } from '@/lib/api/focus';
@@ -89,6 +90,10 @@ function page() {
 
   return (
     <main className="max-w-6xl  mx-auto px-4 py-18">
+
+      <div className='flex items-center justify-center mb-8'>
+        <GoogleAds size='top_banner' />
+      </div>
 
       {detailFocus && detailFocus.focnews_image_news && (
         <div className="flex items-center justify-center mb-8">
@@ -226,10 +231,6 @@ function page() {
           </button>
         </div>
       )}
-
-
-
-
 
     </main>
   )

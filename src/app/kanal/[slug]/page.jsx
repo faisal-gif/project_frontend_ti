@@ -1,4 +1,5 @@
 'use client'
+import GoogleAds from '@/components/GoogleAds';
 import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button'
 import { getKanalDetail } from '@/lib/api/kanalApi';
@@ -91,6 +92,9 @@ function page() {
 
   return (
     <main className="max-w-6xl  mx-auto px-4 py-18">
+      <div className='flex items-center justify-center mb-8'>
+        <GoogleAds size='top_banner' />
+      </div>
       {/* Channel Header */}
       <div className="bg-gradient-to-r from-[#7a0f1f]/10 via-[#7a0f1f]/5 to-transparent rounded-lg p-8 mb-12 border border-[#7a0f1f]/10">
         <div className="max-w-4xl">
@@ -115,8 +119,8 @@ function page() {
             Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
           </h2>
           <div className="text-sm text-muted-foreground">
-              {kanalNews?.length || 'Memuat...'}
-            </div>
+            {kanalNews?.length || 'Memuat...'}
+          </div>
         </div>
         <div className="flex items-center space-x-4">
           <Button variant="outline" size="sm">

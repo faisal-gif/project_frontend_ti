@@ -41,8 +41,21 @@ function Home() {
 
     return (
         <div className="">
+
+            {/* Left Skyscraper Ad */}
+            <div className="fixed left-6 top-7/12 transform -translate-y-1/2 z-10 hidden xl:block">
+                <GoogleAds size="skyscraper" />
+            </div>
+
+            {/* Right Skyscraper Ad */}
+            <div className="fixed right-6 top-7/12 transform -translate-y-1/2 z-10 hidden xl:block">
+                <GoogleAds size="skyscraper" />
+            </div>
+
             <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
-                <GoogleAds size='banner' />
+                <div className='flex items-center justify-center mb-8'>
+                    <GoogleAds size='top_banner' />
+                </div>
             </div>
             {/* Hero */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-8 px-4 md:grid-cols-6">
@@ -58,9 +71,15 @@ function Home() {
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3">
                 {newsFirstSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                         <FirstHightlightNewsSection title={section.title} news={section.news} />
+                        <FirstHightlightNewsSection title={section.title} news={section.news} />
                     </div>
                 ))}
+            </div>
+
+            <div className="mx-auto max-w-6xl ">
+                <div className='flex items-center justify-center mb-8'>
+                    <GoogleAds size="leaderboard" />
+                </div>
             </div>
 
             <div className="mx-auto max-w-6xl px-4 py-8 ">
@@ -85,6 +104,12 @@ function Home() {
                 ))}
             </div>
 
+            <div className="mx-auto max-w-6xl ">
+                <div className='flex items-center justify-center mb-8'>
+                    <GoogleAds size="leaderboard" />
+                </div>
+            </div>
+
             <VideoSection />
 
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4">
@@ -95,7 +120,13 @@ function Home() {
 
                     <div className="hidden md:block md:col-span-2 lg:col-span-2 ">
                         <PopularNews />
-                        <GoogleAds size='rectangle' />
+                        <div className='flex items-center justify-center mb-8'>
+                            <GoogleAds size='half_page_ad' />
+                        </div>
+
+                         <div className='flex items-center justify-center mb-8'>
+                            <GoogleAds size='inline_rectangle' />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import KanalCard from '@/components/KanalCard';
 import { getAllKanal } from '@/lib/api/kanalApi';
 import FocusCard from '@/components/FocusCard';
 import { getAllFocus } from '@/lib/api/focus';
+import GoogleAds from '@/components/GoogleAds';
 
 
 
@@ -61,6 +62,9 @@ function Fokus() {
 
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
+            <div className='flex items-center justify-center mb-8'>
+                <GoogleAds size='top_banner' />
+            </div>
             {/* Header Section */}
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-foreground mb-4">
@@ -142,17 +146,17 @@ function Fokus() {
                     )}
                 </div>
             )}
-          
-                <div className="text-center mt-6">
-                    <button
-                        onClick={loadMoreManually}
-                        className="btn btn-error btn-outline"
-                        disabled={isLoading}
-                    >
-                        {isLoading ? 'Memuat...' : 'Muat Lebih Banyak'}
-                    </button>
-                </div>
-          
+
+            <div className="text-center mt-6">
+                <button
+                    onClick={loadMoreManually}
+                    className="btn btn-error btn-outline"
+                    disabled={isLoading}
+                >
+                    {isLoading ? 'Memuat...' : 'Muat Lebih Banyak'}
+                </button>
+            </div>
+
         </main>
     )
 }

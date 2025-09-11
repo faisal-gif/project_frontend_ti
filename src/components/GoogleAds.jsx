@@ -1,11 +1,15 @@
 import React from 'react'
 
-export default function GoogleAds({ size = 'rectangle', className = '' }) {
+export default function GoogleAds({ size = 'inline_rectangle', className = '' }) {
     const adSizes = {
-        banner: { width: 'full', height: '180px' },
-        rectangle: { width: '300px', height: '250px' },
+        inline_rectangle: { width: '300px', height: '250px' },
+        square: { width: '250px', height: '250px' },
+        top_banner: { width: '930px', height: '180px' },
+        banner: { width: '468px', height: '60px' },
         leaderboard: { width: '728px', height: '90px' },
-        skyscraper: { width: '300px', height: '600px' }
+        skyscraper: { width: '120px', height: '600px' },
+        wide_skyscraper: { width: '160px', height: '600px' },
+        half_page_ad: { width: '300px', height: '600px' }
     };
 
     const currentSize = adSizes[size];
@@ -20,7 +24,7 @@ export default function GoogleAds({ size = 'rectangle', className = '' }) {
         >
             <div className="text-center text-gray-500">
                 <div className="text-sm font-medium mb-1">Advertisement</div>
-                <div className="text-xs opacity-70"></div>
+                <div className="text-xs opacity-70">{currentSize.width} x {currentSize.height}</div>
                 {/* Google AdSense code would go here */}
                 {/* <ins className="adsbygoogle"
              style={{display:'block'}}

@@ -51,8 +51,8 @@ function LastesNewsCard({
 
     return (
         <Link href={`/news/${id}/${slugify(title)}`} className="block group">
-            <div className="grid grid-cols-5 gap-0">
-                <div className="col-span-2 md:col-span-1 relative overflow-hidden">
+            <div className="grid grid-cols-5 gap-0 ">
+                <div className="col-span-2 md:col-span-1 relative overflow-hidden rounded-md">
                     {/* Blurred background */}
                     <div className="absolute inset-0 z-0 overflow-hidden">
                         <Image
@@ -79,7 +79,7 @@ function LastesNewsCard({
                         {views.toLocaleString()}
                     </div>
                 </div>
-                <div className="flex flex-col justify-between col-span-3 md:col-span-4 p-2 md:p-6">
+                <div className="flex flex-col justify-between col-span-3 md:col-span-4 px-2 md:px-6">
                     <div>
                         <h3 className="text-sm font-semibold text-foreground line-clamp-3 md:line-clamp-2 leading-tight mb-2 hover:text-red-600 transition-colors duration-200">
                             {title}

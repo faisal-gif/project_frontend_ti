@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import KanalCard from '@/components/KanalCard';
 import { getAllKanal } from '@/lib/api/kanalApi';
+import GoogleAds from '@/components/GoogleAds';
 
 // mapping slug → icon
 const categoryIcons = {
@@ -73,6 +74,10 @@ function Kanal() {
 
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
+             <div className='flex items-center justify-center mb-8'>
+                <GoogleAds size='top_banner' />
+             </div>
+              
             {/* Header Section */}
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-foreground mb-4">

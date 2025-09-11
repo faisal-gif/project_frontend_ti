@@ -8,8 +8,8 @@ export async function generateMetadata({ params }) {
 
   if (!writerDetail) {
     return {
-      title: "Writer tidak ditemukan - TIMES Indonesia",
-      description: "Writer yang Anda cari tidak tersedia.",
+      title: "Jurnalis tidak ditemukan - TIMES Indonesia",
+      description: "Jurnalis yang Anda cari tidak tersedia.",
     };
   }
 
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       locale: 'id_ID',
       title: writerDetail.name,
-      description: "Writer TIMES Indonesia",
+      description: "Jurnalis TIMES Indonesia",
       images: [
         {
           url: "/icon.png",
