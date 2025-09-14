@@ -4,13 +4,15 @@ import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button';
 import { getFocusDetail } from '@/lib/api/focus';
 import { getAllNews } from '@/lib/api/newsApi';
-import { Filter, Hash, Search, TrendingUp } from 'lucide-react';
+import { Filter, Grid, Hash, List, Search, TrendingUp } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 function page() {
   const params = useParams();
   const { id } = params;
+
+  const [viewMode, setViewMode] = useState('grid');
 
   const [detailFocus, setDetailFocus] = useState();
   const [focusNews, setFocusNews] = useState([]);
@@ -89,7 +91,7 @@ function page() {
 
 
   return (
-    <main className="max-w-6xl  mx-auto px-4 py-18">
+    <main className="max-w-6xl  mx-auto px-4 py-20">
 
       <div className='flex items-center justify-center mb-8'>
         <GoogleAds size='top_banner' />
@@ -97,7 +99,7 @@ function page() {
 
       {detailFocus && detailFocus.focnews_image_news && (
         <div className="flex items-center justify-center mb-8">
-          <img src={detailFocus.focnews_image_news} className='w-8/12 h-full' />
+          <img src={detailFocus.focnews_image_news} className='w-full md:w-8/12 h-full' />
         </div>
       )}
       {/* Focus Header */}
@@ -113,24 +115,24 @@ function page() {
             <p className="text-lg text-muted-foreground mb-6">
               {detailFocus?.focnews_description || 'Memuat...'}
             </p>
-            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+            {/* <div className="flex items-center space-x-6 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <TrendingUp className="h-4 w-4" />
-                {/* <span>{allNews.length} artikel khusus</span> */}
+            
               </div>
               <span>•</span>
               <span>Update terakhir: 1 jam lalu</span>
               <span>•</span>
               <span>Diikuti 15.4K pembaca</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
         <div className="text-center p-6 bg-base-100 rounded-lg shadow-lg">
-          <div className="text-2xl font-bold text-[#7a0f1f] mb-2">(total_news)</div>
+          <div className="text-2xl font-bold text-[#7a0f1f] mb-2">200.000+</div>
           <div className="text-black/60 text-sm">Total Artikel</div>
         </div>
         <div className="text-center p-6 bg-base-100 rounded-lg shadow-lg">
@@ -157,10 +159,18 @@ function page() {
             <Filter className="h-4 w-4 mr-2" />
             Filter
           </Button>
-          <Button variant="outline" size="sm">
-            <Search className="h-4 w-4 mr-2" />
-            Cari
-          </Button>
+          <div className="flex border border-base-300 rounded-md">
+            <Button variant="ghost" size="sm"
+              onClick={() => setViewMode('grid')}
+              className={viewMode == 'grid' ? "btn-active" : ""}>
+              <Grid className="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="sm"
+              onClick={() => setViewMode('list')}
+              className={viewMode === 'list' ? "btn-active" : ""}    >
+              <List className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -182,9 +192,13 @@ function page() {
       {/* Regular News */}
       {focusNews.length > 0 && (
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`mb-12 ${viewMode === 'grid'
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+            : 'space-y-6'
+            }`}>
             {focusNews.map((news) => (
               <NewsCard
+                layout={viewMode}
                 key={news.news_id}
                 title={news.news_title}
                 description={news.news_description}

@@ -1,8 +1,9 @@
 import React from 'react'
 import Card from './ui/Card'
 import Image from 'next/image';
+import Link from 'next/link';
 
-function SimpleNewsCard({ title, source, timeAgo, image, }) {
+function SimpleNewsCard({ title, source, timeAgo, image, url }) {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
@@ -32,6 +33,7 @@ function SimpleNewsCard({ title, source, timeAgo, image, }) {
     };
 
     return (
+        <Link href={url}>
         <Card className="card-sm group cursor-pointer transition-all duration-300 rounded-b-none border-b-1 border-base-300 bg-card overflow-hidden">
             <Card.Body className="p-0">
                 <div className="flex gap-4 p-4">
@@ -54,6 +56,7 @@ function SimpleNewsCard({ title, source, timeAgo, image, }) {
                 </div>
             </Card.Body>
         </Card>
+         </Link>
     )
 }
 

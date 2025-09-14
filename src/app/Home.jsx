@@ -11,10 +11,8 @@ import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
 import SimpleNewsSection from '@/components/SimpleNewsSection';
 import VideoSection from '@/components/VideoSection';
-import WeatherCard from '@/components/WeatherCard';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSections, getNewsSecondSections } from '@/lib/data';
-import { Video } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 
@@ -112,21 +110,26 @@ function Home() {
 
             <VideoSection />
 
+            {/* Last News */}
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4">
                 <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
                     <div className="md:col-span-4 lg:col-span-4">
                         <LastestNewsSection />
                     </div>
-
+                    {/* Last news Sidebar */}
                     <div className="hidden md:block md:col-span-2 lg:col-span-2 ">
                         <PopularNews />
-                        <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='half_page_ad' />
+
+                        <div className=' sticky top-30'>
+                            <div className='flex items-center justify-center mb-8'>
+                                <GoogleAds size='half_page_ad' />
+                            </div>
+
+                            <div className=' flex items-center justify-center mb-8'>
+                                <GoogleAds size='inline_rectangle' />
+                            </div>
                         </div>
 
-                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='inline_rectangle' />
-                        </div>
                     </div>
                 </div>
             </div>

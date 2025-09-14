@@ -21,7 +21,7 @@ function GallerySection() {
             <div className="flex items-center justify-between mb-8">
                 <h2 className="text-2xl font-bold text-foreground">Fotografi Jurnalistik</h2>
                 <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <Link href={'kanal/gaya-hidup'} className="text-sm">View All</Link>
+                    <Link href={'/foto'} className="text-sm">View All</Link>
 
                 </button>
             </div>

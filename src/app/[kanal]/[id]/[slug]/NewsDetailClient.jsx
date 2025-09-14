@@ -290,30 +290,33 @@ function NewsDetailClient({ initialNewsDetail }) {
                                     ))}
                                 </div>
 
-                                <div className="mt-8 pt-6 border-t border-base-content/20">
-                                    <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
-                                        <div className="avatar avatar-placeholder" >
-                                            <div className="bg-neutral text-neutral-content w-20 rounded-full ">
-                                                <span className="text-3xl">
-                                                    {newsDetail?.news_writer.charAt(0).toUpperCase()}
+                                {newsDetail.news_writer && (
+                                    <div className="mt-8 pt-6 border-t border-base-content/20">
+                                        <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
+                                            <div className="avatar avatar-placeholder" >
+                                                <div className="bg-neutral text-neutral-content w-20 rounded-full ">
+                                                    <span className="text-3xl">
+                                                        {newsDetail?.news_writer.charAt(0).toUpperCase()}
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div className='flex flex-col justify-center'>
+                                                <span className='text-sm text-base-200/60'>Penulis</span>
+                                                <span className='text-lg font-semibold text-white'>
+                                                    {newsDetail?.news_writer}
                                                 </span>
+                                                <span className='text-sm text-white/80 mt-2'>
+                                                    Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya.
+                                                </span>
+
                                             </div>
 
-                                        </div>
-                                        <div className='flex flex-col justify-center'>
-                                            <span className='text-sm text-base-200/60'>Penulis</span>
-                                            <span className='text-lg font-semibold text-white'>
-                                                {newsDetail?.news_writer}
-                                            </span>
-                                            <span className='text-sm text-white/80 mt-2'>
-                                                Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya.
-                                            </span>
+                                        </Card>
 
-                                        </div>
+                                    </div>
+                                )}
 
-                                    </Card>
-
-                                </div>
 
                             </article>
 

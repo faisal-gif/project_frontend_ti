@@ -90,16 +90,7 @@ function LastesNewsCard({
                     </div>
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <time>{formatDate(datepub)}</time>
-                        <div className="flex items-center gap-1">
-                            <div className="avatar avatar-placeholder">
-                                <div className="bg-neutral text-neutral-content w-5 rounded-full">
-                                    <span className="text-xs">
-                                        {author.charAt(0).toUpperCase()}
-                                    </span>
-                                </div>
-                            </div>
-                            {author}
-                        </div>
+                      
                     </div>
                 </div>
             </div>

@@ -4,13 +4,15 @@ import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button'
 import { getKanalDetail } from '@/lib/api/kanalApi';
 import { getAllNews } from '@/lib/api/newsApi';
-import { Filter, Search } from 'lucide-react'
+import { Filter, Grid, List, Search } from 'lucide-react'
 import { useParams } from 'next/navigation';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 function page() {
   const params = useParams();
   const { slug } = params;
+
+  const [viewMode, setViewMode] = useState('grid');
 
   const [detailKanal, setDetailKanal] = useState();
   const [kanalNews, setKanalNews] = useState([]);
@@ -113,23 +115,22 @@ function page() {
       </div>
 
       {/* Filters */}
-      <div className=" mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl font-bold text-black/60">
-            Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
-          </h2>
-          <div className="text-sm text-muted-foreground">
-            {kanalNews?.length || 'Memuat...'}
-          </div>
-        </div>
-        <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm">
-            <Filter className="h-4 w-4 mr-2" />
-            Filter
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <h2 className="text-xl md:text-2xl font-bold text-black/60">
+          Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
+        </h2>
+
+
+        <div className="flex border border-base-300 rounded-md">
+          <Button variant="ghost" size="sm"
+            onClick={() => setViewMode('grid')}
+            className={viewMode == 'grid' ? "btn-active" : ""}>
+            <Grid className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="sm">
-            <Search className="h-4 w-4 mr-2" />
-            Cari
+          <Button variant="ghost" size="sm"
+            onClick={() => setViewMode('list')}
+            className={viewMode === 'list' ? "btn-active" : ""}    >
+            <List className="h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -151,10 +152,14 @@ function page() {
       {/* Regular News */}
       {kanalNews.length > 0 && (
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`mb-12 ${viewMode === 'grid'
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+            : 'space-y-6'
+            }`}>
             {kanalNews.map((news) => (
               <NewsCard
                 key={news.news_id}
+                layout={viewMode}
                 title={news.news_title}
                 description={news.news_description}
                 writer={news.news_writer}

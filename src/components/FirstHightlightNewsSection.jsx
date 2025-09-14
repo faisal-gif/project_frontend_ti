@@ -98,6 +98,7 @@ function FirstHightlightNewsSection({ title, news }) {
                         source={item.news_writer}
                         timeAgo={item.news_datepub}
                         image={item.news_image_new}
+                        url={item.url_ci4}
                     />
                 ))}
             </div>

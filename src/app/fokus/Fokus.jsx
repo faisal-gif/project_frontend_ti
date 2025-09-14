@@ -96,21 +96,21 @@ function Fokus() {
             </div>
 
             {/* Stats Section */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                 <div className="text-center p-6 bg-card rounded-lg shadow-lg">
-                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">20+</div>
+                    <div className="text-2xl font-bold text-[#7a0f1f] mb-2">20+</div>
                     <div className="text-muted-foreground">Area Fokus</div>
                 </div>
                 <div className="text-center p-6 bg-card rounded-lg shadow-lg">
-                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">500.000+</div>
+                    <div className="text-2xl font-bold text-[#7a0f1f] mb-2">500.000+</div>
                     <div className="text-muted-foreground">Artikel Fokus</div>
                 </div>
                 <div className="text-center p-6 bg-card rounded-lg shadow-lg">
-                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">40+</div>
+                    <div className="text-2xl font-bold text-[#7a0f1f] mb-2">40+</div>
                     <div className="text-muted-foreground">Pakar Kontributor</div>
                 </div>
                 <div className="text-center p-6 bg-card rounded-lg shadow-lg">
-                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">Daily</div>
+                    <div className="text-xl font-bold text-[#7a0f1f] mb-2">Daily</div>
                     <div className="text-muted-foreground">Update Analisis</div>
                 </div>
             </div>
