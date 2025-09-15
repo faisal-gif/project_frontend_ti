@@ -47,7 +47,7 @@ function FotografiCard({
                 <Image
                     src={gal_cover}
                     alt={gal_title}
-                    fill
+               fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
 

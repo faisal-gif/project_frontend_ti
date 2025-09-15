@@ -56,7 +56,8 @@ function HorizontalNewsCard({
                     <Image
                         src={image}
                         alt={title}
-                        fill
+                        width={500}
+                        height={400}
                         className="object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">

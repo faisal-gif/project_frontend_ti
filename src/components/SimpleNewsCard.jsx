@@ -34,29 +34,30 @@ function SimpleNewsCard({ title, source, timeAgo, image, url }) {
 
     return (
         <Link href={url}>
-        <Card className="card-sm group cursor-pointer transition-all duration-300 rounded-b-none border-b-1 border-base-300 bg-card overflow-hidden">
-            <Card.Body className="p-0">
-                <div className="flex gap-4 p-4">
-                    <div className="flex-1">
-                        <h3 className=" font-semibold text-sm leading-tight line-clamp-2 mb-1 group-hover:text-red-700 transition-colors">
-                            {title}
-                        </h3>
-                        <div className="flex items-center justify-between">
-                            <span>{formatDate(timeAgo)}</span>
+            <Card className="card-sm group cursor-pointer transition-all duration-300 rounded-b-none border-b-1 border-base-300 bg-card overflow-hidden">
+                <Card.Body className="p-0">
+                    <div className="flex gap-4 p-4">
+                        <div className="flex-1">
+                            <h3 className=" font-semibold text-sm leading-tight line-clamp-2 mb-1 group-hover:text-red-700 transition-colors">
+                                {title}
+                            </h3>
+                            <div className="flex items-center justify-between">
+                                <span>{formatDate(timeAgo)}</span>
+                            </div>
+                        </div>
+                        <div className="w-20 h-16 flex-shrink-0 relative">
+                            <Image
+                                src={image}
+                                alt={title}
+                                width={600}
+                                height={600}
+                                className="object-cover rounded-md transform scale-100 transition group-hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
+                            />
                         </div>
                     </div>
-                    <div className="w-20 h-16 flex-shrink-0 relative">
-                        <Image
-                            src={image}
-                            alt={title}
-                            fill
-                            className="object-cover rounded-md transform scale-100 transition group-hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
-                        />
-                    </div>
-                </div>
-            </Card.Body>
-        </Card>
-         </Link>
+                </Card.Body>
+            </Card>
+        </Link>
     )
 }
 

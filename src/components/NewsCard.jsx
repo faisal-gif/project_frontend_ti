@@ -5,10 +5,8 @@ import Image from 'next/image';
 import Card from './ui/Card';
 
 function NewsCard({
-    id,
     title,
     description,
-    writer,
     datePub,
     views,
     image,
@@ -45,6 +43,16 @@ function NewsCard({
         });
     };
 
+    const formatViews = (num) => {
+        if (num >= 1_000_000) {
+            return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        if (num >= 1_000) {
+            return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k';
+        }
+        return num.toString();
+    }
+
     if (layout === "list") {
         // === LIST MODE (ambil inspirasi dari LastesNewsCard) ===
         return (
@@ -56,17 +64,19 @@ function NewsCard({
                             <Image
                                 src={image}
                                 alt={`${title} background`}
-                                fill
+                                width={500}
+                                height={400}
                                 className="object-cover blur-md opacity-50"
                             />
                         </div>
 
                         {/* Main image */}
-                        <div className="relative z-10 w-full h-20 md:h-32 ">
+                        <div className="relative z-10 w-full h-20 md:h-24 ">
                             <Image
                                 src={image}
                                 alt={title}
-                                fill
+                                width={500}
+                                height={400}
                                 className="object-contain transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>
@@ -88,9 +98,17 @@ function NewsCard({
                                 {description}
                             </p>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-muted-foreground">
-                            <time>{formatDate(datePub)}</time>
-                            
+                        <div className="flex items-center justify-start gap-2 text-xs text-muted-foreground">
+                            <div className="flex items-center space-x-1">
+                                <Eye className="h-3 w-3" />
+                                <span>{formatViews(views)}</span>
+                            </div>
+
+                            <div className="flex items-center space-x-1">
+                                <Clock className="h-3 w-3" />
+                                <span>{formatDate(datePub)}</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -138,7 +156,7 @@ function NewsCard({
                             </div>
                             <div className="flex items-center space-x-1">
                                 <Eye className="h-3 w-3" />
-                                <span>{views.toLocaleString()}</span>
+                                <span>{formatViews(views)}</span>
                             </div>
                         </div>
                     </div>

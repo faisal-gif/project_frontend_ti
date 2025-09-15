@@ -6,8 +6,14 @@ import PopularNews from './PopularNews'
 import LastestNewsCardSkeleton from './ui/LastestNewsCardSkeleton' // Import skeleton
 import { getAllNews } from '@/lib/api/newsApi'
 import GoogleAds from './GoogleAds'
+import NewsCard from './NewsCard'
+import Button from './ui/Button'
+import { Grid, List } from 'lucide-react'
 
 function LastestNewsSection() {
+
+    const [viewMode, setViewMode] = useState('list');
+
     const [lastNews, setLastNews] = useState([])
     const [offset, setOffset] = useState(0)
     const [limit] = useState(10)
@@ -84,8 +90,24 @@ function LastestNewsSection() {
             <div>
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="text-2xl font-bold text-foreground">Berita Terbaru</h2>
+
+                    <div className="flex border border-base-300 rounded-md">
+                        <Button variant="ghost" size="sm"
+                            onClick={() => setViewMode('grid')}
+                            className={viewMode == 'grid' ? "btn-active" : ""}>
+                            <Grid className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm"
+                            onClick={() => setViewMode('list')}
+                            className={viewMode === 'list' ? "btn-active" : ""}    >
+                            <List className="h-4 w-4" />
+                        </Button>
+                    </div>
                 </div>
-                <div className="space-y-3">
+                <div className={`mb-12 ${viewMode === 'grid'
+                    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'
+                    : 'space-y-6'
+                    }`}>
                     {/* Skeleton Loading */}
                     {isLoading && lastNews.length === 0 && (
                         Array.from({ length: 10 }).map((_, index) => (
@@ -94,15 +116,17 @@ function LastestNewsSection() {
                     )}
 
                     {lastNews.map((item) => (
-                        <LastesNewsCard
+                        <NewsCard
                             key={item.news_id} // pakai id biar stabil
+                            layout={viewMode}
                             id={item.news_id}
                             title={item.news_title}
                             description={item.news_description}
                             author={item.news_writer}
-                            datepub={item.news_datepub}
+                            datePub={item.news_datepub}
                             views={Number(item.pageviews)}
                             image={item.news_image_new}
+                            url={item.url_ci4}
                         />
                     ))}
 

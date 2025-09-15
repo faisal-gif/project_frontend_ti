@@ -48,10 +48,11 @@ function FirstHightlightNewsSection({ title, news }) {
                     <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg border-0 bg-card overflow-hidden">
                         <div className="relative">
                             <div className="aspect-[16/9] relative overflow-hidden">
-                                   <Image
+                                <Image
                                     src={news[0].news_image_new}
                                     alt={news[0].news_title}
-                                    fill
+                                    width={500}
+                                    height={400}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />

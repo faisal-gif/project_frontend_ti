@@ -153,7 +153,7 @@ function WriterClient({initialWriterDetail}) {
                             </div>
                         )}
                     </div>
-                    <div className="lg:col-span-1">
+                    <div className="hidden lg:block lg:col-span-1">
                         <PopularNews />
 
 
