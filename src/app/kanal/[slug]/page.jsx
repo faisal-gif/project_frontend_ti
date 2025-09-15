@@ -119,16 +119,19 @@ function page() {
         <h2 className="text-xl md:text-2xl font-bold text-black/60">
           Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
         </h2>
-
-
+        
         <div className="flex border border-base-300 rounded-md">
           <Button variant="ghost" size="sm"
             onClick={() => setViewMode('grid')}
+            aria-label="View Grid"
+            title="View Grid"
             className={viewMode == 'grid' ? "btn-active" : ""}>
             <Grid className="h-4 w-4" />
           </Button>
           <Button variant="ghost" size="sm"
             onClick={() => setViewMode('list')}
+             aria-label="View List"
+            title="View List"
             className={viewMode === 'list' ? "btn-active" : ""}    >
             <List className="h-4 w-4" />
           </Button>
