@@ -291,14 +291,11 @@ function EkoranDetailStory() {
 
     if (!ekoranDetail) {
         return (
-            <div className="flex items-center justify-center w-full h-screen text-white">
+            <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
                 Loading...
             </div>
         );
     }
-
-
-
 
     return (
         <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
@@ -353,7 +350,7 @@ function EkoranDetailStory() {
                         >
                             <Share2 className="h-4 w-4" />
                         </Button>
-                      
+
                     </div>
                 </div>
             </div>
