@@ -221,7 +221,7 @@ function EkoranDetailStory() {
     };
 
     const handleClose = () => {
-        navigate.push('/ekoran');
+        navigate.back();
     };
 
     // Auto-progress (optional - can be enabled for demo)
