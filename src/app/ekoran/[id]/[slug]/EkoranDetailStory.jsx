@@ -382,7 +382,7 @@ function EkoranDetailStory() {
                 {/* Story Card */}
                 <div className="relative max-w-sm w-full mx-4 bg-white rounded-2xl overflow-hidden shadow-2xl">
                     {/* Page Content */}
-                    <div className=" relative overflow-hidden bg-black">
+                    <div className="aspect-[8/18] relative overflow-hidden bg-black">
                         <img
                             ref={imageRef}
                             src={eKoranEdition.previewImages[(currentPage - 1) % eKoranEdition.previewImages.length]}
