@@ -5,13 +5,14 @@ import Carousel from './ui/Carousel';
 import FotografiCard from './FotografiCard';
 import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
-import { getAllFoto } from '@/lib/api/fotoApi';
+import { getAllEkoran } from '@/lib/api/ekoran';
 
-function GallerySection() {
-    const [gallery, setGallery] = useState([]);
+
+function EkoranHomeSection() {
+    const [ekoran, setEkoran] = useState([]);
 
     useEffect(() => {
-        getAllFoto({ news_type: 'all', offset: 0, limit: 10 }).then(setGallery).catch(console.error);
+        getAllEkoran({ offset: 0, limit: 10 }).then(setEkoran).catch(console.error);
     }, []);
 
     return (
@@ -51,4 +52,4 @@ function GallerySection() {
     )
 }
 
-export default GallerySection
+export default EkoranHomeSection
