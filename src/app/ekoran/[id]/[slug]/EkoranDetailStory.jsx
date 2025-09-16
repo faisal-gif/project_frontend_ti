@@ -16,6 +16,7 @@ import {
 import Button from '@/components/ui/Button';
 import { useParams, useRouter } from 'next/navigation';
 import { getDetailEkoran } from '@/lib/api/ekoran';
+import Image from 'next/image';
 
 function EkoranDetailStory() {
     const params = useParams();
@@ -352,13 +353,7 @@ function EkoranDetailStory() {
                         >
                             <Share2 className="h-4 w-4" />
                         </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="text-white hover:bg-white/20"
-                        >
-                            <Download className="h-4 w-4" />
-                        </Button>
+                      
                     </div>
                 </div>
             </div>
@@ -416,15 +411,14 @@ function EkoranDetailStory() {
                 {/* Story Card */}
                 <div className="relative max-w-sm w-full mx-4 bg-white rounded-2xl overflow-hidden shadow-2xl">
                     {/* Page Content */}
-                    <div className="aspect-auto relative overflow-hidden bg-black">
-                        <img
+                    <div className="aspect-auto  overflow-hidden bg-black">
+
+                        <div
                             ref={imageRef}
-                            src={ekoranArticle.image[(currentPage - 1) % ekoranArticle.image.length]}
-                            alt={`${ekoranArticle.title} - Halaman ${currentPage}`}
-                            className="w-full h-full object-contain transition-transform duration-200"
+                            className="relative w-full h-[500px] overflow-hidden bg-black"
                             style={{
                                 transform: `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`,
-                                cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+                                cursor: zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "default",
                             }}
                             onMouseDown={(e) => {
                                 if (zoomLevel > 1) {
@@ -445,7 +439,18 @@ function EkoranDetailStory() {
                                     }
                                 }
                             }}
-                        />
+                        >
+                            <Image
+                                src={ekoranArticle.image[(currentPage - 1) % ekoranArticle.image.length]}
+                                alt={`${ekoranArticle.title} - Halaman ${currentPage}`}
+                                fill
+                                sizes="(max-width: 768px) 100vw,
+                                (max-width: 1200px) 50vw,
+                                33vw"
+                                className="object-contain transition-transform duration-200"
+                                priority
+                            />
+                        </div>
 
                         {/* Zoom Indicator */}
                         {zoomLevel > 1 && (

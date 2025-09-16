@@ -52,6 +52,7 @@ function EKoranSection() {
                                         gal_title={article.title}
                                         gal_view={article.views}
                                         datepub={article.datepub}
+                                        url={article.url_ci4}
                                     />
                                 </div>
                             </Carousel.Item>
