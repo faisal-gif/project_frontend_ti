@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import { ZoomIn, ZoomOut, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ZoomIn, ZoomOut, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Button from "./ui/Button";
 
 export default function EkoranReader({ ekoranArticle }) {
@@ -12,10 +12,11 @@ export default function EkoranReader({ ekoranArticle }) {
   const autoProgressRef = useRef(null);
   const touchStartX = useRef(null);
   const [scale, setScale] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const lastPageChange = useRef(Date.now());
 
   // ====================
-  // Auto Progress (Story style)
+  // Auto Progress
   // ====================
   useEffect(() => {
     if (scale > 1) {
@@ -34,7 +35,7 @@ export default function EkoranReader({ ekoranArticle }) {
         }
         return prev + 1;
       });
-    }, 50); // 5 detik per halaman
+    }, 50);
 
     return () => clearInterval(autoProgressRef.current);
   }, [scale]);
@@ -44,9 +45,10 @@ export default function EkoranReader({ ekoranArticle }) {
   // ====================
   const goToNextPage = () => {
     const now = Date.now();
-    if (now - lastPageChange.current < 300) return; // debounce
+    if (now - lastPageChange.current < 300) return;
     lastPageChange.current = now;
 
+    setIsLoading(true);
     setCurrentPage((prev) =>
       prev < ekoranArticle.pages ? prev + 1 : 1
     );
@@ -57,6 +59,7 @@ export default function EkoranReader({ ekoranArticle }) {
     if (now - lastPageChange.current < 300) return;
     lastPageChange.current = now;
 
+    setIsLoading(true);
     setCurrentPage((prev) =>
       prev > 1 ? prev - 1 : ekoranArticle.pages
     );
@@ -66,7 +69,7 @@ export default function EkoranReader({ ekoranArticle }) {
   // Swipe (mobile)
   // ====================
   const handleTouchStart = (e) => {
-    if (scale > 1) return; // kalau zoom-in, jangan ganti halaman
+    if (scale > 1) return;
     touchStartX.current = e.touches[0].clientX;
   };
 
@@ -74,8 +77,8 @@ export default function EkoranReader({ ekoranArticle }) {
     if (scale > 1 || touchStartX.current === null) return;
     const dx = e.changedTouches[0].clientX - touchStartX.current;
 
-    if (dx > 80) goToPrevPage();   // swipe kanan
-    if (dx < -80) goToNextPage();  // swipe kiri
+    if (dx > 80) goToPrevPage();
+    if (dx < -80) goToNextPage();
 
     touchStartX.current = null;
   };
@@ -117,13 +120,19 @@ export default function EkoranReader({ ekoranArticle }) {
           doubleClick={{ mode: "toggle" }}
           wheel={{ step: 0.2 }}
           pinch={{ step: 5 }}
-          panning={{ disabled: scale === 1 }} // 👉 swipe hanya aktif kalau normal zoom
+          panning={{ disabled: scale === 1 }}
           onTransformed={(ref) => setScale(ref.state.scale)}
         >
           {({ zoomIn, zoomOut, resetTransform }) => (
             <>
               <TransformComponent>
                 <div className="relative w-full h-[500px] bg-black flex items-center justify-center">
+                  {isLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-20">
+                      <Loader2 className="h-8 w-8 animate-spin text-white" />
+                    </div>
+                  )}
+
                   <Image
                     src={
                       ekoranArticle.image[
@@ -139,6 +148,7 @@ export default function EkoranReader({ ekoranArticle }) {
                     className="object-contain select-none"
                     priority
                     draggable={false}
+                    onLoadingComplete={() => setIsLoading(false)}
                   />
                 </div>
               </TransformComponent>
