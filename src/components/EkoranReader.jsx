@@ -152,7 +152,7 @@ export default function EkoranReader({ ekoranArticle }) {
                                         draggable={false}
                                         onLoadingComplete={() => setIsLoading(false)}
                                     />
-                                  
+
                                 </div>
                             </TransformComponent>
 
@@ -189,33 +189,31 @@ export default function EkoranReader({ ekoranArticle }) {
             </div>
 
 
-  {/* Tombol baca deskripsi */}
-                                    {!showDescription && (
-                                        <button
-                                            onClick={() => setShowDescription(true)}
-                                            className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-xs hover:bg-black/90 transition"
-                                        >
-                                            Baca Deskripsi
-                                        </button>
-                                    )}
+            {/* Tombol baca deskripsi */}
+            {!showDescription && (
+                <button
+                    onClick={() => setShowDescription(true)}
+                    className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-xs hover:bg-black/90 transition"
+                >
+                    Baca Deskripsi
+                </button>
+            )}
 
-                                    {/* Overlay deskripsi */}
-                                    {showDescription && (
-                                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 text-white">
-                                            <p className="text-sm md:text-base leading-relaxed">
-                                                Merupakan Ekoran pertama di Indonesia berbasis media sosial. Isi Ekoran ini merupakan bagian tak terpisahkan dari TIMES Indonesia, Berita Positif Terbaru dan Terkini.
-                                                Ekoran ini terbit setiap hari dan disebarkan melalui media sosial secara langsung.
-                                            </p>
-                                            <button
-                                                onClick={() => setShowDescription(false)}
-                                                className="mt-2 text-xs underline text-gray-300 hover:text-white"
-                                            >
-                                                Tutup
-                                            </button>
-                                        </div>
-                                    )}
-
-
+            {/* Overlay deskripsi */}
+            {showDescription && (
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 text-white">
+                    <p className="text-sm md:text-base leading-relaxed">
+                        Merupakan Ekoran pertama di Indonesia berbasis media sosial. Isi Ekoran ini merupakan bagian tak terpisahkan dari TIMES Indonesia, Berita Positif Terbaru dan Terkini.
+                        Ekoran ini terbit setiap hari dan disebarkan melalui media sosial secara langsung.
+                    </p>
+                    <button
+                        onClick={() => setShowDescription(false)}
+                        className="mt-2 text-xs underline text-gray-300 hover:text-white"
+                    >
+                        Tutup
+                    </button>
+                </div>
+            )}
 
             {/* Tombol Navigasi (Desktop) */}
             <button

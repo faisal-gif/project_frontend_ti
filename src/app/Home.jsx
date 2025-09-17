@@ -10,6 +10,8 @@ import HorizontalNewsSection from '@/components/HorizontalNewsSection';
 import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
 import SimpleNewsSection from '@/components/SimpleNewsSection';
+import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
+import SimpleNewsCardSkeleton from '@/components/ui/SimpleNewsCardSkeleton';
 import VideoSection from '@/components/VideoSection';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSections, getNewsSecondSections } from '@/lib/data';
@@ -61,12 +63,31 @@ function Home() {
                     <HeadlineNewsHome />
                 </div>
                 <div className="md:col-span-2">
-                    <SimpleNewsSection title={'Berita Terbaru'} news={allNews} />
+                    {allNews.length === 0 && (
+                        <div className="space-y-8">
+                           <SimpleNewsCardSkeleton />
+                        </div>
+                    )}
+                    {
+                        allNews.length > 0 && (
+                            <SimpleNewsSection title={'Berita Terbaru'} news={allNews} />
+                        )
+                    }
+
                 </div>
             </div>
 
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3">
+
+                {newsFirstSections.length === 0 && (
+                    [1, 2, 3].map((i) => (
+                        <div key={i} className="space-y-8">
+                            <FirstHighlightNewsSectionSkeleton />
+                        </div>
+                    ))
+                )}
+
                 {newsFirstSections.map((section) => (
                     <div key={section.title} className="space-y-8">
                         <FirstHightlightNewsSection title={section.title} news={section.news} />
@@ -95,6 +116,13 @@ function Home() {
             </section>
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
+                {newsSecondSections.length === 0 && (
+                    [1, 2, 3].map((i) => (
+                        <div key={i} className="space-y-8">
+                            <FirstHighlightNewsSectionSkeleton />
+                        </div>
+                    ))
+                )}
                 {newsSecondSections.map((section) => (
                     <div key={section.title} className="space-y-8">
                         <FirstHightlightNewsSection title={section.title} news={section.news} />

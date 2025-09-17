@@ -6,6 +6,7 @@ import FotografiCard from './FotografiCard';
 import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 import { getAllFoto } from '@/lib/api/fotoApi';
+import FotografiCardSkeleton from './ui/FotografiCardSkeleton';
 
 function GallerySection() {
     const [gallery, setGallery] = useState([]);
@@ -27,6 +28,22 @@ function GallerySection() {
 
             <Carousel opts={{ align: "start", loop: true }} className="w-full" plugins={[Autoplay()]}>
                 <Carousel.Content className="-ml-4">
+
+                    {
+                        gallery.length === 0 && (
+                            [1,2,3,4,5].map((index) => (
+                                <Carousel.Item
+                                    key={index}
+                                    className="pl-4 min-w-0 shrink-0 grow-0 basis-8/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
+                                >
+                                    <div className="p-1 h-full">
+                                        <FotografiCardSkeleton />
+                                    </div>
+                                </Carousel.Item>
+                            ))
+                        )
+                    }
+
                     {gallery.map((article, index) => (
                         <Carousel.Item
                             key={index}

@@ -6,6 +6,7 @@ import HorizontalNewsCard from './HorizontalNewsCard'
 
 import Link from 'next/link';
 import { getSportsNews } from '@/lib/data';
+import HorizontalNewsCardSkeleton from './ui/HorizontalNewsCardSkeleton'
 
 function HorizontalNewsSection() {
     const [sportSections, setSportSections] = useState([]);
@@ -26,6 +27,20 @@ function HorizontalNewsSection() {
 
             <Carousel opts={{ align: "start", loop: true }} className="w-full" plugins={[Autoplay()]}>
                 <Carousel.Content className="-ml-4">
+
+                    {sportSections.length === 0 && (
+                        [1, 2, 3, 4, 5].map((index) => (
+                            <Carousel.Item
+                                key={index}
+                                className="pl-4 min-w-0 shrink-0 grow-0 basis-10/12  sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                            >
+                                <div className="p-2 h-full">
+                                    <HorizontalNewsCardSkeleton />
+                                </div>
+                            </Carousel.Item>
+                        ))
+                    )}
+
                     {sportSections.map((article, index) => (
                         <Carousel.Item
                             key={index}
@@ -47,7 +62,7 @@ function HorizontalNewsSection() {
                 <Carousel.Previous position="outer" />
                 <Carousel.Next position="outer" />
             </Carousel>
-        
+
         </>
     )
 }

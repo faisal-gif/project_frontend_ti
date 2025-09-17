@@ -79,7 +79,7 @@ function HorizontalNewsCard({
 
                     <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-2 ">
                         <time>{formatDate(datepub)}</time>
-                        <span>By {author}</span>
+                      
                     </div>
                 </div>
             </Link>

@@ -43,34 +43,36 @@ function FotografiCard({
 
     return (
         <Card className="group cursor-pointer transition-all duration-300 hover:bg-news-hover border-2 border-base-300 bg-card overflow-hidden w-full max-w-sm">
-            <div className="aspect-[5/6] relative overflow-hidden rounded-t-lg">
+            <div className="aspect-[10/16] relative overflow-hidden rounded-t-lg">
                 <Image
                     src={gal_cover}
                     alt={gal_title}
                     fill
                     sizes="(max-width: 768px) 100vw,
-                            (max-width: 1200px) 50vw,
-                            33vw"
+              (max-width: 1200px) 50vw,
+              33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/30 to-transparent" />
 
-                <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
+                {/* Views badge */}
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
                     <Eye className="w-3 h-3" />
                     {gal_view.toLocaleString()}
                 </div>
-            </div>
-            <div className="bg-base-200 p-4 space-y-6 ">
-                <h3 className="font-serif text- font-light leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-                    {gal_title}
-                </h3>
-                <div className="text-xs text-black/50">
-                    <span>{formatDate(datepub)}</span>
+
+                {/* Title + Date inside image */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h3 className="text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#b41d1d] transition-colors">
+                        {gal_title}
+                    </h3>
+                    <div className="text-xs opacity-80 mt-1">{formatDate(datepub)}</div>
                 </div>
             </div>
-
         </Card>
+
     )
 }
 

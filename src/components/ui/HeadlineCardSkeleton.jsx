@@ -1,6 +1,6 @@
 const HeadlineCardSkeleton = () => {
     return (
-        <div className="relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[28rem]">
+        <div className="relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[30rem]">
             <div className="absolute inset-0 bg-gray-300 animate-pulse"></div>
             <div className="relative flex h-full transform flex-col justify-end p-6 text-white transition-transform duration-500 ease-in-out">
                 <div className="w-3/4 h-7 bg-gray-400 rounded animate-pulse mb-4 lg:h-9"></div>
