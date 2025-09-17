@@ -73,11 +73,7 @@ const SearchDropdown = () => {
               onChange={(e) => setQuery(e.target.value)}
               className="grow outline-none bg-transparent"
             />
-            {query && (
-              <button onClick={clearSearch}>
-                <X className="w-4 h-4 text-gray-500 hover:text-gray-700" />
-              </button>
-            )}
+            
           </label>
         </div>
 
