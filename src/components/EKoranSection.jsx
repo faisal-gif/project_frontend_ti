@@ -7,6 +7,7 @@ import { getAllEkoran } from '@/lib/api/ekoran';
 import Carousel from './ui/Carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import EkoranHomeCard from './EkoranHomeCard';
+import Link from 'next/link';
 
 function EKoranSection() {
     const currentDate = new Date().toLocaleDateString('id-ID', {
@@ -31,11 +32,11 @@ function EKoranSection() {
                 <div className="flex items-center justify-between mb-6">
                     <div>
                         <h3 className="text-xl font-bold text-foreground">EKoran</h3>
-                        <p className="text-sm text-muted-foreground">{currentDate}</p>
+                        
                     </div>
-                    <Button variant="link" className="text-neutral hover:text-primary/80">
-                        Baca Lebih Banyak <ChevronRight className="h-4 w-4 ml-1" />
-                    </Button>
+                    <Link href={'/ekoran'} className="text-neutral hover:text-primary/80">
+                      Lebih Banyak
+                    </Link>
                 </div>
 
 
@@ -44,7 +45,7 @@ function EKoranSection() {
                         {ekoran.map((article, index) => (
                             <Carousel.Item
                                 key={index}
-                                className="pl-4 min-w-0 shrink-0 grow-0 basis-full sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
+                                className="pl-4 min-w-0 shrink-0 grow-0 basis-8/18 sm:basis-1/4 md:basis-1/4 lg:basis-1/5"
                             >
                                 <div className="p-1 h-full">
                                     <EkoranHomeCard

@@ -29,7 +29,7 @@ function HorizontalNewsSection() {
                     {sportSections.map((article, index) => (
                         <Carousel.Item
                             key={index}
-                            className="pl-4 min-w-0 shrink-0 grow-0 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                            className="pl-4 min-w-0 shrink-0 grow-0 basis-10/12  sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
                         >
                             <div className="p-2 h-full">
                                 <HorizontalNewsCard
