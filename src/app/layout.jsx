@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import FloatingFactCheck from "@/components/FloatingFactCheck";
 import Image from "next/image";
 import TopLoader from "@/components/ui/TopLoader";
+import SearchDropdown from "@/components/SearchDropdown";
 
 
 const geistSans = Geist({
@@ -188,20 +189,7 @@ export default function RootLayout({ children }) {
                   </div>
 
                   {/* Search */}
-                  <div className="md:ml-auto ml-4 dropdown dropdown-bottom dropdown-end">
-                    <div tabIndex={0} role="button" className="border-0">
-                      <Search className="w-4 h-4 text-white" />
-                    </div>
-                    <div
-                      tabIndex={0}
-                      className="dropdown-content menu bg-white rounded-box w-sm mt-6 shadow-sm relative"
-                    >
-                      <label className="input w-full z-80">
-                        <Search className="w-6 h-6" />
-                        <input type="search" className="grow" placeholder="Search" />
-                      </label>
-                    </div>
-                  </div>
+                  <SearchDropdown />
                 </div>
               </div>
 
