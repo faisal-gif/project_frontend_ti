@@ -1,10 +1,56 @@
 import React from 'react'
 import EkoranDetailStory from './EkoranDetailStory'
+import { getDetailEkoran } from '@/lib/api/ekoran';
 
-function page() {
-  return (
-    <EkoranDetailStory />
-  )
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const ekoranDetail = await getDetailEkoran({id});
+
+  if (!ekoranDetail) {
+    return {
+      title: "Kanal tidak ditemukan - TIMES Indonesia",
+      description: "Kanal yang Anda cari tidak tersedia.",
+    };
+  }
+
+  return {
+    title: `${ekoranDetail.title} - TIMES Indonesia`,
+    description: ekoranDetail.title,
+    keywords: 'ekoran,TIMES Indonesia, ekoran times indonesia',
+    openGraph: {
+      locale: 'id_ID',
+      title: ekoranDetail.title,
+      description: ekoranDetail.title,
+      images: [
+        {
+          url: ekoranDetail.img1,
+          alt: ekoranDetail.title,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ekoranDetail.title,
+      description: ekoranDetail.title,
+      images: [
+        {
+          url: ekoranDetail.img1,
+
+          alt: ekoranDetail.title,
+        },
+      ],
+    },
+  };
 }
 
-export default page
+
+
+export default async function page({ params }) {
+  const { id } = await params;
+  const ekoranDetail = await getDetailEkoran({id});
+  return (
+    <EkoranDetailStory InitialEkoranDetail={ekoranDetail} />
+  )
+}

@@ -10,19 +10,12 @@ import { useParams, useRouter } from 'next/navigation';
 import { getDetailEkoran } from '@/lib/api/ekoran';
 import EkoranReader from '@/components/EkoranReader';
 
-function EkoranDetailStory() {
-    const params = useParams();
-    const { id } = params;
+function EkoranDetailStory({InitialEkoranDetail}) {
+   
     const navigate = useRouter();
 
     // Mock data for the e-koran edition
-    const [ekoranDetail, setEkoranDetail] = useState(null);
-
-    useEffect(() => {
-        getDetailEkoran(id).then(setEkoranDetail).catch(console.error);
-    }, [id]);
-
-
+    const [ekoranDetail, setEkoranDetail] = useState(InitialEkoranDetail);
 
     const ekoranArticle = ekoranDetail && {
         id: ekoranDetail.id,
@@ -85,8 +78,6 @@ function EkoranDetailStory() {
         ].filter(Boolean).length,
         link: ekoranDetail.url_ci4,
     }
-
-
 
     // Keyboard navigation
     const handleClose = () => {

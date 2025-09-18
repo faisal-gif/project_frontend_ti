@@ -14,7 +14,7 @@ const getAllEkoran = async ({ offset = 0, limit = 10 }) => {
     }
 };
 
-const getDetailEkoran = async (id) => {
+const getDetailEkoran = async ({ id }) => {
     try {
         const response = await clientAxios.get(`/ekoran/detail/${id}`);
         return response.data.data;
