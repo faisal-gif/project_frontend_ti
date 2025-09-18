@@ -55,6 +55,7 @@ function GallerySection() {
                                     gal_cover={article.gal_cover}
                                     gal_title={article.gal_title}
                                     gal_view={Number(article.gal_view)}
+                                    url={article.url_ci4}
                                 />
                             </div>
                         </Carousel.Item>

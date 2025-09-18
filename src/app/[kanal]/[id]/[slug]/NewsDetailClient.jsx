@@ -58,7 +58,6 @@ function NewsDetailClient({ initialNewsDetail }) {
         }
     }, [firstTag]);
 
-
     const getTextSizeClasses = () => {
         switch (size) {
             case 1:

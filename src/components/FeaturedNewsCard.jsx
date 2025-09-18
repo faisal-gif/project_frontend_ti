@@ -3,6 +3,8 @@ import React from 'react'
 import Card from './ui/Card'
 import { MessageCircle, Eye, Heart } from "lucide-react";
 import Image from 'next/image';
+import Link from 'next/link';
+
 
 function FeaturedNewsCard({
     title,
@@ -10,9 +12,11 @@ function FeaturedNewsCard({
     timeAgo,
     image,
     views = 4,
-    className = ""
+    className = "",
+    url
 }) {
     return (
+        <Link href={url}>
         <Card className={`group relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[30rem] ${className}`}>
             <Image
                 src={image}
@@ -24,7 +28,7 @@ function FeaturedNewsCard({
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
             <div className="relative flex h-full transform flex-col justify-end p-6 text-white transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
-                <h1 className="mb-4 text-lg font-bold leading-tight transition-colors group-hover:text-primary-foreground lg:text-3xl">
+                <h1 className="mb-4 text-lg font-bold leading-tight transition-colors group-hover:text-[#b41d1d] lg:text-3xl">
                     {title}
                 </h1>
 
@@ -54,6 +58,7 @@ function FeaturedNewsCard({
             </div>
 
         </Card>
+        </Link>
     )
 }
 

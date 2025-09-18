@@ -37,4 +37,6 @@ const getFotoSlide = async ({ id }) => {
 
 export {
     getAllFoto,
+    getFotoDetail,
+    getFotoSlide
 }

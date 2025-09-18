@@ -7,6 +7,7 @@ import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
+import { getFotoSlide } from '@/lib/api/fotoApi';
 import { getAllNews, updateView } from '@/lib/api/newsApi';
 import { getNewsSecondSections } from '@/lib/data';
 import { Share2, Volume2 } from 'lucide-react';
@@ -14,47 +15,49 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import React, { useEffect, useState } from 'react'
+import Lightbox from 'yet-another-react-lightbox';
+import Inline from 'yet-another-react-lightbox/plugins/inline';
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 
-function FotoDetail({ initialNewsDetail }) {
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/styles.css";
+
+function FotoDetail({ initialFotoDetail }) {
 
     const [size, setSize] = useState(2);
-    const [newsDetail] = useState(initialNewsDetail);
+    const [fotoDetail] = useState(initialFotoDetail);
     const [editorDetail, setEditorDetail] = useState(null);
-    const [relatedNews, setRelatedNews] = useState([]);
+    const [foto, setFoto] = useState([]);
+    const [index, setIndex] = useState(0);
+    const [open, setOpen] = useState(false);
+    const [autoplay, setAutoplay] = useState(true);
+    const [delay, setDelay] = useState(3000);
 
     useEffect(() => {
-        if (newsDetail) {
-            getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
+        if (fotoDetail) {
+            getEditorDetail({ slug: fotoDetail.editor_alias }).then(setEditorDetail).catch(console.error);
         }
-    }, [newsDetail]);
+    }, [fotoDetail]);
 
-    if (newsDetail) {
 
-    }
     useEffect(() => {
-        if (newsDetail) {
-            updateView({ id: newsDetail.news_id });
+        if (fotoDetail) {
+            getFotoSlide({ id: fotoDetail.gal_id }).then(setFoto).catch(console.error);
         }
-    }, [newsDetail]);
+    }, [fotoDetail])
+
+    // useEffect(() => {
+    //     if (fotoDetail) {
+    //         updateView({ id: newsDetail.news_id });
+    //     }
+    // }, [newsDetail]);
 
     const tim = [
-        { name: newsDetail?.news_writer || '', role: "Penulis", foto: null, url: `/writer/${newsDetail?.writer_slug}` || '' },
-        { name: newsDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${newsDetail?.editor_alias}` || '' },
-        { name: newsDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
+        { name: fotoDetail?.gal_pewarta || '', role: "Fotografer", foto: null, url: `/writer/${fotoDetail?.writer_slug}` || '' },
+        { name: editorDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${fotoDetail?.editor_alias}` || '' },
+        { name: fotoDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
     ];
-
-    const getTags = () => {
-        if (!newsDetail || !newsDetail.news_tags) return [];
-        return newsDetail.news_tags.split(',').map(tag => tag.trim()).filter(Boolean);
-    };
-
-    const firstTag = getTags()[0] || '';
-
-    useEffect(() => {
-        if (firstTag) {
-            getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
-        }
-    }, [firstTag]);
 
 
     const getTextSizeClasses = () => {
@@ -98,13 +101,6 @@ function FotoDetail({ initialNewsDetail }) {
         });
     };
 
-    const [newsSecondSections, setNewsSecondSections] = useState([]);
-
-    useEffect(() => {
-        getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
-    }, []);
-
-
     const slugify = (text) =>
         text
             .toLowerCase()
@@ -121,24 +117,24 @@ function FotoDetail({ initialNewsDetail }) {
                 <GoogleAds size='top_banner' />
             </div>
 
-            <div className='grid grid-cols-1 gap-8 mt-20'>
-                {!newsDetail ? (
+            <div className='grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-20'>
+                {!fotoDetail ? (
                     <NewsDetailSkeleton />
                 ) : (
                     <>
                         <main className="col-span-1" >
                             <article className="rounded-lg overflow-hidden">
                                 <span className="badge badge-primary badge-outline px-4 py-1 rounded-full text-sm font-medium">
-                                    {newsDetail.catnews_title}
+                                    {fotoDetail.galcat_title}
                                 </span>
                                 <div className="py-4 md:py-2">
                                     {/* Title */}
                                     <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-4 leading-snug">
-                                        {newsDetail.news_title}
+                                        {fotoDetail.gal_title}
                                     </h1>
                                     {/* Description */}
                                     <p className="text-base md:text-lg text-base-content/50 mb-6 leading-relaxed">
-                                        {newsDetail.news_description}
+                                        {fotoDetail.gal_description}
                                     </p>
                                 </div>
                                 {/* Meta */}
@@ -146,7 +142,7 @@ function FotoDetail({ initialNewsDetail }) {
                                     <div className="flex flex-row items-center gap-1">
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
-                                        <span>{formatDate(newsDetail.news_datepub)}</span>
+                                        <span>{formatDate(fotoDetail.gal_datepub)}</span>
                                     </div>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">
@@ -254,7 +250,49 @@ function FotoDetail({ initialNewsDetail }) {
                                     <div className='flex-1'>
                                         {/* Header Image */}
                                         <div className="flex justify-center items-center my-6">
-                                            <Image
+                                            <Lightbox
+                                                index={index}
+                                                close={() => null}
+                                                slides={foto}
+                                                plugins={[Inline, Slideshow]}
+                                                slideshow={{ autoplay, delay }}
+                                                carousel={{
+                                                    padding: 0,
+                                                    spacing: 0,
+                                                    imageFit: "cover",
+                                                    finite: true
+                                                }}
+                                                inline={{
+                                                    style: {
+                                                        width: "100%",
+                                                        maxWidth: "900px",
+                                                        aspectRatio: "3 / 2", background: "transparent",
+
+                                                    },
+                                                }}
+                                                animation={{ zoom: true }}
+
+                                                render={{
+                                                    slide: ({ slide }) => (
+                                                        <div className="relative w-full h-full">
+                                                            <Image
+                                                                src={slide.gi_image}
+                                                                alt="Gallery image"
+                                                                fill
+                                                                sizes="(max-width: 900px) 100vw, 900px"
+                                                                className="object-cover"
+                                                                onClick={() => setOpen(true)}
+
+                                                            />
+                                                        </div>
+                                                    ),
+                                                }}
+                                                on={{
+                                                    view: ({ index }) => setIndex(index),
+                                                    click: () => setOpen(true),
+                                                }}
+                                            />
+                                            {/* <Image
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
                                                 width={1200}
@@ -263,46 +301,59 @@ function FotoDetail({ initialNewsDetail }) {
                                                 priority
                                                 fetchPriority="high"
                                                 sizes="(max-width: 768px) 100vw, 800px"
+                                            /> */}
+
+                                            <Lightbox
+                                                open={open}
+                                                close={() => setOpen(false)}
+                                                index={index}
+                                                slides={foto}
+                                                render={{
+                                                    slide: ({ slide }) => (
+                                                        <div className="relative w-full h-9/12">
+                                                            <Image
+                                                                src={slide.gi_image}
+                                                                alt={slide.gi_id}
+                                                                fill
+                                                                sizes="(max-width: 900px) 100vw, 900px"
+                                                                className="object-contain"
+                                                            />
+                                                        </div>
+                                                    ),
+                                                }}
+                                                on={{
+                                                    view: ({ index }) => setIndex(index), // update index global
+                                                }}
                                             />
                                         </div>
-                                        <div className="text-sm text-base-content/50 pt-2">{newsDetail.news_caption} </div>
+                                        <div className="text-sm text-base-content/50 pt-2">{foto[0]?.gi_caption} </div>
 
                                         {/* Content News */}
                                         <ArticleContent
-                                            htmlContent={newsDetail.news_content}
+                                            htmlContent={fotoDetail.gal_content}
                                             getTextSizeClasses={getTextSizeClasses}
-                                            readAlsoArticles={relatedNews}
+                                            readAlsoArticles={[]}
                                             className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
                                         />
                                     </div>
                                 </div>
-                                <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
-                                    {getTags().map((tag) => (
-                                        <Link
-                                            key={tag}
-                                            href={`/tag/${slugify(tag)}`}
-                                            className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
-                                        >
-                                            {tag}
-                                        </Link>
-                                    ))}
-                                </div>
 
-                                {newsDetail.news_writer && (
+
+                                {fotoDetail.gal_pewarta && (
                                     <div className="mt-8 pt-6 border-t border-base-content/20">
                                         <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
                                             <div className="avatar avatar-placeholder" >
                                                 <div className="bg-neutral text-neutral-content w-20 rounded-full ">
                                                     <span className="text-3xl">
-                                                        {newsDetail?.news_writer.charAt(0).toUpperCase()}
+                                                        {fotoDetail?.gal_pewarta.charAt(0).toUpperCase()}
                                                     </span>
                                                 </div>
 
                                             </div>
                                             <div className='flex flex-col justify-center'>
-                                                <span className='text-sm text-base-200/60'>Penulis</span>
+                                                <span className='text-sm text-base-200/60'>Fotografer</span>
                                                 <span className='text-lg font-semibold text-white'>
-                                                    {newsDetail?.news_writer}
+                                                    {fotoDetail?.gal_pewarta}
                                                 </span>
                                                 <span className='text-sm text-white/80 mt-2'>
                                                     Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya.
@@ -322,8 +373,6 @@ function FotoDetail({ initialNewsDetail }) {
 
                             {/* <ModalShare /> */}
                         </main>
-
-                        {/* Float Menu */}
                         <div className="hidden lg:block w-16">
                             <Card className=" shadow-md py-2 sticky top-28 flex flex-col items-center gap-4 mt-[29rem]">
                                 <div className="dropdown dropdown-left">
@@ -358,16 +407,17 @@ function FotoDetail({ initialNewsDetail }) {
                     </>
 
                 )}
-            </div>
+                <aside className="hidden lg:block w-80">
+                    <div className=" sticky top-28">
+                        <PopularNews />
 
-
-            <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-3">
-                {newsSecondSections.map((section) => (
-                    <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news} />
+                        <div className='flex items-center justify-center'>
+                            <GoogleAds size='inline_rectangle' />
+                        </div>
                     </div>
-                ))}
+                </aside>
             </div>
+
 
         </div>
     )

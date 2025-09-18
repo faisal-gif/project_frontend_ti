@@ -44,7 +44,8 @@ function HeadlineNewsHome() {
         title: article.news_title,
         author: article.news_writer,
         timeAgo: formatRelativeTime(article.news_datepub),
-        views: Number(article.pageviews)
+        views: Number(article.pageviews),
+        url: article.url_ci4
     }));
 
 
@@ -66,6 +67,7 @@ function HeadlineNewsHome() {
                             comments='0'
                             views={article.views}
                             likes='1'
+                            url={article.url}
                         />
                     </Carousel.Item>
                 ))}
