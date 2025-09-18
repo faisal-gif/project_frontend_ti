@@ -3,21 +3,19 @@ import ArticleContent from '@/components/ArticleContent';
 import EkoranNewsDetailCard from '@/components/EkoranNewsDetailCard';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import GoogleAds from '@/components/GoogleAds';
-import ModalShare from '@/components/ModalShare';
 import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
-import { getAllNews, getNewsDetail, updateView } from '@/lib/api/newsApi';
+import { getAllNews, updateView } from '@/lib/api/newsApi';
 import { getNewsSecondSections } from '@/lib/data';
-import { Car, Share, Share2, User, Volume2 } from 'lucide-react';
+import { Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Head from 'next/head';
-import { useParams } from 'next/navigation';
+
 import React, { useEffect, useState } from 'react'
 
-function NewsDetailClient({ initialNewsDetail }) {
+function FotoDetail({ initialNewsDetail }) {
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
@@ -123,7 +121,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                 <GoogleAds size='top_banner' />
             </div>
 
-            <div className='grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-20'>
+            <div className='grid grid-cols-1 gap-8 mt-20'>
                 {!newsDetail ? (
                     <NewsDetailSkeleton />
                 ) : (
@@ -274,8 +272,6 @@ function NewsDetailClient({ initialNewsDetail }) {
                                             htmlContent={newsDetail.news_content}
                                             getTextSizeClasses={getTextSizeClasses}
                                             readAlsoArticles={relatedNews}
-                                            lokus={newsDetail.news_city}
-                                            url={newsDetail.url_ci4}
                                             className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
                                         />
                                     </div>
@@ -362,15 +358,6 @@ function NewsDetailClient({ initialNewsDetail }) {
                     </>
 
                 )}
-                <aside className="hidden lg:block w-80">
-                    <div className=" sticky top-28">
-                        <PopularNews />
-
-                        <div className='flex items-center justify-center'>
-                            <GoogleAds size='inline_rectangle' />
-                        </div>
-                    </div>
-                </aside>
             </div>
 
 
@@ -386,4 +373,4 @@ function NewsDetailClient({ initialNewsDetail }) {
     )
 }
 
-export default NewsDetailClient
+export default FotoDetail

@@ -1,5 +1,5 @@
 'use client'
-import { apiGallery } from '@/lib/api';
+
 import React, { useEffect, useState } from 'react'
 import Carousel from './ui/Carousel';
 import FotografiCard from './FotografiCard';
@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 import { getAllFoto } from '@/lib/api/fotoApi';
 import FotografiCardSkeleton from './ui/FotografiCardSkeleton';
+
 
 function GallerySection() {
     const [gallery, setGallery] = useState([]);
@@ -19,10 +20,9 @@ function GallerySection() {
         <>
 
             <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-foreground">Fotografi Jurnalistik</h2>
+                <h2 className="text-2xl font-bold text-foreground">Gallery Jurnalistik</h2>
                 <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                     <Link href={'/foto'} className="text-sm">View All</Link>
-
                 </button>
             </div>
 
