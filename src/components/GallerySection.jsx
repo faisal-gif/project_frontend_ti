@@ -22,7 +22,7 @@ function GallerySection() {
             <div className="flex items-center justify-between mb-8">
                 <h2 className="text-2xl font-bold text-foreground">Gallery Jurnalistik</h2>
                 <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <Link href={'/foto'} className="text-sm">View All</Link>
+                    <Link href={'/foto'} className="text-sm text-neutral hover:text-[#b41d1d] hover:font-semibold">Lebih Banyak</Link>
                 </button>
             </div>
 
@@ -31,7 +31,7 @@ function GallerySection() {
 
                     {
                         gallery.length === 0 && (
-                            [1,2,3,4,5].map((index) => (
+                            [1, 2, 3, 4, 5].map((index) => (
                                 <Carousel.Item
                                     key={index}
                                     className="pl-4 min-w-0 shrink-0 grow-0 basis-8/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"

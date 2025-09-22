@@ -32,22 +32,21 @@ function LastesNewsCard({
         if (diffMinutes < 1) {
             return "just now";
         } else if (diffMinutes < 60) {
-            return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
         } else if (diffHours < 24) {
-            return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
         } else if (diffDays < 7) {
-            return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
         }
 
         // fallback pakai format lokal
         return date.toLocaleDateString('id-ID', {
             day: 'numeric',
-            month: 'numeric',
+            month: 'long',
             year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
         });
     };
+
 
     return (
         <Link href={`/news/${id}/${slugify(title)}`} className="block group">
@@ -90,7 +89,7 @@ function LastesNewsCard({
                     </div>
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <time>{formatDate(datepub)}</time>
-                      
+
                     </div>
                 </div>
             </div>

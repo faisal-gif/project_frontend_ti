@@ -19,23 +19,31 @@ function HeadlineNewsHome() {
         }).then(setHeadlineNews).catch(console.error);
     }, []);
 
-    function formatRelativeTime(dateString) {
-        const date = new Date(dateString)
-        const now = new Date()
-        const diffMs = now - date // selisih dalam milidetik
-        const diffSec = Math.floor(diffMs / 1000)
-        const diffMin = Math.floor(diffSec / 60)
-        const diffHour = Math.floor(diffMin / 60)
-        const diffDay = Math.floor(diffHour / 24)
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date; // selisih dalam ms
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-        if (diffSec < 60) return `${diffSec} seconds ago`
-        if (diffMin < 60) return `${diffMin} minutes ago`
-        if (diffHour < 24) return `${diffHour} hours ago`
-        if (diffDay < 7) return `${diffDay} days ago`
+        if (diffMinutes < 1) {
+            return "just now";
+        } else if (diffMinutes < 60) {
+            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
+        } else if (diffHours < 24) {
+            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
+        } else if (diffDays < 7) {
+            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
+        }
 
-        // kalau lebih dari seminggu, tampilkan tanggal normal
-        return date.toLocaleDateString()
-    }
+        // fallback pakai format lokal
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+    };
 
     // map popular articles to a format suitable for rendering
     const headlineArticle = headlineNews.map(article => ({
@@ -43,7 +51,7 @@ function HeadlineNewsHome() {
         image: article.news_image_new,
         title: article.news_title,
         author: article.news_writer,
-        timeAgo: formatRelativeTime(article.news_datepub),
+        timeAgo: formatDate(article.news_datepub),
         views: Number(article.pageviews),
         url: article.url_ci4
     }));

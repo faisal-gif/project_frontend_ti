@@ -25,20 +25,18 @@ function EkoranHomeCard({
         if (diffMinutes < 1) {
             return "just now";
         } else if (diffMinutes < 60) {
-            return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
         } else if (diffHours < 24) {
-            return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
         } else if (diffDays < 7) {
-            return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
         }
 
         // fallback pakai format lokal
         return date.toLocaleDateString('id-ID', {
             day: 'numeric',
-            month: 'numeric',
+            month: 'long',
             year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
         });
     };
 
@@ -59,7 +57,22 @@ function EkoranHomeCard({
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/30 to-transparent" />
+
+                    {/* Views badge */}
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
+                        <Eye className="w-3 h-3" />
+                        {gal_view.toLocaleString()}
+                    </div>
+
+                    {/* Title + Date inside image */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <h3 className="text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#b41d1d] transition-colors">
+                            {gal_title}
+                        </h3>
+                        <div className="text-xs opacity-80 mt-1">{formatDate(datepub)}</div>
+                    </div>
                 </div>
                 {/* <div className="p-4 space-y-6 ">
                 <h3 className="font-serif text- font-light leading-tight line-clamp-2 group-hover:text-primary transition-colors">

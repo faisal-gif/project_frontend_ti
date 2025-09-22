@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 function FirstHightlightNewsSection({ title, news }) {
-    const formatDate = (dateString) => {
+   const formatDate = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
         const diffMs = now - date; // selisih dalam ms
@@ -18,23 +18,20 @@ function FirstHightlightNewsSection({ title, news }) {
         if (diffMinutes < 1) {
             return "just now";
         } else if (diffMinutes < 60) {
-            return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
         } else if (diffHours < 24) {
-            return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
         } else if (diffDays < 7) {
-            return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
         }
 
         // fallback pakai format lokal
         return date.toLocaleDateString('id-ID', {
             day: 'numeric',
-            month: 'numeric',
+            month: 'long',
             year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
         });
     };
-
     return (
         <section className="space-y-6 border-t-2 border-base-300">
             <div className="flex items-center justify-between mt-2">

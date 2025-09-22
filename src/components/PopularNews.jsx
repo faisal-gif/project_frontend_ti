@@ -21,11 +21,39 @@ export default function PopularNews() {
             });
     }, []);
 
+
+        const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date; // selisih dalam ms
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        if (diffMinutes < 1) {
+            return "just now";
+        } else if (diffMinutes < 60) {
+            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
+        } else if (diffHours < 24) {
+            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
+        } else if (diffDays < 7) {
+            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
+        }
+
+        // fallback pakai format lokal
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+    };
+
+
     // map popular articles to a format suitable for rendering
     const popularArticles = popularNews.map(article => ({
         id: article.news_id,
         title: article.news_title,
-        timeAgo: new Date(article.news_datepub).toLocaleDateString(),
+        timeAgo: formatDate(article.news_datepub),
         views: Number(article.pageviews) 
     }));
 

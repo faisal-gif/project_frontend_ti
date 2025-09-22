@@ -1,8 +1,9 @@
 'use client'
+import GoogleAds from '@/components/GoogleAds';
 import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button'
 import { getAllNews } from '@/lib/api/newsApi';
-import { Filter, Search } from 'lucide-react'
+import { Filter, Grid, List, Search } from 'lucide-react'
 import { useParams } from 'next/navigation';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -19,6 +20,7 @@ function TagClient() {
       .replace(/\b\w/g, (c) => c.toUpperCase()); // kapitalisasi awal kata
   };
 
+  const [viewMode, setViewMode] = useState('grid');
   const [tagNews, setTagNews] = useState([]);
   const [offset, setOffset] = useState(0)
   const [limit] = useState(10)
@@ -72,20 +74,30 @@ function TagClient() {
 
 
   return (
-    <main className="max-w-6xl  mx-auto px-4 py-18">
+    <main className="max-w-6xl  mx-auto px-4 py-20">
+
+      <div className='flex items-center justify-center mb-8'>
+        <GoogleAds size='top_banner' />
+      </div>
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <h2 className="text-2xl font-bold text-foreground">
           Berita Tag  {unslugify(slug) || ''}
         </h2>
-        <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm">
-            <Filter className="h-4 w-4 mr-2" />
-            Filter
+        <div className="flex border border-base-300 rounded-md">
+          <Button variant="ghost" size="sm"
+            onClick={() => setViewMode('grid')}
+            aria-label="View Grid"
+            title="View Grid"
+            className={viewMode == 'grid' ? "btn-active" : ""}>
+            <Grid className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="sm">
-            <Search className="h-4 w-4 mr-2" />
-            Cari
+          <Button variant="ghost" size="sm"
+            onClick={() => setViewMode('list')}
+            aria-label="View List"
+            title="View List"
+            className={viewMode === 'list' ? "btn-active" : ""}    >
+            <List className="h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -98,7 +110,7 @@ function TagClient() {
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
           </div>
-          <h2 className="text-2xl font-bold">Loading Fokus...</h2>
+          <h2 className="text-2xl font-bold">Loading Berita...</h2>
           <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
         </div>
       )}
@@ -106,9 +118,13 @@ function TagClient() {
       {/* Regular News */}
       {tagNews.length > 0 && (
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`mb-12 ${viewMode === 'grid'
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+            : 'space-y-6'
+            }`}>
             {tagNews.map((news) => (
               <NewsCard
+                layout={viewMode}
                 key={news.news_id}
                 title={news.news_title}
                 description={news.news_description}
@@ -133,7 +149,7 @@ function TagClient() {
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
           </div>
-          <h2 className="text-2xl font-bold">Loading Fokus...</h2>
+          <h2 className="text-2xl font-bold">Loading Berita...</h2>
           <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
         </div>
       )}

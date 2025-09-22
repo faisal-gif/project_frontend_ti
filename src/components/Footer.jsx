@@ -6,7 +6,7 @@ function Footer() {
   return (
    <footer className=" bg-gradient-to-b from-[#0f172a] to-[#222325] border-t border-footer-border">
       {/* Main Footer Content */}
-      <div className="container p-8 max-w-[1400px]  mx-auto px-6 py-12">
+      <div className="container p-8 max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           
           {/* Company Info */}
@@ -118,7 +118,7 @@ function Footer() {
    
 
       {/* Bottom Footer */}
-      <div className="container mx-auto px-6 py-6">
+      <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-white/65 text-sm">
             © 2025 TIMES Indonesia. All rights reserved.

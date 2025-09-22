@@ -11,13 +11,6 @@ import Link from 'next/link';
 import EkoranHomeCardSkeleton from './ui/EkoranHomeCardSkeleton';
 
 function EKoranSection() {
-    const currentDate = new Date().toLocaleDateString('id-ID', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-
 
     const [ekoran, setEkoran] = useState([]);
 
@@ -32,10 +25,10 @@ function EKoranSection() {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                     <div>
-                        <h3 className="text-xl font-bold text-foreground">EKoran</h3>
+                        <h3 className="text-2xl font-bold text-foreground">Ekoran</h3>
 
                     </div>
-                    <Link href={'/ekoran'} className="text-neutral hover:text-primary/80">
+                    <Link href={'/ekoran'} className="text-sm text-neutral hover:text-[#b41d1d] hover:font-semibold">
                         Lebih Banyak
                     </Link>
                 </div>
@@ -47,7 +40,7 @@ function EKoranSection() {
                                 [1, 2, 3, 4, 5].map((i) => (
                                     <Carousel.Item
                                         key={i}
-                                        className="pl-4 min-w-0 shrink-0 grow-0 basis-8/18 sm:basis-1/4 md:basis-1/4 lg:basis-1/5"
+                                        className="pl-4 min-w-0 shrink-0 grow-0 basis-9/16 sm:basis-1/4 md:basis-1/4 lg:basis-1/5"
                                     >
                                         <div className="h-full">
                                             <EkoranHomeCardSkeleton />
@@ -61,13 +54,13 @@ function EKoranSection() {
                         {ekoran.map((article, index) => (
                             <Carousel.Item
                                 key={index}
-                                className="pl-4 min-w-0 shrink-0 grow-0 basis-8/18 sm:basis-1/4 md:basis-1/4 lg:basis-1/5"
+                                className="pl-4 min-w-0 shrink-0 grow-0 basis-9/16 sm:basis-1/4 md:basis-1/4 lg:basis-1/5"
                             >
                                 <div className=" h-full">
                                     <EkoranHomeCard
                                         gal_cover={article.img1}
                                         gal_title={article.title}
-                                        gal_view={article.views}
+                                        gal_view={Number(article.views)}
                                         datepub={article.datepub}
                                         url={article.url_ci4}
                                     />

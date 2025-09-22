@@ -16,12 +16,14 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { getFocusDetail } from '@/lib/api/focus';
 
 function NewsDetailClient({ initialNewsDetail }) {
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
     const [editorDetail, setEditorDetail] = useState(null);
+    const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
 
     useEffect(() => {
@@ -30,9 +32,15 @@ function NewsDetailClient({ initialNewsDetail }) {
         }
     }, [newsDetail]);
 
-    if (newsDetail) {
-
+    if (Number(newsDetail.focnews_id) !== 0) {
+        useEffect(() => {
+            if (newsDetail) {
+                getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
+            }
+        }, [newsDetail])
     }
+
+
     useEffect(() => {
         if (newsDetail) {
             updateView({ id: newsDetail.news_id });
@@ -116,7 +124,7 @@ function NewsDetailClient({ initialNewsDetail }) {
             .replace(/-+$/, "");        // hapus - di akhir
 
     return (
-        <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
+        <div className="max-w-6xl mx-auto px-4 py-24 ">
 
             <div className='flex items-center justify-center'>
                 <GoogleAds size='top_banner' />
@@ -129,9 +137,19 @@ function NewsDetailClient({ initialNewsDetail }) {
                     <>
                         <main className="col-span-1" >
                             <article className="rounded-lg overflow-hidden">
-                                <span className="badge badge-primary badge-outline px-4 py-1 rounded-full text-sm font-medium">
+                                <span className="badge badge-primary badge-outline py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
                                 </span>
+                                <div className="py-4 md:py-2">
+
+
+                                    {focusDetail && (
+                                        <Link href={focusDetail.urlPath} className="btn btn-error btn-xs btn-outline py-1 rounded-full text-sm font-medium">
+                                            {focusDetail.focnews_title}
+                                        </Link>
+                                    )}
+                                </div>
+
                                 <div className="py-4 md:py-2">
                                     {/* Title */}
                                     <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-4 leading-snug">
@@ -253,13 +271,26 @@ function NewsDetailClient({ initialNewsDetail }) {
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-6">
                                     <div className='flex-1'>
+
                                         {/* Header Image */}
-                                        <div className="flex justify-center items-center my-6">
+                                        <div className="flex flex-col justify-center items-center my-6">
+                                            {focusDetail && focusDetail.focnews_image_news && (
+                                                <Image
+                                                    src={focusDetail.focnews_image_news}
+                                                    alt={focusDetail.focnews_title}
+                                                    width={750}
+                                                    height={500}
+                                                    className="h-auto max-h-[500px] w-full object-contain rounded-2xl mb-4"
+                                                    priority
+                                                    fetchPriority="high"
+                                                    sizes="(max-width: 768px) 100vw, 800px"
+                                                />
+                                            )}
                                             <Image
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
-                                                width={1200}
-                                                height={800}         // boleh 0 kalau fill off, Next.js akan hitung otomatis
+                                                width={750}
+                                                height={500}         // boleh 0 kalau fill off, Next.js akan hitung otomatis
                                                 className="h-auto max-h-[500px] w-full object-contain"
                                                 priority
                                                 fetchPriority="high"
@@ -373,7 +404,7 @@ function NewsDetailClient({ initialNewsDetail }) {
             </div>
 
 
-            <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-3">
+            <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
                 {newsSecondSections.map((section) => (
                     <div key={section.title} className="space-y-8">
                         <FirstHightlightNewsSection title={section.title} news={section.news} />

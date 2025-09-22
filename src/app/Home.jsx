@@ -30,13 +30,11 @@ function Home() {
         getNewsFirstSections().then(setNewsFirstSections).catch(console.error);
         getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
         getAllNews({
-            news_type: "all",
+            news_type: "trending",
             offset: 0,
             limit: 4,
         }).then(setAllNews).catch(console.error);
     }, []);
-
-
 
 
     return (
@@ -70,7 +68,7 @@ function Home() {
                     )}
                     {
                         allNews.length > 0 && (
-                            <SimpleNewsSection title={'Berita Terbaru'} news={allNews} />
+                            <SimpleNewsSection title={'Berita Terpopuler'} news={allNews} />
                         )
                     }
 
@@ -105,15 +103,8 @@ function Home() {
                 <EKoranSection />
             </div>
 
-            <section className="max-w-6xl mx-auto px-4 py-12 max-md:px-4 border-t-2 border-base-300" >
-                <HorizontalNewsSection />
-            </section>
 
-
-            {/* Jurnalistik Fotografi */}
-            <section className="max-w-6xl mx-auto px-4 py-12 max-md:px-4 border-t-2 border-base-300" >
-                <GallerySection />
-            </section>
+          
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
                 {newsSecondSections.length === 0 && (
@@ -136,6 +127,13 @@ function Home() {
                 </div>
             </div>
 
+
+              {/* Jurnalistik Fotografi */}
+            <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
+                <GallerySection />
+            </section>
+
+            
             <VideoSection />
 
             {/* Last News */}

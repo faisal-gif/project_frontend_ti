@@ -25,20 +25,18 @@ function FotografiCard({
         if (diffMinutes < 1) {
             return "just now";
         } else if (diffMinutes < 60) {
-            return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
         } else if (diffHours < 24) {
-            return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
         } else if (diffDays < 7) {
-            return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
         }
 
         // fallback pakai format lokal
         return date.toLocaleDateString('id-ID', {
             day: 'numeric',
-            month: 'numeric',
+            month: 'long',
             year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
         });
     };
 
@@ -46,7 +44,7 @@ function FotografiCard({
     return (
         <Link href={url }>
             <Card className="group cursor-pointer transition-all duration-300 hover:bg-news-hover border-2 border-base-300 bg-card overflow-hidden w-full max-w-sm">
-                <div className="aspect-[10/16] relative overflow-hidden rounded-t-lg">
+                <div className="aspect-[9/16] relative overflow-hidden rounded-t-lg">
                     <Image
                         src={gal_cover}
                         alt={gal_title}

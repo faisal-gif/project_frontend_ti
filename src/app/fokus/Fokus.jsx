@@ -6,8 +6,7 @@ import { getAllKanal } from '@/lib/api/kanalApi';
 import FocusCard from '@/components/FocusCard';
 import { getAllFocus } from '@/lib/api/focus';
 import GoogleAds from '@/components/GoogleAds';
-
-
+import Link from 'next/link';
 
 function Fokus() {
 
@@ -83,14 +82,17 @@ function Fokus() {
                     </div>
                     <div className="text-center md:text-left">
                         <h2 className="text-2xl font-bold text-foreground mb-2">
-                            {focus.length > 0 ? focus[0].focnews_title : 'Memuat...'}
+                            {focus.length > 0 ? focus[0].focnews_title : 'Memuat....'}
                         </h2>
                         <p className="text-black/60 mb-4">
-                            {focus.length > 0 ? focus[0].focnews_description : 'Memuat...'}
+                            {focus.length > 0 ? focus[0].focnews_description : 'Memuat....'}
                         </p>
-                        <button className="bg-[#7a0f1f] text-white px-6 py-2 rounded-lg hover:bg-[#7a0f1f] transition-colors">
-                            Baca Selengkapnya
-                        </button>
+                        {focus.length > 0 ? (
+                            <Link href={focus[0].urlPath} className="bg-[#7a0f1f] text-white px-6 py-2 rounded-lg hover:bg-[#7a0f1f] transition-colors">
+                                Baca Selengkapnya
+                            </Link>
+                        ) : <div className="skeleton h-4 w-28"></div>}
+
                     </div>
                 </div>
             </div>
