@@ -22,7 +22,7 @@ export default function GoogleAds({ size = 'inline_rectangle', className = '' })
                 maxWidth: '100%'
             }}
         >
-            <div className="text-center text-gray-500">
+            <div className="text-center text-black">
                 <div className="text-sm font-medium mb-1">Advertisement</div>
                 <div className="text-xs capitalize opacity-100">{size}</div>
                 <div className="text-xs opacity-100">{currentSize.width} x {currentSize.height}</div>
