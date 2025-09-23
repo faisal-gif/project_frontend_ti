@@ -108,7 +108,7 @@ export default function RootLayout({ children }) {
       >
         <DrawerAutoClose />
         <div className="drawer">
-          <input id="drawer-nav" type="checkbox" className="drawer-toggle" />
+          <input id="drawer-nav" type="checkbox" aria-label="Drawer toggle" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             {/* Navbar */}
             <div className="fixed top-0 w-full z-50">

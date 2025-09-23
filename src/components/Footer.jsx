@@ -1,14 +1,15 @@
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import React from 'react'
 import Button from "./ui/Button";
+import Link from "next/link";
 
 function Footer() {
   return (
-   <footer className=" bg-gradient-to-b from-[#0f172a] to-[#222325] border-t border-footer-border">
+    <footer className=" bg-gradient-to-b from-[#0f172a] to-[#222325] border-t border-footer-border">
       {/* Main Footer Content */}
       <div className="container p-8 max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          
+
           {/* Company Info */}
           <div className="space-y-6">
             <div>
@@ -17,23 +18,23 @@ function Footer() {
                 Portal berita terpercaya yang menyajikan informasi terkini dan terpercaya dari seluruh Indonesia dan dunia.
               </p>
             </div>
-            
+
             {/* Social Media */}
             <div>
               <h3 className="text-white/85 font-semibold mb-3">Ikuti Kami</h3>
               <div className="flex space-x-3">
-                <Button variant="outline" size="sm" className="rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-primary">
+                <a href="https://www.facebook.com/timesindonesia.co.id" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Facebook className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm" className="rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                </a>
+                <a href="https://x.com/timescoid" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Twitter className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm" className="rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                </a>
+                <a href="https://www.instagram.com/timesindonesia" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Instagram className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm" className="rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                </a>
+                <a href="https://www.youtube.com/@timesIDN" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Youtube className="h-4 w-4" />
-                </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -43,12 +44,12 @@ function Footer() {
             <div>
               <h3 className="text-white/85 font-semibold mb-4">Kategori Berita</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors">Nasional</a></li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors">Internasional</a></li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors">Politik</a></li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors">Ekonomi</a></li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors">Olahraga</a></li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors">Entertainment</a></li>
+                <li><Link href="/kanal/peristiwa-nasional" className="text-white/65 hover:text-[#b51d1d] transition-colors">Nasional</Link></li>
+                <li><Link href="/kanal/peristiwa-internasional" className="text-white/65 hover:text-[#b51d1d] transition-colors">Internasional</Link></li>
+                <li><Link href="/kanal/politik" className="text-white/65 hover:text-[#b51d1d] transition-colors">Politik</Link></li>
+                <li><Link href="/kanal/ekonomi" className="text-white/65 hover:text-[#b51d1d] transition-colors">Ekonomi</Link></li>
+                <li><Link href="/kanal/olahraga" className="text-white/65 hover:text-[#b51d1d] transition-colors">Olahraga</Link></li>
+                <li><Link href="/kanal/entertainment" className="text-white/65 hover:text-[#b51d1d] transition-colors">Entertainment</Link></li>
               </ul>
             </div>
           </div>
@@ -88,8 +89,8 @@ function Footer() {
               </p>
               <div className="space-y-3">
                 <input
-                  type="email" 
-                  placeholder="Email Anda" 
+                  type="email"
+                  placeholder="Email Anda"
                   className="input bg-footer-light border-footer-border"
                 />
                 <Button className="w-full bg-[#b51d1d] rounded-lg border-none shadow-none hover:bg-[#9f1c1c]">
@@ -103,19 +104,18 @@ function Footer() {
               <h3 className="text-white/85 font-semibold mb-3">Lainnya</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-white/65 hover:text-primary transition-colors text-sm flex items-center">
+                  <a href="https://www.youtube.com/@timesIDN" className="text-white/65 hover:text-primary transition-colors text-sm flex items-center">
                     TIMES TV <ExternalLink className="h-3 w-3 ml-1" />
                   </a>
                 </li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors text-sm">E-Paper</a></li>
-                <li><a href="#" className="text-white/65 hover:text-[#b51d1d] transition-colors text-sm">RSS Feed</a></li>
+                <li><Link href="/ekoran" className="text-white/65 hover:text-[#b51d1d] transition-colors text-sm">Ekoran</Link></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-   
+
 
       {/* Bottom Footer */}
       <div className="container max-w-6xl mx-auto px-4 py-6">

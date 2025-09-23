@@ -11,7 +11,7 @@ const SearchDropdown = () => {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
 
-  
+
 
   // fetch news setiap kali query berubah
   useEffect(() => {
@@ -52,9 +52,12 @@ const SearchDropdown = () => {
   return (
     <div className="md:ml-auto ml-4 dropdown dropdown-bottom dropdown-end">
       {/* tombol trigger */}
-      <div tabIndex={0} role="button" className="border-0">
+      <button
+        aria-label="Open search"
+        className="cursor-pointer border-0 bg-transparent"
+      >
         <Search className="w-4 h-4 text-white" />
-      </div>
+      </button>
 
       {/* dropdown content */}
       <div
@@ -73,7 +76,7 @@ const SearchDropdown = () => {
               onChange={(e) => setQuery(e.target.value)}
               className="grow outline-none bg-transparent"
             />
-            
+
           </label>
         </div>
 
