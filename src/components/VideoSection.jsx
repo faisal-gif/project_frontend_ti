@@ -79,7 +79,6 @@ function VideoSection() {
                     key={index}
                     src={slide.src}
                     title="YouTube video"
-                  
                     width="100%"
                     loading="lazy"
                     height="100%"
