@@ -23,17 +23,37 @@ function Footer() {
             <div>
               <h3 className="text-white/85 font-semibold mb-3">Ikuti Kami</h3>
               <div className="flex space-x-3">
-                <a href="https://www.facebook.com/timesindonesia.co.id" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                <a href="https://www.facebook.com/timesindonesia.co.id"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Times Indonesia on Facebook"
+                  className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Facebook className="h-4 w-4" />
+                  <span class="sr-only">Facebook</span>
                 </a>
-                <a href="https://x.com/timescoid" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                <a href="https://x.com/timescoid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Times Indonesia on Twitter"
+                  className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Twitter className="h-4 w-4" />
+                  <span class="sr-only">Twitter</span>
                 </a>
-                <a href="https://www.instagram.com/timesindonesia" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                <a href="https://www.instagram.com/timesindonesia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Times Indonesia on Instagram"
+                  className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Instagram className="h-4 w-4" />
+                  <span class="sr-only">Instagram</span>
                 </a>
-                <a href="https://www.youtube.com/@timesIDN" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
+                <a href="https://www.youtube.com/@timesIDN"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Times Indonesia on Youtube"
+                  className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Youtube className="h-4 w-4" />
+                  <span class="sr-only">Youtube</span>
                 </a>
               </div>
             </div>

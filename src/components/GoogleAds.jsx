@@ -24,8 +24,8 @@ export default function GoogleAds({ size = 'inline_rectangle', className = '' })
         >
             <div className="text-center text-gray-500">
                 <div className="text-sm font-medium mb-1">Advertisement</div>
-                <div className="text-xs capitalize opacity-70">{size}</div>
-                <div className="text-xs opacity-70">{currentSize.width} x {currentSize.height}</div>
+                <div className="text-xs capitalize opacity-100">{size}</div>
+                <div className="text-xs opacity-100">{currentSize.width} x {currentSize.height}</div>
                 {/* Google AdSense code would go here */}
                 {/* <ins className="adsbygoogle"
              style={{display:'block'}}
