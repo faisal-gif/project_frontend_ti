@@ -79,7 +79,9 @@ function VideoSection() {
                     key={index}
                     src={slide.src}
                     title="YouTube video"
+                  
                     width="100%"
+                    loading="lazy"
                     height="100%"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -109,6 +111,7 @@ function VideoSection() {
                         title="YouTube video"
                         width="100%"
                         height="100%"
+                        loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         className="absolute inset-0 w-full h-full"
