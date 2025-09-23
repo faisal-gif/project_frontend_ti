@@ -1,12 +1,16 @@
 import { EB_Garamond, Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link'
 import "./globals.css";
-import { Focus, Home, List, Menu, Newspaper, Search } from 'lucide-react'
 import Footer from "@/components/Footer";
 import FloatingFactCheck from "@/components/FloatingFactCheck";
 import Image from "next/image";
 import TopLoader from "@/components/ui/TopLoader";
 import SearchDropdown from "@/components/SearchDropdown";
+
+import DesktopListMenu from "@/components/DesktopListMenu";
+import { urlNav } from "@/lib/urlNav";
+import MobileListMenu from "@/components/MobileListMenu";
+import DrawerAutoClose from "@/components/DrawerAutoClose";
 
 
 const geistSans = Geist({
@@ -59,35 +63,6 @@ export const metadata = {
   },
 };
 
-const urlNav = [
-  {
-    id: 'home',
-    name: 'Home',
-    icon: Home,
-    href: '/',
-  },
-  {
-    id: 'kanal',
-    name: 'Kanal',
-    icon: List,
-    href: '/kanal',
-  },
-
-  {
-    id: 'fokus',
-    name: 'Fokus',
-    icon: Focus,
-    href: '/fokus',
-  },
-
-  {
-    id: 'ekoran',
-    name: 'Ekoran',
-    icon: Newspaper,
-    href: '/ekoran',
-  },
-
-]
 
 export default function RootLayout({ children }) {
   return (
@@ -130,6 +105,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} antialiased`}
       >
+        <DrawerAutoClose />
         <div className="drawer">
           <input id="drawer-nav" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
@@ -164,28 +140,19 @@ export default function RootLayout({ children }) {
 
                   {/* Logo + Menu Utama */}
                   <div className="lg:flex-1 flex items-center gap-6">
-                    <Image
-                      src="/logo.png"
-                      alt="News Logo"
-                      className="h-10 w-auto object-contain mx-auto lg:mx-0"
-                      width={200}
-                      height={400}
-                      priority
-                    />
-                    <div className="flex gap-6 max-md:hidden">
-                      {urlNav.map((item) => (
-                        <div key={item.id} className="flex items-center gap-2">
-                          <item.icon className="w-4 h-4 text-white" />
-                          <Link
-                            key={item.id}
-                            href={item.href}
-                            className="hover:text-red-300 transition-colors whitespace-nowrap text-white"
-                          >
-                            {item.name}
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
+                    <Link href={'/'}>
+                      <Image
+                        src="/logo.png"
+                        alt="News Logo"
+                        className="h-10 w-auto object-contain mx-auto lg:mx-0"
+                        width={200}
+                        height={400}
+                        priority
+                      />
+                    </Link>
+
+                    <DesktopListMenu />
+
                   </div>
 
                   {/* Search */}
@@ -227,15 +194,24 @@ export default function RootLayout({ children }) {
           </div>
           <div className="drawer-side z-80">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu text-black bg-base-100  min-h-full w-60 p-4">
-              <li className="text-xl font-bold text-white mb-10"><img
-                src="https://timesindonesia.co.id/themes/times/assets/images/logo-timesindonesia-white-web.png"
-                alt="News Logo"
-                className="h-10 w-auto object-contain"
-              /></li>
-              {urlNav.map((item) => (
-                <li key={item.id} className="py-1"><a href={item.href}>{item.name}</a></li>
-              ))}
+            <ul className="menu text-black bg-base-200  min-h-full w-72">
+              <li className="text-xl font-bold text-white mb-6">
+                <Link href={'/'}>
+                  <Image
+                    src="/logo_white.png"
+                    alt="News Logo"
+                    className="h-10 w-auto object-contain mx-auto lg:mx-0"
+                    width={200}
+                    height={400}
+                    priority
+                  />
+                </Link>
+              </li>
+              <h2 className="menu-title py-4">Menu Utama</h2>
+              <li>
+                <MobileListMenu />
+              </li>
+
               {/* Sidebar content here */}
 
             </ul>

@@ -34,7 +34,7 @@ function GallerySection() {
                             [1, 2, 3, 4, 5].map((index) => (
                                 <Carousel.Item
                                     key={index}
-                                    className="pl-4 min-w-0 shrink-0 grow-0 basis-8/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
+                                    className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
                                 >
                                     <div className="p-1 h-full">
                                         <FotografiCardSkeleton />

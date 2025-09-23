@@ -7,6 +7,9 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import Carousel from "./ui/Carousel";
+import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 const slides = [
   {
@@ -20,11 +23,9 @@ const slides = [
     thumbnail: "https://img.youtube.com/vi/TkAEL4H_YrI/hqdefault.jpg",
   },
   {
-    type: "image",
-    src: "https://picsum.photos/id/1015/1000/600/",
-    width: 1000,
-    height: 600,
-    thumbnail: "https://picsum.photos/id/1015/250/150",
+    type: "youtube",
+    src: "https://www.youtube.com/embed/nFJfOiJ44lQ?si=7KQWZM6O8zQvoUnJ",
+    thumbnail: "https://img.youtube.com/vi/nFJfOiJ44lQ/hqdefault.jpg",
   },
 ];
 
@@ -37,12 +38,12 @@ function VideoSection() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <h2 className="text-lg font-bold text-foreground">LATEST NEWS VIDEOS</h2>
+            <h2 className="text-lg font-bold text-foreground">Video Terbaru</h2>
           </div>
-          <button className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
-            READ ALL
+          <Link href={'https://www.youtube.com/@timesIDN'} className="text-sm  hover:text-[#b41d1d] flex items-center gap-1">
+            Lebih Banyak
             <ChevronRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
 
         {/* Desktop (Lightbox grid) */}
@@ -54,12 +55,12 @@ function VideoSection() {
             plugins={[Inline, Thumbnails]}
             thumbnails={{
               width: 120,
+              border: 0,
               height: 80,
             }}
             inline={{
               style: {
                 width: "100%",
-                maxWidth: "900px",
                 aspectRatio: "16/10",
                 background: "transparent",
               },
@@ -70,62 +71,52 @@ function VideoSection() {
             }}
             render={{
               slide: ({ slide }) =>
-                slide.type === "youtube" ? (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <iframe
-                      key={index}
-                      src={slide.src}
-                      title="YouTube video"
-                      width="100%"
-                      height="100%"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="rounded-lg"
-                    />
-                  </div>
-                ) : (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={slide.src}
-                      alt="Gallery image"
-                      fill
-                      sizes="(max-width: 900px) 100vw, 900px"
-                      className="object-cover"
-                    />
-                  </div>
-                ),
+                <div className="w-full h-full flex items-center justify-center">
+                  <iframe
+                    key={index}
+                    src={slide.src}
+                    title="YouTube video"
+                    width="100%"
+                    height="100%"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="rounded-lg"
+                  />
+                </div>
             }}
           />
         </div>
 
         {/* Mobile (Carousel swipe) */}
         <div className="block md:hidden">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-            {slides.map((slide, i) => (
-              <div key={i} className="flex-shrink-0 w-[85%] snap-center">
-                {slide.type === "youtube" ? (
-                  <iframe
+
+          <Carousel opts={{ align: "start", loop: true, dragFree: true, }} className="w-full">
+            <Carousel.Content className="-ml-4">
+
+              {slides.map((slide, i) => (
+                <Carousel.Item
                   key={i}
-                    src={slide.src}
-                    title="YouTube video"
-                    width="100%"
-                    height="200"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-lg"
-                  />
-                ) : (
-                  <Image
-                    src={slide.src}
-                    alt="Gallery image"
-                    width={400}
-                    height={250}
-                    className="rounded-lg object-cover w-full h-52"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+                  className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
+                >
+                  <div key={i} className="flex-shrink-0 w-full snap-center">
+                    <iframe
+                      key={i}
+                      src={slide.src}
+                      title="YouTube video"
+                      width="100%"
+                      height="200"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="rounded-lg"
+                    />
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel.Content>
+            <Carousel.Previous position="outer" />
+            <Carousel.Next position="outer" />
+          </Carousel>
+
         </div>
       </div>
     </section>
