@@ -49,58 +49,15 @@ function VideoSection() {
           </Link>
         </div>
 
-        {/* Desktop (Lightbox grid) */}
-        <div className="hidden md:block">
-          <Lightbox
-            index={index}
-            close={() => null}
-            slides={slides}
-            plugins={[Inline, Thumbnails]}
-            thumbnails={{
-              width: 120,
-              border: 0,
-              height: 80,
-            }}
-            inline={{
-              style: {
-                width: "100%",
-                aspectRatio: "16/10",
-                background: "transparent",
-              },
-            }}
-            carousel={{ finite: true }}
-            on={{
-              view: ({ index }) => setIndex(index),
-            }}
-            render={{
-              slide: ({ slide }) =>
-                <div className="w-full h-full flex items-center justify-center">
-                  <iframe
-                    key={index}
-                    src={slide.src}
-                    title="YouTube video"
-                    width="100%"
-                    loading="lazy"
-                    height="100%"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-lg"
-                  />
-                </div>
-            }}
-          />
-        </div>
-
+        
         {/* Mobile (Carousel swipe) */}
-        <div className="block md:hidden">
-
           <Carousel opts={{ align: "start", loop: true, dragFree: true, }} className="w-full">
             <Carousel.Content className="-ml-4">
 
               {slides.map((slide, i) => (
                 <Carousel.Item
                   key={slide.id}
-                  className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
+                  className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 rounded-lg"
                 >
                   <div className="relative w-full h-[200px] rounded-lg overflow-hidden">
                     {playing === slide.id ? (
@@ -117,9 +74,14 @@ function VideoSection() {
                       />
                     ) : (
                       // Thumbnail
-                      <img
+                      <Image
+
                         src={slide.thumbnail}
                         alt="Video thumbnail"
+                        width={640}
+                        height={360}
+                        quality={100}
+                        priority={i === 0}
                         className="w-full h-full object-cover cursor-pointer"
                         onClick={() => setPlaying(slide.id)}
                       />
@@ -128,12 +90,11 @@ function VideoSection() {
                 </Carousel.Item>
               ))}
             </Carousel.Content>
-            <Carousel.Previous position="outer" />
-            <Carousel.Next position="outer" />
+          
           </Carousel>
 
         </div>
-      </div>
+
     </section>
   );
 }

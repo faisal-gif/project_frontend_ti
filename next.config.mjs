@@ -20,9 +20,15 @@ const nextConfig = {
                 port: "", // optional
                 pathname: "/**", // allow semua path
             },
-              {
+            {
                 protocol: "https",
                 hostname: "cdn.timesmedia.co.id",
+                port: "", // optional
+                pathname: "/**", // allow semua path
+            },
+            {
+                protocol: "https",
+                hostname: "img.youtube.com",
                 port: "", // optional
                 pathname: "/**", // allow semua path
             },

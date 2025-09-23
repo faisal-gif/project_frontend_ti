@@ -135,7 +135,7 @@ function Home() {
             </section>
 
 
-            {/* <VideoSection /> */}
+            <VideoSection />
 
             {/* Last News */}
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4">

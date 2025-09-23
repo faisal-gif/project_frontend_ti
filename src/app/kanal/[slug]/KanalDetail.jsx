@@ -91,10 +91,10 @@ function KanalDetail({InitialKanalDetail}) {
       {/* Channel Header */}
       <div className="bg-gradient-to-r from-[#7a0f1f]/10 via-[#7a0f1f]/5 to-transparent rounded-lg p-8 mb-12 border border-[#7a0f1f]/10">
         <div className="max-w-4xl">
-          <h1 className="text-4xl font-bold text-black/80 mb-4">
+          <h1 className="text-lg md:text-4xl font-bold text-black/80 mb-4">
             Kanal {detailKanal?.catnews_title || 'Memuat...'}
           </h1>
-          <p className="text-lg text-black/60 mb-6">
+          <p className="text-md md:text-lg text-black/60 mb-6">
             {detailKanal?.catnews_description || 'Memuat...'}
           </p>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
@@ -111,7 +111,7 @@ function KanalDetail({InitialKanalDetail}) {
           Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
         </h2>
         
-        <div className="flex border border-base-300 rounded-md">
+        <div className="flex border border-base-300 rounded-md ">
           <Button variant="ghost" size="sm"
             onClick={() => setViewMode('grid')}
             aria-label="View Grid"

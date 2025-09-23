@@ -100,14 +100,14 @@ function FokusDetail({ InitialFokusDetail }) {
             {/* Focus Header */}
             <div className="bg-gradient-to-r from-[#7a0f1f]/10 via-[#7a0f1f]/5 to-transparent rounded-lg p-8 mb-12 border border-[#7a0f1f]/10">
                 <div className="flex flex-col md:flex-row items-start gap-6">
-                    <div className="text-6xl"><Hash className='h-18 w-18' /></div>
+                  <Hash className='h-6 w-6 lg:h-18 lg:w-18' />
                     <div className="flex-1">
                         <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-4xl font-bold text-foreground">
+                            <h1 className="text-lg md:text-4xl font-bold text-foreground">
                                 {detailFocus?.focnews_title || 'Memuat...'}
                             </h1>
                         </div>
-                        <p className="text-lg text-muted-foreground mb-6">
+                        <p className="text-sm md:text-lg text-muted-foreground mb-6">
                             {detailFocus?.focnews_description || 'Memuat...'}
                         </p>
                         {/* <div className="flex items-center space-x-6 text-sm text-muted-foreground">

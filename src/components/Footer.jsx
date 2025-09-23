@@ -140,15 +140,15 @@ function Footer() {
       {/* Bottom Footer */}
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-white/65 text-sm">
-            © 2025 TIMES Indonesia. All rights reserved.
-          </div>
-          <div className="flex flex-wrap items-center space-x-6 text-sm">
+          <div className="flex flex-wrap items-center justify-center space-x-6 text-xs md:text-sm">
             <a href="#" className="text-white/65 hover:text-primary transition-colors">Kebijakan Privasi</a>
             <a href="#" className="text-white/65 hover:text-primary transition-colors">Syarat & Ketentuan</a>
             <a href="#" className="text-white/65 hover:text-primary transition-colors">Tentang Kami</a>
             <a href="#" className="text-white/65 hover:text-primary transition-colors">Karir</a>
             <a href="#" className="text-white/65 hover:text-primary transition-colors">Kontak Redaksi</a>
+          </div>
+          <div className="text-white/65 text-sm">
+            © 2025 TIMES Indonesia. All rights reserved.
           </div>
         </div>
       </div>
