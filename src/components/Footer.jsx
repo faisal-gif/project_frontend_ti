@@ -29,7 +29,7 @@ function Footer() {
                   aria-label="Visit Times Indonesia on Facebook"
                   className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Facebook className="h-4 w-4" />
-                  <span class="sr-only">Facebook</span>
+                  <span className="sr-only">Facebook</span>
                 </a>
                 <a href="https://x.com/timescoid"
                   target="_blank"
@@ -37,7 +37,7 @@ function Footer() {
                   aria-label="Visit Times Indonesia on Twitter"
                   className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Twitter className="h-4 w-4" />
-                  <span class="sr-only">Twitter</span>
+                  <span className="sr-only">Twitter</span>
                 </a>
                 <a href="https://www.instagram.com/timesindonesia"
                   target="_blank"
@@ -45,7 +45,7 @@ function Footer() {
                   aria-label="Visit Times Indonesia on Instagram"
                   className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Instagram className="h-4 w-4" />
-                  <span class="sr-only">Instagram</span>
+                  <span className="sr-only">Instagram</span>
                 </a>
                 <a href="https://www.youtube.com/@timesIDN"
                   target="_blank"
@@ -53,7 +53,7 @@ function Footer() {
                   aria-label="Visit Times Indonesia on Youtube"
                   className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
                   <Youtube className="h-4 w-4" />
-                  <span class="sr-only">Youtube</span>
+                  <span className="sr-only">Youtube</span>
                 </a>
               </div>
             </div>

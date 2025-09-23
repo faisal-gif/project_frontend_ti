@@ -9,6 +9,7 @@ import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import HorizontalNewsSection from '@/components/HorizontalNewsSection';
 import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
+import PopupAds from '@/components/PopUpAds';
 import SimpleNewsSection from '@/components/SimpleNewsSection';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
 import SimpleNewsCardSkeleton from '@/components/ui/SimpleNewsCardSkeleton';
@@ -63,7 +64,7 @@ function Home() {
                 <div className="md:col-span-2">
                     {allNews.length === 0 && (
                         <div className="space-y-8">
-                           <SimpleNewsCardSkeleton />
+                            <SimpleNewsCardSkeleton />
                         </div>
                     )}
                     {
@@ -104,7 +105,7 @@ function Home() {
             </div>
 
 
-          
+
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
                 {newsSecondSections.length === 0 && (
@@ -128,12 +129,12 @@ function Home() {
             </div>
 
 
-              {/* Jurnalistik Fotografi */}
+            {/* Jurnalistik Fotografi */}
             <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
                 <GallerySection />
             </section>
 
-            
+
             {/* <VideoSection /> */}
 
             {/* Last News */}
@@ -160,7 +161,7 @@ function Home() {
                 </div>
             </div>
 
-
+            <PopupAds />
         </div>
     );
 }
