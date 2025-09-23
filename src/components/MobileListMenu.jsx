@@ -26,7 +26,6 @@ function MobileListMenu() {
 
                 )}
             </ul>
-            <h2 className="menu-title py-4">Kanal</h2>
         </>
     )
 }

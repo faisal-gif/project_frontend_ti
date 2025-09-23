@@ -74,10 +74,10 @@ function Kanal() {
 
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
-             <div className='flex items-center justify-center mb-8'>
+            <div className='flex items-center justify-center mb-8'>
                 <GoogleAds size='top_banner' />
-             </div>
-              
+            </div>
+
             {/* Header Section */}
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-foreground mb-4">
@@ -116,29 +116,28 @@ function Kanal() {
                     <h2 className="text-2xl font-bold">Loading Kanal...</h2>
                     <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
                 </div>
-            ) : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {channels
-                    .filter(channel => !excludedSlugs.includes(channel.slug))
-                    .map((channel) => {
-                        const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
-                        return (
-                            <KanalCard
-                                key={channel.id}
-                                id={channel.id}
-                                name={channel.name}
-                                slug={channel.slug}
-                                url={channel.url}
-                                description={channel.description}
-                                news_count={channel.news_count}
-                                Icon={Icon} // lempar ke card
-                            />
-                        )
-                    }
-                    )}
-            </div>)}
-
-
-
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {channels
+                        .filter(channel => !excludedSlugs.includes(channel.slug))
+                        .map((channel) => {
+                            const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
+                            return (
+                                <KanalCard
+                                    key={channel.id}
+                                    id={channel.id}
+                                    name={channel.name}
+                                    slug={channel.slug}
+                                    url={channel.url}
+                                    description={channel.description}
+                                    news_count={channel.news_count}
+                                    Icon={Icon} // lempar ke card
+                                />
+                            )
+                        }
+                        )}
+                </div>
+            )}
 
         </main>
     )

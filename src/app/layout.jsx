@@ -11,6 +11,7 @@ import DesktopListMenu from "@/components/DesktopListMenu";
 import { urlNav } from "@/lib/urlNav";
 import MobileListMenu from "@/components/MobileListMenu";
 import DrawerAutoClose from "@/components/DrawerAutoClose";
+import MobileMenuKanal from "@/components/MobileMenuKanal";
 
 
 const geistSans = Geist({
@@ -211,7 +212,9 @@ export default function RootLayout({ children }) {
               <li>
                 <MobileListMenu />
               </li>
-
+              <li>
+                <MobileMenuKanal />
+              </li>
               {/* Sidebar content here */}
 
             </ul>

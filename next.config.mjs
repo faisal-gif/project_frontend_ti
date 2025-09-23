@@ -8,15 +8,21 @@ const nextConfig = {
                 port: "", // optional
                 pathname: "/**", // allow semua path
             },
-             {
+            {
                 protocol: "https",
                 hostname: "cdn-1.tin.co.id",
                 port: "", // optional
                 pathname: "/**", // allow semua path
             },
-             {
+            {
                 protocol: "https",
                 hostname: "picsum.photos",
+                port: "", // optional
+                pathname: "/**", // allow semua path
+            },
+              {
+                protocol: "https",
+                hostname: "cdn.timesmedia.co.id",
                 port: "", // optional
                 pathname: "/**", // allow semua path
             },
