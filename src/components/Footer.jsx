@@ -141,11 +141,10 @@ function Footer() {
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-wrap items-center justify-center space-x-6 text-xs md:text-sm">
-            <a href="#" className="text-white/65 hover:text-primary transition-colors">Kebijakan Privasi</a>
-            <a href="#" className="text-white/65 hover:text-primary transition-colors">Syarat & Ketentuan</a>
-            <a href="#" className="text-white/65 hover:text-primary transition-colors">Tentang Kami</a>
-            <a href="#" className="text-white/65 hover:text-primary transition-colors">Karir</a>
-            <a href="#" className="text-white/65 hover:text-primary transition-colors">Kontak Redaksi</a>
+            <Link href="/page/legal-privacy" className="text-white/65 hover:text-[#b51d1d] transition-colors">Kebijakan Privasi</Link>
+            <Link href="/page/terms-and-conditions" className="text-white/65 hover:text-[#b51d1d] transition-colors">Syarat & Ketentuan</Link>
+            <Link href="/page/tentang-kami" className="text-white/65 hover:text-[#b51d1d] transition-colors">Tentang Kami</Link>
+            <Link href="/page/contact-us" className="text-white/65 hover:text-[#b51d1d] transition-colors">Kontak Redaksi</Link>
           </div>
           <div className="text-white/65 text-sm">
             © 2025 TIMES Indonesia. All rights reserved.

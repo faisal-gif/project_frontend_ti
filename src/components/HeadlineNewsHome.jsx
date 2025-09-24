@@ -64,9 +64,10 @@ function HeadlineNewsHome() {
     return (
         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
             <Carousel.Content>
-                {headlineArticle.map((article) => (
-                    <Carousel.Item key={article.id} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                {headlineArticle.map((article, index) => (
+                    <Carousel.Item key={index} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
                         <FeaturedNewsCard
+                            index={index}
                             title={article.title}
                             source={article.author}
                             author={article.author}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
@@ -10,6 +10,10 @@ import { ChevronRight } from "lucide-react";
 import Carousel from "./ui/Carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import { getAllYoutubeVideos } from "@/lib/api/youtubeApi";
+import VideoCard from "./VideoCard";
+
+import VideoCardSkeleton from "./ui/VideoCardSkeleton";
 
 const slides = [
   {
@@ -35,65 +39,92 @@ const slides = [
 function VideoSection() {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(null);
+
+  const [ytVideo, setytVideo] = useState([]);
+
+  useEffect(() => {
+    getAllYoutubeVideos().then(setytVideo).catch(console.error);
+  }, []);
+
+  console.log(ytVideo);
+  
+
   return (
-    <section className="w-full bg-neutral text-white py-8">
+    <section className="w-full text-white py-8  relative overflow-hidden">
+      {/* Background pakai Next/Image */}
+      <Image
+        src="/video_bg.webp" // bisa juga pakai article.img1 kalau dinamis
+        alt="Background video"
+        fill
+        priority
+        className="object-cover object-center -z-10" // taruh di belakang konten
+      />
+
+      {/* Overlay gelap biar teks terbaca */}
+      <div className="absolute inset-0 bg-black/40 -z-10"></div>
       <div className="max-w-6xl mx-auto px-4">
+
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <h2 className="text-lg font-bold text-foreground">Video Terbaru</h2>
+          <div>
+            {/* <h3 className="text-2xl font-bold text-foreground">Ekoran</h3> */}
+            <Link href={'https://www.youtube.com/@timesIDN'} className="text-2xl font-bold text-foreground hover:text-[#b41d1d] flex items-center gap-2">
+              <Image
+                src="/logo_times_tv.png"
+                alt="Video Logo"
+                width={120}
+                height={40}
+                priority
+                className="object-contain h-auto w-[120px]"
+              />
+            </Link>
           </div>
-          <Link href={'https://www.youtube.com/@timesIDN'} className="text-sm  hover:text-[#b41d1d] flex items-center gap-1">
-            Lebih Banyak
-            <ChevronRight className="w-4 h-4" />
-          </Link>
+
         </div>
 
-        
+
         {/* Mobile (Carousel swipe) */}
-          <Carousel opts={{ align: "start", loop: true, dragFree: true, }} className="w-full">
-            <Carousel.Content className="-ml-4">
+        <Carousel opts={{ align: "start", loop: true, }} className="w-full" plugins={[Autoplay()]}>
+          <Carousel.Content className="-ml-4">
 
-              {slides.map((slide, i) => (
-                <Carousel.Item
-                  key={slide.id}
-                  className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 rounded-lg"
-                >
-                  <div className="relative w-full h-[200px] rounded-lg overflow-hidden">
-                    {playing === slide.id ? (
-                      // Render iframe kalau sedang diputar
-                      <iframe
-                        src={slide.src}
-                        title="YouTube video"
-                        width="100%"
-                        height="100%"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="absolute inset-0 w-full h-full"
-                      />
-                    ) : (
-                      // Thumbnail
-                      <Image
+            {
+              ytVideo.length === 0 && (
+                [1, 2, 3, 4, 5].map((index) => (
+                  <Carousel.Item
+                    key={index}
+                    className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 rounded-lg"
+                  >
+                    <div className="p-1 h-full">
+                      <VideoCardSkeleton />
+                    </div>
+                  </Carousel.Item>
+                ))
+              )
+            }
 
-                        src={slide.thumbnail}
-                        alt="Video thumbnail"
-                        width={640}
-                        height={360}
-                        quality={100}
-                        priority={i === 0}
-                        className="w-full h-full object-cover cursor-pointer"
-                        onClick={() => setPlaying(slide.id)}
-                      />
-                    )}
-                  </div>
-                </Carousel.Item>
-              ))}
-            </Carousel.Content>
-          
-          </Carousel>
 
-        </div>
+            {ytVideo.map((slide, i) => (
+              <Carousel.Item
+                key={i}
+                className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 rounded-lg"
+              >
+                <div className="p-1 h-full">
+
+                  <VideoCard
+                    index={i}
+                    title={slide.title}
+                    image={slide.thumbnail}
+                    datepub={slide.published}
+                    url={slide.link}
+                  />
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel.Content>
+
+        </Carousel>
+
+      </div>
 
     </section>
   );

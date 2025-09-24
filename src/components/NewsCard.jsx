@@ -85,15 +85,10 @@ function NewsCard({
                                 sizes="(max-width: 768px) 100vw,
                                         (max-width: 1200px) 50vw,
                                         33vw"
-                                className="object-contain transition-transform duration-300 group-hover:scale-105"
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>
 
-                        {/* Overlay info */}
-                        {/* <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1 z-20">
-                            <Eye className="w-3 h-3" />
-                            {views.toLocaleString()}
-                        </div> */}
                     </div>
 
                     {/* Text */}

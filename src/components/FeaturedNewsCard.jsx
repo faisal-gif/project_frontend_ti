@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 
 function FeaturedNewsCard({
+    index = 0,
     title,
     source,
     timeAgo,
@@ -17,47 +18,47 @@ function FeaturedNewsCard({
 }) {
     return (
         <Link href={url}>
-        <Card className={`group relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[30rem] ${className}`}>
-            <Image
-                src={image}
-                alt={title}
-                fill
-                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                priority 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            <Card className={`group relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[30rem] ${className}`}>
+                <Image
+                    src={image}
+                    alt={title}
+                    fill
+                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    priority={index === 0}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-            <div className="relative flex h-full transform flex-col justify-end p-6 text-white transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
-                <h1 className="mb-4 text-lg font-bold leading-tight transition-colors group-hover:text-[#b41d1d] lg:text-3xl">
-                    {title}
-                </h1>
+                <div className="relative flex h-full transform flex-col justify-end p-6 text-white transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
+                    <h1 className="mb-4 text-lg font-bold leading-tight transition-colors group-hover:text-[#b41d1d] lg:text-3xl">
+                        {title}
+                    </h1>
 
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <span className="text-sm opacity-90">{timeAgo}</span>
-                        <div className="flex items-center gap-1">
-                            <div className="avatar avatar-placeholder">
-                                <div className="bg-neutral text-neutral-content w-8 rounded-full">
-                                    <span className="text-xs">
-                                        {source.charAt(0).toUpperCase()}
-                                    </span>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                            <span className="text-sm opacity-90">{timeAgo}</span>
+                            <div className="flex items-center gap-1">
+                                <div className="avatar avatar-placeholder">
+                                    <div className="bg-neutral text-neutral-content w-8 rounded-full">
+                                        <span className="text-xs">
+                                            {source.charAt(0).toUpperCase()}
+                                        </span>
+                                    </div>
                                 </div>
+                                <span className="text-sm font-medium opacity-90">{source}</span>
                             </div>
-                            <span className="text-sm font-medium opacity-90">{source}</span>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center gap-4 text-sm opacity-90">
-                        <div className="flex items-center gap-1">
-                            <Eye className="w-4 h-4" />
-                            <span>{views.toLocaleString()}</span>
                         </div>
 
+                        <div className="flex items-center gap-4 text-sm opacity-90">
+                            <div className="flex items-center gap-1">
+                                <Eye className="w-4 h-4" />
+                                <span>{views.toLocaleString()}</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </Card>
+            </Card>
         </Link>
     )
 }
