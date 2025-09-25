@@ -9,15 +9,15 @@ services:
       - .env
     environment:
       - NODE_ENV=production
-      
-nginx:
-  image: runcloud/nginx-rc:latest
-  ports:
+
+  nginx:
+    image: runcloud/nginx-rc:latest
+    ports:
       - "80:80"
       - "443:443"
-  depends_on:
+    depends_on:
       - nextjs_app
-  networks:
+    networks:
       - app_network
 
 networks:
