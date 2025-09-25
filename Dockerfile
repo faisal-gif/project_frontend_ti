@@ -18,4 +18,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Jalankan Next.js
-CMD ["npm", "run", "start", "--", "-p", "3000", "-H", "10.62.20.69"]
+CMD ["npm", "run", "start", "--", "-p", "3000", "-H", "127.0.0.1"]
