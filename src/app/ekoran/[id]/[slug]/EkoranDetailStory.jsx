@@ -9,9 +9,10 @@ import Button from '@/components/ui/Button';
 import { useParams, useRouter } from 'next/navigation';
 import { getDetailEkoran } from '@/lib/api/ekoran';
 import EkoranReader from '@/components/EkoranReader';
+import ModalShare from '@/components/ModalShare';
 
-function EkoranDetailStory({InitialEkoranDetail}) {
-   
+function EkoranDetailStory({ InitialEkoranDetail }) {
+
     const navigate = useRouter();
 
     // Mock data for the e-koran edition
@@ -114,30 +115,13 @@ function EkoranDetailStory({InitialEkoranDetail}) {
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="text-white hover:bg-white/20"
-                            onClick={() => {
-                                // Handle share functionality
-                                if (navigator.share) {
-                                    navigator.share({
-                                        title: ekoranArticle.title,
-                                        text: ekoranArticle.date,
-                                        url: window.location.href
-                                    });
-                                }
-                            }}
-                        >
-                            <Share2 className="h-4 w-4" />
-                        </Button>
-
+                        <button onClick={() => document.getElementById('modal_share').showModal()} className="btn btn-ghost btn-sm text-sm font-bold text-white hover:bg-white/20"><Share2 className="w-5 h-5 cursor-pointer" /></button>
                     </div>
                 </div>
             </div>
 
             <EkoranReader ekoranArticle={ekoranArticle} />
-
+            <ModalShare title={ekoranArticle.title} />
         </div>
     )
 }

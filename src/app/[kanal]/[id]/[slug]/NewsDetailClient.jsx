@@ -411,7 +411,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                     </div>
                 ))}
             </div>
-
+            <ModalShare title={newsDetail.news_title} />
         </div>
     )
 }

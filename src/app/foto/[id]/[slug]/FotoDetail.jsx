@@ -22,6 +22,7 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
+import ModalShare from '@/components/ModalShare';
 
 function FotoDetail({ initialFotoDetail }) {
 
@@ -418,7 +419,7 @@ function FotoDetail({ initialFotoDetail }) {
                 </aside>
             </div>
 
-
+            <ModalShare title={fotoDetail?.gal_title} />
         </div>
     )
 }
