@@ -46,6 +46,9 @@ const ModalShare = ({ title = 'TIMES Indonesia' }) => {
           <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline text-gray-500"> <Mail size={24}/> </a>
         </div>
       </div>
+        <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
     </dialog>
   );
 };
