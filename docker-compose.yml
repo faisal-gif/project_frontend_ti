@@ -9,7 +9,6 @@ services:
       - .env
     environment:
       - NODE_ENV=production
-
   nginx:
     image: runcloud/nginx-rc:latest
     ports:
