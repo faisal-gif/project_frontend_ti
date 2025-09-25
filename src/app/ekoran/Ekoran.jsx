@@ -127,7 +127,7 @@ function Ekoran() {
         <main className="max-w-6xl flex-1 mx-auto py-16">
             {/* Modern E-Koran Hero Section */}
             <div className="mb-8">
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#121b2e] via-[#121b2e]/90 to-[#121b2e]/80 p-8 md:p-12 text-white">
+                <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-[#121b2e] via-[#121b2e]/90 to-[#121b2e]/80 p-8 md:p-12 text-white">
                     <div className="absolute inset-0 bg-[url('/ekoran_bg.jpg')] opacity-30"></div>
 
                     <div className="relative z-10 text-center max-w-4xl mx-auto">

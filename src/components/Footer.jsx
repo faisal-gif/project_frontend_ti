@@ -2,6 +2,7 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ExternalLin
 import React from 'react'
 import Button from "./ui/Button";
 import Link from "next/link";
+import Image from "next/image";
 
 function Footer() {
   return (
@@ -57,6 +58,7 @@ function Footer() {
                 </a>
               </div>
             </div>
+
           </div>
 
           {/* Navigation Links */}
@@ -97,6 +99,38 @@ function Footer() {
                   </a>
                 </li>
               </ul>
+            </div>
+
+            <div>
+              <h3 className="text-white/85 font-semibold mb-4">Member Of</h3>
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-4 ">
+                  <a href="https://wan-ifra.org/" target="_blank" rel="noopener noreferrer">
+                    <Image src="/logo-wanifra.png" alt="Logo WANIFRA" width={100} height={50} className="object-contain" />
+                  </a>
+                  <a href="https://amsi.or.id/" target="_blank" rel="noopener noreferrer">
+                    <Image src="/logo-amsi.png" alt="Logo AMSI" width={100} height={50} className="object-contain" />
+                  </a>
+                  <a href="https://dewanpers.or.id/" target="_blank" rel="noopener noreferrer">
+                    <Image src="/logo-Verified-By-Dewan-Pers-v2.png" alt="Logo Dewan Pers" width={100} height={50} className="object-contain" />
+                  </a>
+                  <a href="https://cdn-1.timesmedia.co.id/images/2023/07/08/ekoran-edisi-8-juli-23-trustworthy-indicatorss-by-sony.jpg" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
+                        <Image src="/trusted-web.png" alt="Logo Trusted" width={30} height={30} className="object-contain" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-white/85 font-semibold mb-4">SUPPORTED BY</h3>
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-4 ">
+                  <a href="https://www.varnion.com" target="_blank" rel="noopener noreferrer">
+                  <Image src="/logo_varnion.png" alt="Logo Varnion" width={90} height={30} className="object-contain" />
+                  </a>
+
+                </div>
+              </div>
             </div>
           </div>
 

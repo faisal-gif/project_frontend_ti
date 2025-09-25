@@ -56,7 +56,7 @@ function VideoCard({
 
                     {/* Title + Date inside image */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                        <h3 className="text-sm font-semibold leading-tight line-clamp-2 group-hover:text-red-500 transition-colors">
+                        <h3 className="text-sm font-semibold leading-tight line-clamp-2 text-white/70  group-hover:text-white transition-colors">
                             {title}
                         </h3>
                         <div className="text-xs opacity-80 mt-1">{formatDate(datepub)}</div>

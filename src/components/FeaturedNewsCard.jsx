@@ -28,12 +28,12 @@ function FeaturedNewsCard({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                <div className="relative flex h-full transform flex-col justify-end p-6 text-white transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
-                    <h1 className="mb-4 text-lg font-bold leading-tight transition-colors group-hover:text-[#b41d1d] lg:text-3xl">
+                <div className="relative flex h-full transform flex-col justify-end p-6 transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
+                    <h1 className="mb-4 text-lg font-bold leading-tight transition-colors text-white/70  group-hover:text-white lg:text-3xl">
                         {title}
                     </h1>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between text-white">
                         <div className="flex items-center gap-4">
                             <span className="text-sm opacity-90">{timeAgo}</span>
                             <div className="flex items-center gap-1">

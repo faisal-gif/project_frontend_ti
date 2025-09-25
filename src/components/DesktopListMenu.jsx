@@ -21,18 +21,18 @@ function DesktopListMenu() {
                 const isActive = pathname === item.href;
                 const Icon = icons[item.icon]; // ambil component sesuai string
                 return (
-                    <div key={item.id} className="flex items-center gap-2">
+                    <div key={item.id} className="flex items-center gap-2 group">
                         {Icon && (
                             <Icon
-                                className={`w-4 h-4 ${isActive ? "text-red-500" : "text-white"
+                                className={`w-4 h-4 group-hover:text-white ${isActive ? "text-white" : "text-white/70"
                                     }`}
                             />
                         )}
                         <Link
                             href={item.href}
                             className={`whitespace-nowrap transition-colors ${isActive
-                                    ? "text-red-500 font-semibold"
-                                    : "text-white hover:text-red-300"
+                                    ? "text-white font-semibold"
+                                    : "text-white/70 group-hover:text-white"
                                 }`}
                         >
                             {item.name}
