@@ -68,10 +68,8 @@ function NewsCard({
                             <Image
                                 src={image}
                                 alt={`${title} background`}
-                                fill
-                                sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
+                                width={750}
+                                height={350}
                                 className="object-cover blur-md opacity-50"
                             />
                         </div>
@@ -81,10 +79,9 @@ function NewsCard({
                             <Image
                                 src={image}
                                 alt={title}
-                                fill
-                                sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
+
+                                width={750}
+                                height={350}
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>

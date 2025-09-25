@@ -283,7 +283,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                     className="h-auto max-h-[500px] w-full object-contain rounded-2xl mb-4"
                                                     priority
                                                     fetchPriority="high"
-                                                    sizes="(max-width: 768px) 100vw, 800px"
+                                                  
                                                 />
                                             )}
                                             <Image
@@ -291,10 +291,9 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                 alt={newsDetail.news_title}
                                                 width={750}
                                                 height={500}         // boleh 0 kalau fill off, Next.js akan hitung otomatis
-                                                className="h-auto max-h-[500px] w-full object-contain"
+                                                className=" object-contain"
                                                 priority
                                                 fetchPriority="high"
-                                                sizes="(max-width: 768px) 100vw, 800px"
                                             />
                                         </div>
                                         <div className="text-sm text-base-content/50 pt-2">{newsDetail.news_caption} </div>
@@ -311,9 +310,9 @@ function NewsDetailClient({ initialNewsDetail }) {
                                     </div>
                                 </div>
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
-                                    {getTags().map((tag) => (
+                                    {getTags().map((tag,index) => (
                                         <Link
-                                            key={tag}
+                                            key={index}
                                             href={`/tag/${slugify(tag)}`}
                                             className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
                                         >
@@ -405,8 +404,8 @@ function NewsDetailClient({ initialNewsDetail }) {
 
 
             <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
-                {newsSecondSections.map((section) => (
-                    <div key={section.title} className="space-y-8">
+                {newsSecondSections.map((section,index) => (
+                    <div key={index} className="space-y-8">
                         <FirstHightlightNewsSection title={section.title} news={section.news} />
                     </div>
                 ))}

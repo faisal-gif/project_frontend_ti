@@ -47,8 +47,8 @@ function SimpleNewsCard({ title, source, timeAgo, image, url }) {
                             <Image
                                 src={image}
                                 alt={title}
-                                width={600}
-                                height={600}
+                                width={400}
+                                height={400}
                                 className="object-cover rounded-md transform scale-100 transition group-hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
                             />
                         </div>
