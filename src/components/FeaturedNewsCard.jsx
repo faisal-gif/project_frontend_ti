@@ -25,6 +25,7 @@ function FeaturedNewsCard({
                     fill
                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                     priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
