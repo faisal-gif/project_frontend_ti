@@ -101,37 +101,9 @@ function Footer() {
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-white/85 font-semibold mb-4">Member Of</h3>
-              <div className="space-y-3">
-                <div className="grid grid-cols-2 gap-4 ">
-                  <a href="https://wan-ifra.org/" target="_blank" rel="noopener noreferrer">
-                    <Image src="/logo-wanifra.png" alt="Logo WANIFRA" width={100} height={50} className="object-contain" />
-                  </a>
-                  <a href="https://amsi.or.id/" target="_blank" rel="noopener noreferrer">
-                    <Image src="/logo-amsi.png" alt="Logo AMSI" width={100} height={50} className="object-contain" />
-                  </a>
-                  <a href="https://dewanpers.or.id/" target="_blank" rel="noopener noreferrer">
-                    <Image src="/logo-Verified-By-Dewan-Pers-v2.png" alt="Logo Dewan Pers" width={100} height={50} className="object-contain" />
-                  </a>
-                  <a href="https://cdn-1.timesmedia.co.id/images/2023/07/08/ekoran-edisi-8-juli-23-trustworthy-indicatorss-by-sony.jpg" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
-                        <Image src="/trusted-web.png" alt="Logo Trusted" width={30} height={30} className="object-contain" />
-                  </a>
-                </div>
-              </div>
-            </div>
 
-            <div>
-              <h3 className="text-white/85 font-semibold mb-4">SUPPORTED BY</h3>
-              <div className="space-y-3">
-                <div className="grid grid-cols-2 gap-4 ">
-                  <a href="https://www.varnion.com" target="_blank" rel="noopener noreferrer">
-                  <Image src="/logo_varnion.png" alt="Logo Varnion" width={90} height={30} className="object-contain" />
-                  </a>
 
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* Newsletter */}
@@ -145,7 +117,7 @@ function Footer() {
                 <input
                   type="email"
                   placeholder="Email Anda"
-                  className="input bg-footer-light border-footer-border"
+                  className="input bg-footer-light border-footer-border w-full"
                 />
                 <Button className="w-full bg-[#b51d1d] rounded-lg border-none shadow-none hover:bg-[#9f1c1c]">
                   Berlangganan
@@ -154,7 +126,7 @@ function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            {/* <div>
               <h3 className="text-white/85 font-semibold mb-3">Lainnya</h3>
               <ul className="space-y-2">
                 <li>
@@ -164,12 +136,38 @@ function Footer() {
                 </li>
                 <li><Link href="/ekoran" className="text-white/65 hover:text-[#b51d1d] transition-colors text-sm">Ekoran</Link></li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
+      <div className="container max-w-6xl mx-auto px-4 py-6">
+        <h3 className="text-white/85 mb-6 font-bold text-center">Member Of</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4  place-items-center justify-center items-center">
+          <a href="https://wan-ifra.org/" target="_blank" rel="noopener noreferrer">
+            <Image src="/logo-wanifra.png" alt="Logo WANIFRA" width={100} height={50} className="object-contain" />
+          </a>
+          <a href="https://amsi.or.id/" target="_blank" rel="noopener noreferrer">
+            <Image src="/logo-amsi.png" alt="Logo AMSI" width={100} height={50} className="object-contain" />
+          </a>
+          <a href="https://dewanpers.or.id/" target="_blank" rel="noopener noreferrer">
+            <Image src="/logo-Verified-By-Dewan-Pers-v2.png" alt="Logo Dewan Pers" width={100} height={50} className="object-contain" />
+          </a>
+          <a href="https://cdn-1.timesmedia.co.id/images/2023/07/08/ekoran-edisi-8-juli-23-trustworthy-indicatorss-by-sony.jpg" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
+            <Image src="/trusted-web.png" alt="Logo Trusted" width={30} height={30} className="object-contain" />
+          </a>
+        </div>
+      </div>
 
+      <div className="container max-w-6xl mx-auto px-4 py-6">
+        
+        <h3 className="text-white/85 mb-6 font-bold text-center">SUPPORTED BY</h3>
+        <div className="flex flex-col md:flex-row gap-20 justify-center items-center space-y-4 md:space-y-0">
+          <a href="https://www.varnion.com" target="_blank" rel="noopener noreferrer">
+            <Image src="/logo_varnion.png" alt="Logo Varnion" width={90} height={30} className="object-contain" />
+          </a>
+        </div>
+      </div>
 
       {/* Bottom Footer */}
       <div className="container max-w-6xl mx-auto px-4 py-6">

@@ -31,14 +31,7 @@ const nextConfig = {
                 hostname: "img.youtube.com",
                 port: "", // optional
                 pathname: "/**", // allow semua path
-            },
-             {
-                protocol: "https",
-                hostname: "placehold.it",
-                port: "", // optional
-                pathname: "/**", // allow semua path
-            },
-          
+            },          
             
         ],
         minimumCacheTTL: 60, // cache di server 60 detik

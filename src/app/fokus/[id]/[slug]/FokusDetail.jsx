@@ -92,9 +92,9 @@ function FokusDetail({ InitialFokusDetail }) {
                 <GoogleAds size='top_banner' />
             </div>
 
-            {detailFocus && detailFocus.focnews_image_news && (
+            {detailFocus && detailFocus.focnews_image_body && (
                 <div className="flex items-center justify-center mb-8">
-                    <img src={detailFocus.focnews_image_news} className='w-full md:w-8/12 h-full' />
+                    <img src={detailFocus.focnews_image_body} className='w-full md:w-8/12 h-full' />
                 </div>
             )}
             {/* Focus Header */}
