@@ -156,7 +156,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                         {newsDetail.news_title}
                                     </h1>
                                     {/* Description */}
-                                    <p className="text-base md:text-lg text-base-content/50 mb-6 leading-relaxed">
+                                    <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
                                         {newsDetail.news_description}
                                     </p>
                                 </div>
@@ -283,7 +283,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                     className="h-auto max-h-[500px] w-full object-contain rounded-2xl mb-4"
                                                     priority
                                                     fetchPriority="high"
-                                                  
+
                                                 />
                                             )}
                                             <Image
@@ -296,7 +296,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                 fetchPriority="high"
                                             />
                                         </div>
-                                        <div className="text-sm text-base-content/50 pt-2">{newsDetail.news_caption} </div>
+                                        <div className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </div>
 
                                         {/* Content News */}
                                         <ArticleContent
@@ -310,7 +310,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                     </div>
                                 </div>
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
-                                    {getTags().map((tag,index) => (
+                                    {getTags().map((tag, index) => (
                                         <Link
                                             key={index}
                                             href={`/tag/${slugify(tag)}`}
@@ -379,10 +379,16 @@ function NewsDetailClient({ initialNewsDetail }) {
                                     </div>
                                 </div>
                                 <div className="dropdown dropdown-end">
-                                    <button tabIndex={0} className="btn btn-ghost text-lg font-bold"><Volume2 className="w-5 h-5" /></button>
+                                    <button tabIndex={0} className="btn btn-ghost text-lg font-bold">
+                                        <Volume2 className="w-5 h-5" />
+                                        <span className='sr-only'>Listen</span>
+                                    </button>
                                 </div>
                                 <div>
-                                    <button onClick={() => document.getElementById('modal_share').showModal()} className="btn btn-ghost text-lg font-bold"><Share2 className="w-5 h-5 cursor-pointer" /></button>
+                                    <button onClick={() => document.getElementById('modal_share').showModal()} className="btn btn-ghost text-lg font-bold">
+                                        <Share2 className="w-5 h-5 cursor-pointer" />
+                                        <span className='sr-only'>Share</span>
+                                    </button>
                                 </div>
 
 
@@ -404,7 +410,7 @@ function NewsDetailClient({ initialNewsDetail }) {
 
 
             <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
-                {newsSecondSections.map((section,index) => (
+                {newsSecondSections.map((section, index) => (
                     <div key={index} className="space-y-8">
                         <FirstHightlightNewsSection title={section.title} news={section.news} />
                     </div>
