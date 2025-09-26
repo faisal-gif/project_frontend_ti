@@ -15,40 +15,15 @@ import VideoCard from "./VideoCard";
 
 import VideoCardSkeleton from "./ui/VideoCardSkeleton";
 
-const slides = [
-  {
-    id: 1,
-    type: "youtube",
-    src: "https://www.youtube.com/embed/G8PKu6-Zaj0?si=E-1a1OmduH1p_fhC",
-    thumbnail: "https://img.youtube.com/vi/G8PKu6-Zaj0/hqdefault.jpg",
-  },
-  {
-    id: 2,
-    type: "youtube",
-    src: "https://www.youtube.com/embed/TkAEL4H_YrI?si=6QFEoFMBf_TFOY3K",
-    thumbnail: "https://img.youtube.com/vi/TkAEL4H_YrI/hqdefault.jpg",
-  },
-  {
-    id: 3,
-    type: "youtube",
-    src: "https://www.youtube.com/embed/nFJfOiJ44lQ?si=7KQWZM6O8zQvoUnJ",
-    thumbnail: "https://img.youtube.com/vi/nFJfOiJ44lQ/hqdefault.jpg",
-  },
-];
 
 function VideoSection() {
-  const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(null);
 
   const [ytVideo, setytVideo] = useState([]);
 
   useEffect(() => {
     getAllYoutubeVideos().then(setytVideo).catch(console.error);
   }, []);
-
-  console.log(ytVideo);
   
-
   return (
     <section className="w-full text-white py-8  relative overflow-hidden">
       {/* Background pakai Next/Image */}
