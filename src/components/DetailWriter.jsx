@@ -56,7 +56,7 @@ function DetailWriter({ authorData }) {
                     </div>
 
                     <div className="flex-1">
-                        <h1 className="text-3xl font-bold text-foreground mb-2">{authorData.name}</h1>
+                        <h1 className="text-xl md:text-3xl font-bold text-foreground mb-2">{authorData.name}</h1>
                         <p className="text-black/50 mb-4 leading-relaxed">
                             {authorData.editor_description ? authorData.editor_description : "Editor TIMES Indonesia"}
                         </p>

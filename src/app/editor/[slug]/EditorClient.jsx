@@ -1,13 +1,14 @@
 'use client'
 import DetailEditor from '@/components/DetailEditor';
 import LastesNewsCard from '@/components/LastesNewsCard';
+import NewsCard from '@/components/NewsCard';
 import PopularNews from '@/components/PopularNews';
 import LastestNewsCardSkeleton from '@/components/ui/LastestNewsCardSkeleton';
 import { getAllNews } from '@/lib/api/newsApi';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-function EditorClient({initialEditorDetail}) {
-    
+function EditorClient({ initialEditorDetail }) {
+
     const [editorDetail, setEditorDetail] = useState(initialEditorDetail);
     const [articles, setArticles] = useState([]);
     const [offset, setOffset] = useState(0);
@@ -97,7 +98,7 @@ function EditorClient({initialEditorDetail}) {
                 {editorDetail && (
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-1 h-8 bg-neutral rounded-full"></div>
-                        <h2 className="text-2xl font-bold text-foreground">
+                        <h2 className="text-lg md:text-2xl font-bold text-foreground">
                             Artikel yang disunting oleh {editorDetail.editor_name}
                         </h2>
                     </div>
@@ -114,15 +115,19 @@ function EditorClient({initialEditorDetail}) {
                             }
 
                             {articles.map((item) => (
-                                <LastesNewsCard
+                                <NewsCard
+                                    layout='list'
                                     key={item.news_id}
                                     id={item.news_id}
                                     title={item.news_title}
                                     description={item.news_description}
                                     author={item.news_writer}
-                                    datepub={item.news_datepub}
+                                    datePub={item.datePub}
                                     views={Number(item.pageviews)}
                                     image={item.news_image_new}
+                                    url={item.url_ci4}
+                                    category={item.cat_title}
+
                                 />
                             ))}
 
