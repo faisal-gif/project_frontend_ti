@@ -157,7 +157,10 @@ export default function RootLayout({ children }) {
                   </div>
 
                   {/* Search */}
+                  <div children="">
                   <SearchDropdown />
+
+                  </div>
                 </div>
               </div>
 

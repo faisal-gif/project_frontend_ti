@@ -50,11 +50,11 @@ const SearchDropdown = () => {
   };
 
   return (
-    <div className="md:ml-auto ml-4 dropdown dropdown-bottom dropdown-end">
+    <div className="dropdown dropdown-bottom dropdown-end ">
       {/* tombol trigger */}
       <button
         aria-label="Open search"
-        className="cursor-pointer border-0 bg-transparent"
+        className="btn btn-ghost bg-transparent"
       >
         <Search className="w-4 h-4 text-white" />
       </button>
