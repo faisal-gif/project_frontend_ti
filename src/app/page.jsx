@@ -15,7 +15,7 @@ export const metadata = {
     siteName: 'TIMES Indonesia',
     images: [
       {
-        url: "/icon.png",
+        url: "https://timesindonesia.id/icon.png",
         width: 500,
         height: 500,
         alt: "TIMES Indonesia Logo",
