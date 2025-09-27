@@ -29,6 +29,23 @@ const ebGaramond = EB_Garamond({
   subsets: ["latin"],
 });
 
+const menu = [
+  { name: "Internasional", slug: "internasional", src: "/kanal/internasional" },
+  { name: "Nasional", slug: "nasional", src: "/kanal/nasional" },
+  { name: "Daerah", slug: "daerah", src: "/kanal/daerah" },
+  { name: "Cek Fakta", slug: "cek-fakta", src: "/kanal/cek-fakta" },
+  { name: "Kopi Times", slug: "kopi-times", src: "/kanal/kopi-times" },
+  { name: "Tekno", slug: "tekno", src: "/kanal/tekno" },
+  { name: "Pendidikan", slug: "pendidikan", src: "/kanal/pendidikan" },
+  { name: "Olahraga", slug: "olahraga", src: "/kanal/olahraga" },
+  { name: "Otomotif", slug: "otomotif", src: "/kanal/otomotif" },
+  { name: "Kesehatan", slug: "kesehatan", src: "/kanal/kesehatan" },
+  { name: "Kuliner", slug: "kuliner", src: "/kanal/kuliner" },
+  { name: "Wisata", slug: "wisata", src: "/kanal/wisata" },
+  { name: "Sosok", slug: "sosok", src: "/kanal/sosok" },
+  { name: "Religi", slug: "religi", src: "/kanal/religi" },
+];
+
 
 export const metadata = {
   icons: {
@@ -167,20 +184,13 @@ export default function RootLayout({ children }) {
               {/* Navbar Bawah */}
               <div className="w-full bg-[#7a0f1f] shadow-sm border border-none">
                 <div className="max-w-6xl mx-auto flex gap-6 px-4 overflow-x-auto text-sm">
-                  {[
-                    "Politik",
-                    "Hukum",
-                    "Ekonomi",
-                    "Lingkungan",
-                    "Wawancara",
-                    "Investigasi",
-                  ].map((menu) => (
+                  {menu.map((menu) => (
                     <Link
-                      key={menu}
-                      href="#"
+                      key={menu.slug}
+                      href={menu.src}
                       className="py-2 text-white/80  hover:text-white whitespace-nowrap"
                     >
-                      {menu}
+                      {menu.name}
                     </Link>
                   ))}
                 </div>
