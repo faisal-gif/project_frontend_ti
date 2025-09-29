@@ -31,9 +31,9 @@ function Home() {
         getNewsFirstSections().then(setNewsFirstSections).catch(console.error);
         getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
         getAllNews({
-            news_type: "trending",
+            news_type: "populer",
             offset: 0,
-            limit: 4,
+            limit: 5,
         }).then(setAllNews).catch(console.error);
     }, []);
 

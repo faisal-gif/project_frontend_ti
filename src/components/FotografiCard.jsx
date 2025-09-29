@@ -41,13 +41,14 @@ function FotografiCard({
     };
 
     return (
-        <Link href={url }>
+        <Link href={url}>
             <Card className="group cursor-pointer transition-all duration-300 hover:bg-news-hover border-2 border-base-300 bg-card overflow-hidden w-full max-w-sm">
                 <div className="aspect-[9/16] relative overflow-hidden rounded-t-lg">
                     <Image
                         src={gal_cover}
                         alt={gal_title}
                         fill
+                        quality={55}
                         sizes="(max-width: 768px) 100vw,
                         (max-width: 1200px) 50vw,
                         33vw"

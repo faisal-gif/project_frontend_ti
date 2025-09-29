@@ -48,10 +48,10 @@ function EkoranHomeCard({
                     <Image
                         src={gal_cover}
                         alt={gal_title}
-                        fill
-                        sizes="(max-width: 768px) 100vw,
-                            (max-width: 1200px) 50vw,
-                            33vw"
+                        width={203}
+                        height={263}
+                        sizes="203px"
+                        quality={60}
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
 

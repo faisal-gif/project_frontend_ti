@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react'
 function SimpleNewsSection({ title, news }) {
     return (
         <section className="space-y-6 border-t-2 border-base-300">
-            <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center justify-between mt-1">
                 <h2 className="text-sm font-bold text-news-category flex items-center gap-2">
                     {title}
                     <ChevronRight className="w-6 h-6" />

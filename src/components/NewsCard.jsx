@@ -68,8 +68,9 @@ function NewsCard({
                             <Image
                                 src={image}
                                 alt={`${title} background`}
-                                width={750}
-                                height={350}
+                                width={148}
+                                height={99}
+                                quality={60}
                                 className="object-cover blur-md opacity-50"
                             />
                         </div>
