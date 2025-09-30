@@ -3,6 +3,7 @@
 import BreakingNews from '@/components/BreakingNews';
 import EKoranSection from '@/components/EKoranSection';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
+import FloatingFactCheck from '@/components/CekFaktaCard';
 import GallerySection from '@/components/GallerySection';
 import GoogleAds from '@/components/GoogleAds';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
@@ -17,6 +18,7 @@ import VideoSection from '@/components/VideoSection';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSections, getNewsSecondSections } from '@/lib/data';
 import { useEffect, useState } from 'react';
+import CekFaktaCard from '@/components/CekFaktaCard';
 
 
 
@@ -89,7 +91,7 @@ function Home() {
 
                 {newsFirstSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news}  layout={section.layout} />
+                        <FirstHightlightNewsSection title={section.title} news={section.news} layout={section.layout} />
                     </div>
                 ))}
             </div>
@@ -120,7 +122,10 @@ function Home() {
                         <FirstHightlightNewsSection title={section.title} news={section.news} layout={section.layout} />
                     </div>
                 ))}
+
+                <CekFaktaCard />
             </div>
+              
 
             <div className="mx-auto max-w-6xl ">
                 <div className='flex items-center justify-center mb-8'>

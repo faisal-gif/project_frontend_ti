@@ -27,5 +27,11 @@ export const urlNav = [
     icon: 'Newspaper',
     href: '/ekoran',
   },
+   {
+    id: 'foto',
+    name: 'Foto',
+    icon: 'Foto',
+    href: '/foto',
+  },
 
 ]

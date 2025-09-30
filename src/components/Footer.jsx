@@ -3,6 +3,7 @@ import React from 'react'
 import Button from "./ui/Button";
 import Link from "next/link";
 import Image from "next/image";
+import Logo_x from '@/../public/logo_x.svg';
 
 function Footer() {
   return (
@@ -16,8 +17,8 @@ function Footer() {
             <div>
               <h2 className="text-2xl font-bold text-[#b51d1d] mb-2">  <img src="https://timesindonesia.co.id/themes/times/assets/images/logo-timesindonesia-white-web.png" alt="News Logo" className="h-8 w-auto object-contain mx-auto lg:mx-0"></img> </h2>
               <p className="text-white/65 leading-relaxed">
-                Portal berita terpercaya yang menyajikan informasi terkini dan terpercaya dari seluruh Indonesia dan dunia.
-              </p>
+                Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times
+             </p>
             </div>
 
             {/* Social Media */}
@@ -37,8 +38,8 @@ function Footer() {
                   rel="noopener noreferrer"
                   aria-label="Visit Times Indonesia on Twitter"
                   className="btn btn-outline btn-sm text-white rounded-lg w-10 h-10 p-0 border-footer-border hover:bg-[#9f1c1c] hover:border-[#9f1c1c]">
-                  <Twitter className="h-4 w-4" />
-                  <span className="sr-only">Twitter</span>
+                  <Image src={Logo_x} alt="Logo X" width={16} height={16} className="h-4 w-4" />
+                  <span className="sr-only">X</span>
                 </a>
                 <a href="https://www.instagram.com/timesindonesia"
                   target="_blank"
@@ -64,7 +65,7 @@ function Footer() {
           {/* Navigation Links */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-white/85 font-semibold mb-4">Kategori Berita</h3>
+              <h3 className="text-white/85 font-semibold mb-4">Kanal Utama</h3>
               <ul className="space-y-2">
                 <li><Link href="/kanal/peristiwa-nasional" className="text-white/65 hover:text-[#b51d1d] transition-colors">Nasional</Link></li>
                 <li><Link href="/kanal/peristiwa-internasional" className="text-white/65 hover:text-[#b51d1d] transition-colors">Internasional</Link></li>
@@ -84,8 +85,7 @@ function Footer() {
                 <li className="flex items-start space-x-3">
                   <MapPin className="h-4 w-4 text-[#b51d1d] mt-1 flex-shrink-0" />
                   <span className="text-white/65 text-sm">
-                    Jl. Raya Dieng No. 23<br />
-                    Malang, Jawa Timur 65146
+                    Jl. Besar Ijen No.90, Oro-oro Dowo, Kec. Klojen, Kota Malang, Jawa Timur 65116
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -109,7 +109,7 @@ function Footer() {
           {/* Newsletter */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-white/85 font-semibold mb-4">Newsletter</h3>
+              <h3 className="text-white/85 font-semibold mb-4">Berlangganan</h3>
               <p className="text-white/65 text-sm mb-4">
                 Dapatkan berita terbaru langsung di inbox Anda
               </p>
@@ -160,7 +160,7 @@ function Footer() {
       </div>
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
-        
+
         <h3 className="text-white/85 mb-6 font-bold text-center">SUPPORTED BY</h3>
         <div className="flex flex-col md:flex-row gap-20 justify-center items-center space-y-4 md:space-y-0">
           <a href="https://www.varnion.com" target="_blank" rel="noopener noreferrer">

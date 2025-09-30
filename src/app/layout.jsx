@@ -2,7 +2,7 @@ import { EB_Garamond, Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link'
 import "./globals.css";
 import Footer from "@/components/Footer";
-import FloatingFactCheck from "@/components/FloatingFactCheck";
+import FloatingFactCheck from "@/components/CekFaktaCard";
 import Image from "next/image";
 import TopLoader from "@/components/ui/TopLoader";
 import SearchDropdown from "@/components/SearchDropdown";
@@ -30,9 +30,9 @@ const ebGaramond = EB_Garamond({
 });
 
 const menu = [
-  { name: "Internasional", slug: "internasional", src: "/kanal/internasional" },
-  { name: "Nasional", slug: "nasional", src: "/kanal/nasional" },
-  { name: "Daerah", slug: "daerah", src: "/kanal/daerah" },
+  { name: "Internasional", slug: "internasional", src: "/kanal/peristiwa-internasional" },
+  { name: "Nasional", slug: "nasional", src: "/kanal/peristiwa-nasional" },
+  { name: "Daerah", slug: "daerah", src: "/kanal/peristiwa-daerah" },
   { name: "Cek Fakta", slug: "cek-fakta", src: "/kanal/cek-fakta" },
   { name: "Kopi Times", slug: "kopi-times", src: "/kanal/kopi-times" },
   { name: "Tekno", slug: "tekno", src: "/kanal/tekno" },
@@ -234,7 +234,7 @@ export default function RootLayout({ children }) {
           </div>
         </div>
 
-        <FloatingFactCheck />
+
       </body>
     </html>
   );

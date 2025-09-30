@@ -2,7 +2,7 @@
 import React from 'react'
 import { usePathname } from "next/navigation";
 import Link from 'next/link';
-import { Focus, Home, List, Menu, Newspaper, Search } from 'lucide-react'
+import { Focus, Home, Image, List, Menu, Newspaper, } from 'lucide-react'
 import { urlNav } from '@/lib/urlNav';
 
 function DesktopListMenu() {
@@ -13,6 +13,7 @@ function DesktopListMenu() {
         List: List,
         Menu: Menu,
         Newspaper: Newspaper,
+        Foto: Image,
     };
 
     return (
@@ -31,8 +32,8 @@ function DesktopListMenu() {
                         <Link
                             href={item.href}
                             className={`whitespace-nowrap transition-colors ${isActive
-                                    ? "text-white font-semibold"
-                                    : "text-white/70 group-hover:text-white"
+                                ? "text-white font-semibold"
+                                : "text-white/70 group-hover:text-white"
                                 }`}
                         >
                             {item.name}
