@@ -91,7 +91,7 @@ function LastestNewsSection() {
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
                         <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
-                        BERITA TERBARU
+                        JELAJAH BERITA
                     </h2>
 
                     <div className="flex border border-base-300 rounded-md">

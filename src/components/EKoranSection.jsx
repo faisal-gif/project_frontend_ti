@@ -27,7 +27,8 @@ function EKoranSection() {
                 src="/ekoran_bg.jpg" // bisa juga pakai article.img1 kalau dinamis
                 alt="Background Ekoran"
                 fill
-                priority
+                priority="high"
+                loading='lazy'
                 className="object-cover object-center -z-10" // taruh di belakang konten
             />
 
@@ -44,7 +45,8 @@ function EKoranSection() {
                                 alt="Ekoran Logo"
                                 width={120}
                                 height={40}
-                              priority
+                                priority="high"
+                                loading='lazy'
                                 className="object-contain h-auto w-[120px]"
                             />
                         </Link>
@@ -87,7 +89,7 @@ function EKoranSection() {
                             </Carousel.Item>
                         ))}
                     </Carousel.Content>
-                   
+
                 </Carousel>
 
 
