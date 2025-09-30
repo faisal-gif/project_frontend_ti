@@ -31,7 +31,6 @@ function VideoSection() {
         src="/video_bg.webp" // bisa juga pakai article.img1 kalau dinamis
         alt="Background video"
         fill
-        priority="high"
         loading='lazy'
         className="object-cover object-center -z-10" // taruh di belakang konten
       />
@@ -50,7 +49,6 @@ function VideoSection() {
                 alt="Video Logo"
                 width={120}
                 height={40}
-                priority="high"
                 loading='lazy'
                 className="object-contain h-auto w-[120px]"
               />

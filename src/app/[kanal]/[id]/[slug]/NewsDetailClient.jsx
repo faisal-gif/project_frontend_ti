@@ -144,15 +144,13 @@ function NewsDetailClient({ initialNewsDetail }) {
                                 <span className="badge badge-primary badge-outline py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
                                 </span>
-                                <div className="py-4 md:py-2">
-
-
-                                    {focusDetail && (
+                                {focusDetail && (
+                                    <div className="py-4 md:py-2">
                                         <Link href={focusDetail.urlPath} className="btn btn-error btn-xs btn-outline py-1 rounded-full text-sm font-medium">
                                             {focusDetail.focnews_title}
                                         </Link>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
 
                                 <div className="py-4 md:py-2">
                                     {/* Title */}
@@ -160,7 +158,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                         {newsDetail.news_title}
                                     </h1>
                                     {/* Description */}
-                                    <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
+                                    <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed italic">
                                         {newsDetail.news_description}
                                     </p>
                                 </div>
