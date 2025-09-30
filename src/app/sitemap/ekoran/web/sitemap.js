@@ -1,8 +1,14 @@
 import { getAllEkoran } from "@/lib/api/ekoran";
 
+export const dynamic = "force-dynamic"; // sitemap selalu runtime
 
 export default async function sitemap() {
-    const getEkoranData = await getAllEkoran({ offset: 0, limit: 500 });
+    let getEkoranData = [];
+    try {
+        getEkoranData = await getAllEkoran({ offset: 0, limit: 500 });
+    } catch (error) {
+        console.error("Failed to fetch ekoran data:", error);
+    }
 
     return getEkoranData.map((ekoran) => ({
         url: `${process.env.NEXT_PUBLIC_URL}${ekoran.url_ci4}`,

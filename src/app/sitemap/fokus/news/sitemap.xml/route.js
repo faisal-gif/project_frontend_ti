@@ -1,15 +1,23 @@
 import { getAllFocus } from "@/lib/api/focus";
 
+export const dynamic = "force-dynamic"; // sitemap selalu runtime
 
 export async function GET() {
-  const news = await getAllFocus({ offset: 0, limit: 500 });
+  let news = [];
+
+  try {
+    news = await getAllFocus({ offset: 0, limit: 500 }) || [];
+  } catch (error) {
+    console.error("Error fetch focus:", error);
+    news = []; // fallback supaya tidak crash
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   ${news
-    .map(
-      (item) => `
+      .map(
+        (item) => `
     <url>
       <loc><![CDATA[ ${process.env.NEXT_PUBLIC_URL}${item.urlPath} ]]></loc>
       <news:news>
@@ -22,8 +30,8 @@ export async function GET() {
         <news:keywords><![CDATA[ ${item.focnews_keyword} ]]></news:keywords>
       </news:news>
     </url>`
-    )
-    .join("")}
+      )
+      .join("")}
 </urlset>`;
 
   return new Response(xml, {

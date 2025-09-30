@@ -1,7 +1,15 @@
 import { getAllFoto } from "@/lib/api/fotoApi";
 
+export const dynamic = "force-dynamic"; // sitemap selalu runtime
+
 export async function GET() {
-  const news = await getAllFoto({ news_type: "all", offset: 0, limit: 500 });
+  let news = [];
+
+  try {
+    news = await getAllFoto({ news_type: "all", offset: 0, limit: 500 });
+  } catch (error) {
+    console.error("Failed to fetch news data:", error);
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
