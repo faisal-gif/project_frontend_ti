@@ -80,9 +80,9 @@ function NewsCard({
                             <Image
                                 src={image}
                                 alt={title}
-
-                                width={750}
-                                height={350}
+                                width={148}
+                                height={99}
+                                quality={60}
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>

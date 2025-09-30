@@ -14,7 +14,7 @@ const ModalShare = ({ title = 'TIMES Indonesia' }) => {
 
       // teks share konsisten
       setShareText(
-        `${title}\n${currentUrl}\n\nDapatkan akses berita TIMES Indonesia lebih mudah dan cepat.\nWA Channel: https://bit.ly/timeswac\nTelegram Channel: https://t.me/timesindonesia\nGoogle News: https://bit.ly/timesgn `
+        `${title}\n\nKlik Untuk Baca\n${currentUrl}\n\nDapatkan akses berita TIMES Indonesia lebih mudah dan cepat.\nWA Channel: https://bit.ly/timeswac\nTelegram Channel: https://t.me/timesindonesia\nGoogle News: https://bit.ly/timesgn `
       );
     }
   }, [title]);

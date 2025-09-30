@@ -1,7 +1,7 @@
 import { getAllFoto } from '@/lib/api/fotoApi'
 
 export default async function sitemap() {
-  const getImageData = await getAllFoto({ news_type: 'all', offset: 0, limit: 1000 });
+  const getImageData = await getAllFoto({ news_type: 'all', offset: 0, limit: 500 });
 
   return getImageData.map((foto) => ({
     url: process.env.NEXT_PUBLIC_URL + foto.url_ci4,

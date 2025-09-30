@@ -20,7 +20,10 @@ function GallerySection() {
         <>
 
             <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-foreground">Gallery Jurnalistik</h2>
+                <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
+                    <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
+                    TIMES FOTO
+                </h2>
                 <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                     <Link href={'/foto'} className="text-sm text-neutral hover:text-[#b41d1d] hover:font-semibold">Lebih Banyak</Link>
                 </button>

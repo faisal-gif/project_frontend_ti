@@ -17,6 +17,7 @@ import Head from 'next/head';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
+import { getWriterDetail } from '@/lib/api/jurnalist';
 
 function NewsDetailClient({ initialNewsDetail }) {
 
@@ -29,8 +30,11 @@ function NewsDetailClient({ initialNewsDetail }) {
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
+
         }
     }, [newsDetail]);
+
+
 
     if (Number(newsDetail.focnews_id) !== 0) {
         useEffect(() => {

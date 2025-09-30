@@ -4,6 +4,7 @@ import { apiNews } from '@/lib/api';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import PopularNewsSkeleton from './ui/PopularNewsSkeleton'; // Import skeleton
+import Image from 'next/image';
 
 export default function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
@@ -22,7 +23,7 @@ export default function PopularNews() {
     }, []);
 
 
-        const formatDate = (dateString) => {
+    const formatDate = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
         const diffMs = now - date; // selisih dalam ms
@@ -53,8 +54,10 @@ export default function PopularNews() {
     const popularArticles = popularNews.map(article => ({
         id: article.news_id,
         title: article.news_title,
+        image: article.news_image_new,
+        url: article.url_ci4,
         timeAgo: formatDate(article.news_datepub),
-        views: Number(article.pageviews) 
+        views: Number(article.pageviews)
     }));
 
     if (loading) {
@@ -65,14 +68,14 @@ export default function PopularNews() {
         <div className="bg-white shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-[3px] p-5 mb-6">
             <div className="flex items-center gap-2 mb-4">
                 <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
-                <h3 className="text-lg font-semibold text-[#2A2A2A]">Popular News</h3>
+                <h3 className="text-lg font-semibold text-[#2A2A2A]">Terpopuler</h3>
             </div>
 
             <div className="space-y-4">
                 {popularArticles.map((article, index) => (
                     <Link
                         key={article.id}
-                        href={`/news/${article.id}/${article.title.replace(/\s+/g, '-').toLowerCase()}`}
+                        href={article.url}
                         className="block hover:bg-gray-50 transition-colors rounded p-2 -m-2"
                     >
                         <div className="flex items-start gap-3">
@@ -80,15 +83,27 @@ export default function PopularNews() {
                                 {String(index + 1).padStart(2, '0')}
                             </span>
                             <div className="flex-1">
-                                <h4 className="text-sm font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
-                                    {article.title}
-                                </h4>
+                                <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2 '>
+                                    <h4 className="text-sm font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
+                                        {article.title}
+                                    </h4>
+                                    <div className="w-20 h-16 flex-shrink-0 relative">
+                                        <Image
+                                            src={article.image}
+                                            alt={article.title}
+                                            width={400}
+                                            height={400}
+                                            className="object-cover rounded-md transform scale-100 transition group-hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
+                                        />
+                                    </div>
+                                </div>
                                 <div className="flex items-center gap-3 text-xs text-[#2A2A2A] opacity-70">
                                     <span>{article.timeAgo}</span>
                                     <span>•</span>
                                     <span>{article.views.toLocaleString()} views</span>
                                 </div>
                             </div>
+
                         </div>
                     </Link>
                 ))}

@@ -31,9 +31,9 @@ function Home() {
         getNewsFirstSections().then(setNewsFirstSections).catch(console.error);
         getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
         getAllNews({
-            news_type: "populer",
+            news_type: "all",
             offset: 0,
-            limit: 5,
+            limit: 4,
         }).then(setAllNews).catch(console.error);
     }, []);
 
@@ -57,19 +57,19 @@ function Home() {
                 </div>
             </div>
             {/* Hero */}
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-8 px-4 md:grid-cols-6">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
                 <div className="md:col-span-4">
                     <HeadlineNewsHome />
                 </div>
                 <div className="md:col-span-2">
                     {allNews.length === 0 && (
                         <div className="space-y-8">
-                            <SimpleNewsCardSkeleton />
+                            <FirstHighlightNewsSectionSkeleton />
                         </div>
                     )}
                     {
                         allNews.length > 0 && (
-                            <SimpleNewsSection title={'Berita Terpopuler'} news={allNews} />
+                            <FirstHightlightNewsSection title={'Berita Terbaru'} news={allNews} />
                         )
                     }
 
@@ -89,7 +89,7 @@ function Home() {
 
                 {newsFirstSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news} />
+                        <FirstHightlightNewsSection title={section.title} news={section.news}  layout={section.layout} />
                     </div>
                 ))}
             </div>
@@ -117,14 +117,14 @@ function Home() {
                 )}
                 {newsSecondSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news} />
+                        <FirstHightlightNewsSection title={section.title} news={section.news} layout={section.layout} />
                     </div>
                 ))}
             </div>
 
             <div className="mx-auto max-w-6xl ">
                 <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="leaderboard" />
+                    <GoogleAds size="top_banner" />
                 </div>
             </div>
 

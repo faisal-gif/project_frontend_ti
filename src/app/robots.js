@@ -6,8 +6,8 @@ export default function robots() {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/api/',        // blokir API
-          '/_next/',      // blokir folder internal Next.js
+          '/api/',
+          '/_next/',
         ],
       },
     ],

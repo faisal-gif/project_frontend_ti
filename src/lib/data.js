@@ -56,33 +56,41 @@ export const getKopiTimesNews = async () => {
 
 export const getNewsFirstSections = async () => {
   return [
+
     {
       title: "Olahraga",
       news: await getSportsNews(),
+      layout: 'normal',
     },
     {
       title: "Ekonomi",
       news: await getBusinessNews(),
+      layout: 'grid',
     },
     {
-      title: "Gaya Hidup",
-      news: await getEntertainmentNews(),
+      title: "Liputan Khusus",
+      news: await getLipsusNews(),
+      layout: 'reverse',
     },
+
   ];
 };
 
 export const getNewsSecondSections = async () => {
   return [
     {
-      title: "Liputan Khusus",
-      news: await getLipsusNews(),
+      title: "Gaya Hidup",
+      layout: 'normal',
+      news: await getEntertainmentNews(),
     },
     {
       title: "Indonesia Positif",
+      layout: 'grid',
       news: await getIndoPositifNews(),
     },
     {
       title: "Kopi Times",
+      layout: 'reverse',
       news: await getKopiTimesNews(),
     },
   ];

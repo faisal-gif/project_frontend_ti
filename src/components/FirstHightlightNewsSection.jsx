@@ -6,7 +6,7 @@ import { ChevronRight, Eye, Heart, MessageCircle } from 'lucide-react'
 import Link from 'next/link';
 import Image from 'next/image';
 
-function FirstHightlightNewsSection({ title, news }) {
+function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
    const formatDate = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
@@ -35,7 +35,8 @@ function FirstHightlightNewsSection({ title, news }) {
     return (
         <section className="space-y-6 border-t-2 border-base-300">
             <div className="flex items-center justify-between mt-2">
-                <h2 className="text-sm font-bold text-news-category flex items-center gap-2">
+                <h2 className="text-lg font-bold text-news-category flex items-center gap-2 uppercase">
+                      <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
                     {title}
                     <ChevronRight className="w-6 h-6" />
                 </h2>
@@ -88,9 +89,10 @@ function FirstHightlightNewsSection({ title, news }) {
                     </Card>
                 </Link>
             </div>
-            <div className="space-y-3">
+            <div className={` ${layout === 'grid' ? 'grid grid-cols-2 gap-4' : 'space-y-3'}`}>
                 {news.slice(1).map((item) => (
                     <SimpleNewsCard
+                        layout={layout}
                         key={item.news_id}
                         title={item.news_title}
                         source={item.news_writer}
