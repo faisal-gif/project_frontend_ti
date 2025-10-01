@@ -217,7 +217,7 @@ export default function RootLayout({ children }) {
                     className="h-10 w-auto object-contain mx-auto lg:mx-0"
                     width={200}
                     height={60}
-                    loading="lazy"
+                    priority
                   />
                 </Link>
               </li>
