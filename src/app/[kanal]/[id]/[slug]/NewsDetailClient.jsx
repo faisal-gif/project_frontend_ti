@@ -10,7 +10,7 @@ import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
 import { getAllNews, getNewsDetail, updateView } from '@/lib/api/newsApi';
 import { getNewsSecondSections } from '@/lib/data';
-import { Car, Share, Share2, User, Volume2 } from 'lucide-react';
+import { Car, Eye, Share, Share2, User, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -26,11 +26,11 @@ function NewsDetailClient({ initialNewsDetail }) {
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
+    const [newsViews, setNewsViews] = useState([]);
 
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
-
         }
     }, [newsDetail]);
 
@@ -47,7 +47,7 @@ function NewsDetailClient({ initialNewsDetail }) {
 
     useEffect(() => {
         if (newsDetail) {
-            updateView({ id: newsDetail.news_id });
+            updateView({ id: newsDetail.news_id }).then(setNewsViews).catch(console.error);
         }
     }, [newsDetail]);
 
@@ -127,6 +127,17 @@ function NewsDetailClient({ initialNewsDetail }) {
             .replace(/^-+/, "")         // hapus - di awal
             .replace(/-+$/, "");        // hapus - di akhir
 
+
+    const formatViews = (num) => {
+        if (num >= 1_000_000) {
+            return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        if (num >= 1_000) {
+            return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k';
+        }
+        return num.toString();
+    }
+
     return (
         <div className="max-w-6xl mx-auto px-4 py-24 ">
 
@@ -141,9 +152,9 @@ function NewsDetailClient({ initialNewsDetail }) {
                     <>
                         <main className="col-span-1" >
                             <article className="rounded-lg overflow-hidden">
-                                <span className="badge badge-primary badge-outline py-1 rounded-full text-sm font-medium">
+                                <Link href={`/kanal/${newsDetail.catnews_slug}`} className="btn btn-sm bg-[#b41d1d] text-white py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
-                                </span>
+                                </Link>
                                 {focusDetail && (
                                     <div className="py-4 md:py-2">
                                         <Link href={focusDetail.urlPath} className="btn btn-error btn-xs btn-outline py-1 rounded-full text-sm font-medium">
@@ -168,6 +179,13 @@ function NewsDetailClient({ initialNewsDetail }) {
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
                                         <span>{formatDate(newsDetail.news_datepub)}</span>
+                                        <span className="font-bold">-</span>
+                                        <span className='flex flex-row gap-1 items-center pl-1'>
+                                            <Eye size={16} />
+                                            <div>
+                                                {formatViews(Number(newsViews.pageviews))}
+                                            </div>
+                                        </span>
                                     </div>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">

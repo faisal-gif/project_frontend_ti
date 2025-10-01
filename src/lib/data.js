@@ -36,6 +36,15 @@ export const getLipsusNews = async () => {
   });
 };
 
+export const getWansusNews = async () => {
+  return await getAllNews({
+    news_type: "cat",
+    cat_id: 30,
+    offset: 0,
+    limit: 10,
+  });
+}
+
 export const getIndoPositifNews = async () => {
   return await getAllNews({
     news_type: "cat",

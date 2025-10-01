@@ -50,9 +50,9 @@ function HorizontalNewsCard({
     };
 
     return (
-        <Card key={id} className="w-full max-w-sm bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 ease-in-out">
+        <Card key={id} className="w-full overflow-hidden transition-shadow duration-200 ease-in-out">
             <Link href={url} className="block h-full">
-                <div className="relative overflow-hidden h-40 w-full">
+                <div className="relative overflow-hidden h-30 w-full rounded-lg">
                     <Image
                         src={image}
                         alt={title}
@@ -68,16 +68,14 @@ function HorizontalNewsCard({
                     </div>
                 </div>
 
-                <div className="p-4 flex flex-col justify-between h-full">
+                <div className="py-2 flex flex-col justify-between h-full">
                     <div>
                         <h3 className="text-sm font-semibold text-foreground leading-tight mb-2 line-clamp-2 hover:text-red-600 transition-colors duration-200">
                             {title}
                         </h3>
-
-
                     </div>
 
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-2 ">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto ">
                         <time>{formatDate(datepub)}</time>
                       
                     </div>

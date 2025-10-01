@@ -18,7 +18,7 @@ function FeaturedNewsCard({
 }) {
     return (
         <Link href={url}>
-            <Card className={`group relative h-64 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl md:h-[32rem] ${className}`}>
+            <Card className={`group relative h-64 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl  ${className}`}>
                 <Image
                     src={image}
                     alt={title}

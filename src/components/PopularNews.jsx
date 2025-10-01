@@ -5,15 +5,16 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import PopularNewsSkeleton from './ui/PopularNewsSkeleton'; // Import skeleton
 import Image from 'next/image';
+import { getAllNews } from '@/lib/api/newsApi';
 
 export default function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
     const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
-        apiNews.get('', { params: { news_type: 'populer', offset: 0, limit: 5 } })
+        getAllNews({ news_type: 'populer', offset: 0, limit: 5 })
             .then(res => {
-                setPopularNews(res.data.data);
+                setPopularNews(res);
                 setLoading(false); // Set loading to false after fetch
             })
             .catch(err => {
@@ -83,8 +84,8 @@ export default function PopularNews() {
                                 {String(index + 1).padStart(2, '0')}
                             </span>
                             <div className="flex-1">
-                                <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2 '>
-                                    <h4 className="text-sm font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
+                                <div className='flex flex-row justify-between items-center gap-2 '>
+                                    <h4 className="text-xs line-clamp-2 md:line-clamp-none md:text-sm  font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
                                         {article.title}
                                     </h4>
                                     <div className="w-20 h-16 flex-shrink-0 relative">

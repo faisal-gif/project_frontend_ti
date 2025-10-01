@@ -67,6 +67,7 @@ function HeadlineNewsHome() {
                 {headlineArticle.map((article, index) => (
                     <Carousel.Item key={index} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
                         <FeaturedNewsCard
+                         className='md:h-[33rem]'
                             index={index}
                             title={article.title}
                             source={article.author}

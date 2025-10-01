@@ -16,9 +16,13 @@ import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNew
 import SimpleNewsCardSkeleton from '@/components/ui/SimpleNewsCardSkeleton';
 import VideoSection from '@/components/VideoSection';
 import { getAllNews } from '@/lib/api/newsApi';
-import { getNewsFirstSections, getNewsSecondSections } from '@/lib/data';
+import { getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/lib/data';
 import { useEffect, useState } from 'react';
 import CekFaktaCard from '@/components/CekFaktaCard';
+import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
+import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
+import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
+import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 
 
 
@@ -28,16 +32,21 @@ function Home() {
     const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [newsSecondSections, setNewsSecondSections] = useState([]);
     const [allNews, setAllNews] = useState([]);
+    const [wansusNews, setWansusNews] = useState([]);
 
     useEffect(() => {
         getNewsFirstSections().then(setNewsFirstSections).catch(console.error);
         getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
+        getWansusNews().then(setWansusNews).catch(console.error);
         getAllNews({
             news_type: "all",
             offset: 0,
             limit: 4,
         }).then(setAllNews).catch(console.error);
     }, []);
+
+    console.log(wansusNews);
+
 
 
     return (
@@ -123,9 +132,36 @@ function Home() {
                     </div>
                 ))}
 
-                <CekFaktaCard />
             </div>
-              
+
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
+                <div className='md:col-span-4'>
+                    {wansusNews.length === 0 && (
+                        <HeadlineCardSkeleton />
+                    )}
+                    <div className="animate-pulse grid grid-cols-4 gap-2 mt-4">
+                        {wansusNews.length === 0 && (
+                            [1, 2, 3, 4].map((index) => (
+                                <div
+                                    key={index}
+                                    className="pl-2 min-w-0 shrink-0 grow-0 basis-4/9  sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                                >
+                                    <div className="h-full">
+                                        <HorizontalNewsCardSkeleton />
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                    {wansusNews.length > 0 && (
+                        <FirstHighlightHorizontalNewsSection articles={wansusNews} />
+                    )}
+                </div>
+                <div className='md:col-span-2'>
+                  <TopikPilihanWidget />
+                </div>
+
+            </div>
 
             <div className="mx-auto max-w-6xl ">
                 <div className='flex items-center justify-center mb-8'>
@@ -145,20 +181,24 @@ function Home() {
             {/* Last News */}
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4">
                 <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
-                    <div className="md:col-span-4 lg:col-span-4">
+                    <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4">
                         <LastestNewsSection />
                     </div>
                     {/* Last news Sidebar */}
-                    <div className="hidden md:block md:col-span-2 lg:col-span-2 ">
+                    <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2 ">
                         <PopularNews />
 
-                        <div className=' sticky top-30'>
-                            <div className='flex items-center justify-center mb-8'>
-                                <GoogleAds size='half_page_ad' />
-                            </div>
 
-                            <div className=' flex items-center justify-center mb-8'>
-                                <GoogleAds size='inline_rectangle' />
+                        <div className='flex items-center justify-center mb-8'>
+                            <GoogleAds size='inline_rectangle' />
+                        </div>
+                        <div>
+
+                            <CekFaktaCard />
+                        </div>
+                        <div className='sticky top-30'>
+                            <div className='hidden md:flex items-center justify-center my-8'>
+                                <GoogleAds size='half_page_ad' />
                             </div>
                         </div>
 
