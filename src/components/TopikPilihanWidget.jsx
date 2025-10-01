@@ -13,22 +13,19 @@ function TopikPilihanWidget() {
 
     if (fokus.length === 0) {
         return (
-            <div className="space-y-6 border-t-2 border-base-300 mt-4">
-               
-                <div className="bg-[#7b0f1f] opacity-65 shadow-lg rounded-md p-5 mb-6 animate-pulse">
-                    <div className="space-y-6 md:space-y-8">
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                            <div key={i} className="border-b last:border-0 border-gray-200 pb-3">
-                                <div className="flex items-start gap-3">
-                                    <div className="bg-gray-300 w-8 h-8 rounded-full"></div>
-                                    <div className="flex-1 space-y-2">
-                                        <div className="h-4 w-3/4 bg-gray-300 rounded"></div>
-                                        <div className="h-3 w-1/3 bg-gray-300 rounded"></div>
-                                    </div>
+            <div className="bg-[#7b0f1f] opacity-65 shadow-lg rounded-md p-5 mb-6 animate-pulse">
+                <div className="space-y-6 md:space-y-8">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                        <div key={i} className="border-b last:border-0 border-gray-200 pb-3">
+                            <div className="flex items-start gap-3">
+                                <div className="bg-gray-300 w-8 h-8 rounded-full"></div>
+                                <div className="flex-1 space-y-2">
+                                    <div className="h-4 w-3/4 bg-gray-300 rounded"></div>
+                                    <div className="h-3 w-1/3 bg-gray-300 rounded"></div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         );
@@ -36,7 +33,7 @@ function TopikPilihanWidget() {
 
     return (
         <div className="space-y-6 border-t-2 border-base-300 mt-4">
-            <div className="flex items-center justify-between mt-2">
+            <div className="mt-2">
                 <h2 className="text-lg font-bold text-news-category flex items-center gap-2 uppercase">
                     <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
                     TOPIK PILIHAN

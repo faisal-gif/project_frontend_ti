@@ -164,7 +164,7 @@ export default function RootLayout({ children }) {
                         alt="News Logo"
                         className="h-10 w-auto object-contain mx-auto lg:mx-0"
                         width={200}
-                        height={400}
+                        height={60}
                         priority
                       />
                     </Link>
@@ -175,7 +175,7 @@ export default function RootLayout({ children }) {
 
                   {/* Search */}
                   <div children="">
-                  <SearchDropdown />
+                    <SearchDropdown />
 
                   </div>
                 </div>

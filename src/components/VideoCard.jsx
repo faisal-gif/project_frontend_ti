@@ -47,8 +47,8 @@ function VideoCard({
                         alt="Video thumbnail"
                         width={750}
                         height={350}
-                        quality={100}
-                        priority={index === 0}
+                        quality={40}
+                        loading='lazy'
                         className="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300"
                     />
                     {/* Overlay gradient */}

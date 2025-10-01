@@ -12,7 +12,7 @@ export default function CekFaktaCard({ isMinimized = false }) {
           alt="Background"
           fill
           className="object-cover object-center"
-            quality={40}
+          quality={40}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-neutral/90 via-neutral/80 to-base-200/70" />
