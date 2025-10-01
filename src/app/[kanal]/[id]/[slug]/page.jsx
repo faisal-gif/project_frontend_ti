@@ -2,9 +2,17 @@ import { getNewsDetail } from '@/lib/api/newsApi';
 import React from 'react'
 import NewsDetailClient from './NewsDetailClient';
 
+
+export const revalidate = 60;
+
+async function getNews(id) {
+  return await getNewsDetail({ id });
+}
+
+
 export async function generateMetadata({ params }) {
-    const { id } = await params;
-    const newsDetail = await getNewsDetail({ id });
+    const { id } = params;
+    const newsDetail = await getNews(id);
 
     if (!newsDetail) {
         return {
@@ -44,7 +52,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
-    const { id } = await params;
-    const newsDetail = await getNewsDetail({ id });
+    const { id } = params;
+    const newsDetail = await getNews(id);
     return <NewsDetailClient initialNewsDetail={newsDetail} />;
 }
