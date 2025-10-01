@@ -39,7 +39,7 @@ export const getLipsusNews = async () => {
 export const getWansusNews = async () => {
   return await getAllNews({
     news_type: "cat",
-    cat_id: 30,
+    cat_id: 50,
     offset: 0,
     limit: 10,
   });
