@@ -23,7 +23,6 @@ function FeaturedNewsCard({
                     src={image}
                     alt={title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                     priority={index === 0} // 👈 hanya slide pertama yang priority
                     fetchPriority={index === 0 ? "high" : "auto"}
