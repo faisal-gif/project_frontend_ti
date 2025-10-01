@@ -193,7 +193,6 @@ function Home() {
                             <GoogleAds size='inline_rectangle' />
                         </div>
                         <div>
-
                             <CekFaktaCard />
                         </div>
                         <div className='sticky top-30'>
