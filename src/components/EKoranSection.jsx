@@ -28,6 +28,7 @@ function EKoranSection() {
                 alt="Background Ekoran"
                 fill
                 loading='lazy'
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 464px"
                 className="object-cover object-center -z-10" // taruh di belakang konten
             />
 
