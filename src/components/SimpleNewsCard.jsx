@@ -42,6 +42,7 @@ function SimpleNewsCard({ title, source, timeAgo, image, url, layout }) {
                                         src={image}
                                         alt={title}
                                         layout="fill"
+                                        loading='lazy'
                                         className="object-cover"
                                     />
                                 </div>

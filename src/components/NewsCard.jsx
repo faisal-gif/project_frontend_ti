@@ -71,6 +71,7 @@ function NewsCard({
                                 width={148}
                                 height={99}
                                 quality={60}
+                                loading='lazy'
                                 className="object-cover blur-md opacity-50"
                             />
                         </div>
