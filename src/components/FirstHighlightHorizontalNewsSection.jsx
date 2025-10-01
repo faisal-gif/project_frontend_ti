@@ -15,7 +15,8 @@ function FirstHighlightHorizontalNewsSection({ articles }) {
             </div>
             <div>
                 <FeaturedNewsCard
-                className='md:h-[28rem]'
+                    className='md:h-[28rem]'
+                    index={1}
                     image={articles[0].news_image_new}
                     title={articles[0].news_title}
                     author={articles[0].news_writer}
