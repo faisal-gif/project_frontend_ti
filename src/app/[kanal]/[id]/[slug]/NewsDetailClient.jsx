@@ -318,16 +318,17 @@ function NewsDetailClient({ initialNewsDetail }) {
 
                                                 />
                                             )}
-                                            <Image
-                                                src={newsDetail.news_image_new}
-                                                alt={newsDetail.news_title}
-                                                width={750} // ukuran maksimal (desktop)
-                                                height={500}
-                                                className="object-contain"
-                                                priority
-                                                fetchPriority="high"
-                                                sizes="(max-width: 768px) 380px, 750px"
-                                            />
+                                            <div className="w-[380px] h-[252px] md:w-[750px] md:h-[500px] relative">
+                                                <Image
+                                                    src={newsDetail.news_image_new}
+                                                    alt={newsDetail.news_title}
+                                                    fill
+                                                    className="object-contain"
+                                                    priority
+                                                    fetchPriority="high"
+                                                    sizes="(max-width: 768px) 380px, 750px"
+                                                />
+                                            </div>
                                         </div>
                                         <div className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </div>
 
