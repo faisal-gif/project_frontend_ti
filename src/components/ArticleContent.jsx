@@ -36,7 +36,6 @@ const ArticleContent = ({
       <Script
         src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
         strategy="lazyOnload"
-        async
       />
     </div>
   );
