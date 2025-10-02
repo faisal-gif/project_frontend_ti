@@ -10,7 +10,7 @@ import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
 import { getAllNews, updateView } from '@/lib/api/newsApi';
 import { getNewsSecondSections } from '@/lib/data';
-import { Eye, Share2,  Volume2 } from 'lucide-react';
+import { Eye, Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -26,6 +26,7 @@ function NewsDetailClient({ initialNewsDetail }) {
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState([]);
     const [newsSecondSections, setNewsSecondSections] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
@@ -46,6 +47,11 @@ function NewsDetailClient({ initialNewsDetail }) {
 
     useEffect(() => {
         getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
+    }, []);
+
+
+    useEffect(() => {
+        setIsMounted(true);
     }, []);
 
     const tim = [
@@ -128,7 +134,16 @@ function NewsDetailClient({ initialNewsDetail }) {
                                     <div className="flex flex-row items-center gap-1">
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
-                                        <span>{formatDate(newsDetail.news_datepub)}</span>
+                                        <span>
+                                            {isMounted
+                                                ? formatDate(newsDetail.news_datepub)
+                                                : new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
+                                                    day: 'numeric',
+                                                    month: 'long',
+                                                    year: 'numeric'
+                                                })
+                                            }
+                                        </span>
                                         <span className="font-bold">-</span>
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
