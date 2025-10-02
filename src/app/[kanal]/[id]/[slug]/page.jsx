@@ -11,7 +11,7 @@ const getNews = cache(async (id) => {
 export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
-    const { id } = params;
+    const { id } = await params;
     const newsDetail = await getNews(id);
 
     if (!newsDetail) {
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
-    const { id } = params;
+    const { id } = await params;
     const newsDetail = await getNews(id);
     return <NewsDetailClient initialNewsDetail={newsDetail} />;
 }
