@@ -35,7 +35,7 @@ const ArticleContent = ({
       ></ins>
       <Script
         src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
       />
     </div>
   );
