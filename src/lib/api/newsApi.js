@@ -1,4 +1,4 @@
-import { clientAxios } from "./axiosInstance";
+import { clientAxios, serverAxios } from "./axiosInstance";
 
 const getAllNews = async (
     { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
@@ -22,7 +22,7 @@ const getAllNews = async (
 
 const getNewsDetail = async ({ id }) => {
     try {
-        const response = await clientAxios.get(`news/detail/${id}`);
+        const response = await serverAxios.get(`/news_detail/${id}`);
         return response.data.data;
     } catch (error) {
         console.log(error);
