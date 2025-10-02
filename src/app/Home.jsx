@@ -1,19 +1,14 @@
 'use client';
 
-import BreakingNews from '@/components/BreakingNews';
 import EKoranSection from '@/components/EKoranSection';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
-import FloatingFactCheck from '@/components/CekFaktaCard';
 import GallerySection from '@/components/GallerySection';
 import GoogleAds from '@/components/GoogleAds';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
-import HorizontalNewsSection from '@/components/HorizontalNewsSection';
 import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
 import PopupAds from '@/components/PopUpAds';
-import SimpleNewsSection from '@/components/SimpleNewsSection';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
-import SimpleNewsCardSkeleton from '@/components/ui/SimpleNewsCardSkeleton';
 import VideoSection from '@/components/VideoSection';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/lib/data';
@@ -45,10 +40,6 @@ function Home() {
         }).then(setAllNews).catch(console.error);
     }, []);
 
-    console.log(wansusNews);
-
-
-
     return (
         <div className="">
 
@@ -63,9 +54,9 @@ function Home() {
             </div>
 
             <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
-                <div className='flex items-center justify-center mb-8'>
+                {/* <div className='flex items-center justify-center mb-8'>
                     <GoogleAds size='top_banner' />
-                </div>
+                </div> */}
             </div>
             {/* Hero */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
