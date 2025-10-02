@@ -39,7 +39,8 @@ const nextConfig = {
                 pathname: "/**", // allow semua path
             },
         ],
-        minimumCacheTTL: 60, // cache di server 60 detik
+        formats: ['image/webp', 'image/avif'],
+        minimumCacheTTL: 60 * 60 * 24 * 30,  // cache di server 60 detik
     },
     experimental: {
         optimizeCss: true,

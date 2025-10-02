@@ -42,12 +42,13 @@ function SimpleNewsCard({ title, source, timeAgo, image, url, layout }) {
                                         src={image}
                                         alt={title}
                                         layout="fill"
+                                        
                                         loading='lazy'
                                         className="object-cover"
                                     />
                                 </div>
                                 <div className="py-3">
-                                    <h3 className=" font-semibold text-xs leading-tight line-clamp-2 mb-1 group-hover:text-red-700 transition-colors">
+                                    <h3 className=" font-semibold text-sm leading-tight line-clamp-2 mb-1 group-hover:text-red-700 transition-colors">
                                         {title}
                                     </h3>
                                     
@@ -59,7 +60,7 @@ function SimpleNewsCard({ title, source, timeAgo, image, url, layout }) {
                     {
                         layout !== 'grid' && (
                             <div className={`flex ${layout === 'reverse' ? ' flex-row-reverse gap-4' : 'gap-4'} p-2`}>
-                                <div className="w-20 h-16 flex-shrink-0 relative">
+                                <div className="w-20 h-17 flex-shrink-0 relative">
                                     <Image
                                         src={image}
                                         alt={title}
