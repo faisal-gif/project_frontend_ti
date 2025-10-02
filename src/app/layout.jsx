@@ -238,7 +238,7 @@ export default function RootLayout({ children }) {
 
         <Script
           id="adsbygoogle-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
           crossOrigin="anonymous" />

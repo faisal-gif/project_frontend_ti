@@ -54,9 +54,9 @@ function Home() {
             </div>
 
             <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
-                {/* <div className='flex items-center justify-center mb-8'>
+                <div className='hidden md:flex items-center justify-center mb-8'>
                     <GoogleAds size='top_banner' />
-                </div> */}
+                </div>
             </div>
             {/* Hero */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
@@ -149,7 +149,7 @@ function Home() {
                     )}
                 </div>
                 <div className='md:col-span-2'>
-                  <TopikPilihanWidget />
+                    <TopikPilihanWidget />
                 </div>
 
             </div>
