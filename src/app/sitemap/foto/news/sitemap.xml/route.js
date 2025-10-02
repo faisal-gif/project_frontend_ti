@@ -21,7 +21,7 @@ export async function GET() {
       <loc><![CDATA[ ${process.env.NEXT_PUBLIC_URL}${item.url_ci4} ]]></loc>
       <news:news>
         <news:publication>
-          <news:name><![CDATA[ ${item.gal_title} ]]></news:name>
+          <news:name><![CDATA[ TIMES Indonesia ]]></news:name>
           <news:language><![CDATA[ id ]]></news:language>
         </news:publication>
         <news:publication_date><![CDATA[ ${item.gal_datepub} ]]></news:publication_date>

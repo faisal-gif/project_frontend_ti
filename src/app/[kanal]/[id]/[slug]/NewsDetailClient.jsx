@@ -113,7 +113,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                 </Link>
                                 {focusDetail && (
                                     <div className="py-4 md:py-2">
-                                        <Link href={focusDetail.urlPath} className="btn btn-error btn-xs btn-outline py-1 rounded-full text-sm font-medium">
+                                        <Link href={focusDetail.urlPath} className="btn btn-error btn-xs btn-outline py-1 rounded-full text-sm font-bold">
                                             {focusDetail.focnews_title}
                                         </Link>
                                     </div>
