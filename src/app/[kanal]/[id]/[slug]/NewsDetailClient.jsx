@@ -8,16 +8,14 @@ import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
-import { getAllNews, getNewsDetail, updateView } from '@/lib/api/newsApi';
+import { getAllNews, updateView } from '@/lib/api/newsApi';
 import { getNewsSecondSections } from '@/lib/data';
-import { Car, Eye, Share, Share2, User, Volume2 } from 'lucide-react';
+import { Eye, Share2,  Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Head from 'next/head';
-import { useParams } from 'next/navigation';
+
 import React, { useEffect, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
-import { getWriterDetail } from '@/lib/api/jurnalist';
 
 function NewsDetailClient({ initialNewsDetail }) {
 

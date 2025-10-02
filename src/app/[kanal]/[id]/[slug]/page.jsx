@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
                 },
             ],
             type: "article",
-            url: `https://timesindonesia.co.id${newsDetail.url_ci4}`,
+            url: `https://timesindonesia.co.id${newsDetail.url_ci4 || ''}`,
             siteName: 'TIMES Indonesia',
         },
         twitter: {
