@@ -13,7 +13,7 @@ const ArticleContent = ({
   let paragraphCount = 0;
 
   // Hitung jumlah paragraf dari htmlContent (kasar)
-  const totalParagraphs = (htmlContent.match(/<p[\s>]/g) || []).length;
+  const totalParagraphs = ((htmlContent || "").match(/<p[\s>]/g) || []).length;
   const totalReadAlso = readAlsoArticles.length;
 
   // Tentukan di paragraf ke berapa saja ReadAlso ditaruh
@@ -39,7 +39,7 @@ const ArticleContent = ({
 
       // Cek apakah paragraf ini masuk dalam distribusi ReadAlso
       const readAlsoIndex = distributeIndexes.indexOf(paragraphCount);
-      if (readAlsoIndex !== -1) {
+      if (readAlsoIndex !== -1 && readAlsoArticles[readAlsoIndex]) {
         return (
           <React.Fragment key={`frag-${index}`}>
             <p className={`text-foreground mb-6 ${getTextSizeClasses()}`}>
@@ -60,47 +60,40 @@ const ArticleContent = ({
     }
   };
 
-const handleCopy = useCallback(
-  (e) => {
-    e.preventDefault();
+  const handleCopy = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    const selection = window.getSelection();
-    if (!selection.rangeCount) return;
+      const selection = window.getSelection();
+      if (!selection.rangeCount) return;
 
-    // Ambil HTML yang diseleksi
-    const container = document.createElement("div");
-    for (let i = 0; i < selection.rangeCount; i++) {
-      container.appendChild(selection.getRangeAt(i).cloneContents());
-    }
-    const selectedHtml = container.innerHTML;
+      // Ambil HTML yang diseleksi
+      const container = document.createElement("div");
+      for (let i = 0; i < selection.rangeCount; i++) {
+        container.appendChild(selection.getRangeAt(i).cloneContents());
+      }
+      const selectedHtml = container.innerHTML;
 
-    // Buat versi plain text dengan newline
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = selectedHtml;
+      // Buat versi plain text
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = selectedHtml;
+      const plainText = tempDiv.innerText;
 
-    // Replace <p> dengan newline biar ada spasi
-    const plainText = tempDiv.innerText; 
+      const fullUrl = `https://timesindonesia.co.id${url}`;
+      const watermarkText = `\n\n---\nSumber: TIMESINDONESIA\n${fullUrl}`;
+      const watermarkHtml = `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank" rel="noopener noreferrer">TIMESINDONESIA</a>`;
 
-    const fullUrl = `https://timesindonesia.co.id${url}`;
-    const watermarkText = `\n\n---\nSumber: TIMESINDONESIA\n${fullUrl}`;
-    const watermarkHtml = `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank" rel="noopener noreferrer">TIMESINDONESIA</a>`;
-
-    // Simpan ke clipboard
-    e.clipboardData.setData("text/plain", plainText + watermarkText);
-    e.clipboardData.setData("text/html", selectedHtml + watermarkHtml);
-  },
-  [url]
-);
-
-  return (
-    <div className={`prose max-w-none ${className}`}
-      onCopy={handleCopy}>
-      {parse(htmlContent, { replace: transform })}
-    </div>
+      e.clipboardData.setData("text/plain", plainText + watermarkText);
+      e.clipboardData.setData("text/html", selectedHtml + watermarkHtml);
+    },
+    [url]
   );
 
+  return (
+    <div className={`prose max-w-none ${className}`} onCopy={handleCopy}>
+      {parse(htmlContent || "", { replace: transform })}
+    </div>
+  );
 };
-
-
 
 export default ArticleContent;

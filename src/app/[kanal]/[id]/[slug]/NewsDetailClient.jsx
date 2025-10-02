@@ -249,9 +249,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                                             </div>
                                                                         ) : (
                                                                             <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
-                                                                                <span className="text-xs">
-                                                                                    {tim.name.charAt(0).toUpperCase()}
-                                                                                </span>
+                                                                                <span className="text-xs">{tim.name?.charAt(0).toUpperCase()}</span>
                                                                             </div>
                                                                         )}
 
@@ -319,6 +317,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                 />
                                             )}
                                             <div className="w-[380px] h-[252px] md:w-[750px] md:h-[500px] relative">
+
                                                 <Image
                                                     src={newsDetail.news_image_new}
                                                     alt={newsDetail.news_title}
