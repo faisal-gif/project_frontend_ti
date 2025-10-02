@@ -321,11 +321,12 @@ function NewsDetailClient({ initialNewsDetail }) {
                                             <Image
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
-                                                width={380}
-                                                height={250}
-                                                className=" object-contain"
+                                                width={750} // ukuran maksimal (desktop)
+                                                height={500}
+                                                className="object-contain"
                                                 priority
                                                 fetchPriority="high"
+                                                sizes="(max-width: 768px) 380px, 750px"
                                             />
                                         </div>
                                         <div className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </div>
