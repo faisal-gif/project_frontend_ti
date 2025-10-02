@@ -1,14 +1,14 @@
 import { getNewsDetail } from '@/lib/api/newsApi';
-import React from 'react'
+import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 
 
-export const revalidate = 60;
 
-async function getNews(id) {
+const getNews = cache(async (id) => {
   return await getNewsDetail({ id });
-}
+});
 
+export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
     const { id } = params;
