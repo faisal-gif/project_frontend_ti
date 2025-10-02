@@ -416,7 +416,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                     </div>
                 ))}
             </div>
-            <ModalShare title={newsDetail.news_title} url={`https://timesindonesia.co.id${newsDetail.url_ci4}`} />
+            <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
         </div>
     )
 }
