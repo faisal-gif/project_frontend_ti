@@ -51,14 +51,14 @@ export default function GoogleAds({
         </button>
       )}
 
-      <ins
+      {/* <ins
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-5117046027656864"
         data-ad-slot="8134946479"
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
+      ></ins> */}
     </div>
   );
 }
