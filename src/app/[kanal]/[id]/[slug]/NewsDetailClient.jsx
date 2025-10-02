@@ -197,11 +197,12 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                                 <div className="avatar avatar-placeholder" key={index} >
                                                                     {tim.foto ? (
                                                                         <div className="w-8 bg-neutral rounded-full">
-                                                                            <Image 
-                                                                            src={tim.foto} 
-                                                                            alt={tim.name} 
-                                                                            width={32}
-                                                                            height={32}
+                                                                            <Image
+                                                                                src={tim.foto}
+                                                                                alt={tim.name}
+                                                                                width={32}
+                                                                                height={32}
+                                                                                loading='lazy'
                                                                             />
                                                                         </div>
                                                                     ) : (
@@ -238,7 +239,13 @@ function NewsDetailClient({ initialNewsDetail }) {
 
                                                                         {tim.foto ? (
                                                                             <div className="w-8 bg-neutral rounded-full">
-                                                                                <img src={tim.foto} alt={tim.name} />
+                                                                                <Image
+                                                                                    src={tim.foto}
+                                                                                    alt={tim.name}
+                                                                                    width={32}
+                                                                                    height={32}
+                                                                                    loading='lazy'
+                                                                                />
                                                                             </div>
                                                                         ) : (
                                                                             <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
@@ -314,8 +321,8 @@ function NewsDetailClient({ initialNewsDetail }) {
                                             <Image
                                                 src={newsDetail.news_image_new}
                                                 alt={newsDetail.news_title}
-                                                width={750}
-                                                height={500}         // boleh 0 kalau fill off, Next.js akan hitung otomatis
+                                                width={380}
+                                                height={250}
                                                 className=" object-contain"
                                                 priority
                                                 fetchPriority="high"
