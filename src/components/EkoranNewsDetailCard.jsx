@@ -34,7 +34,7 @@ function EkoranNewsDetailCard() {
                             <Image
                                 src={ekoran[0]?.img1}
                                 alt="TEMPO Magazine Cover"
-                                width={450} 
+                                width={450}
                                 height={340}
                                 className="w-full max-w-sm mx-auto rounded-lg shadow-lg object-cover"
                                 loading='lazy'
@@ -43,7 +43,9 @@ function EkoranNewsDetailCard() {
 
                         {/* Headlines List */}
                         <div className="space-y-4">
-                            <h3 className="text-xl md:text-2xl font-bold mb-6 text-white">{ekoran[0]?.title.split(":")[0]}</h3>
+                            <Link href={edition[0]?.url_ci4}>
+                                <h3 className="text-xl md:text-2xl font-bold mb-6 text-white">{ekoran[0]?.title.split(":")[0]}</h3>
+                            </Link>
 
                             <div className="space-y-4 text-gray-200">
 
