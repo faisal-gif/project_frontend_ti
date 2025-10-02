@@ -12,6 +12,7 @@ import { urlNav } from "@/lib/urlNav";
 import MobileListMenu from "@/components/MobileListMenu";
 import DrawerAutoClose from "@/components/DrawerAutoClose";
 import MobileMenuKanal from "@/components/MobileMenuKanal";
+import Script from "next/script";
 
 
 const geistSans = Geist({
@@ -119,6 +120,7 @@ export default function RootLayout({ children }) {
           name="msapplication-TileImage"
           content="https://timesindonesia.co.id/themes/times/assets/images/timesindonesia-favicon-144.png"
         />
+
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} antialiased`}
@@ -234,6 +236,12 @@ export default function RootLayout({ children }) {
           </div>
         </div>
 
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
+          crossOrigin="anonymous" />
 
       </body>
     </html>
