@@ -22,72 +22,72 @@ import { getWriterDetail } from '@/lib/api/jurnalist';
 function NewsDetailClient({ initialNewsDetail }) {
 
     const [size, setSize] = useState(2);
-  const [newsDetail] = useState(initialNewsDetail);
-  const [editorDetail, setEditorDetail] = useState(null);
-  const [focusDetail, setFocusDetail] = useState(null);
-  const [relatedNews, setRelatedNews] = useState([]);
-  const [newsViews, setNewsViews] = useState([]);
-  const [newsSecondSections, setNewsSecondSections] = useState([]);
+    const [newsDetail] = useState(initialNewsDetail);
+    const [editorDetail, setEditorDetail] = useState(null);
+    const [focusDetail, setFocusDetail] = useState(null);
+    const [relatedNews, setRelatedNews] = useState([]);
+    const [newsViews, setNewsViews] = useState([]);
+    const [newsSecondSections, setNewsSecondSections] = useState([]);
 
-  // Hooks selalu dipanggil, logic conditional di dalam
-  useEffect(() => {
-    if (newsDetail) {
-      getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
-      updateView({ id: newsDetail.news_id }).then(setNewsViews).catch(console.error);
+    // Hooks selalu dipanggil, logic conditional di dalam
+    useEffect(() => {
+        if (newsDetail) {
+            getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
+            updateView({ id: newsDetail.news_id }).then(setNewsViews).catch(console.error);
 
-      if (Number(newsDetail.focnews_id) !== 0) {
-        getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
-      }
+            if (Number(newsDetail.focnews_id) !== 0) {
+                getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
+            }
 
-      const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
-      if (firstTag) {
-        getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
-      }
-    }
-  }, [newsDetail]);
+            const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
+            if (firstTag) {
+                getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
+            }
+        }
+    }, [newsDetail]);
 
-  useEffect(() => {
-    getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
-  }, []);
+    useEffect(() => {
+        getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
+    }, []);
 
-  const tim = [
-    { name: newsDetail?.news_writer || '', role: "Penulis", foto: null, url: `/writer/${newsDetail?.writer_slug}` || '' },
-    { name: newsDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${newsDetail?.editor_alias}` || '' },
-    { name: newsDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
-  ];
+    const tim = [
+        { name: newsDetail?.news_writer || '', role: "Penulis", foto: null, url: `/writer/${newsDetail?.writer_slug}` || '' },
+        { name: newsDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${newsDetail?.editor_alias}` || '' },
+        { name: newsDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
+    ];
 
-      const getTags = () => {
+    const getTags = () => {
         if (!newsDetail || !newsDetail.news_tags) return [];
         return newsDetail.news_tags.split(',').map(tag => tag.trim()).filter(Boolean);
     };
 
-  const getTextSizeClasses = () => {
-    switch (size) {
-      case 1: return 'text-sm md:text-base';
-      case 2: return 'text-base md:text-lg';
-      case 3: return 'text-lg md:text-xl';
-      default: return 'text-base md:text-lg';
-    }
-  };
+    const getTextSizeClasses = () => {
+        switch (size) {
+            case 1: return 'text-sm md:text-base';
+            case 2: return 'text-base md:text-lg';
+            case 3: return 'text-lg md:text-xl';
+            default: return 'text-base md:text-lg';
+        }
+    };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMs = now - date;
-    const diffMinutes = Math.floor(diffMs / (1000 * 60));
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-    if (diffMinutes < 1) return "just now";
-    if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
-    if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-    if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        if (diffMinutes < 1) return "just now";
+        if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+        if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
 
-    return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-  };
+        return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    };
 
-  const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
-  const formatViews = (num) => (num >= 1_000_000 ? (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M' : num >= 1_000 ? (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k' : num.toString());
+    const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
+    const formatViews = (num) => (num >= 1_000_000 ? (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M' : num >= 1_000 ? (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k' : num.toString());
 
 
     return (
@@ -271,7 +271,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                 />
                                             )}
                                             <div className="w-[380px] h-[252px] md:w-[750px] md:h-[500px] relative">
-                                              
+
                                                 <Image
                                                     src={newsDetail.news_image_new}
                                                     alt={newsDetail.news_title}
@@ -403,7 +403,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                     </div>
                 ))}
             </div>
-            <ModalShare title={newsDetail.news_title} />
+            <ModalShare title={newsDetail.news_title} url={`https://timesindonesia.co.id${newsDetail.url_ci4}`} />
         </div>
     )
 }
