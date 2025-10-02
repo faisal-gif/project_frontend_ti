@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import parse, { domToReact } from 'html-react-parser';
 import ReadAlso from './ReadAlso.jsx';
+import Script from 'next/script.js';
 
 const ArticleContent = ({
   htmlContent = "",
@@ -22,31 +23,22 @@ const ArticleContent = ({
   }
 
   // Komponen Advertisement
-  const Advertisement = () => {
-    useEffect(() => {
-      const script = document.createElement("script");
-      script.src = "https://compass.adop.cc/assets/js/adop/adopJ.js?v=14";
-      script.async = true;
-      document.body.appendChild(script);
-
-      return () => {
-        document.body.removeChild(script);
-      };
-    }, []);
-
-    return (
-      <div className="my-2 mx-auto">
-        <p className="font-light text-sm text-center mb-1">Advertisement</p>
-        <ins
-          className="adsbyadop"
-          _adop_zon="424c828c-767f-47c2-bf93-4bb10c62e94e"
-          _adop_type="re"
-          style={{ display: "inline-block", width: "200px", height: "150px" }}
-          _page_url=""
-        ></ins>
-      </div>
-    );
-  };
+  const Advertisement = () => (
+    <div className="my-2 mx-auto">
+      <p className="font-light text-sm text-center mb-1">Advertisement</p>
+      <ins
+        className="adsbyadop"
+        _adop_zon="424c828c-767f-47c2-bf93-4bb10c62e94e"
+        _adop_type="re"
+        style={{ display: "inline-block", width: "300px", height: "250px" }}
+        _page_url=""
+      ></ins>
+      <Script
+        src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
+        strategy="afterInteractive"
+      />
+    </div>
+  );
 
   const transform = (node, index) => {
     if (node.name === 'p') {

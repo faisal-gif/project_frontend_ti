@@ -43,7 +43,7 @@ function EkoranNewsDetailCard() {
 
                         {/* Headlines List */}
                         <div className="space-y-4">
-                            <Link href={edition[0]?.url_ci4}>
+                            <Link href={ekoran[0]?.url_ci4}>
                                 <h3 className="text-xl md:text-2xl font-bold mb-6 text-white">{ekoran[0]?.title.split(":")[0]}</h3>
                             </Link>
 
