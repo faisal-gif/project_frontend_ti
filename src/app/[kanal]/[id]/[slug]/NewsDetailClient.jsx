@@ -197,7 +197,12 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                                 <div className="avatar avatar-placeholder" key={index} >
                                                                     {tim.foto ? (
                                                                         <div className="w-8 bg-neutral rounded-full">
-                                                                            <img src={tim.foto} alt={tim.name} />
+                                                                            <Image 
+                                                                            src={tim.foto} 
+                                                                            alt={tim.name} 
+                                                                            width={32}
+                                                                            height={32}
+                                                                            />
                                                                         </div>
                                                                     ) : (
                                                                         <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
@@ -298,8 +303,8 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                 <Image
                                                     src={focusDetail.focnews_image_body}
                                                     alt={focusDetail.focnews_title}
-                                                    width={750}
-                                                    height={500}
+                                                    width={380}
+                                                    height={250}
                                                     className="h-auto max-h-[500px] w-full object-contain rounded-2xl mb-4"
                                                     priority
                                                     fetchPriority="high"

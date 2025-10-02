@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Card from './ui/Card'
 import Link from 'next/link'
 import { getAllEkoran } from '@/lib/api/ekoran';
+import Image from 'next/image';
 
 function EkoranNewsDetailCard() {
 
@@ -30,10 +31,13 @@ function EkoranNewsDetailCard() {
                     <div className="grid md:grid-cols-2 gap-8 items-start">
                         {/* Magazine Cover */}
                         <div className="relative">
-                            <img
+                            <Image
                                 src={ekoran[0]?.img1}
                                 alt="TEMPO Magazine Cover"
-                                className="w-full max-w-sm mx-auto rounded-lg shadow-lg"
+                                width={450} 
+                                height={340}
+                                className="w-full max-w-sm mx-auto rounded-lg shadow-lg object-cover"
+                                loading='lazy'
                             />
                         </div>
 
