@@ -4,6 +4,7 @@ import { getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/li
 import { getAllNews } from '@/lib/api/newsApi';
 
 export const revalidate = 60 // ISR, regen tiap 60 detik
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "TIMES Indonesia - Berita Positif Terbaru dan Terkini",

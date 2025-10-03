@@ -1,7 +1,7 @@
-import { getAllNews } from "./api/newsApi";
+import { getAllNews, getAllNewsServer } from "./api/newsApi";
 
 export const getSportsNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 6,
     offset: 0,
@@ -10,7 +10,7 @@ export const getSportsNews = async () => {
 };
 
 export const getBusinessNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 2,
     offset: 0,
@@ -19,7 +19,7 @@ export const getBusinessNews = async () => {
 };
 
 export const getEntertainmentNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 12,
     offset: 0,
@@ -28,7 +28,7 @@ export const getEntertainmentNews = async () => {
 };
 
 export const getLipsusNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "tag",
     title: "liputan_khusus",
     offset: 0,
@@ -37,7 +37,7 @@ export const getLipsusNews = async () => {
 };
 
 export const getWansusNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 50,
     offset: 0,
@@ -46,7 +46,7 @@ export const getWansusNews = async () => {
 }
 
 export const getIndoPositifNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 30,
     offset: 0,
@@ -55,7 +55,7 @@ export const getIndoPositifNews = async () => {
 };
 
 export const getKopiTimesNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 15,
     offset: 0,
