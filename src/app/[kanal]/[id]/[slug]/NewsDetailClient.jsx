@@ -422,6 +422,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                 src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
                 async
                 strategy="afterInteractive"
+                crossOrigin="anonymous"
             />
         </div>
     )
