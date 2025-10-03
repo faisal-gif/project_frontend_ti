@@ -2,33 +2,10 @@ import React from 'react'
 import Card from './ui/Card'
 import Image from 'next/image';
 import Link from 'next/link';
+import FormattedDate from '@/utils/date/FormattedDate';
 
-function SimpleNewsCard({ title, source, timeAgo, image, url, layout }) {
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date; // selisih dalam ms
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-        if (diffMinutes < 1) {
-            return "just now";
-        } else if (diffMinutes < 60) {
-            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
-        } else if (diffHours < 24) {
-            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
-        } else if (diffDays < 7) {
-            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
-        }
-
-        // fallback pakai format lokal
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
-    };
+function SimpleNewsCard({ title, timeAgo, image, url, layout }) {
+  
 
     return (
         <Link href={url}>
@@ -74,7 +51,7 @@ function SimpleNewsCard({ title, source, timeAgo, image, url, layout }) {
                                         {title}
                                     </h3>
                                     <div className="flex items-center justify-between">
-                                        <span>{formatDate(timeAgo)}</span>
+                                        <span><FormattedDate dateString={timeAgo} /></span>
                                     </div>
                                 </div>
 

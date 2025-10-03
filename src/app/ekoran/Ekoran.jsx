@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button'
 import CountUp from '@/components/ui/CountUp'
 import EkoranHomeCardSkeleton from '@/components/ui/EkoranHomeCardSkeleton'
 import { getAllEkoran } from '@/lib/api/ekoran'
+import FormattedDate from '@/utils/date/FormattedDate'
 import { Calendar, Eye, MessageCircle, Newspaper, Users } from 'lucide-react'
 import Link from 'next/link'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
@@ -79,31 +80,6 @@ function Ekoran() {
         }
     }
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date; // selisih dalam ms
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-        if (diffMinutes < 1) {
-            return "just now";
-        } else if (diffMinutes < 60) {
-            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
-        } else if (diffHours < 24) {
-            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
-        } else if (diffDays < 7) {
-            return `${diffDays} hari${diffDays > 1 ? '' : ''} lau`;
-        }
-
-        // fallback pakai format lokal
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
-    };
 
     // Helper buat grouping
     const groupByDate = (data) => {
@@ -218,7 +194,9 @@ function Ekoran() {
                                     </h3>
                                     <div className="flex items-center gap-2 justify-center lg:justify-start mb-6">
                                         <Calendar className="h-5 w-5 text-neutral" />
-                                        <span className="text-sm text-base-content/60">{formatDate(ekoran[0].datepub)}</span>
+                                        <span className="text-sm text-base-content/60">
+                                            <FormattedDate dateString={ekoran[0].datepub} />
+                                        </span>
                                     </div>
                                     <div className="flex gap-3 justify-center lg:justify-start">
                                         <Link

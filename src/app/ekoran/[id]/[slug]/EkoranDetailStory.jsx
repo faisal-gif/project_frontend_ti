@@ -10,6 +10,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { getDetailEkoran } from '@/lib/api/ekoran';
 import EkoranReader from '@/components/EkoranReader';
 import ModalShare from '@/components/ModalShare';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 function EkoranDetailStory({ InitialEkoranDetail }) {
 
@@ -21,11 +22,7 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
     const ekoranArticle = ekoranDetail && {
         id: ekoranDetail.id,
         title: ekoranDetail.title,
-        date: new Date(ekoranDetail.datepub).toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        }),
+        date: ekoranDetail.datepub,
         views: Number(ekoranDetail.views),
         image: [
             ekoranDetail.img1,
@@ -110,7 +107,7 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
                         </Button>
                         <div>
                             <h1 className="font-semibold text-sm">{ekoranArticle.title}</h1>
-                            <p className="text-xs text-white/70">{ekoranArticle.date}</p>
+                            <p className="text-xs text-white/70"><FormattedDate dateString={ekoranArticle.date} /> </p>
                         </div>
                     </div>
 

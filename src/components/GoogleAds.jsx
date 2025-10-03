@@ -8,15 +8,15 @@ export default function GoogleAds({
 }) {
     const [isVisible, setIsVisible] = useState(true);
 
-    useEffect(() => {
-        try {
-            if (typeof window !== "undefined") {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            }
-        } catch (e) {
-            console.error("Adsense error", e);
-        }
-    }, []);
+    // useEffect(() => {
+    //     try {
+    //         if (typeof window !== "undefined") {
+    //             (window.adsbygoogle = window.adsbygoogle || []).push({});
+    //         }
+    //     } catch (e) {
+    //         console.error("Adsense error", e);
+    //     }
+    // }, []);
 
     const adSizes = {
         inline_rectangle: { width: "300px", height: "250px" },
@@ -51,7 +51,7 @@ export default function GoogleAds({
                 </button>
             )}
 
-            <ins
+            {/* <ins
                 className="adsbygoogle"
                 style={{
                     display: "inline-block",
@@ -60,7 +60,7 @@ export default function GoogleAds({
                 }}
                 data-ad-client="ca-pub-5117046027656864"
                 data-ad-slot="8134946479"
-            ></ins>
+            ></ins> */}
         </div>
     );
 }

@@ -1,11 +1,7 @@
 'use client'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { apiNews } from '@/lib/api'
-import LastesNewsCard from './LastesNewsCard'
-import PopularNews from './PopularNews'
 import LastestNewsCardSkeleton from './ui/LastestNewsCardSkeleton' // Import skeleton
 import { getAllNews } from '@/lib/api/newsApi'
-import GoogleAds from './GoogleAds'
 import NewsCard from './NewsCard'
 import Button from './ui/Button'
 import { Grid, List } from 'lucide-react'

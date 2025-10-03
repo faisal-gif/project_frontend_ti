@@ -1,9 +1,10 @@
 
 import React from 'react'
 import Card from './ui/Card'
-import { MessageCircle, Eye, Heart } from "lucide-react";
+import { Eye } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 
 function FeaturedNewsCard({
@@ -39,7 +40,7 @@ function FeaturedNewsCard({
 
                     <div className="flex items-center justify-between text-white">
                         <div className="flex items-center gap-4">
-                            <span className="text-xs md:text-sm opacity-90">{timeAgo}</span>
+                            <span className="text-xs md:text-sm opacity-90"><FormattedDate dateString={timeAgo} /> </span>
                             <div className="flex items-center gap-1">
                                 <div className="avatar avatar-placeholder">
                                     <div className="bg-neutral text-neutral-content w-5 rounded-full">

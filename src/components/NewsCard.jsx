@@ -3,6 +3,7 @@ import { Clock, User, Eye } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 import Card from './ui/Card';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 function NewsCard({
     title,
@@ -14,38 +15,6 @@ function NewsCard({
     category,
     layout = "grid", // "grid" atau "list"
 }) {
-    const slugify = (str) =>
-        str
-            .toLowerCase()
-            .replace(/[^\w\s-]/g, '')
-            .trim()
-            .replace(/\s+/g, '-');
-
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date; // selisih dalam ms
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-        if (diffMinutes < 1) {
-            return "just now";
-        } else if (diffMinutes < 60) {
-            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
-        } else if (diffHours < 24) {
-            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
-        } else if (diffDays < 7) {
-            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
-        }
-
-        // fallback pakai format lokal
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
-    };
 
     const formatViews = (num) => {
         if (num >= 1_000_000) {
@@ -58,7 +27,6 @@ function NewsCard({
     }
 
     if (layout === "list") {
-        // === LIST MODE (ambil inspirasi dari LastesNewsCard) ===
         return (
             <Link href={url} className="block group">
                 <div className="grid grid-cols-5 gap-0">
@@ -108,7 +76,7 @@ function NewsCard({
 
                             <div className="flex items-center space-x-1">
                                 <Clock className="h-3 w-3" />
-                                <span>{formatDate(datePub)}</span>
+                                <span><FormattedDate dateString={datePub} /></span>
                             </div>
 
                         </div>
@@ -158,7 +126,7 @@ function NewsCard({
                             <div className="flex items-center space-x-4">
                                 <div className="flex items-center space-x-1">
                                     <Clock className="h-3 w-3" />
-                                    <span>{formatDate(datePub)}</span>
+                                    <span><FormattedDate dateString={datePub} /></span>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-1">

@@ -5,33 +5,10 @@ import SimpleNewsCard from './SimpleNewsCard'
 import { ChevronRight, Eye, Heart, MessageCircle } from 'lucide-react'
 import Link from 'next/link';
 import Image from 'next/image';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
-   const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date; // selisih dalam ms
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-        if (diffMinutes < 1) {
-            return "just now";
-        } else if (diffMinutes < 60) {
-            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
-        } else if (diffHours < 24) {
-            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
-        } else if (diffDays < 7) {
-            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
-        }
-
-        // fallback pakai format lokal
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
-    };
     return (
         <section className="space-y-6 border-t-2 border-base-300">
             <div className="flex items-center justify-between mt-2">
@@ -63,7 +40,7 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                    <div className="text-xs mb-2 opacity-90">{formatDate(news[0].news_datepub)}</div>
+                                    <div className="text-xs mb-2 opacity-90"><FormattedDate dateString={news[0].news_datepub} /></div>
                                     <h3 className="text-sm font-bold leading-tight line-clamp-2 mb-4 text-white/70  group-hover:text-white transition-colors">
                                         {news[0].news_title}
                                     </h3>

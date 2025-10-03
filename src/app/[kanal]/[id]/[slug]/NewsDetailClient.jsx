@@ -17,6 +17,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
 import Script from 'next/script';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 function NewsDetailClient({ initialNewsDetail }) {
 
@@ -75,21 +76,6 @@ function NewsDetailClient({ initialNewsDetail }) {
         }
     };
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date;
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-        if (diffMinutes < 1) return "just now";
-        if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
-        if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-        if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-
-        return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-    };
 
     const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
     const formatViews = (num) => (num >= 1_000_000 ? (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M' : num >= 1_000 ? (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k' : num.toString());
@@ -137,7 +123,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                         <span className="inline">-</span>
                                         <span>
                                             {isMounted
-                                                ? formatDate(newsDetail.news_datepub)
+                                                ? <FormattedDate dateString={newsDetail.news_datepub} />
                                                 : new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
                                                     day: 'numeric',
                                                     month: 'long',

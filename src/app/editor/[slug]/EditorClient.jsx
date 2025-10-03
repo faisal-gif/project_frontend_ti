@@ -1,6 +1,5 @@
 'use client'
 import DetailEditor from '@/components/DetailEditor';
-import LastesNewsCard from '@/components/LastesNewsCard';
 import NewsCard from '@/components/NewsCard';
 import PopularNews from '@/components/PopularNews';
 import LastestNewsCardSkeleton from '@/components/ui/LastestNewsCardSkeleton';

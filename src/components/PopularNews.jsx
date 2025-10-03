@@ -6,62 +6,16 @@ import React, { useEffect, useState } from 'react';
 import PopularNewsSkeleton from './ui/PopularNewsSkeleton'; // Import skeleton
 import Image from 'next/image';
 import { getAllNews } from '@/lib/api/newsApi';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 export default function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
-    const [loading, setLoading] = useState(true); // Add loading state
-
+   
     useEffect(() => {
-        getAllNews({ news_type: 'populer', offset: 0, limit: 5 })
-            .then(res => {
-                setPopularNews(res);
-                setLoading(false); // Set loading to false after fetch
-            })
-            .catch(err => {
-                console.error(err);
-                setLoading(false); // Also set loading to false on error
-            });
+        getAllNews({ news_type: 'populer', offset: 0, limit: 5 }).then(setPopularNews).catch(console.error);
     }, []);
 
-
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date; // selisih dalam ms
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-        if (diffMinutes < 1) {
-            return "just now";
-        } else if (diffMinutes < 60) {
-            return `${diffMinutes} menit${diffMinutes > 1 ? '' : ''} lalu`;
-        } else if (diffHours < 24) {
-            return `${diffHours} jam${diffHours > 1 ? '' : ''} lalu`;
-        } else if (diffDays < 7) {
-            return `${diffDays} hari${diffDays > 1 ? '' : ''} lalu`;
-        }
-
-        // fallback pakai format lokal
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
-    };
-
-
-    // map popular articles to a format suitable for rendering
-    const popularArticles = popularNews.map(article => ({
-        id: article.news_id,
-        title: article.news_title,
-        image: article.news_image_new,
-        url: article.url_ci4,
-        timeAgo: formatDate(article.news_datepub),
-        views: Number(article.pageviews)
-    }));
-
-    if (loading) {
+    if (popularNews.length === 0) {
         return <PopularNewsSkeleton />;
     }
 
@@ -73,10 +27,10 @@ export default function PopularNews() {
             </div>
 
             <div className="space-y-4">
-                {popularArticles.map((article, index) => (
+                {popularNews.map((article, index) => (
                     <Link
-                        key={article.id}
-                        href={article.url}
+                        key={index}
+                        href={article.url_ci4}
                         className="block hover:bg-gray-50 transition-colors rounded p-2 -m-2"
                     >
                         <div className="flex items-start gap-3">
@@ -86,12 +40,12 @@ export default function PopularNews() {
                             <div className="flex-1">
                                 <div className='flex flex-row justify-between items-center gap-2 '>
                                     <h4 className="text-xs line-clamp-2 md:line-clamp-none md:text-sm  font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
-                                        {article.title}
+                                        {article.news_title}
                                     </h4>
                                     <div className="w-20 h-16 flex-shrink-0 relative">
                                         <Image
-                                            src={article.image}
-                                            alt={article.title}
+                                            src={article.news_image_new}
+                                            alt={article.news_title}
                                             width={400}
                                             height={400}
                                             className="object-cover rounded-md transform scale-100 transition group-hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
@@ -99,9 +53,9 @@ export default function PopularNews() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3 text-xs text-[#2A2A2A] opacity-70">
-                                    <span>{article.timeAgo}</span>
+                                    <span><FormattedDate dateString={article.news_datepub} /></span>
                                     <span>•</span>
-                                    <span>{article.views.toLocaleString()} views</span>
+                                    <span>{article.pageviews.toLocaleString()} views</span>
                                 </div>
                             </div>
 

@@ -25,14 +25,14 @@ const ArticleContent = ({
   // Komponen Advertisement
   const Advertisement = () => (
     <div className="my-2 mx-auto">
-      <p className="font-light text-sm text-center mb-1">Advertisement</p>
+      {/* <p className="font-light text-sm text-center mb-1">Advertisement</p>
       <ins
         className="adsbyadop"
         _adop_zon="424c828c-767f-47c2-bf93-4bb10c62e94e"
         _adop_type="re"
         style={{ display: "inline-block", width: "300px", height: "250px" }}
         _page_url=""
-      ></ins>
+      ></ins> */}
     </div>
   );
 

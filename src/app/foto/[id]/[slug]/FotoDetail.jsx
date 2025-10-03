@@ -23,6 +23,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 import ModalShare from '@/components/ModalShare';
+import FormattedDate from '@/utils/date/FormattedDate';
 
 function FotoDetail({ initialFotoDetail }) {
 
@@ -74,34 +75,6 @@ function FotoDetail({ initialFotoDetail }) {
         }
     };
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffMs = now - date; // selisih dalam ms
-        const diffMinutes = Math.floor(diffMs / (1000 * 60));
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-        if (diffMinutes < 1) {
-            return "just now";
-        } else if (diffMinutes < 60) {
-            return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
-        } else if (diffHours < 24) {
-            return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-        } else if (diffDays < 7) {
-            return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-        }
-
-        // fallback pakai format lokal
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    };
-
     const slugify = (text) =>
         text
             .toLowerCase()
@@ -143,7 +116,9 @@ function FotoDetail({ initialFotoDetail }) {
                                     <div className="flex flex-row items-center gap-1">
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
-                                        <span>{formatDate(fotoDetail.gal_datepub)}</span>
+                                        <span>
+                                            <FormattedDate dateString={fotoDetail.gal_datepub} />
+                                        </span>
                                     </div>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">
