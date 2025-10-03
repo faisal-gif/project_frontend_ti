@@ -20,6 +20,46 @@ const getAllNews = async (
     }
 };
 
+const getAllNewsIndex = async (
+    { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
+) => {
+    try {
+        const response = await clientAxios.get("news/all-index", {
+            params: {
+                news_type: news_type,
+                cat_id: cat_id,
+                offset: offset,
+                title: title,
+                limit: limit,
+                editor_id: editor_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const getAllNewsServer = async (
+    { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
+) => {
+    try {
+        const response = await serverAxios.get("/all_news/", {
+            params: {
+                news_type: news_type,
+                cat_id: cat_id,
+                offset: offset,
+                title: title,
+                limit: limit,
+                editor_id: editor_id
+            },
+        });
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 const getNewsDetail = async ({ id }) => {
     try {
         const response = await serverAxios.get(`/news_detail/${id}`);
@@ -40,6 +80,8 @@ const updateView = async ({ id }) => {
 
 export {
     getAllNews,
+    getAllNewsIndex,
+    getAllNewsServer,
     getNewsDetail,
     updateView
 }

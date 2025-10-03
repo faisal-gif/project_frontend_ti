@@ -23,16 +23,9 @@ export async function GET(request, { params }) {
             .map(
                 (item) => `
     <url>
-      <loc><![CDATA[ ${process.env.NEXT_PUBLIC_URL}${item.url_ci4} ]]></loc>
-      <news:news>
-        <news:publication>
-          <news:name><![CDATA[ TIMES Indonesia ]]></news:name>
-          <news:language><![CDATA[ id ]]></news:language>
-        </news:publication>
-        <news:publication_date><![CDATA[ ${item.news_datepub} ]]></news:publication_date>
-        <news:title><![CDATA[ ${item.news_title} ]]></news:title>
-        <news:keywords><![CDATA[ ${item.news_tags} ]]></news:keywords>
-      </news:news>
+        <loc>${process.env.NEXT_PUBLIC_URL}${item.url_ci4}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>`
             )
             .join("")}
