@@ -21,24 +21,13 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 
 
 
-function Home() {
-
-
-    const [newsFirstSections, setNewsFirstSections] = useState([]);
-    const [newsSecondSections, setNewsSecondSections] = useState([]);
-    const [allNews, setAllNews] = useState([]);
-    const [wansusNews, setWansusNews] = useState([]);
-
-    useEffect(() => {
-        getNewsFirstSections().then(setNewsFirstSections).catch(console.error);
-        getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
-        getWansusNews().then(setWansusNews).catch(console.error);
-        getAllNews({
-            news_type: "all",
-            offset: 0,
-            limit: 4,
-        }).then(setAllNews).catch(console.error);
-    }, []);
+function Home(
+    { initialNewsFirstSections, initialNewsSecondSections, initialWansusNews, initialLastNews }
+) {
+    const [newsFirstSections] = useState(initialNewsFirstSections);
+    const [newsSecondSections] = useState(initialNewsSecondSections);
+    const [allNews] = useState(initialLastNews);
+    const [wansusNews] = useState(initialWansusNews);
 
     return (
         <div className="">
