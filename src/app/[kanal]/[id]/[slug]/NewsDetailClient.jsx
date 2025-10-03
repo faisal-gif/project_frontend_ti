@@ -18,6 +18,7 @@ import React, { useEffect, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
 import Script from 'next/script';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 function NewsDetailClient({ initialNewsDetail }) {
 
@@ -78,7 +79,6 @@ function NewsDetailClient({ initialNewsDetail }) {
 
 
     const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
-    const formatViews = (num) => (num >= 1_000_000 ? (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M' : num >= 1_000 ? (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k' : num.toString());
 
 
     return (
@@ -135,7 +135,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
                                             <div>
-                                                {formatViews(Number(newsViews.pageviews))}
+                                                <FormattedViews count={newsViews.pageviews} />
                                             </div>
                                         </span>
                                     </div>

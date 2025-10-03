@@ -4,6 +4,7 @@ import Card from './ui/Card';
 import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 function HorizontalNewsCard({
     id,
@@ -31,7 +32,7 @@ function HorizontalNewsCard({
                     />
                     <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
                         <Eye className="w-3 h-3" />
-                        {views.toLocaleString()}
+                        <FormattedViews count={views} />
                     </div>
                 </div>
 

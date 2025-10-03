@@ -3,8 +3,6 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { getDetailEkoran } from '@/lib/api/ekoran';
 import {
-  ArrowLeft,
-  Download,
   Share2,
   ZoomIn,
   ZoomOut,

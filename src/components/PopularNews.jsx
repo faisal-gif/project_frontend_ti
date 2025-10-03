@@ -7,10 +7,11 @@ import PopularNewsSkeleton from './ui/PopularNewsSkeleton'; // Import skeleton
 import Image from 'next/image';
 import { getAllNews } from '@/lib/api/newsApi';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 export default function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
-   
+
     useEffect(() => {
         getAllNews({ news_type: 'populer', offset: 0, limit: 5 }).then(setPopularNews).catch(console.error);
     }, []);
@@ -55,7 +56,7 @@ export default function PopularNews() {
                                 <div className="flex items-center gap-3 text-xs text-[#2A2A2A] opacity-70">
                                     <span><FormattedDate dateString={article.news_datepub} /></span>
                                     <span>•</span>
-                                    <span>{article.pageviews.toLocaleString()} views</span>
+                                    <span><FormattedViews count={article.pageviews} /> views</span>
                                 </div>
                             </div>
 

@@ -6,6 +6,7 @@ import { Eye, Newspaper } from 'lucide-react'
 import Image from 'next/image';
 import Link from 'next/link';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 function FotografiCard({
     datepub,
@@ -36,7 +37,7 @@ function FotografiCard({
                     {/* Views badge */}
                     <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
                         <Eye className="w-3 h-3" />
-                        {gal_view.toLocaleString()}
+                        <FormattedViews count={gal_view} />
                     </div>
 
                     {/* Title + Date inside image */}

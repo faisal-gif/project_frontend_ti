@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Card from './ui/Card';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 function NewsCard({
     title,
@@ -15,16 +16,6 @@ function NewsCard({
     category,
     layout = "grid", // "grid" atau "list"
 }) {
-
-    const formatViews = (num) => {
-        if (num >= 1_000_000) {
-            return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
-        }
-        if (num >= 1_000) {
-            return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k';
-        }
-        return num.toString();
-    }
 
     if (layout === "list") {
         return (
@@ -71,7 +62,7 @@ function NewsCard({
                         <div className="flex items-center justify-start gap-2 text-xs text-muted-foreground">
                             <div className="flex items-center space-x-1">
                                 <Eye className="h-3 w-3" />
-                                <span>{formatViews(views)}</span>
+                                <span><FormattedViews count={views} /></span>
                             </div>
 
                             <div className="flex items-center space-x-1">
@@ -131,7 +122,7 @@ function NewsCard({
                             </div>
                             <div className="flex items-center space-x-1">
                                 <Eye className="h-3 w-3" />
-                                <span>{formatViews(views)}</span>
+                                <span><FormattedViews count={views} /></span>
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ import { Eye } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 
 function FeaturedNewsCard({
@@ -56,7 +57,7 @@ function FeaturedNewsCard({
                         <div className="flex items-center gap-4 text-xs md:text-sm opacity-90">
                             <div className="flex items-center gap-1">
                                 <Eye className="w-4 h-4" />
-                                <span>{views.toLocaleString()}</span>
+                                <span><FormattedViews count={views} /> </span>
                             </div>
 
                         </div>

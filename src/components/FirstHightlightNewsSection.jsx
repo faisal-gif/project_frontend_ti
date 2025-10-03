@@ -6,6 +6,7 @@ import { ChevronRight, Eye, Heart, MessageCircle } from 'lucide-react'
 import Link from 'next/link';
 import Image from 'next/image';
 import FormattedDate from '@/utils/date/FormattedDate';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
 
@@ -53,7 +54,7 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
                                         </div> */}
                                             <div className="flex items-center gap-1">
                                                 <Eye className="w-4 h-4" />
-                                                <span>{Number(news[0].pageviews).toLocaleString()}</span>
+                                                <span><FormattedViews count={news[0].pageviews} /></span>
                                             </div>
                                             {/* <div className="flex items-center gap-1">
                                             <Heart className="w-4 h-4" />
