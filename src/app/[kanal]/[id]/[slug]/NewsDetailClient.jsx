@@ -16,6 +16,7 @@ import Link from 'next/link';
 
 import React, { useEffect, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
+import Script from 'next/script';
 
 function NewsDetailClient({ initialNewsDetail }) {
 
@@ -97,9 +98,9 @@ function NewsDetailClient({ initialNewsDetail }) {
     return (
         <div className="max-w-6xl mx-auto px-4 py-24 ">
 
-            {/* <div className='flex items-center justify-center'>
+            <div className='hidden md:flex items-center justify-center'>
                 <GoogleAds size='top_banner' />
-            </div> */}
+            </div>
 
             <div className='grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-20'>
                 {!newsDetail ? (
@@ -417,6 +418,11 @@ function NewsDetailClient({ initialNewsDetail }) {
                 ))}
             </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
+            <Script
+                src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
+                async
+                strategy="afterInteractive"
+            />
         </div>
     )
 }

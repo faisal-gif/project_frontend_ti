@@ -33,10 +33,6 @@ const ArticleContent = ({
         style={{ display: "inline-block", width: "300px", height: "250px" }}
         _page_url=""
       ></ins>
-      <Script
-        src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
-        strategy="afterInteractive"
-      />
     </div>
   );
 
