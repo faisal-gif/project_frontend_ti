@@ -16,7 +16,7 @@ export const metadata = {
     siteName: 'TIMES Indonesia',
     images: [
       {
-        url: "/icon.png",
+        url: `${process.env.API_URL}/icon.png`,
         width: 500,
         height: 500,
         alt: "TIMES Indonesia Logo",
