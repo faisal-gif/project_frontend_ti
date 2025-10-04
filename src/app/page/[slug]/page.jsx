@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
       description: pageDetail.page_desk,
       images: [
         {
-          url: "/icon.png",
+          url: `${process.env.API_URL}/icon.png`,
           width: 500,
           height: 500,
           alt: "TIMES Indonesia Logo",
