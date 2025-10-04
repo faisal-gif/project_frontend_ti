@@ -43,6 +43,7 @@ function NewsCard({
                                 width={148}
                                 height={99}
                                 quality={60}
+                                loading='lazy'
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>
@@ -91,6 +92,7 @@ function NewsCard({
                                 sizes="(max-width: 768px) 100vw,
                                         (max-width: 1200px) 50vw,
                                         33vw"
+                                loading='lazy'
                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             {category && (
