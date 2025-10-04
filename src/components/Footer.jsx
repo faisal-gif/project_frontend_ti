@@ -172,7 +172,7 @@ function Footer() {
       {/* Bottom Footer */}
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex flex-wrap items-center justify-center space-x-6 text-xs md:text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-center text-xs md:text-sm">
             <Link href="/page/legal-privacy" className="text-white/65 hover:text-[#b51d1d] transition-colors">Kebijakan Privasi</Link>
             <Link href="/page/terms-and-conditions" className="text-white/65 hover:text-[#b51d1d] transition-colors">Syarat & Ketentuan</Link>
             <Link href="/page/tentang-kami" className="text-white/65 hover:text-[#b51d1d] transition-colors">Tentang Kami</Link>

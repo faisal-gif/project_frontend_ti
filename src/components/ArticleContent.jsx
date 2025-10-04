@@ -51,7 +51,7 @@ const ArticleContent = ({
       if (paragraphCount === 1) {
         return (
           <p className={`text-foreground mb-6 ${getTextSizeClasses()}`} key={`p-${index}`}>
-            <strong>TIMESINDONESIA, {lokus} - </strong>
+            <strong>{lokus} – </strong>
             {domToReact(node.children || [])}
           </p>
         );
@@ -110,8 +110,8 @@ const ArticleContent = ({
       const plainText = tempDiv.innerText || "";
 
       const fullUrl = url ? `https://timesindonesia.co.id${url}` : "";
-      const watermarkText = fullUrl ? `\n\n---\nSumber: TIMESINDONESIA\n${fullUrl}` : "";
-      const watermarkHtml = fullUrl ? `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank" rel="noopener noreferrer">TIMESINDONESIA</a>` : "";
+      const watermarkText = fullUrl ? `\n\n---\nSumber: TIMES INDONESIA\n${fullUrl}` : "";
+      const watermarkHtml = fullUrl ? `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank" rel="noopener noreferrer">TIMES INDONESIA</a>` : "";
 
       e.clipboardData.setData("text/plain", plainText + watermarkText);
       e.clipboardData.setData("text/html", selectedHtml + watermarkHtml);
@@ -122,6 +122,13 @@ const ArticleContent = ({
   return (
     <div className={`prose max-w-none ${className}`} onCopy={handleCopy}>
       {htmlContent ? parse(htmlContent, { replace: transform }) : null}
+      <p className='text-foreground text-base md:text-lg'>
+        Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
+        <br />
+        Klik 👉 <a href="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D">Channel TIMES Indonesia</a>
+        <br />
+        Pastikan WhatsApp kamu sudah terpasang.
+      </p>
     </div>
   );
 };
