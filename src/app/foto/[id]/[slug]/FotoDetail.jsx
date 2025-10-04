@@ -1,7 +1,6 @@
 'use client';
 import ArticleContent from '@/components/ArticleContent';
 import EkoranNewsDetailCard from '@/components/EkoranNewsDetailCard';
-import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import GoogleAds from '@/components/GoogleAds';
 import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
