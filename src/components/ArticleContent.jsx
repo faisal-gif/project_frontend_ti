@@ -51,7 +51,7 @@ const ArticleContent = ({
       if (paragraphCount === 1) {
         return (
           <p className={`text-foreground mb-6 ${getTextSizeClasses()}`} key={`p-${index}`}>
-            <strong>{lokus} – </strong>
+            <strong>{lokus ?? "TIMESINDONESIA"} – </strong>
             {domToReact(node.children || [])}
           </p>
         );
