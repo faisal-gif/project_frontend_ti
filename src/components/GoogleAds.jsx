@@ -48,6 +48,7 @@ export default function GoogleAds({
                     className="absolute top-1 right-1 text-gray-600 hover:text-red-500"
                 >
                     <X size={16} />
+                    <span className="sr-only">Tutup</span>
                 </button>
          
             {/* <ins

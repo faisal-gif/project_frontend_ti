@@ -39,6 +39,7 @@ const PopupAd = ({ onClose }) => {
             className="btn btn-circle btn-sm absolute right-2 top-2 bg-base-100 hover:bg-base-200"
           >
             <X className="h-5 w-5" />
+            <span className="sr-only">Tutup</span>
           </button>
         </form>
 
