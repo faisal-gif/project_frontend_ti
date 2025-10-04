@@ -39,11 +39,11 @@ export const metadata = {
   },
   // ✅ Robots
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       "max-image-preview": "large",
     },
   },
