@@ -1,11 +1,17 @@
 import { getFotoDetail } from '@/lib/api/fotoApi';
-import React from 'react'
+import React, { cache } from 'react'
 import FotoDetail from './FotoDetail';
+
+const getFoto = cache(async (id) => {
+  return await getFotoDetail({ id });
+});
+
+export const revalidate = 60;
 
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const fotoDetail = await getFotoDetail({ id });
+  const fotoDetail = await getFoto(id);
 
   if (!fotoDetail) {
     return {
@@ -48,8 +54,8 @@ export async function generateMetadata({ params }) {
 
 export default async function page({ params }) {
   const { id } = await params;
-  const fotoDetail = await getFotoDetail({ id });
+  const fotoDetail = await getFoto(id);
   return (
-   <FotoDetail initialFotoDetail={fotoDetail} />
+    <FotoDetail initialFotoDetail={fotoDetail} />
   )
 }

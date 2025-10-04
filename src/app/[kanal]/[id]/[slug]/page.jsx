@@ -1,9 +1,6 @@
 import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
-import { getNewsSecondSections, getNewsSecondSectionsServer } from '@/lib/data';
-
-
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
