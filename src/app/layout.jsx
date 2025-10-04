@@ -13,22 +13,6 @@ import DrawerAutoClose from "@/components/DrawerAutoClose";
 import MobileMenuKanal from "@/components/MobileMenuKanal";
 import Script from "next/script";
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const ebGaramond = EB_Garamond({
-  variable: "--font-EB-Garamond",
-  subsets: ["latin"],
-});
-
 const menu = [
   { name: "Internasional", slug: "internasional", src: "/kanal/peristiwa-internasional" },
   { name: "Nasional", slug: "nasional", src: "/kanal/peristiwa-nasional" },
@@ -122,7 +106,7 @@ export default function RootLayout({ children }) {
 
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} antialiased`}
+        className={`antialiased`}
       >
         <TopLoader />
         <DrawerAutoClose />
