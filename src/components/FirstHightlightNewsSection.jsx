@@ -29,6 +29,7 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
                                     alt={news[0].news_title}
                                     fill
                                     loading='lazy'
+                                    quality={70}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
