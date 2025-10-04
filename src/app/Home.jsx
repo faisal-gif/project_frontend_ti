@@ -1,5 +1,4 @@
-'use client';
-
+'use client'
 import EKoranSection from '@/components/EKoranSection';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import GallerySection from '@/components/GallerySection';
@@ -10,9 +9,7 @@ import PopularNews from '@/components/PopularNews';
 import PopupAds from '@/components/PopUpAds';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
 import VideoSection from '@/components/VideoSection';
-import { getAllNews } from '@/lib/api/newsApi';
-import { getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/lib/data';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CekFaktaCard from '@/components/CekFaktaCard';
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
@@ -21,24 +18,7 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 
 
 
-function Home() {
-
-
-    const [newsFirstSections, setNewsFirstSections] = useState([]);
-    const [newsSecondSections, setNewsSecondSections] = useState([]);
-    const [allNews, setAllNews] = useState([]);
-    const [wansusNews, setWansusNews] = useState([]);
-
-    useEffect(() => {
-        getNewsFirstSections().then(setNewsFirstSections).catch(console.error);
-        getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
-        getWansusNews().then(setWansusNews).catch(console.error);
-        getAllNews({
-            news_type: "all",
-            offset: 0,
-            limit: 4,
-        }).then(setAllNews).catch(console.error);
-    }, []);
+function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews }) {
 
     return (
         <div className="">

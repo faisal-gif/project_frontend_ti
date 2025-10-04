@@ -1,7 +1,7 @@
-import { getAllNews } from "./api/newsApi";
+import { getAllNews, getAllNewsServer } from "./api/newsApi";
 
 export const getSportsNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 6,
     offset: 0,
@@ -10,7 +10,7 @@ export const getSportsNews = async () => {
 };
 
 export const getBusinessNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 8,
     offset: 0,
@@ -19,7 +19,7 @@ export const getBusinessNews = async () => {
 };
 
 export const getEntertainmentNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 12,
     offset: 0,
@@ -28,7 +28,7 @@ export const getEntertainmentNews = async () => {
 };
 
 export const getLipsusNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "tag",
     title: "liputan_khusus",
     offset: 0,
@@ -37,7 +37,7 @@ export const getLipsusNews = async () => {
 };
 
 export const getWansusNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 50,
     offset: 0,
@@ -46,7 +46,7 @@ export const getWansusNews = async () => {
 }
 
 export const getIndoPositifNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 30,
     offset: 0,
@@ -55,7 +55,7 @@ export const getIndoPositifNews = async () => {
 };
 
 export const getKopiTimesNews = async () => {
-  return await getAllNews({
+  return await getAllNewsServer({
     news_type: "cat",
     cat_id: 15,
     offset: 0,
@@ -63,44 +63,70 @@ export const getKopiTimesNews = async () => {
   });
 };
 
+// --- UBAH FUNGSI INI ---
 export const getNewsFirstSections = async () => {
-  return [
+    // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
+    const sportsPromise = getSportsNews();
+    const businessPromise = getBusinessNews();
+    const lipsusPromise = getLipsusNews();
 
-    {
-      title: "Olahraga",
-      news: await getSportsNews(),
-      layout: 'normal',
-    },
-    {
-      title: "Ekonomi",
-      news: await getBusinessNews(),
-      layout: 'grid',
-    },
-    {
-      title: "Liputan Khusus",
-      news: await getLipsusNews(),
-      layout: 'reverse',
-    },
+    // 2. Jalankan semua promise secara bersamaan
+    const [sportsNews, businessNews, lipsusNews] = await Promise.all([
+        sportsPromise,
+        businessPromise,
+        lipsusPromise,
+    ]);
 
-  ];
+    // 3. Susun hasilnya setelah semua data diterima
+    return [
+        {
+            title: "Olahraga",
+            news: sportsNews,
+            layout: 'normal',
+        },
+        {
+            title: "Ekonomi",
+            news: businessNews,
+            layout: 'grid',
+        },
+        {
+            title: "Liputan Khusus",
+            news: lipsusNews,
+            layout: 'reverse',
+        },
+    ];
 };
 
+// --- UBAH FUGSI INI JUGA ---
 export const getNewsSecondSections = async () => {
-  return [
-    {
-      title: "Gaya Hidup",
-      layout: 'normal',
-      news: await getEntertainmentNews(),
-    },
-    {
-      title: "Indonesia Positif",
-      layout: 'grid',
-      news: await getIndoPositifNews(),
-    },
-    {
-      title: "Kopi Times",
-      layout: 'reverse',
-      news: await getKopiTimesNews(),
-    },
-  ];
+    // 1. Panggil semua fungsi tanpa 'await'
+    const entertainmentPromise = getEntertainmentNews();
+    const indoPositifPromise = getIndoPositifNews();
+    const kopiTimesPromise = getKopiTimesNews();
+
+    // 2. Jalankan semua promise secara bersamaan
+    const [entertainmentNews, indoPositifNews, kopiTimesNews] = await Promise.all([
+        entertainmentPromise,
+        indoPositifPromise,
+        kopiTimesPromise,
+    ]);
+
+    // 3. Susun hasilnya
+    return [
+        {
+            title: "Gaya Hidup",
+            layout: 'normal',
+            news: entertainmentNews,
+        },
+        {
+            title: "Indonesia Positif",
+            layout: 'grid',
+            news: indoPositifNews,
+        },
+        {
+            title: "Kopi Times",
+            layout: 'reverse',
+            news: kopiTimesNews,
+        },
+    ];
 };

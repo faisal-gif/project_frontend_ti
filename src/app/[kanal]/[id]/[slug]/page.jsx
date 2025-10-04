@@ -1,11 +1,12 @@
 import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
+import { getNewsSecondSections } from '@/lib/data';
 
 
 
 const getNews = cache(async (id) => {
-  return await getNewsDetail({ id });
+    return await getNewsDetail({ id });
 });
 
 export const revalidate = 60;
@@ -53,6 +54,21 @@ export async function generateMetadata({ params }) {
 
 export default async function page({ params }) {
     const { id } = await params;
-    const newsDetail = await getNews(id);
-    return <NewsDetailClient initialNewsDetail={newsDetail} />;
+     console.time("getNewsDetail");
+    const newsDetail = getNews(id);
+    console.timeEnd("getNewsDetail");
+    console.time("getNewsSecondSections");
+    const secondSectionsPromise = getNewsSecondSections();
+    console.timeEnd("getNewsSecondSections");
+
+
+    const [
+        initialNewsDetail,
+        newsSecondSections,
+
+    ] = await Promise.all([
+        newsDetail,
+        secondSectionsPromise,
+    ]);
+    return <NewsDetailClient initialNewsDetail={initialNewsDetail} initialSecondSection={newsSecondSections} />;
 }

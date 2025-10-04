@@ -20,7 +20,7 @@ import Script from 'next/script';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 
-function NewsDetailClient({ initialNewsDetail }) {
+function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
@@ -28,7 +28,7 @@ function NewsDetailClient({ initialNewsDetail }) {
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState([]);
-    const [newsSecondSections, setNewsSecondSections] = useState([]);
+    const [newsSecondSections] = useState(initialSecondSection);
     const [isMounted, setIsMounted] = useState(false);
 
     // Hooks selalu dipanggil, logic conditional di dalam
@@ -48,9 +48,6 @@ function NewsDetailClient({ initialNewsDetail }) {
         }
     }, [newsDetail]);
 
-    useEffect(() => {
-        getNewsSecondSections().then(setNewsSecondSections).catch(console.error);
-    }, []);
 
 
     useEffect(() => {

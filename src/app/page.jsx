@@ -1,5 +1,7 @@
 import React from 'react'
 import Home from './Home'
+import { getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/lib/data';
+import { getAllNews, getAllNewsServer } from '@/lib/api/newsApi';
 
 export const metadata = {
   title: "TIMES Indonesia - Berita Positif Terbaru dan Terkini",
@@ -24,10 +26,45 @@ export const metadata = {
   },
 };
 
-function page() {
+export default async function page() {
+    console.time("Total data fetching time"); // Mulai timer total
+
+    console.time("getNewsFirstSections");
+    const firstSectionsPromise = getNewsFirstSections();
+    console.timeEnd("getNewsFirstSections"); // Ukur waktu inisialisasi (akan cepat)
+
+    console.time("getNewsSecondSections");
+    const secondSectionsPromise = getNewsSecondSections();
+    console.timeEnd("getNewsSecondSections");
+
+    console.time("getWansusNews");
+    const wansusPromise = getWansusNews();
+    console.timeEnd("getWansusNews");
+
+    console.time("getAllNews");
+    const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
+    console.timeEnd("getAllNews");
+
+    const [
+        newsFirstSections,
+        newsSecondSections,
+        wansusNews,
+        allNews,
+    ] = await Promise.all([
+        firstSectionsPromise,
+        secondSectionsPromise,
+        wansusPromise,
+        allNewsPromise,
+    ]);
+
+    console.timeEnd("Total data fetching time"); // Selesai timer total
+
   return (
-    <Home />
+    <Home 
+    newsFirstSections={newsFirstSections}
+    newsSecondSections={newsSecondSections}
+    wansusNews={wansusNews}
+    allNews={allNews}
+    />
   )
 }
-
-export default page
