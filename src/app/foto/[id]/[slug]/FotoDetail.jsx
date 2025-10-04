@@ -8,8 +8,6 @@ import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
 import { getFotoSlide } from '@/lib/api/fotoApi';
-import { getAllNews, updateView } from '@/lib/api/newsApi';
-import { getNewsSecondSections } from '@/lib/data';
 import { Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,9 +17,6 @@ import Lightbox from 'yet-another-react-lightbox';
 import Inline from 'yet-another-react-lightbox/plugins/inline';
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import "yet-another-react-lightbox/styles.css";
 import ModalShare from '@/components/ModalShare';
 import FormattedDate from '@/utils/date/FormattedDate';
 

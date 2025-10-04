@@ -2,13 +2,12 @@ import { EB_Garamond, Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link'
 import "./globals.css";
 import Footer from "@/components/Footer";
-import FloatingFactCheck from "@/components/CekFaktaCard";
 import Image from "next/image";
 import TopLoader from "@/components/ui/TopLoader";
 import SearchDropdown from "@/components/SearchDropdown";
 
 import DesktopListMenu from "@/components/DesktopListMenu";
-import { urlNav } from "@/lib/urlNav";
+
 import MobileListMenu from "@/components/MobileListMenu";
 import DrawerAutoClose from "@/components/DrawerAutoClose";
 import MobileMenuKanal from "@/components/MobileMenuKanal";
@@ -125,6 +124,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} antialiased`}
       >
+        <TopLoader />
         <DrawerAutoClose />
         <div className="drawer">
           <input id="drawer-nav" type="checkbox" aria-label="Drawer toggle" className="drawer-toggle" />
@@ -199,7 +199,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            <TopLoader />
+
             {/* Page content here */}
             <div className="my-12">
               {children}

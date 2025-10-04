@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import NProgress from 'nprogress'
-import '../../app/styles/nprogress.css'
 
 NProgress.configure({ showSpinner: false })
 

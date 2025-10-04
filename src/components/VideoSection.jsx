@@ -1,12 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import Inline from "yet-another-react-lightbox/plugins/inline";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 import Carousel from "./ui/Carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
