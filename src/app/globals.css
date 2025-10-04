@@ -6,12 +6,6 @@
 
 @import './styles/nprogress.css';
 
-@import "yet-another-react-lightbox/styles.css";
-@import "yet-another-react-lightbox/plugins/thumbnails.css";
-@import "yet-another-react-lightbox/styles.css";
-
-
-
  .yarl__container {
   background-color: rgba(0, 0, 0, 0.6) !important;
 }
