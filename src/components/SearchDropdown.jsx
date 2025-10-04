@@ -1,8 +1,9 @@
-'use client'
+"use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Search, X } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import { getAllNews } from "@/lib/api/newsApi";
+import { useRouter } from "next/navigation";
 
 
 const SearchDropdown = () => {
@@ -10,8 +11,7 @@ const SearchDropdown = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
-
-
+  const router = useRouter();
 
   // fetch news setiap kali query berubah
   useEffect(() => {
@@ -49,6 +49,16 @@ const SearchDropdown = () => {
     setResults([]);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (query.trim()) {
+        router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+        clearSearch();
+      }
+    }
+  };
+
   return (
     <div className="dropdown dropdown-bottom dropdown-end ">
       {/* tombol trigger */}
@@ -74,9 +84,9 @@ const SearchDropdown = () => {
               placeholder="Search news..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="grow outline-none bg-transparent"
             />
-
           </label>
         </div>
 
@@ -84,9 +94,7 @@ const SearchDropdown = () => {
         {query && (
           <div className="max-h-72 overflow-y-auto">
             {loading ? (
-              <div className="text-sm text-gray-500 px-2 py-1">
-                Mencari...
-              </div>
+              <div className="text-sm text-gray-500 px-2 py-1">Mencari...</div>
             ) : results.length > 0 ? (
               <>
                 <div className="text-xs text-gray-500 mb-2">
@@ -112,9 +120,6 @@ const SearchDropdown = () => {
                         <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
                           {result.cat_title}
                         </span>
-                        {/* <span className="text-xs text-gray-400">
-                          {result.time_ago}
-                        </span> */}
                       </div>
                     </div>
                   </Link>

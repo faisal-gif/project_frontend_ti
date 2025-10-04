@@ -98,9 +98,7 @@ function KanalDetail({InitialKanalDetail}) {
             {detailKanal?.catnews_description || 'Memuat...'}
           </p>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            {/* <span>(jumlah artikel) artikel tersedia</span>
-            <span>•</span>
-            <span>Update terakhir: 2 jam lalu</span> */}
+          
           </div>
         </div>
       </div>
