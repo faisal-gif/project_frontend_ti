@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
     images: {
         remotePatterns: [
@@ -44,21 +45,8 @@ const nextConfig = {
     },
     experimental: {
         optimizeCss: true,
+        cssChunking: true, 
     },
-
-    webpack: (config, { dev, isServer }) => {
-        if (!dev && !isServer) {
-            config.plugins.push(
-                new Critters({
-                    preload: 'swap',
-                    compress: true,
-                    pruneSource: true,
-                })
-            );
-        }
-        return config;
-    },
-
 };
 
 export default nextConfig;
