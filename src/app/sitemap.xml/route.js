@@ -6,13 +6,13 @@ export const dynamic = "force-dynamic";
 export async function GET() {
 
     const basic = [
-        `${process.env.NEXT_PUBLIC_URL}/basic/sitemap.xml`,
-        `${process.env.NEXT_PUBLIC_URL}/ekoran/news/sitemap.xml`,
-        `${process.env.NEXT_PUBLIC_URL}/ekoran/web/sitemap.xml`,
-        `${process.env.NEXT_PUBLIC_URL}/fokus/news/sitemap.xml`,
-        `${process.env.NEXT_PUBLIC_URL}/fokus/web/sitemap.xml`,
-        `${process.env.NEXT_PUBLIC_URL}/foto/news/sitemap.xml`,
-        `${process.env.NEXT_PUBLIC_URL}/foto/web/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/basic/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/ekoran/news/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/ekoran/web/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/fokus/news/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/fokus/web/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/foto/news/sitemap.xml`,
+        `${process.env.NEXT_PUBLIC_URL}/sitemap/foto/web/sitemap.xml`,
     ];
 
     let kanal = [];
