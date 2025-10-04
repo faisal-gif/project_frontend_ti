@@ -36,9 +36,9 @@ function HorizontalNewsCard({
 
                 <div className="py-2 flex flex-col justify-between h-full">
                     <div>
-                        <h2 className="text-sm font-semibold text-foreground leading-tight mb-2 line-clamp-2 hover:text-red-600 transition-colors duration-200">
+                        <h3 className="text-sm font-semibold text-foreground leading-tight mb-2 line-clamp-2 hover:text-red-600 transition-colors duration-200">
                             {title}
-                        </h2>
+                        </h3>
                     </div>
 
                     <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto ">
