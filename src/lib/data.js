@@ -12,7 +12,7 @@ export const getSportsNews = async () => {
 export const getBusinessNews = async () => {
   return await getAllNews({
     news_type: "cat",
-    cat_id: 2,
+    cat_id: 8,
     offset: 0,
     limit: 5,
   });
