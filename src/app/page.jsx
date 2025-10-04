@@ -1,6 +1,6 @@
 import React from 'react'
 import Home from './Home'
-import { getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/lib/data';
+import { getCekFaktaNews, getNewsFirstSections, getNewsSecondSections, getWansusNews } from '@/lib/data';
 import { getAllNews, getAllNewsServer } from '@/lib/api/newsApi';
 
 export const metadata = {
@@ -33,21 +33,23 @@ export default async function page() {
     const wansusPromise = getWansusNews();
     const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
     const headlineNewsPromise =  getAllNewsServer({news_type: "headline",offset: 0,limit: 10,})
+    const cekFaktaNewsPromise = getCekFaktaNews();
    
     const [
         newsFirstSections,
         newsSecondSections,
         wansusNews,
         allNews,
-        headlineNews
+        headlineNews,
+        cekFaktaNews
     ] = await Promise.all([
         firstSectionsPromise,
         secondSectionsPromise,
         wansusPromise,
         allNewsPromise,
         headlineNewsPromise,
+        cekFaktaNewsPromise,
     ]);
-    
 
   return (
     <Home 
@@ -56,6 +58,7 @@ export default async function page() {
     wansusNews={wansusNews}
     allNews={allNews}
     initialHeadlineNews={headlineNews}
+    initialCekFaktaNews={cekFaktaNews}
     />
   )
 }

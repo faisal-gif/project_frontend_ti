@@ -1,6 +1,5 @@
 'use client';
 
-import { apiNews } from '@/lib/api';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import PopularNewsSkeleton from './ui/PopularNewsSkeleton'; // Import skeleton

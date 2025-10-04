@@ -253,7 +253,7 @@ function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
                                     <div className='flex-1'>
 
                                         {/* Header Image */}
-                                        <div className="flex flex-col justify-center items-center my-6">
+                                        <div className="flex flex-col justify-center items-center my-4">
                                             {focusDetail && focusDetail.focnews_image_body && (
                                                 <Image
                                                     src={focusDetail.focnews_image_body}

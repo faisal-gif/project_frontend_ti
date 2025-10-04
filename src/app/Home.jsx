@@ -17,9 +17,7 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 
 
 
-function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews,initialHeadlineNews }) {
-
-
+function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews }) {
 
     return (
         <div className="">
@@ -39,7 +37,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews,initi
                     <GoogleAds size='top_banner' />
                 </div>
 
-                 <div className='md:hidden flex items-center justify-center my-4'>
+                <div className='md:hidden flex items-center justify-center my-4'>
                     <GoogleAds size='square' />
                 </div>
 
@@ -170,7 +168,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews,initi
                             <GoogleAds size='inline_rectangle' />
                         </div>
                         <div>
-                            <CekFaktaCard />
+                            <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
                         <div className='sticky top-30'>
                             <div className='hidden md:flex items-center justify-center my-8'>

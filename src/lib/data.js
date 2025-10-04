@@ -63,6 +63,15 @@ export const getKopiTimesNews = async () => {
   });
 };
 
+export const getCekFaktaNews = async () => {
+  return await getAllNewsServer({
+    news_type: "focus",
+    cat_id: 221,
+    offset: 0,
+    limit: 3,
+  });
+};
+
 // --- UBAH FUNGSI INI ---
 export const getNewsFirstSections = async () => {
     // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
