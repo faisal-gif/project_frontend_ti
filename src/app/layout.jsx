@@ -12,6 +12,7 @@ import MobileListMenu from "@/components/MobileListMenu";
 import DrawerAutoClose from "@/components/DrawerAutoClose";
 import MobileMenuKanal from "@/components/MobileMenuKanal";
 import Script from "next/script";
+import BackToTop from "@/components/BackToTop";
 
 const menu = [
   { name: "Internasional", slug: "internasional", src: "/kanal/peristiwa-internasional" },
@@ -219,7 +220,7 @@ export default function RootLayout({ children }) {
             </ul>
           </div>
         </div>
-
+        <BackToTop />
         <Script
           id="adsbygoogle-init"
           strategy="lazyOnload"
