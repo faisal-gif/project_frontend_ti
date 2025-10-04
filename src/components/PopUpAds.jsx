@@ -1,5 +1,8 @@
 'use client'
+import { X } from "lucide-react";
 import React, { useEffect, useRef } from "react";
+import Button from "./ui/Button";
+import Image from "next/image";
 
 const PopupAd = ({ onClose }) => {
   const modalRef = useRef(null);
@@ -35,38 +38,58 @@ const PopupAd = ({ onClose }) => {
             onClick={handleClose}
             className="btn btn-circle btn-sm absolute right-2 top-2 bg-base-100 hover:bg-base-200"
           >
-            ✕
+            <X className="h-5 w-5" />
           </button>
         </form>
 
         {/* Konten iklan */}
-        <div className="text-center space-y-4 p-4">
-          <div className="bg-neutral text-white px-4 py-2 rounded-full inline-block text-sm font-bold">
-            NEWS PORTAL
+
+        <div className="text-center space-y-4">
+          {/* Heading */}
+          <div className="flex flex-col gap-4">
+            <h2 className="text-lg text-muted-foreground font-normal">
+              Jelajahi Wajah Baru
+            </h2>
+            <Image
+              src="/logo.png"
+              alt="News Logo"
+              className="h-10 w-auto object-contain mx-auto lg:mx-0"
+              width={100}
+              height={60}
+              priority
+            />
           </div>
 
-          <div className="space-y-3">
-            <h2 className="text-2xl font-bold">BERITA TERPERCAYA</h2>
-            <h3 className="text-3xl font-extrabold text-yellow-300">
-              SETIAP HARI!
-            </h3>
-            <p className="text-white/90 text-sm">
-              Dapatkan informasi terkini dan terpercaya dari berbagai kategori berita
+          {/* Separator */}
+          <div className="flex justify-center py-2">
+            <div className="w-32 h-px bg-border"></div>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
+            Mari Berkolaborasi untuk menemukan berita berkualitas tinggi
+          </p>
+
+          {/* CTA Button */}
+          <div className="pt-4">
+            <Button
+              onClick={handleClose}
+              className="bg-neutral hover:bg-neutral/90 text-white border-0 shadow-none font-semibold px-8 py-2 rounded-md"
+            >
+              Ikuti!
+            </Button>
+          </div>
+
+          {/* Domain */}
+          <div className="pt-2">
+            <p className="text-xs text-muted-foreground">
+              timesindonesia.co.id
             </p>
           </div>
-
-          <button
-            onClick={handleClose}
-            className="btn btn-neutral btn-lg rounded-full text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200"
-          >
-            MULAI BACA 
-          </button>
-
-          <p className="text-xs text-white/70 mt-4">
-            Update berita 24/7 • Gratis • Terpercaya
-          </p>
         </div>
       </div>
+
+
     </dialog>
   );
 };
