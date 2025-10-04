@@ -108,7 +108,7 @@ export default function RootLayout({ children }) {
       <body
         className={`antialiased`}
       >
-        <TopLoader />
+
         <DrawerAutoClose />
         <div className="drawer">
           <input id="drawer-nav" type="checkbox" aria-label="Drawer toggle" className="drawer-toggle" />
@@ -183,7 +183,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-
+            <TopLoader />
             {/* Page content here */}
             <div className="my-12">
               {children}
