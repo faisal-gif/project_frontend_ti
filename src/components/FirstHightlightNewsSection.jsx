@@ -14,7 +14,7 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
         <section className="space-y-6 border-t-2 border-base-300">
             <div className="flex items-center justify-between mt-2">
                 <h2 className="text-lg font-bold text-news-category flex items-center gap-2 uppercase">
-                      <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
+                    <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
                     {title}
                     <ChevronRight className="w-6 h-6" />
                 </h2>
@@ -27,10 +27,9 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
                                 <Image
                                     src={news[0].news_image_new}
                                     alt={news[0].news_title}
-                                    width={380}
-                                    height={252}
+                                    fill
                                     loading='lazy'
-                                    fetchPriority='high'
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />

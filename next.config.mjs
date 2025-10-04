@@ -2,6 +2,7 @@
 
 const nextConfig = {
     images: {
+        quality: 70,
         remotePatterns: [
             {
                 protocol: "https",
@@ -45,7 +46,7 @@ const nextConfig = {
     },
     experimental: {
         optimizeCss: true,
-        cssChunking: true, 
+        cssChunking: true,
     },
 };
 
