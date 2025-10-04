@@ -23,14 +23,9 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
         <div className="">
 
             {/* Left Skyscraper Ad */}
-            {/* <div className="fixed left-6 top-7/12 transform -translate-y-1/2 z-10 hidden xl:block">
-                <GoogleAds size="skyscraper" />
-            </div> */}
-
+         
             {/* Right Skyscraper Ad */}
-            {/* <div className="fixed right-6 top-7/12 transform -translate-y-1/2 z-10 hidden xl:block">
-                <GoogleAds size="skyscraper" />
-            </div> */}
+         
 
             <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center mb-8'>
