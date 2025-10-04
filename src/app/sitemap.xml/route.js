@@ -40,13 +40,13 @@ export async function GET() {
     ).join("")}
   ${kanal.map((item) => `
     <sitemap>
-        <loc>${process.env.NEXT_PUBLIC_URL}/kanal/news/${item.slug}</loc>
+        <loc>${process.env.NEXT_PUBLIC_URL}/sitemap/kanal/news/${item.slug}</loc>
         <lastmod>${lastmod}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </sitemap>
     <sitemap>
-        <loc>${process.env.NEXT_PUBLIC_URL}/kanal/web/${item.slug}</loc>
+        <loc>${process.env.NEXT_PUBLIC_URL}/sitemap/kanal/web/${item.slug}</loc>
         <lastmod>${lastmod}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
