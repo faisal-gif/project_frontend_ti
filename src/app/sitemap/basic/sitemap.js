@@ -6,16 +6,16 @@ export default async function sitemap() {
 
 
     const urls = [
-        "https://timesindonesia.co.id",
-        "https://timesindonesia.co.id/piala-dunia-2022",
-        "https://timesindonesia.co.id/page/terms-and-conditions",
-        "https://timesindonesia.co.id/page/tentang-kami",
-        "https://timesindonesia.co.id/page/redaksi",
-        "https://timesindonesia.co.id/page/jurnalisme-positif",
-        "https://timesindonesia.co.id/page/info-iklan",
-        "https://timesindonesia.co.id/page/privacy-policy",
-        "https://timesindonesia.co.id/page/about-us",
-        "https://timesindonesia.co.id/page/contact-us",
+        `${process.env.NEXT_PUBLIC_URL}`,
+        `${process.env.NEXT_PUBLIC_URL}/piala-dunia-2022`,
+        `${process.env.NEXT_PUBLIC_URL}/page/terms-and-conditions`,
+        `${process.env.NEXT_PUBLIC_URL}/page/tentang-kami`,
+        `${process.env.NEXT_PUBLIC_URL}/page/redaksi`,
+        `${process.env.NEXT_PUBLIC_URL}/page/jurnalisme-positif`,
+        `${process.env.NEXT_PUBLIC_URL}/page/info-iklan`,
+        `${process.env.NEXT_PUBLIC_URL}/page/privacy-policy`,
+        `${process.env.NEXT_PUBLIC_URL}/page/about-us`,
+        `${process.env.NEXT_PUBLIC_URL}/page/contact-us`,
     ];
 
     const lastmod = new Date().toISOString(); // otomatis update waktu
