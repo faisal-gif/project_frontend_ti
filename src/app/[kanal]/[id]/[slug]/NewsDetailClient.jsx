@@ -18,8 +18,9 @@ import { getFocusDetail } from '@/lib/api/focus';
 import Script from 'next/script';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
+import { getNewsFirstSectionsClient } from '@/lib/data';
 
-function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
+function NewsDetailClient({ initialNewsDetail }) {
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
@@ -27,7 +28,7 @@ function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState([]);
-    const [newsSecondSections] = useState(initialSecondSection);
+    const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
 
     // Hooks selalu dipanggil, logic conditional di dalam
@@ -50,6 +51,7 @@ function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
 
 
     useEffect(() => {
+        getNewsFirstSectionsClient().then(setNewsFirstSections).catch(console.error)
         setIsMounted(true);
     }, []);
 
@@ -253,7 +255,7 @@ function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
                                     <div className='flex-1'>
 
                                         {/* Header Image */}
-                                        <div className="flex flex-col justify-center items-center my-4">
+                                        <div className="flex flex-col justify-center items-center my-2">
                                             {focusDetail && focusDetail.focnews_image_body && (
                                                 <Image
                                                     src={focusDetail.focnews_image_body}
@@ -393,7 +395,7 @@ function NewsDetailClient({ initialNewsDetail, initialSecondSection }) {
 
 
             <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
-                {newsSecondSections.map((section, index) => (
+                {newsFirstSections.map((section, index) => (
                     <div key={index} className="space-y-8">
                         <FirstHightlightNewsSection title={section.title} news={section.news} />
                     </div>

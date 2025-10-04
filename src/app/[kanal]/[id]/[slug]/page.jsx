@@ -1,7 +1,7 @@
 import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
-import { getNewsSecondSections } from '@/lib/data';
+import { getNewsSecondSections, getNewsSecondSectionsServer } from '@/lib/data';
 
 
 
@@ -55,14 +55,11 @@ export async function generateMetadata({ params }) {
 export default async function page({ params }) {
     const { id } = await params;
     const newsDetail = getNews(id);
-    const secondSectionsPromise = getNewsSecondSections();
 
     const [
         initialNewsDetail,
-        newsSecondSections,
     ] = await Promise.all([
         newsDetail,
-        secondSectionsPromise,
     ]);
-    return <NewsDetailClient initialNewsDetail={initialNewsDetail} initialSecondSection={newsSecondSections} />;
+    return <NewsDetailClient initialNewsDetail={initialNewsDetail} />;
 }
