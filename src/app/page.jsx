@@ -27,37 +27,27 @@ export const metadata = {
 };
 
 export default async function page() {
-    console.time("Total data fetching time"); // Mulai timer total
-
-    console.time("getNewsFirstSections");
+   
     const firstSectionsPromise = getNewsFirstSections();
-    console.timeEnd("getNewsFirstSections"); // Ukur waktu inisialisasi (akan cepat)
-
-    console.time("getNewsSecondSections");
     const secondSectionsPromise = getNewsSecondSections();
-    console.timeEnd("getNewsSecondSections");
-
-    console.time("getWansusNews");
     const wansusPromise = getWansusNews();
-    console.timeEnd("getWansusNews");
-
-    console.time("getAllNews");
     const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
-    console.timeEnd("getAllNews");
-
+    const headlineNewsPromise =  getAllNewsServer({news_type: "headline",offset: 0,limit: 10,})
+   
     const [
         newsFirstSections,
         newsSecondSections,
         wansusNews,
         allNews,
+        headlineNews
     ] = await Promise.all([
         firstSectionsPromise,
         secondSectionsPromise,
         wansusPromise,
         allNewsPromise,
+        headlineNewsPromise,
     ]);
-
-    console.timeEnd("Total data fetching time"); // Selesai timer total
+    
 
   return (
     <Home 
@@ -65,6 +55,7 @@ export default async function page() {
     newsSecondSections={newsSecondSections}
     wansusNews={wansusNews}
     allNews={allNews}
+    initialHeadlineNews={headlineNews}
     />
   )
 }

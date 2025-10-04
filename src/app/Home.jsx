@@ -18,7 +18,9 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 
 
 
-function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews }) {
+function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews,initialHeadlineNews }) {
+
+
 
     return (
         <div className="">
@@ -41,7 +43,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews }) {
             {/* Hero */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
                 <div className="md:col-span-4">
-                    <HeadlineNewsHome />
+                    <HeadlineNewsHome initialHeadlineNews={initialHeadlineNews} />
                 </div>
                 <div className="md:col-span-2">
                     {allNews.length === 0 && (

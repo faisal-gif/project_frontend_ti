@@ -1,23 +1,13 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Carousel from './ui/Carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import FeaturedNewsCard from './FeaturedNewsCard';
 import Fade from 'embla-carousel-fade';
-import { getAllNews } from '@/lib/api/newsApi';
 import HeadlineCardSkeleton from './ui/HeadlineCardSkeleton';
 
-function HeadlineNewsHome() {
+function HeadlineNewsHome({initialHeadlineNews}) {
 
-    const [headlineNews, setHeadlineNews] = useState([]);
-    useEffect(() => {
-        getAllNews({
-            news_type: "headline",
-            offset: 0,
-            limit: 10,
-        }).then(setHeadlineNews).catch(console.error);
-    }, []);
-
+    const [headlineNews] = useState(initialHeadlineNews);
     
     if (headlineNews.length === 0) {
         return <HeadlineCardSkeleton />;

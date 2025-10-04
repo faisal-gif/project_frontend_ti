@@ -54,18 +54,12 @@ export async function generateMetadata({ params }) {
 
 export default async function page({ params }) {
     const { id } = await params;
-     console.time("getNewsDetail");
     const newsDetail = getNews(id);
-    console.timeEnd("getNewsDetail");
-    console.time("getNewsSecondSections");
     const secondSectionsPromise = getNewsSecondSections();
-    console.timeEnd("getNewsSecondSections");
-
 
     const [
         initialNewsDetail,
         newsSecondSections,
-
     ] = await Promise.all([
         newsDetail,
         secondSectionsPromise,
