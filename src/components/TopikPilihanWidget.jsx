@@ -55,9 +55,9 @@ function TopikPilihanWidget() {
                                     </span>
                                     <div className="flex-1">
                                         <div className='flex flex-row justify-between items-center gap-2 '>
-                                            <h3 className="text-lg line-clamp-2 md:line-clamp-none md:text-lg  font-medium text-white leading-5 mb-2 hover:text-[#b41d1d] transition-colors">
+                                            <h2 className="text-lg line-clamp-2 md:line-clamp-none md:text-lg  font-medium text-white leading-5 mb-2 hover:text-[#b41d1d] transition-colors">
                                                 {topic.focnews_title}
-                                            </h3>
+                                            </h2>
                                         </div>
 
                                     </div>
