@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Carousel from './ui/Carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import FeaturedNewsCard from './FeaturedNewsCard';
@@ -7,16 +7,15 @@ import HeadlineCardSkeleton from './ui/HeadlineCardSkeleton';
 
 function HeadlineNewsHome({initialHeadlineNews}) {
 
-    const [headlineNews] = useState(initialHeadlineNews);
     
-    if (headlineNews.length === 0) {
+    if (initialHeadlineNews.length === 0) {
         return <HeadlineCardSkeleton />;
     }
 
     return (
         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
             <Carousel.Content>
-                {headlineNews.map((article, index) => (
+                {initialHeadlineNews.map((article, index) => (
                     <Carousel.Item key={index} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
                         <FeaturedNewsCard
                          className='md:h-[33rem]'

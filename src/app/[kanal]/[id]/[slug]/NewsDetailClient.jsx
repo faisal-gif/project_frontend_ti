@@ -9,7 +9,6 @@ import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
 import { getAllNews, updateView } from '@/lib/api/newsApi';
-import { getNewsSecondSections } from '@/lib/data';
 import { Eye, Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

@@ -19,7 +19,7 @@ function SimpleNewsCard({ title, timeAgo, image, url, layout }) {
                                         src={image}
                                         alt={title}
                                         width={171}
-                                        height={114}
+                                        height={98}
                                         loading='lazy'
                                         className="object-cover"
                                     />

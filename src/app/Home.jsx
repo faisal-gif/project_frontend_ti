@@ -9,7 +9,6 @@ import PopularNews from '@/components/PopularNews';
 import PopupAds from '@/components/PopUpAds';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
 import VideoSection from '@/components/VideoSection';
-import { useState } from 'react';
 import CekFaktaCard from '@/components/CekFaktaCard';
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
@@ -39,6 +38,11 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews,initi
                 <div className='hidden md:flex items-center justify-center mb-8'>
                     <GoogleAds size='top_banner' />
                 </div>
+
+                 <div className='md:hidden flex items-center justify-center my-4'>
+                    <GoogleAds size='square' />
+                </div>
+
             </div>
             {/* Hero */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
