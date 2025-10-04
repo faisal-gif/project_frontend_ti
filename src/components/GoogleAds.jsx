@@ -51,7 +51,7 @@ export default function GoogleAds({
                     <span className="sr-only">Tutup</span>
                 </button>
          
-            {/* <ins
+            <ins
                 className="adsbygoogle"
                 style={{
                     display: "inline-block",
@@ -60,7 +60,7 @@ export default function GoogleAds({
                 }}
                 data-ad-client="ca-pub-5117046027656864"
                 data-ad-slot="8134946479"
-            ></ins> */}
+            ></ins>
         </div>
     );
 }
