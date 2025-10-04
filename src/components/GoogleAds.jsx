@@ -8,15 +8,15 @@ export default function GoogleAds({
 }) {
     const [isVisible, setIsVisible] = useState(true);
 
-    // useEffect(() => {
-    //     try {
-    //         if (typeof window !== "undefined") {
-    //             (window.adsbygoogle = window.adsbygoogle || []).push({});
-    //         }
-    //     } catch (e) {
-    //         console.error("Adsense error", e);
-    //     }
-    // }, []);
+    useEffect(() => {
+        try {
+            if (typeof window !== "undefined") {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        } catch (e) {
+            console.error("Adsense error", e);
+        }
+    }, []);
 
     const adSizes = {
         inline_rectangle: { width: "300px", height: "250px" },
