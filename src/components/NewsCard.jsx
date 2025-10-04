@@ -31,6 +31,7 @@ function NewsCard({
                                 height={99}
                                 quality={60}
                                 loading='lazy'
+                                fetchPriority='high'
                                 className="object-cover blur-md opacity-50"
                             />
                         </div>
@@ -44,6 +45,7 @@ function NewsCard({
                                 height={99}
                                 quality={60}
                                 loading='lazy'
+                                fetchPriority='high'
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>
