@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig = {
     images: {
@@ -47,12 +46,8 @@ const nextConfig = {
     },
     experimental: {
         optimizeCss: true,
-        cssChunking: true,
+        cssChunking: true, 
     },
 };
 
-
-
-export default withBundleAnalyzer({
-    enabled: process.env.ANALYZE === 'true', // aktif hanya saat ANALYZE=true
-})(nextConfig);
+export default nextConfig;
