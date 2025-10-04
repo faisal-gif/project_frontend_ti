@@ -35,7 +35,7 @@ function NewsDetailClient({ initialNewsDetail }) {
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
-            updateView({ id: newsDetail.news_id }).then(setNewsViews).catch(console.error);
+
 
             if (Number(newsDetail.focnews_id) !== 0) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
@@ -45,6 +45,7 @@ function NewsDetailClient({ initialNewsDetail }) {
             if (firstTag) {
                 getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
             }
+            updateView({ id: newsDetail.news_id }).then(setNewsViews).catch(console.error);
         }
     }, [newsDetail]);
 
@@ -402,12 +403,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                 ))}
             </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
-            <Script
-                src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
-                async
-                strategy="afterInteractive"
-                crossOrigin="anonymous"
-            />
+          
         </div>
     )
 }
