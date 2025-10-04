@@ -26,7 +26,7 @@ const ArticleContent = ({
   const Advertisement = () => (
     <div className="my-2 mx-auto">
       <p className="font-light text-sm text-center mb-1">Advertisement</p>
-      {/* <ins
+      <ins
         className="adsbyadop"
         _adop_zon="424c828c-767f-47c2-bf93-4bb10c62e94e"
         _adop_type="re"
@@ -39,7 +39,7 @@ const ArticleContent = ({
         async
         strategy="afterInteractive"
         crossOrigin="anonymous"
-      /> */}
+      />
     </div>
   );
 
