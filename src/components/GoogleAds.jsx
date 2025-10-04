@@ -42,15 +42,14 @@ export default function GoogleAds({
                 maxWidth: "100%",
             }}
         >
-            {size === "skyscraper" && (
+         
                 <button
                     onClick={() => setIsVisible(false)}
                     className="absolute top-1 right-1 text-gray-600 hover:text-red-500"
                 >
                     <X size={16} />
                 </button>
-            )}
-
+         
             {/* <ins
                 className="adsbygoogle"
                 style={{

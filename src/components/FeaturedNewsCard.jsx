@@ -25,7 +25,7 @@ function FeaturedNewsCard({
                     src={image}
                     alt={title}
                     fill
-                    quality={40}
+                    quality={80}
                     sizes="(max-width: 768px) 100vw, 384px"
                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                     priority={index === 0} // 👈 hanya slide pertama yang priority
