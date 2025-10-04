@@ -269,7 +269,7 @@ function NewsDetailClient({ initialNewsDetail }) {
 
                                                 />
                                             )}
-                                            <div className="w-[340px] h-[252px] md:w-[750px] md:h-[500px] relative">
+                                            <div className="w-[380px] h-[252px] md:w-[750px] md:h-[500px] relative">
 
                                                 <Image
                                                     src={newsDetail.news_image_new}
