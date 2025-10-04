@@ -308,7 +308,7 @@ function FotoDetail({ initialFotoDetail }) {
                                             htmlContent={fotoDetail.gal_content}
                                             getTextSizeClasses={getTextSizeClasses}
                                             readAlsoArticles={[]}
-                                            url={fotoDetail.urlPath}
+                                            url={fotoDetail.url_ci4}
                                             lokus={fotoDetail.gal_city}
                                             className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
                                         />
