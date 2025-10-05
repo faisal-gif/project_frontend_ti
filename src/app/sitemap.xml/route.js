@@ -25,25 +25,21 @@ export async function GET() {
         kanal = []; // fallback supaya tidak crash
     }
 
-    const lastmod = new Date().toISOString();
     const xml = `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     ${basic.map((item) =>
         `
     <sitemap>
         <loc>${item}</loc>
-        <lastmod>${lastmod}</lastmod>
     </sitemap>
     `
     ).join("")}
   ${kanal.map((item) => `
     <sitemap>
         <loc>${process.env.NEXT_PUBLIC_URL}/sitemap/kanal/news/${item.slug}/sitemap.xml</loc>
-        <lastmod>${lastmod}</lastmod>
     </sitemap>
     <sitemap>
         <loc>${process.env.NEXT_PUBLIC_URL}/sitemap/kanal/web/${item.slug}/sitemap.xml</loc>
-        <lastmod>${lastmod}</lastmod>
     </sitemap>
     `
     )
