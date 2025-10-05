@@ -9,9 +9,10 @@ export default function robots() {
           '/api/',
           '/_next/',
         ],
-        Sitemap: 'https://www.timesindonesia.co.id/sitemap.xml'
+
       },
 
     ],
+    sitemap: 'https://www.timesindonesia.co.id/sitemap.xml',
   }
 }

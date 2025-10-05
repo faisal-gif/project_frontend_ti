@@ -44,6 +44,9 @@ const ArticleContent = ({
   );
 
   const transform = (node, index) => {
+
+
+
     if (node.name === 'p') {
       paragraphCount++;
 
@@ -120,16 +123,24 @@ const ArticleContent = ({
   );
 
   return (
-    <div className={`prose max-w-none ${className}`} onCopy={handleCopy}>
-      {htmlContent ? parse(htmlContent, { replace: transform }) : null}
-      <p className='italic text-foreground text-base md:text-lg'>
-        Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
-        <br />
-        Klik 👉 <a href="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D">Channel TIMES Indonesia</a>
-        <br />
-        Pastikan WhatsApp kamu sudah terpasang.
-      </p>
-    </div>
+    <>
+
+
+      <div className={`prose prose-img:rounded-lg prose-img:mx-auto max-w-[720px] w-full mx-auto px-4 ${className}`} onCopy={handleCopy}>
+        {htmlContent ? parse(htmlContent, { replace: transform }) : null}
+        <p className='italic text-foreground text-base md:text-lg'>
+          Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
+          <br />
+          Klik 👉 <a href="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D">Channel TIMES Indonesia</a>
+          <br />
+          Pastikan WhatsApp kamu sudah terpasang.
+        </p>
+      </div>
+   
+
+   
+    </>
+
   );
 };
 

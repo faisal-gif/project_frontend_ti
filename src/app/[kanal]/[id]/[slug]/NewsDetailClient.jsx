@@ -269,8 +269,7 @@ function NewsDetailClient({ initialNewsDetail }) {
 
                                                 />
                                             )}
-                                            <div className="w-[380px] h-[252px] md:w-[750px] md:h-[500px] relative">
-
+                                            <div className="relative w-full max-w-[750px] mx-auto aspect-video">
                                                 <Image
                                                     src={newsDetail.news_image_new}
                                                     alt={newsDetail.news_title}
@@ -278,9 +277,10 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                     className="object-contain"
                                                     priority
                                                     fetchPriority="high"
-                                                    sizes="(max-width: 768px) 300px, 750px"
+                                                    sizes="(max-width: 768px) 100vw, 750px"
                                                 />
                                             </div>
+
                                         </div>
                                         <div className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </div>
 
@@ -291,7 +291,8 @@ function NewsDetailClient({ initialNewsDetail }) {
                                             readAlsoArticles={relatedNews}
                                             lokus={newsDetail.news_city}
                                             url={newsDetail.url_ci4}
-                                            className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
+                                            
+                                            className="mt-8 prose prose-sm sm:prose-base md:prose-lg prose-a:text-red-800 prose-a:no-underline prose-img:mx-auto prose-img:max-w-full prose-img:h-auto"
                                         />
                                     </div>
                                 </div>
@@ -403,7 +404,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                 ))}
             </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
-          
+
         </div>
     )
 }
