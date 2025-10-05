@@ -33,8 +33,6 @@ export async function GET() {
     <sitemap>
         <loc>${item}</loc>
         <lastmod>${lastmod}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
     </sitemap>
     `
     ).join("")}
