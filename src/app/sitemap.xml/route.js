@@ -40,14 +40,10 @@ export async function GET() {
     <sitemap>
         <loc>${process.env.NEXT_PUBLIC_URL}/sitemap/kanal/news/${item.slug}/sitemap.xml</loc>
         <lastmod>${lastmod}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
     </sitemap>
     <sitemap>
         <loc>${process.env.NEXT_PUBLIC_URL}/sitemap/kanal/web/${item.slug}/sitemap.xml</loc>
         <lastmod>${lastmod}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
     </sitemap>
     `
     )
