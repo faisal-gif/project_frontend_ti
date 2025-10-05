@@ -122,7 +122,7 @@ const ArticleContent = ({
   return (
     <div className={`prose max-w-none ${className}`} onCopy={handleCopy}>
       {htmlContent ? parse(htmlContent, { replace: transform }) : null}
-      <p className='text-foreground text-base md:text-lg'>
+      <p className='italic text-foreground text-base md:text-lg'>
         Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
         <br />
         Klik 👉 <a href="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D">Channel TIMES Indonesia</a>
