@@ -236,7 +236,7 @@ function Ekoran() {
                                     {date}
                                 </h3>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
                                     {editions.map((edition) => (
                                         <EkoranHomeCard
                                             key={edition.id}
@@ -253,7 +253,7 @@ function Ekoran() {
 
                         {/* Kalau lagi load tambahan (load more) → skeleton tambahan */}
                         {isLoading && ekoran.length > 0 && (
-                            <>
+                             <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
                                 {[1, 2].map((group) => (
                                     <div key={`loading-${group}`} className="lg:col-span-2 space-y-4">
                                         <div className="h-6 w-40 bg-base-300 rounded animate-pulse mb-4" />
@@ -264,7 +264,7 @@ function Ekoran() {
                                         </div>
                                     </div>
                                 ))}
-                            </>
+                            </div>
                         )}
 
                     </div>
