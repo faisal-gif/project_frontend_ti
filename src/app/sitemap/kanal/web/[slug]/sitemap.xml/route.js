@@ -24,7 +24,7 @@ export async function GET(request, { params }) {
                 (item) => `
     <url>
         <loc>${process.env.NEXT_PUBLIC_URL}${item.url_ci4}</loc>
-          <lastmod>${new Date().toISOString(item.news_datepub)}</lastmod>
+          <lastmod>${new Date(item.news_datepub).toISOString()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>`
