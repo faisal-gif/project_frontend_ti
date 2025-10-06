@@ -320,8 +320,8 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
-                                                        <span className="text-xs">
+                                                    <div className="bg-neutral text-neutral-content w-20 rounded-full flex items-center justify-center">
+                                                        <span className="text-sm">
                                                             {writerDetail.name.charAt(0).toUpperCase()}
                                                         </span>
                                                     </div>
