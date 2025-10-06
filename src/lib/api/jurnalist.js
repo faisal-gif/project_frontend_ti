@@ -1,4 +1,4 @@
-import { serverAxios } from "./axiosInstance";
+import { clientAxios, serverAxios } from "./axiosInstance";
 
 
 const getWriterDetail = async ({ slug }) => {
@@ -13,6 +13,8 @@ const getWriterDetail = async ({ slug }) => {
         console.log(error);
     }
 };
+
+
 
 export {
     getWriterDetail

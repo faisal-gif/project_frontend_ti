@@ -19,10 +19,12 @@ import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 
-function NewsDetailClient({ initialNewsDetail }) {
+function NewsDetailClient({ initialNewsDetail, initialWriter }) {
+
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
+    const [writerDetail] = useState(initialWriter);
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
@@ -34,7 +36,7 @@ function NewsDetailClient({ initialNewsDetail }) {
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
-            
+
             if (Number(newsDetail.focnews_id) !== 0) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
@@ -48,14 +50,13 @@ function NewsDetailClient({ initialNewsDetail }) {
     }, [newsDetail]);
 
 
-
     useEffect(() => {
         getNewsFirstSectionsClient().then(setNewsFirstSections).catch(console.error)
         setIsMounted(true);
     }, []);
 
     const tim = [
-        { name: newsDetail?.news_writer || '', role: "Penulis", foto: null, url: `/writer/${newsDetail?.writer_slug}` || '' },
+        { name: writerDetail?.name || '', role: "Penulis", foto: writerDetail?.image, url: `/writer/${writerDetail.slug}` || '' },
         { name: newsDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${newsDetail?.editor_alias}` || '' },
         { name: newsDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
     ];
@@ -185,7 +186,6 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                             <li key={index}>
                                                                 <>
                                                                     <Link href={tim.url} className="avatar avatar-placeholder" >
-
                                                                         {tim.foto ? (
                                                                             <div className="w-8 bg-neutral rounded-full">
                                                                                 <Image
@@ -308,13 +308,24 @@ function NewsDetailClient({ initialNewsDetail }) {
                                 {newsDetail.news_writer && (
                                     <div className="mt-8 pt-6 border-t border-base-content/20">
                                         <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
-                                            <div className="avatar avatar-placeholder" >
-                                                <div className="bg-neutral text-neutral-content w-20 rounded-full ">
-                                                    <span className="text-3xl">
-                                                        {newsDetail?.news_writer.charAt(0).toUpperCase()}
-                                                    </span>
-                                                </div>
-
+                                            <div className="avatar avatar-placeholder"  >
+                                                {writerDetail.image ? (
+                                                    <div className="w-20 bg-neutral rounded-full">
+                                                        <Image
+                                                            src={writerDetail.image}
+                                                            alt={writerDetail.name}
+                                                            width={64}
+                                                            height={64}
+                                                            loading='lazy'
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
+                                                        <span className="text-xs">
+                                                            {tim.name.charAt(0).toUpperCase()}
+                                                        </span>
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className='flex flex-col justify-center'>
                                                 <span className='text-sm text-base-200/60'>Penulis</span>
@@ -322,7 +333,8 @@ function NewsDetailClient({ initialNewsDetail }) {
                                                     {newsDetail?.news_writer}
                                                 </span>
                                                 <span className='text-sm text-white/80 mt-2'>
-                                                    Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya.
+                                                    {writerDetail.bio ? writerDetail.bio :
+                                                        " Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya."}
                                                 </span>
 
                                             </div>

@@ -1,6 +1,7 @@
 import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
+import { getWriterDetail } from '@/lib/api/jurnalist';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -50,13 +51,19 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
-    const { id } = await params;
-    const newsDetail = getNews(id);
+    const { id } = params;
 
-    const [
-        initialNewsDetail,
-    ] = await Promise.all([
-        newsDetail,
-    ]);
-    return <NewsDetailClient initialNewsDetail={initialNewsDetail} />;
+    const initialNewsDetail = await getNews(id);
+
+    if (!initialNewsDetail) {
+        notFound();
+    }
+
+    let writer = {}; 
+
+    if (initialNewsDetail.writer_slug) {
+        writer = await getWriterDetail({slug:initialNewsDetail.writer_slug});
+    }
+
+    return <NewsDetailClient initialNewsDetail={initialNewsDetail} initialWriter={writer} />;
 }

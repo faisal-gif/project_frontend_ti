@@ -8,6 +8,7 @@ import { getAllNews } from '@/lib/api/newsApi';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import ClientOnly from './ClientOnly';
+import { Eye } from 'lucide-react';
 
 export default function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
@@ -60,11 +61,13 @@ export default function PopularNews() {
                                         </ClientOnly>
                                     </span>
                                     <span>•</span>
-                                    <span>
+                                
+                                    <span className='flex flex-row gap-1 items-center justify-center'>
+                                        <Eye size={12}/>
                                         <ClientOnly>
                                             <FormattedViews count={article.pageviews} />
                                         </ClientOnly>
-                                        views</span>
+                                    </span>
                                 </div>
                             </div>
 
