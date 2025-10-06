@@ -24,7 +24,7 @@ function FeaturedNewsCard({
             <Card className={`group relative h-64 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl  ${className}`}>
                 <Image
                     src={image}
-                    alt={title}
+                    alt={`${title} Fetured Image`}
                     fill
                     quality={70}
                     sizes="(max-width: 768px) 100vw, 384px"
