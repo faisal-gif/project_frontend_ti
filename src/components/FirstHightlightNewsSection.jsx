@@ -8,7 +8,7 @@ import Image from 'next/image';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 
-function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
+function FirstHightlightNewsSection({ title, news, index = 1, layout = 'normal' }) {
 
     return (
         <section className="space-y-6 border-t-2 border-base-300">
@@ -28,9 +28,9 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
                                     src={news[0].news_image_new}
                                     alt={news[0].news_title}
                                     fill
-                                    priority
-                                    quality={65} 
-                                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 380px" 
+                                    priority={index === 0}
+                                    quality={65}
+                                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 380px"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />

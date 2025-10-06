@@ -54,7 +54,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                     )}
                     {
                         allNews.length > 0 && (
-                            <FirstHightlightNewsSection title={'Berita Terbaru'} news={allNews} />
+                            <FirstHightlightNewsSection index={0} title={'Berita Terbaru'} news={allNews} />
                         )
                     }
 
@@ -74,7 +74,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
                 {newsFirstSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news} layout={section.layout} />
+                        <FirstHightlightNewsSection index={0} title={section.title} news={section.news} layout={section.layout} />
                     </div>
                 ))}
             </div>
