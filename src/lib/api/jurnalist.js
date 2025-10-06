@@ -1,4 +1,4 @@
-import { clientAxios, serverAxios } from "./axiosInstance";
+import { serverAxios } from "./axiosInstance";
 
 
 const getWriterDetail = async ({ slug }) => {

@@ -18,14 +18,12 @@ import { getFocusDetail } from '@/lib/api/focus';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
-import { getWriterDetail } from '@/lib/api/jurnalist';
 
 function NewsDetailClient({ initialNewsDetail }) {
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
     const [editorDetail, setEditorDetail] = useState(null);
-    const [writerDetail, setWriterDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState([]);
@@ -36,7 +34,6 @@ function NewsDetailClient({ initialNewsDetail }) {
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
-            getWriterDetail({ slug: newsDetail.writer_slug }).then(setWriterDetail).catch(console.error);
             
             if (Number(newsDetail.focnews_id) !== 0) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
@@ -292,7 +289,7 @@ function NewsDetailClient({ initialNewsDetail }) {
                                             readAlsoArticles={relatedNews}
                                             lokus={newsDetail.news_city}
                                             url={newsDetail.url_ci4}
-                                            className="mt-8 prose prose-sm sm:prose-base md:prose-lg prose-a:text-red-800 prose-a:no-underline"
+                                            className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
                                         />
                                     </div>
                                 </div>
