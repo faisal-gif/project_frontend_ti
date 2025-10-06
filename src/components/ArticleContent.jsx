@@ -46,6 +46,10 @@ const ArticleContent = ({
 
   const transform = (node, index) => {
 
+    if (node.name === 'span') {
+      return <>{domToReact(node.children, { replace: transform })}</>;
+    }
+
     if (node.name === 'p') {
       paragraphCount++;
 
