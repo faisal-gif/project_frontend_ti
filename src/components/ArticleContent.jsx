@@ -36,8 +36,7 @@ const ArticleContent = ({
 
       <Script
         src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
-        async
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         crossOrigin="anonymous"
       />
     </div>
@@ -136,9 +135,9 @@ const ArticleContent = ({
           Pastikan WhatsApp kamu sudah terpasang.
         </p>
       </div>
-   
 
-   
+
+
     </>
 
   );
