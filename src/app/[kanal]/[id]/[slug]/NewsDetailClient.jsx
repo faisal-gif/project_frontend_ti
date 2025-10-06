@@ -15,7 +15,6 @@ import Link from 'next/link';
 
 import React, { useEffect, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
-import Script from 'next/script';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';

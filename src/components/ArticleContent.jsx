@@ -42,10 +42,22 @@ const ArticleContent = ({
     </div>
   );
 
+  const removeStyleAttributes = (node) => {
+    if (node.attribs && node.attribs.style) {
+      delete node.attribs.style;
+    }
+    // Anda juga bisa menambahkan ini untuk menghapus class bawaan
+    if (node.attribs && node.attribs.class) {
+      delete node.attribs.class;
+    }
+    if (node.children) {
+      node.children.forEach(removeStyleAttributes);
+    }
+  };
+
   const transform = (node, index) => {
 
-
-
+    removeStyleAttributes(node);
     if (node.name === 'p') {
       paragraphCount++;
 
