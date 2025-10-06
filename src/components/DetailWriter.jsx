@@ -34,7 +34,7 @@ function DetailWriter({ authorData }) {
                     <div className="flex-1">
                         <h1 className="text-xl md:text-3xl font-bold text-foreground mb-2">{authorData.name}</h1>
                         <p className="text-black/50 mb-4 leading-relaxed">
-                            {authorData.editor_description ? authorData.editor_description : "Editor TIMES Indonesia"}
+                            {authorData.bio ? authorData.bio : "Penulis TIMES Indonesia"}
                         </p>
 
                         {/* <div className="flex flex-wrap gap-2 mb-4">
@@ -46,14 +46,14 @@ function DetailWriter({ authorData }) {
                         </div> */}
 
                         <div className="flex flex-wrap gap-6 text-sm text-black/50">
-                            <div className="flex items-center gap-2">
+                            {/* <div className="flex items-center gap-2">
                                 <span className="font-semibold text-foreground">180</span>
                                 <span>Artikel</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="font-semibold text-foreground">100</span>
                                 <span>Pengikut</span>
-                            </div>
+                            </div> */}
                             <div>Bergabung sejak  <FormattedDate dateString={authorData.created} /> </div>
                         </div>
                     </div>

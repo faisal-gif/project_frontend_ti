@@ -8,7 +8,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 function WriterClient({initialWriterDetail}) {
     
-    const [writerDetail, setWriterDetail] = useState(initialWriterDetail);
+    const [writerDetail] = useState(initialWriterDetail);
     const [articles, setArticles] = useState([]);
     const [offset, setOffset] = useState(0);
     const [limit] = useState(10);
