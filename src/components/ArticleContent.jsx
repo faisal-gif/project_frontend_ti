@@ -129,7 +129,7 @@ const ArticleContent = ({
     <>
 
 
-      <div className={`prose prose-img:rounded-lg prose-img:mx-auto max-w-none w-full mx-auto px-4 ${className}`} onCopy={handleCopy}>
+      <div className={`prose prose-img:rounded-lg prose-img:mx-auto max-w-none w-full mx-auto ${className}`} onCopy={handleCopy}>
         {htmlContent ? parse(htmlContent, { replace: transform }) : null}
         <p className='italic text-foreground text-base md:text-lg'>
           Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
