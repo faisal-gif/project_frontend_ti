@@ -39,7 +39,7 @@ export const getBusinessNewsClient = async () => {
 export const getEntertainmentNewsServer = async () => {
   return await getAllNewsServer({
     news_type: "cat",
-    cat_id: 12,
+    cat_id: 21,
     offset: 0,
     limit: 5,
   });
@@ -184,7 +184,7 @@ export const getNewsSecondSectionsServer = async () => {
     // 3. Susun hasilnya
     return [
         {
-            title: "Gaya Hidup",
+            title: "Entertaiment",
             layout: 'normal',
             news: entertainmentNews,
         },
