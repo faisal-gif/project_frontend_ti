@@ -7,7 +7,6 @@ export default function robots() {
         allow: '/',
         disallow: [
           '/api/',
-          '/_next/',
         ],
 
       },
