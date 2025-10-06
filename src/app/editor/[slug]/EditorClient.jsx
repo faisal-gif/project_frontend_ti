@@ -84,7 +84,7 @@ function EditorClient({ initialEditorDetail }) {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24">
+        <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24">
             {/* Tampilkan skeleton detail jika masih loading */}
             {!editorDetail ? (
                 <div className="text-center py-10">Memuat editor...</div>
@@ -103,8 +103,8 @@ function EditorClient({ initialEditorDetail }) {
                     </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="col-span-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+                    <div className="col-span-4">
                         <div className="space-y-3">
                             {/* Skeleton Loading */}
                             {isLoading && articles.length === 0 &&
@@ -156,10 +156,8 @@ function EditorClient({ initialEditorDetail }) {
                             </div>
                         )}
                     </div>
-                    <div className="hidden lg:block lg:col-span-1">
+                    <div className="hidden lg:block lg:col-span-2">
                         <PopularNews />
-
-
                     </div>
 
                 </div>

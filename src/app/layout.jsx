@@ -221,7 +221,7 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         <BackToTop />
-        <GoogleAnalytics gaId='G-VWQ4STDNVX'/>
+        <GoogleAnalytics gaId='G-VWQ4STDNVX' />
         <Script
           id="adsbygoogle-init"
           strategy="lazyOnload"

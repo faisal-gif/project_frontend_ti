@@ -84,7 +84,7 @@ function WriterClient({initialWriterDetail}) {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24">
+        <div className="max-w-6xl mx-auto px-4 py-24 max-md:px-4">
             {/* Tampilkan skeleton detail jika masih loading */}
             {!writerDetail ? (
                 <div className="text-center py-10">Memuat Jurnalis...</div>
@@ -103,8 +103,8 @@ function WriterClient({initialWriterDetail}) {
                     </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="col-span-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+                    <div className="col-span-4">
                         <div className="space-y-3">
                             {/* Skeleton Loading */}
                             {isLoading && articles.length === 0 &&
@@ -121,7 +121,7 @@ function WriterClient({initialWriterDetail}) {
                                     title={item.news_title}
                                     description={item.news_description}
                                     author={item.news_writer}
-                                    datePub={item.datePub}
+                                    datePub={item.news_datepub}
                                     views={Number(item.pageviews)}
                                     image={item.news_image_new}
                                     url={item.url_ci4}
@@ -156,10 +156,8 @@ function WriterClient({initialWriterDetail}) {
                             </div>
                         )}
                     </div>
-                    <div className="hidden lg:block lg:col-span-1">
+                    <div className="hidden lg:block lg:col-span-2">
                         <PopularNews />
-
-
                     </div>
 
                 </div>
