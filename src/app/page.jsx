@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './Home'
 import { getCekFaktaNews, getCekFaktaNewsServer, getNewsFirstSections, getNewsFirstSectionsServer, getNewsSecondSections, getNewsSecondSectionsServer, getWansusNews, getWansusNewsServer } from '@/lib/data';
 import { getAllNews, getAllNewsServer } from '@/lib/api/newsApi';
+import { getViewAds } from '@/lib/api/adsApi';
 
 export const metadata = {
   title: "TIMES Indonesia - Berita Positif Terbaru dan Terkini",
@@ -27,38 +28,42 @@ export const metadata = {
 };
 
 export default async function page() {
-   
-    const firstSectionsPromise = getNewsFirstSectionsServer();
-    const secondSectionsPromise = getNewsSecondSectionsServer();
-    const wansusPromise = getWansusNewsServer();
-    const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
-    const headlineNewsPromise =  getAllNewsServer({news_type: "headline",offset: 0,limit: 10,})
-    const cekFaktaNewsPromise = getCekFaktaNewsServer();
-   
-    const [
-        newsFirstSections,
-        newsSecondSections,
-        wansusNews,
-        allNews,
-        headlineNews,
-        cekFaktaNews
-    ] = await Promise.all([
-        firstSectionsPromise,
-        secondSectionsPromise,
-        wansusPromise,
-        allNewsPromise,
-        headlineNewsPromise,
-        cekFaktaNewsPromise,
-    ]);
+
+  const firstSectionsPromise = getNewsFirstSectionsServer();
+  const secondSectionsPromise = getNewsSecondSectionsServer();
+  const wansusPromise = getWansusNewsServer();
+  const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
+  const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10, })
+  const cekFaktaNewsPromise = getCekFaktaNewsServer();
+  const adsRectanglePromise = getViewAds({ id: 5 });
+
+  const [
+    newsFirstSections,
+    newsSecondSections,
+    wansusNews,
+    allNews,
+    headlineNews,
+    cekFaktaNews,
+    adsRectangle
+  ] = await Promise.all([
+    firstSectionsPromise,
+    secondSectionsPromise,
+    wansusPromise,
+    allNewsPromise,
+    headlineNewsPromise,
+    cekFaktaNewsPromise,
+    adsRectanglePromise
+  ]);
 
   return (
-    <Home 
-    newsFirstSections={newsFirstSections}
-    newsSecondSections={newsSecondSections}
-    wansusNews={wansusNews}
-    allNews={allNews}
-    initialHeadlineNews={headlineNews}
-    initialCekFaktaNews={cekFaktaNews}
+    <Home
+      newsFirstSections={newsFirstSections}
+      newsSecondSections={newsSecondSections}
+      wansusNews={wansusNews}
+      allNews={allNews}
+      initialHeadlineNews={headlineNews}
+      initialCekFaktaNews={cekFaktaNews}
+      initialAdsRectangle={adsRectangle}
     />
   )
 }

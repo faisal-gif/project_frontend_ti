@@ -17,7 +17,7 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 
 
 
-function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews }) {
+function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews, initialAdsRectangle }) {
 
     return (
         <div className="">
@@ -164,7 +164,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
 
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='inline_rectangle' />
+                            <GoogleAds size='netboard' adsEksternal={initialAdsRectangle} />
                         </div>
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />

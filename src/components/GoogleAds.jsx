@@ -1,25 +1,31 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 export default function GoogleAds({
     size = "inline_rectangle",
     className = "",
+    adsEksternal = null,
+
 }) {
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
-        try {
-            if (typeof window !== "undefined") {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
+        if (!adsEksternal) {
+            try {
+                if (typeof window !== "undefined") {
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                }
+            } catch (e) {
+                console.error("Adsense error", e);
             }
-        } catch (e) {
-            console.error("Adsense error", e);
         }
-    }, []);
+    }, [adsEksternal]);
 
     const adSizes = {
         inline_rectangle: { width: "300px", height: "250px" },
+        netboard: { width: "580px", height: "400px" },
         square: { width: "250px", height: "250px" },
         top_banner: { width: "930px", height: "180px" },
         banner: { width: "468px", height: "60px" },
@@ -42,25 +48,43 @@ export default function GoogleAds({
                 maxWidth: "100%",
             }}
         >
-         
-                <button
-                    onClick={() => setIsVisible(false)}
-                    className="absolute top-1 right-1 text-gray-600 hover:text-red-500"
+
+            <button
+                onClick={() => setIsVisible(false)}
+                className="absolute top-1 right-1 text-gray-600 hover:text-red-500"
+            >
+                <X size={16} />
+                <span className="sr-only">Tutup</span>
+            </button>
+
+            {adsEksternal ? (
+                <a
+                    href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full relative"
                 >
-                    <X size={16} />
-                    <span className="sr-only">Tutup</span>
-                </button>
-         
-            <ins
-                className="adsbygoogle"
-                style={{
-                    display: "inline-block",
-                    width: currentSize.width,
-                    height: currentSize.height,
-                }}
-                data-ad-client="ca-pub-5117046027656864"
-                data-ad-slot="8134946479"
-            ></ins>
+                    <Image
+                        src={adsEksternal.d_img}
+                        alt="Advertisement"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 300px"
+                        className="object-contain"
+                        priority={false}
+                    />
+                </a>
+            ) : (
+                <ins
+                    className="adsbygoogle"
+                    style={{
+                        display: "inline-block",
+                        width: currentSize.width,
+                        height: currentSize.height,
+                    }}
+                    data-ad-client="ca-pub-5117046027656864"
+                    data-ad-slot="8134946479"
+                ></ins>
+            )}
         </div>
     );
 }
