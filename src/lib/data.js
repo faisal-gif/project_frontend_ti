@@ -12,7 +12,7 @@ export const getSportsNewsServer = async () => {
 export const getBusinessNewsServer = async () => {
   return await getAllNewsServer({
     news_type: "cat",
-    cat_id: 8,
+    cat_id: 2,
     offset: 0,
     limit: 5,
   });
@@ -121,7 +121,7 @@ export const getNewsFirstSectionsServer = async () => {
             layout: 'normal',
         },
         {
-            title: "Ekonomi",
+            title: "Politik",
             news: businessNews,
             layout: 'grid',
         },

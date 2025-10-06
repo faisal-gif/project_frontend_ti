@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Card from './ui/Card';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
+import ClientOnly from './ClientOnly';
 
 function NewsCard({
     title,
@@ -70,7 +71,11 @@ function NewsCard({
 
                             <div className="flex items-center space-x-1">
                                 <Clock className="h-3 w-3" />
-                                <span><FormattedDate dateString={datePub} /></span>
+                                <span>
+                                    <ClientOnly>
+                                        <FormattedDate dateString={datePub} />
+                                    </ClientOnly>
+                                </span>
                             </div>
 
                         </div>

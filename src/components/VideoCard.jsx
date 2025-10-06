@@ -1,9 +1,8 @@
-import Link from 'next/link'
 import React from 'react'
 import Card from './ui/Card';
-import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import FormattedDate from '@/utils/date/FormattedDate';
+import ClientOnly from './ClientOnly';
 
 function VideoCard({
     index,
@@ -34,7 +33,11 @@ function VideoCard({
                         <h3 className="text-sm font-semibold leading-tight line-clamp-2 text-white group-hover:text-white transition-colors">
                             {title}
                         </h3>
-                        <div className="text-xs opacity-80 mt-1"><FormattedDate dateString={datepub} /> </div>
+                        <div className="text-xs opacity-80 mt-1">
+                            <ClientOnly>
+                                <FormattedDate dateString={datepub} />
+                            </ClientOnly>
+                        </div>
                     </div>
                 </div>
 

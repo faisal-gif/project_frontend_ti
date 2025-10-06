@@ -1,4 +1,5 @@
 'use client'
+import ClientOnly from '@/components/ClientOnly'
 import EkoranHomeCard from '@/components/EkoranHomeCard'
 import Button from '@/components/ui/Button'
 import CountUp from '@/components/ui/CountUp'
@@ -189,7 +190,9 @@ function Ekoran() {
                                     <div className="flex items-center gap-2 justify-center lg:justify-start mb-6">
                                         <Calendar className="h-5 w-5 text-neutral" />
                                         <span className="text-sm text-base-content/60">
-                                            <FormattedDate dateString={ekoran[0].datepub} />
+                                            <ClientOnly>
+                                                <FormattedDate dateString={ekoran[0].datepub} />
+                                            </ClientOnly>
                                         </span>
                                     </div>
                                     <div className="flex gap-3 justify-center lg:justify-start">
@@ -253,7 +256,7 @@ function Ekoran() {
 
                         {/* Kalau lagi load tambahan (load more) → skeleton tambahan */}
                         {isLoading && ekoran.length > 0 && (
-                             <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
                                 {[1, 2].map((group) => (
                                     <div key={`loading-${group}`} className="lg:col-span-2 space-y-4">
                                         <div className="h-6 w-40 bg-base-300 rounded animate-pulse mb-4" />

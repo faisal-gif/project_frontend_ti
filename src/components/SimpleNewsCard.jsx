@@ -3,9 +3,10 @@ import Card from './ui/Card'
 import Image from 'next/image';
 import Link from 'next/link';
 import FormattedDate from '@/utils/date/FormattedDate';
+import ClientOnly from './ClientOnly';
 
 function SimpleNewsCard({ title, timeAgo, image, url, layout }) {
-  
+
 
     return (
         <Link href={url}>
@@ -28,7 +29,7 @@ function SimpleNewsCard({ title, timeAgo, image, url, layout }) {
                                     <h3 className=" font-semibold text-sm leading-tight line-clamp-2 mb-1 group-hover:text-red-700 transition-colors">
                                         {title}
                                     </h3>
-                                    
+
                                 </div>
                             </div>
 
@@ -51,7 +52,11 @@ function SimpleNewsCard({ title, timeAgo, image, url, layout }) {
                                         {title}
                                     </h3>
                                     <div className="flex items-center justify-between">
-                                        <span><FormattedDate dateString={timeAgo} /></span>
+                                        <span>
+                                            <ClientOnly>
+                                                <FormattedDate dateString={timeAgo} />
+                                            </ClientOnly>
+                                        </span>
                                     </div>
                                 </div>
 

@@ -23,6 +23,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import ModalShare from '@/components/ModalShare';
 import FormattedDate from '@/utils/date/FormattedDate';
+import ClientOnly from '@/components/ClientOnly';
 
 function FotoDetail({ initialFotoDetail }) {
 
@@ -116,7 +117,9 @@ function FotoDetail({ initialFotoDetail }) {
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
                                         <span>
-                                            <FormattedDate dateString={fotoDetail.gal_datepub} />
+                                            <ClientOnly>
+                                                <FormattedDate dateString={fotoDetail.gal_datepub} />
+                                            </ClientOnly>
                                         </span>
                                     </div>
                                     <div className='flex flex-row justify-between items-center'>

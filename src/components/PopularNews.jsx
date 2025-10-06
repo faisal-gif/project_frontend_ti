@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { getAllNews } from '@/lib/api/newsApi';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
+import ClientOnly from './ClientOnly';
 
 export default function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
@@ -53,7 +54,11 @@ export default function PopularNews() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3 text-xs text-[#2A2A2A] opacity-70">
-                                    <span><FormattedDate dateString={article.news_datepub} /></span>
+                                    <span>
+                                        <ClientOnly>
+                                            <FormattedDate dateString={article.news_datepub} />
+                                        </ClientOnly>
+                                    </span>
                                     <span>•</span>
                                     <span><FormattedViews count={article.pageviews} /> views</span>
                                 </div>

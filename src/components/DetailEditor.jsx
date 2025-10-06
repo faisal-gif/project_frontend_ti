@@ -2,6 +2,7 @@
 import React from 'react'
 import Card from './ui/Card';
 import FormattedDate from '@/utils/date/FormattedDate';
+import ClientOnly from './ClientOnly';
 
 function DetailEditor({ authorData }) {
     if (!authorData) {
@@ -52,13 +53,17 @@ function DetailEditor({ authorData }) {
                                 <span className="font-semibold text-foreground">100</span>
                                 <span>Pengikut</span>
                             </div>
-                            <div>Bergabung sejak <FormattedDate dateString={authorData.created} /></div>
+                            <div>Bergabung sejak
+                                <ClientOnly>
+                                    <FormattedDate dateString={authorData.created} />
+                                </ClientOnly>
+                            </div>
                         </div>
                     </div>
                 </div>
             </Card>
 
-           
+
 
         </div>
     )

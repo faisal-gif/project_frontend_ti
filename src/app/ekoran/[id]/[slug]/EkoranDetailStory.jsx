@@ -6,18 +6,18 @@ import {
     X,
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
-import { useParams, useRouter } from 'next/navigation';
-import { getDetailEkoran } from '@/lib/api/ekoran';
+import { useRouter } from 'next/navigation';
 import EkoranReader from '@/components/EkoranReader';
 import ModalShare from '@/components/ModalShare';
 import FormattedDate from '@/utils/date/FormattedDate';
+import ClientOnly from '@/components/ClientOnly';
 
 function EkoranDetailStory({ InitialEkoranDetail }) {
 
     const navigate = useRouter();
 
     // Mock data for the e-koran edition
-    const [ekoranDetail, setEkoranDetail] = useState(InitialEkoranDetail);
+    const [ekoranDetail] = useState(InitialEkoranDetail);
 
     const ekoranArticle = ekoranDetail && {
         id: ekoranDetail.id,
@@ -107,7 +107,11 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
                         </Button>
                         <div>
                             <h1 className="font-semibold text-sm">{ekoranArticle.title}</h1>
-                            <p className="text-xs text-white/70"><FormattedDate dateString={ekoranArticle.date} /> </p>
+                            <p className="text-xs text-white/70">
+                                <ClientOnly>
+                                    <FormattedDate dateString={ekoranArticle.date} />
+                                </ClientOnly>
+                            </p>
                         </div>
                     </div>
 
