@@ -25,7 +25,7 @@ function FeaturedNewsCard({
                     src={image}
                     alt={title}
                     fill
-                    quality={50}
+                    quality={70}
                     sizes="(max-width: 768px) 100vw, 384px"
                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                     priority={index === 0} // 👈 hanya slide pertama yang priority
@@ -35,7 +35,7 @@ function FeaturedNewsCard({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
                 <div className="relative flex h-full transform flex-col justify-end p-6 transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
-                    <h3 className="mb-4 text-md md:text-lg font-bold leading-tight transition-colors text-white/70  group-hover:text-white lg:text-3xl line-clamp-2">
+                    <h3 className="mb-4 text-md md:text-lg font-bold leading-tight transition-colors text-white  group-hover:text-white lg:text-3xl line-clamp-2">
                         {title}
                     </h3>
 

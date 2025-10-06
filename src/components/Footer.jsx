@@ -90,7 +90,7 @@ function Footer() {
                 </li>
                 <li className="flex items-center space-x-3">
                   <Phone className="h-4 w-4 text-[#b51d1d]" />
-                  <span className="text-white/65 text-sm">(0341) 567890</span>
+                  <span className="text-white/65 text-sm">(0341) 563566</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-[#b51d1d]" />

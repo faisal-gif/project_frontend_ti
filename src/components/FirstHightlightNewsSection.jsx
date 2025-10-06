@@ -42,7 +42,7 @@ function FirstHightlightNewsSection({ title, news, layout = 'normal' }) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                                     <div className="text-xs mb-2 opacity-90"><FormattedDate dateString={news[0].news_datepub} /></div>
-                                    <h3 className="text-sm font-bold leading-tight line-clamp-2 mb-4 text-white/70  group-hover:text-white transition-colors">
+                                    <h3 className="text-sm font-bold leading-tight line-clamp-2 mb-4 text-white  group-hover:text-white transition-colors">
                                         {news[0].news_title}
                                     </h3>
                                     <div className="flex items-center justify-between text-xs">

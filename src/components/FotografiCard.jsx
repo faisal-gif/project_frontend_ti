@@ -24,7 +24,7 @@ function FotografiCard({
                         src={gal_cover}
                         alt={gal_title}
                         fill
-                        quality={55}
+                        quality={50}
                         sizes="(max-width: 768px) 100vw,
                         (max-width: 1200px) 50vw,
                         33vw"
@@ -42,7 +42,7 @@ function FotografiCard({
 
                     {/* Title + Date inside image */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                        <h3 className="text-sm font-semibold leading-tight line-clamp-2 text-white/70  group-hover:text-white transition-colors">
+                        <h3 className="text-sm font-semibold leading-tight line-clamp-2 text-white  group-hover:text-white transition-colors">
                             {gal_title}
                         </h3>
                         <div className="text-xs opacity-80 mt-1"><FormattedDate dateString={datepub} /></div>
