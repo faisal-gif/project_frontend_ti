@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
+import ClientOnly from './ClientOnly';
 
 
 function FeaturedNewsCard({
@@ -41,7 +42,10 @@ function FeaturedNewsCard({
 
                     <div className="flex items-center justify-between text-white">
                         <div className="flex items-center gap-4">
-                            <span className="text-xs md:text-sm opacity-90"><FormattedDate dateString={timeAgo} /> </span>
+                            <span className="text-xs md:text-sm opacity-90">
+                                <ClientOnly>
+                                    <FormattedDate dateString={timeAgo} />
+                                </ClientOnly> </span>
                             <div className="flex items-center gap-1">
                                 <div className="avatar avatar-placeholder">
                                     <div className="bg-neutral text-neutral-content w-5 rounded-full">
@@ -57,7 +61,11 @@ function FeaturedNewsCard({
                         <div className="flex items-center gap-4 text-xs md:text-sm opacity-90">
                             <div className="flex items-center gap-1">
                                 <Eye className="w-4 h-4" />
-                                <span><FormattedViews count={views} /> </span>
+                                <span>
+                                    <ClientOnly>
+                                        <FormattedViews count={views} />
+                                    </ClientOnly>
+                                </span>
                             </div>
 
                         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, Download, Eye, Newspaper } from 'lucide-react';
 import Card from './ui/Card';
 import FormattedDate from '@/utils/date/FormattedDate';
+import ClientOnly from './ClientOnly';
 
 
 const EKoranCard = ({ edition }) => {
@@ -24,7 +25,11 @@ const EKoranCard = ({ edition }) => {
 
                 <div className="flex items-center gap-2 mb-4">
                     <Calendar className="h-4 w-4 text-neutral" />
-                    <span className="text-xs text-base-content/60"> <FormattedDate dateString={edition.datepub} /> </span>
+                    <span className="text-xs text-base-content/60">
+                        <ClientOnly>
+                            <FormattedDate dateString={edition.datepub} />
+                        </ClientOnly>
+                    </span>
                 </div>
 
                 <div className="grid grid-cols-1 gap-2 w-full">

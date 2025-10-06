@@ -66,7 +66,11 @@ function NewsCard({
                         <div className="flex items-center justify-start gap-2 text-xs text-muted-foreground">
                             <div className="flex items-center space-x-1">
                                 <Eye className="h-3 w-3" />
-                                <span><FormattedViews count={views} /></span>
+                                <span>
+                                    <ClientOnly>
+                                        <FormattedViews count={views} />
+                                    </ClientOnly>
+                                </span>
                             </div>
 
                             <div className="flex items-center space-x-1">

@@ -60,7 +60,11 @@ export default function PopularNews() {
                                         </ClientOnly>
                                     </span>
                                     <span>•</span>
-                                    <span><FormattedViews count={article.pageviews} /> views</span>
+                                    <span>
+                                        <ClientOnly>
+                                            <FormattedViews count={article.pageviews} />
+                                        </ClientOnly>
+                                        views</span>
                                 </div>
                             </div>
 

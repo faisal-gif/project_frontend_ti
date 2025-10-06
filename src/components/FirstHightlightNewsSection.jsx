@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
+import ClientOnly from './ClientOnly';
 
 function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' }) {
 
@@ -41,7 +42,11 @@ function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' 
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                    <div className="text-xs mb-2 opacity-90"><FormattedDate dateString={news[0].news_datepub} /></div>
+                                    <div className="text-xs mb-2 opacity-90">
+                                        <ClientOnly>
+                                            <FormattedDate dateString={news[0].news_datepub} />
+                                        </ClientOnly>
+                                    </div>
                                     <h3 className="text-sm font-bold leading-tight line-clamp-2 mb-4 text-white  group-hover:text-white transition-colors">
                                         {news[0].news_title}
                                     </h3>
@@ -54,7 +59,11 @@ function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' 
                                         </div> */}
                                             <div className="flex items-center gap-1">
                                                 <Eye className="w-4 h-4" />
-                                                <span><FormattedViews count={news[0].pageviews} /></span>
+                                                <span>
+                                                    <ClientOnly>
+                                                        <FormattedViews count={news[0].pageviews} />
+                                                    </ClientOnly>
+                                                </span>
                                             </div>
                                             {/* <div className="flex items-center gap-1">
                                             <Heart className="w-4 h-4" />

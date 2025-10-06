@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
+import ClientOnly from './ClientOnly';
 
 function EkoranHomeCard({
     datepub,
@@ -38,7 +39,9 @@ function EkoranHomeCard({
                     {/* Views badge */}
                     <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs flex items-center gap-1">
                         <Eye className="w-3 h-3" />
-                        <FormattedViews count={gal_view} />
+                        <ClientOnly>
+                            <FormattedViews count={gal_view} />
+                        </ClientOnly>
                     </div>
 
                     {/* Title + Date inside image */}
@@ -46,7 +49,11 @@ function EkoranHomeCard({
                         <h3 className="text-sm font-semibold leading-tight line-clamp-2 text-white/70  group-hover:text-white transition-colors">
                             {gal_title}
                         </h3>
-                        <div className="text-xs opacity-80 mt-1"> <FormattedDate dateString={datepub} /> </div>
+                        <div className="text-xs opacity-80 mt-1">
+                            <ClientOnly>
+                                <FormattedDate dateString={datepub} />
+                            </ClientOnly>
+                        </div>
                     </div>
                 </div>
 
