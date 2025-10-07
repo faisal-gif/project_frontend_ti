@@ -18,6 +18,7 @@ import { getFocusDetail } from '@/lib/api/focus';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
+import ClientOnly from '@/components/ClientOnly';
 
 function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
@@ -127,14 +128,16 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
                                         <span>
-                                            {new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
-                                                day: 'numeric',
-                                                month: 'long',
-                                                year: 'numeric',
-                                                hour: '2-digit',
-                                                minute: '2-digit'
-                                            })
-                                            }
+                                            <ClientOnly>
+                                                {new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
+                                                    day: 'numeric',
+                                                    month: 'long',
+                                                    year: 'numeric',
+                                                    hour: '2-digit',
+                                                    minute: '2-digit'
+                                                })
+                                                }
+                                            </ClientOnly>
                                         </span>
                                         <span className="font-bold">-</span>
                                         <span className='flex flex-row gap-1 items-center pl-1'>
