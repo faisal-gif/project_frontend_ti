@@ -83,7 +83,7 @@ function LastestNewsSection() {
 
     return (
         <>
-            <div id={'terbaru_jelajah_berita'}>
+            <div id={'terbaru_jelajah_berita'} style={{ scrollMarginTop: '90px' }}>
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
                         <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
