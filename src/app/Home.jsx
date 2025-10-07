@@ -13,13 +13,9 @@ import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHori
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
-import dynamic from 'next/dynamic';
+import GoogleAds from '@/components/GoogleAds';
 
 
-const GoogleAds = dynamic(() => import('@/components/GoogleAds'), {
-    ssr: false,
-    loading: () => <div style={{ minHeight: '90px', background: '#f0f0f0' }}></div>
-});
 
 
 
