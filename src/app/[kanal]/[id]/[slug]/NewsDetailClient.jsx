@@ -127,13 +127,11 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
                                         <span>
-                                            {isMounted
-                                                ? <FormattedDate dateString={newsDetail.news_datepub} />
-                                                : new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
-                                                    day: 'numeric',
-                                                    month: 'long',
-                                                    year: 'numeric'
-                                                })
+                                            {new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
+                                                day: 'numeric',
+                                                month: 'long',
+                                                year: 'numeric'
+                                            })
                                             }
                                         </span>
                                         <span className="font-bold">-</span>
