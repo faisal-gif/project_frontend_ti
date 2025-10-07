@@ -31,7 +31,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState([]);
     const [newsFirstSections, setNewsFirstSections] = useState([]);
-    const [isMounted, setIsMounted] = useState(false);
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
@@ -53,7 +52,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
     useEffect(() => {
         getNewsFirstSectionsClient().then(setNewsFirstSections).catch(console.error)
-        setIsMounted(true);
+      
     }, []);
 
     const tim = [
@@ -128,11 +127,8 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
                                         <span>
-                                            {isMounted && new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
-                                                    day: 'numeric',
-                                                    month: 'long',
-                                                    year: 'numeric'
-                                                })
+                                            {
+                                                <FormattedDate dateString={newsDetail.news_datepub} />
                                             }
                                         </span>
                                         <span className="font-bold">-</span>

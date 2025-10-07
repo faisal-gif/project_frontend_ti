@@ -1,21 +1,24 @@
+import { formatInTimeZone } from 'date-fns-tz';
+import { formatDistanceToNowStrict, isBefore, subDays } from 'date-fns';
+import { id } from 'date-fns/locale'; // Impor locale Bahasa Indonesia
+
 export function formatDate(dateString) {
   if (!dateString) return "";
 
   const date = new Date(dateString);
-  const now = new Date();
-  const diffMs = now - date;
-  const diffMinutes = Math.floor(diffMs / (1000 * 60));
-  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const sevenDaysAgo = subDays(new Date(), 7); // Dapatkan tanggal 7 hari yang lalu
 
-  if (diffMinutes < 1) return "just now";
-  if (diffMinutes < 60) return `${diffMinutes} menit ${diffMinutes > 1 ? "" : ""} lalu`;
-  if (diffHours < 24) return `${diffHours} jam ${diffHours > 1 ? "" : ""} lalu`;
-  if (diffDays < 7) return `${diffDays} hari ${diffDays > 1 ? "" : ""} lalu`;
-
-  return date.toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  if (isBefore(date, sevenDaysAgo)) {
+    return formatInTimeZone(
+      date,
+      'Asia/Jakarta',
+      'd MMMM yyyy',
+      { locale: id }
+    );
+  } else {
+    return formatDistanceToNowStrict(date, {
+      addSuffix: true,
+      locale: id,
+    });
+  }
 }
