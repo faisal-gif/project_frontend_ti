@@ -13,7 +13,7 @@ export default async function sitemap() {
 
     return getNewsData.map((news) => ({
         url: process.env.NEXT_PUBLIC_URL + news.url_ci4,
-        lastModified: new Date(news.news_datepub).toISOString(), // pakai format ISO
+        lastModified: news.news_datepub.replace(' ', 'T') + '+07:00', // pakai format ISO
         images: [news.news_image_new],
     }));
 }

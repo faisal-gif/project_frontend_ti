@@ -29,7 +29,7 @@ export async function GET() {
                 (item) => `
     <url>
         <loc>${process.env.NEXT_PUBLIC_URL}${item.url_ci4}</loc>
-        <lastmod>${new Date(item.news_datepub).toISOString()}</lastmod>
+        <lastmod>${item.news_datepub.replace(' ', 'T') + '+07:00'}</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
       <news:news>
@@ -37,7 +37,7 @@ export async function GET() {
           <news:name>TIMES Indonesia</news:name>
           <news:language>id</news:language>
         </news:publication>
-        <news:publication_date>${new Date(item.news_datepub).toISOString()}</news:publication_date>
+        <news:publication_date>${item.news_datepub.replace(' ', 'T') + '+07:00'}</news:publication_date>
         <news:title>${xmlConvert(item.news_title)}</news:title>
         <news:keywords>>${xmlConvert(
                     `${item.news_city.toLowerCase()}, ${item.news_tags}`
