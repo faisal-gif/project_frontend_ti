@@ -59,11 +59,61 @@ export default async function page({ params }) {
         notFound();
     }
 
-    let writer = {}; 
+    let writer = {};
 
     if (initialNewsDetail.writer_slug) {
-        writer = await getWriterDetail({slug:initialNewsDetail.writer_slug});
+        writer = await getWriterDetail({ slug: initialNewsDetail.writer_slug });
     }
 
-    return <NewsDetailClient initialNewsDetail={initialNewsDetail} initialWriter={writer} />;
+    const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';
+
+    // --- MULAI PENAMBAHAN SCHEMA ---
+    const schemaData = {
+        '@context': 'https://schema.org',
+        '@type': 'NewsArticle',
+        'mainEntityOfPage': {
+            '@type': 'WebPage',
+            '@id': `${process.env.NEXT_PUBLIC_URL}/${initialNewsDetail.url_ci4 || ''}`,
+        },
+        'headline': initialNewsDetail.news_title,
+        'description': initialNewsDetail.news_description,
+        'image': [
+            initialNewsDetail.news_image_new,
+        ],
+        // Pastikan 'news_datepub' adalah string tanggal dalam format ISO 8601
+        'datePublished': correctedDateString,
+        'dateModified': correctedDateString,
+        'author': {
+            '@type': 'Person',
+            'name': initialNewsDetail.news_writer,
+            // Jika Anda punya halaman profil penulis, URL-nya bisa ditambahkan di sini
+            'url': `${process.env.NEXT_PUBLIC_URL}/writer/${initialNewsDetail.writer_slug}`
+        },
+        'publisher': {
+            '@type': 'Organization',
+            'name': 'TIMES Indonesia',
+            'logo': {
+                '@type': 'ImageObject',
+                // GANTI DENGAN URL LOGO ANDA YANG VALID
+                'url': `${process.env.NEXT_PUBLIC_URL}/icon.png`,
+            }
+        },
+    };
+
+
+    const newsDetailForClient = {
+        ...initialNewsDetail,
+        news_datepub: correctedDateString, // Kirim tanggal yang sudah benar ke client
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+            />
+            {/* Kirim data yang sudah diperbaiki ke komponen client */}
+            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialWriter={writer} />
+        </>
+    );
 }
