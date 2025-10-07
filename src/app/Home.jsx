@@ -54,7 +54,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                     )}
                     {
                         allNews.length > 0 && (
-                            <FirstHightlightNewsSection index={0} title={'Berita Terbaru'} news={allNews} />
+                            <FirstHightlightNewsSection url="#jelajah_berita" index={0} title={'Berita Terbaru'} news={allNews} />
                         )
                     }
 
@@ -74,7 +74,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
                 {newsFirstSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection index={0} title={section.title} news={section.news} layout={section.layout} />
+                        <FirstHightlightNewsSection url={section.url} index={0} title={section.title} news={section.news} layout={section.layout} />
                     </div>
                 ))}
             </div>
@@ -102,7 +102,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                 )}
                 {newsSecondSections.map((section) => (
                     <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news} layout={section.layout} />
+                        <FirstHightlightNewsSection url={section.url} title={section.title} news={section.news} layout={section.layout} />
                     </div>
                 ))}
 
@@ -153,7 +153,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
             <VideoSection />
 
             {/* Last News */}
-            <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4">
+            <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4"  id='jelajah_berita' >
                 <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
                     <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4">
                         <LastestNewsSection />

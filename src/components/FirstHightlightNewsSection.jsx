@@ -1,25 +1,46 @@
 
-import React from 'react'
-import Card from './ui/Card'
-import SimpleNewsCard from './SimpleNewsCard'
-import { ChevronRight, Eye, Heart, MessageCircle } from 'lucide-react'
+import React from 'react';
+import Card from './ui/Card';
+import SimpleNewsCard from './SimpleNewsCard';
+import { ChevronRight, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import ClientOnly from './ClientOnly';
 
-function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' }) {
+import ScrollButton from '@/components/ScrollButton';
+
+export default function FirstHightlightNewsSection({ title, url = '/', index = 1, news, layout = 'normal' }) {
+
+    const isScrollLink = url.startsWith('#');
+
+    const TitleComponent = () => (
+        <h2 className="text-lg font-bold text-news-category flex items-center hover:text-[#C31815] gap-2 uppercase">
+            <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
+            {title}
+            <ChevronRight className="w-6 h-6" />
+        </h2>
+    );
 
     return (
         <section className="space-y-6 border-t-2 border-base-300">
             <div className="flex items-center justify-between mt-2">
-                <h2 className="text-lg font-bold text-news-category flex items-center gap-2 uppercase">
-                    <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
-                    {title}
-                    <ChevronRight className="w-6 h-6" />
-                </h2>
+                {
+                 
+                    isScrollLink ? (
+                        <ScrollButton url={url}>
+                            <TitleComponent />
+                        </ScrollButton>
+                    ) : (
+                        <Link href={url} scroll={true}>
+                            <TitleComponent />
+                        </Link>
+                    )
+                }
             </div>
+            
+            {/* Sisa dari komponen tidak diubah dan tetap di-render di server */}
             <div className="space-y-6">
                 <Link href={news[0].url_ci4}>
                     <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg border-0 bg-card overflow-hidden">
@@ -43,6 +64,7 @@ function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                                     <div className="text-xs mb-2 opacity-90">
+                                        {/* ClientOnly di sini tetap aman digunakan */}
                                         <ClientOnly>
                                             <FormattedDate dateString={news[0].news_datepub} />
                                         </ClientOnly>
@@ -53,10 +75,6 @@ function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' 
                                     <div className="flex items-center justify-between text-xs">
                                         <span className="font-medium">{news[0].news_writer}</span>
                                         <div className="flex items-center gap-4">
-                                            {/* <div className="flex items-center gap-1">
-                                            <MessageCircle className="w-4 h-4" />
-                                            <span>{news[0].comments}</span>
-                                        </div> */}
                                             <div className="flex items-center gap-1">
                                                 <Eye className="w-4 h-4" />
                                                 <span>
@@ -65,14 +83,9 @@ function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' 
                                                     </ClientOnly>
                                                 </span>
                                             </div>
-                                            {/* <div className="flex items-center gap-1">
-                                            <Heart className="w-4 h-4" />
-                                            <span>{news[0].likes}</span>
-                                        </div> */}
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </Card>
@@ -92,7 +105,5 @@ function FirstHightlightNewsSection({ title, index = 1, news, layout = 'normal' 
                 ))}
             </div>
         </section>
-    )
+    );
 }
-
-export default FirstHightlightNewsSection

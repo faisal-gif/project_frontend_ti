@@ -1,12 +1,13 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
 @plugin "daisyui" {
-   themes: light --default;
+  themes: light --default;
 }
 
 @import './styles/nprogress.css';
 
- .yarl__container {
+.yarl__container {
   background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
@@ -16,4 +17,8 @@
   display: block;
   margin: 1rem auto;
   border-radius: 8px;
+}
+
+#jelajah_berita {
+  scroll-margin-top: 80px;
 }

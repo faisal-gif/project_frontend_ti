@@ -101,102 +101,108 @@ export const getCekFaktaNewsServer = async () => {
 
 // --- UBAH FUNGSI INI ---
 export const getNewsFirstSectionsServer = async () => {
-    // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
-    const sportsPromise = getSportsNewsServer();
-    const businessPromise = getBusinessNewsServer();
-    const lipsusPromise = getLipsusNewsServer();
+  // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
+  const sportsPromise = getSportsNewsServer();
+  const businessPromise = getBusinessNewsServer();
+  const lipsusPromise = getLipsusNewsServer();
 
-    // 2. Jalankan semua promise secara bersamaan
-    const [sportsNews, businessNews, lipsusNews] = await Promise.all([
-        sportsPromise,
-        businessPromise,
-        lipsusPromise,
-    ]);
+  // 2. Jalankan semua promise secara bersamaan
+  const [sportsNews, businessNews, lipsusNews] = await Promise.all([
+    sportsPromise,
+    businessPromise,
+    lipsusPromise,
+  ]);
 
-    // 3. Susun hasilnya setelah semua data diterima
-    return [
-        {
-            title: "Olahraga",
-            news: sportsNews,
-            layout: 'normal',
-        },
-        {
-            title: "Politik",
-            news: businessNews,
-            layout: 'grid',
-        },
-        {
-            title: "Liputan Khusus",
-            news: lipsusNews,
-            layout: 'reverse',
-        },
-    ];
+  // 3. Susun hasilnya setelah semua data diterima
+  return [
+    {
+      title: "Olahraga",
+      news: sportsNews,
+      layout: 'normal',
+      url: '/kanal/olahraga',
+    },
+    {
+      title: "Politik",
+      news: businessNews,
+      layout: 'grid',
+      url: '/kanal/politik',
+    },
+    {
+      title: "Liputan Khusus",
+      news: lipsusNews,
+      layout: 'reverse',
+      url: '/tag/lipsus',
+    },
+  ];
 };
 
 export const getNewsFirstSectionsClient = async () => {
-    // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
-    const sportsPromise = getSportsNewsClient();
-    const businessPromise = getBusinessNewsClient();
-    const lipsusPromise = getLipsusNewsClient();
+  // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
+  const sportsPromise = getSportsNewsClient();
+  const businessPromise = getBusinessNewsClient();
+  const lipsusPromise = getLipsusNewsClient();
 
-    // 2. Jalankan semua promise secara bersamaan
-    const [sportsNews, businessNews, lipsusNews] = await Promise.all([
-        sportsPromise,
-        businessPromise,
-        lipsusPromise,
-    ]);
+  // 2. Jalankan semua promise secara bersamaan
+  const [sportsNews, businessNews, lipsusNews] = await Promise.all([
+    sportsPromise,
+    businessPromise,
+    lipsusPromise,
+  ]);
 
-    // 3. Susun hasilnya setelah semua data diterima
-    return [
-        {
-            title: "Olahraga",
-            news: sportsNews,
-            layout: 'normal',
-        },
-        {
-            title: "Ekonomi",
-            news: businessNews,
-            layout: 'grid',
-        },
-        {
-            title: "Liputan Khusus",
-            news: lipsusNews,
-            layout: 'reverse',
-        },
-    ];
+  // 3. Susun hasilnya setelah semua data diterima
+  return [
+    {
+      title: "Olahraga",
+      news: sportsNews,
+      layout: 'normal',
+    },
+    {
+      title: "Ekonomi",
+      news: businessNews,
+      layout: 'grid',
+    },
+    {
+      title: "Liputan Khusus",
+      news: lipsusNews,
+      layout: 'reverse',
+    },
+  ];
 };
 
 
 // --- UBAH FUGSI INI JUGA ---
 export const getNewsSecondSectionsServer = async () => {
-    // 1. Panggil semua fungsi tanpa 'await'
-    const entertainmentPromise = getEntertainmentNewsServer();
-    const indoPositifPromise = getIndoPositifNewsServer();
-    const kopiTimesPromise = getKopiTimesNewsServer();
+  // 1. Panggil semua fungsi tanpa 'await'
+  const entertainmentPromise = getEntertainmentNewsServer();
+  const indoPositifPromise = getIndoPositifNewsServer();
+  const kopiTimesPromise = getKopiTimesNewsServer();
 
-    // 2. Jalankan semua promise secara bersamaan
-    const [entertainmentNews, indoPositifNews, kopiTimesNews] = await Promise.all([
-        entertainmentPromise,
-        indoPositifPromise,
-        kopiTimesPromise,
-    ]);
+  // 2. Jalankan semua promise secara bersamaan
+  const [entertainmentNews, indoPositifNews, kopiTimesNews] = await Promise.all([
+    entertainmentPromise,
+    indoPositifPromise,
+    kopiTimesPromise,
+  ]);
 
-    // 3. Susun hasilnya
-    return [
-        {
-            title: "Entertaiment",
-            layout: 'normal',
-            news: entertainmentNews,
-        },
-        {
-            title: "Indonesia Positif",
-            layout: 'grid',
-            news: indoPositifNews,
-        },
-        {
-            title: "Kopi Times",
-            layout: 'reverse',
-            news: kopiTimesNews,
-        },
-    ];
+  // 3. Susun hasilnya
+  return [
+    {
+      title: "Entertaiment",
+      layout: 'normal',
+      news: entertainmentNews,
+      url: '/kanal/entertainment'
+    },
+    {
+      title: "Indonesia Positif",
+      layout: 'grid',
+      news: indoPositifNews,
+      url: '/kanal/indonesia-positif',
+    },
+    {
+      title: "Kopi Times",
+      layout: 'reverse',
+      news: kopiTimesNews,
+      url: '/kanal/kopi-times',
+    },
+  ];
 };

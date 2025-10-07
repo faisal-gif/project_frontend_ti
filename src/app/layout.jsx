@@ -69,7 +69,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" data-theme="light">
+    <html lang="id" data-theme="light" className='scroll-smooth'>
       <head>
 
         {/* Article metadata */}
