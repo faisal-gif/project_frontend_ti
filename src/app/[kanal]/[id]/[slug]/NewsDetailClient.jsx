@@ -130,7 +130,9 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                             {new Date(newsDetail.news_datepub).toLocaleDateString('id-ID', {
                                                 day: 'numeric',
                                                 month: 'long',
-                                                year: 'numeric'
+                                                year: 'numeric',
+                                                hour: '2-digit',
+                                                minute: '2-digit'
                                             })
                                             }
                                         </span>
