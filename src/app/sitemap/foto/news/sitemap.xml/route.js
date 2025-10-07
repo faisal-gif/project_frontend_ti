@@ -24,7 +24,7 @@ export async function GET() {
           <news:name><![CDATA[ TIMES Indonesia ]]></news:name>
           <news:language><![CDATA[ id ]]></news:language>
         </news:publication>
-        <news:publication_date><![CDATA[ ${new Date(item.gal_datepub).toISOString()} ]]></news:publication_date>
+        <news:publication_date><![CDATA[ ${item.gal_datepub.replace(' ', 'T') + '+07:00'} ]]></news:publication_date>
         <news:title><![CDATA[ ${item.gal_title} ]]></news:title>
         <news:keywords><![CDATA[ gallery times indonesia,galeri foto times indonesia,foto times indonesia,${item.gal_title} ]]></news:keywords>
       </news:news>

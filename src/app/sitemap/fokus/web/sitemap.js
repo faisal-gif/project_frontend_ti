@@ -13,6 +13,6 @@ export default async function sitemap() {
 
     return getFocusData.map((focus) => ({
         url: `${process.env.NEXT_PUBLIC_URL}${focus.urlPath}`,
-        lastModified: focus.created ? new Date(focus.created) : new Date(),
+        lastModified: focus.created ? focus.created.replace(' ', 'T') + '+07:00' : new Date(),
     }));
 }

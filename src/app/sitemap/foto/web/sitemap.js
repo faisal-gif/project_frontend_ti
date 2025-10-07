@@ -12,6 +12,6 @@ export default async function sitemap() {
     }
     return getFotoData.map((foto) => ({
         url: `${process.env.NEXT_PUBLIC_URL}${foto.url_ci4}`,
-        lastModified: foto.gal_datepub ? new Date(foto.gal_datepub) : new Date(),
+        lastModified: foto.gal_datepub ? foto.gal_datepub.replace(' ', 'T') + '+07:00' : new Date(),
     }));
 }

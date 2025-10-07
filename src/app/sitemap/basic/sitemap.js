@@ -1,4 +1,5 @@
 import { getAllFocus } from "@/lib/api/focus";
+import { formatInTimeZone } from "date-fns-tz";
 
 export const dynamic = "force-dynamic"; // sitemap selalu runtime
 
@@ -18,7 +19,7 @@ export default async function sitemap() {
         `${process.env.NEXT_PUBLIC_URL}/page/contact-us`,
     ];
 
-    const lastmod = new Date().toISOString(); // otomatis update waktu
+    const lastmod = formatInTimeZone(new Date(), 'Asia/Jakarta', "yyyy-MM-dd'T'HH:mm:ssXXX");
 
 
     return urls.map((sitemap) => ({

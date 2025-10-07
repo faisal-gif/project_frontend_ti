@@ -25,7 +25,7 @@ export async function GET() {
           <news:name><![CDATA[ TIMES Indonesia ]]></news:name>
           <news:language><![CDATA[ id ]]></news:language>
         </news:publication>
-        <news:publication_date><![CDATA[ ${new Date(item.created).toISOString()} ]]></news:publication_date>
+        <news:publication_date><![CDATA[ ${item.created.replace(' ', 'T') + '+07:00'} ]]></news:publication_date>
         <news:title><![CDATA[ ${item.focnews_title} ]]></news:title>
         <news:keywords><![CDATA[ ${item.focnews_keyword} ]]></news:keywords>
       </news:news>
