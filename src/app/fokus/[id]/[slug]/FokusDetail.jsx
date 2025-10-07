@@ -4,6 +4,7 @@ import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button';
 import { getAllNews } from '@/lib/api/newsApi';
 import { Grid, Hash, List } from 'lucide-react';
+import Link from 'next/link';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 function FokusDetail({ InitialFokusDetail }) {
@@ -92,6 +93,14 @@ function FokusDetail({ InitialFokusDetail }) {
                 <GoogleAds size='top_banner' />
             </div>
 
+            <div className="breadcrumbs text-sm my-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='hover:text-[#b41d1d]'><Link href={`/fokus`}>Fokus</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'><Link href={`${detailFocus.urlPath}`}>{detailFocus.focnews_title}</Link></li>
+                </ul>
+            </div>
+
             {detailFocus && detailFocus.focnews_image_body && (
                 <div className="flex items-center justify-center mb-8">
                     <img src={detailFocus.focnews_image_body} className='w-full md:w-8/12 h-full' />
@@ -100,7 +109,7 @@ function FokusDetail({ InitialFokusDetail }) {
             {/* Focus Header */}
             <div className="bg-gradient-to-r from-[#7a0f1f]/10 via-[#7a0f1f]/5 to-transparent rounded-lg p-8 mb-12 border border-[#7a0f1f]/10">
                 <div className="flex flex-col md:flex-row items-start gap-6">
-                  <Hash className='h-6 w-6 lg:h-18 lg:w-18' />
+                    <Hash className='h-6 w-6 lg:h-18 lg:w-18' />
                     <div className="flex-1">
                         <div className="flex items-center gap-3 mb-4">
                             <h1 className="text-lg md:text-4xl font-bold text-foreground">

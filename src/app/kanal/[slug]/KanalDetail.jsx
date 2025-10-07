@@ -4,10 +4,11 @@ import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button'
 import { getAllNews } from '@/lib/api/newsApi';
 import { Grid, List } from 'lucide-react'
+import Link from 'next/link';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-function KanalDetail({InitialKanalDetail}) {
+function KanalDetail({ InitialKanalDetail }) {
 
   const [viewMode, setViewMode] = useState('grid');
 
@@ -88,6 +89,14 @@ function KanalDetail({InitialKanalDetail}) {
       <div className='flex items-center justify-center mb-8'>
         <GoogleAds size='top_banner' />
       </div>
+
+      <div className="breadcrumbs text-sm my-6">
+        <ul>
+          <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+          <li className='hover:text-[#b41d1d]'><Link href={`/kanal`}>Kanal</Link></li>
+          <li className='text-[#b41d1d] font-semibold'><Link href={`/kanal${detailKanal?.catnews_slug}`}>{detailKanal?.catnews_title}</Link></li>
+        </ul>
+      </div>
       {/* Channel Header */}
       <div className="bg-gradient-to-r from-[#7a0f1f]/10 via-[#7a0f1f]/5 to-transparent rounded-lg p-8 mb-12 border border-[#7a0f1f]/10">
         <div className="max-w-4xl">
@@ -98,7 +107,7 @@ function KanalDetail({InitialKanalDetail}) {
             {detailKanal?.catnews_description || 'Memuat...'}
           </p>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-          
+
           </div>
         </div>
       </div>
@@ -108,7 +117,7 @@ function KanalDetail({InitialKanalDetail}) {
         <h2 className="text-xl md:text-2xl font-bold text-black/60">
           Berita Seputar {detailKanal?.catnews_title || 'Memuat...'}
         </h2>
-        
+
         <div className="flex border border-base-300 rounded-md ">
           <Button variant="ghost" size="sm"
             onClick={() => setViewMode('grid')}
@@ -119,7 +128,7 @@ function KanalDetail({InitialKanalDetail}) {
           </Button>
           <Button variant="ghost" size="sm"
             onClick={() => setViewMode('list')}
-             aria-label="View List"
+            aria-label="View List"
             title="View List"
             className={viewMode === 'list' ? "btn-active" : ""}    >
             <List className="h-4 w-4" />

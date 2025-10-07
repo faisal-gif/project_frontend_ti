@@ -64,9 +64,15 @@ function Fokus() {
             <div className='flex items-center justify-center mb-8'>
                 <GoogleAds size='top_banner' />
             </div>
+              <div className="breadcrumbs text-sm my-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'><Link href={`/fokus`}>Fokus</Link></li>
+                </ul>
+            </div>
             {/* Header Section */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold text-foreground mb-4">
+                <h1 className="text-4xl font-bold text-foreground mb-6">
                     Fokus Berita
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

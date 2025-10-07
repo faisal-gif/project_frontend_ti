@@ -11,6 +11,7 @@ import {
 import KanalCard from '@/components/KanalCard';
 import { getAllKanal } from '@/lib/api/kanalApi';
 import GoogleAds from '@/components/GoogleAds';
+import Link from 'next/link';
 
 // mapping slug → icon
 const categoryIcons = {
@@ -76,6 +77,13 @@ function Kanal() {
         <main className="max-w-6xl  mx-auto px-4 py-18">
             <div className='flex items-center justify-center mb-8'>
                 <GoogleAds size='top_banner' />
+            </div>
+
+            <div className="breadcrumbs text-sm my-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'><Link href={`/kanal`}>Kanal</Link></li>
+                </ul>
             </div>
 
             {/* Header Section */}

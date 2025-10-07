@@ -16,9 +16,6 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import GoogleAds from '@/components/GoogleAds';
 
 
-
-
-
 function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews, initialAdsRectangle }) {
 
     return (

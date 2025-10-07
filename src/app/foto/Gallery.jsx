@@ -4,6 +4,7 @@ import NewsCard from '@/components/NewsCard';
 import Button from '@/components/ui/Button';
 import { getAllFoto } from '@/lib/api/fotoApi';
 import { Filter, Grid, Hash, List, Search, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 function Gallery() {
@@ -90,7 +91,12 @@ function Gallery() {
                 <GoogleAds size='top_banner' />
             </div>
 
-
+            <div className="breadcrumbs text-sm my-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'><Link href={`/foto`}>Foto</Link></li>
+                </ul>
+            </div>
 
 
             {/* Filters */}

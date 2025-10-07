@@ -86,7 +86,14 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 <GoogleAds size='top_banner' />
             </div>
 
-            <div className='grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-20'>
+            <div className="breadcrumbs text-sm mt-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='hover:text-[#b41d1d]'><Link href={`/kanal/${newsDetail.catnews_slug}`}>{newsDetail.catnews_title}</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'>{newsDetail.news_title}</li>
+                </ul>
+            </div>
+            <div className='grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-6'>
                 {!newsDetail ? (
                     <NewsDetailSkeleton />
                 ) : (

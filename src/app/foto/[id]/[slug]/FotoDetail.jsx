@@ -91,6 +91,14 @@ function FotoDetail({ initialFotoDetail }) {
                 <GoogleAds size='top_banner' />
             </div>
 
+            <div className="breadcrumbs text-sm my-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='hover:text-[#b41d1d] '><Link href={`/foto`}>Foto</Link></li>
+                     <li className='text-[#b41d1d] font-semibold'><Link href={`${fotoDetail.url_ci4}`}>{fotoDetail.gal_title}</Link></li>
+                </ul>
+            </div>
+
             <div className='grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-20'>
                 {!fotoDetail ? (
                     <NewsDetailSkeleton />

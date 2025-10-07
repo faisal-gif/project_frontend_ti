@@ -102,8 +102,13 @@ function Ekoran() {
 
     return (
         <main className="max-w-6xl flex-1 mx-auto py-16">
-            {/* Modern E-Koran Hero Section */}
-            <div className="mb-8">
+            <div className="breadcrumbs text-sm mb-6">
+                <ul>
+                    <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'><Link href={`/ekoran`}>Ekoran</Link></li>
+                </ul>
+            </div>
+            <div className="mb-6">
                 <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-[#121b2e] via-[#121b2e]/90 to-[#121b2e]/80 p-8 md:p-12 text-white">
                     <div className="absolute inset-0 bg-[url('/ekoran_bg.jpg')] opacity-30"></div>
 
@@ -256,8 +261,8 @@ function Ekoran() {
 
                         {/* Kalau lagi load tambahan (load more) → skeleton tambahan */}
                         {isLoading && ekoran.length > 0 && (
-                            <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
-                                {[1, 2].map((group) => (
+                       
+                                [1, 2].map((group) => (
                                     <div key={`loading-${group}`} className="lg:col-span-2 space-y-4">
                                         <div className="h-6 w-40 bg-base-300 rounded animate-pulse mb-4" />
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -266,8 +271,7 @@ function Ekoran() {
                                             ))}
                                         </div>
                                     </div>
-                                ))}
-                            </div>
+                                ))
                         )}
 
                     </div>

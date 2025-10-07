@@ -24,8 +24,7 @@ function EkoranHomeCard({
                     <Image
                         src={gal_cover}
                         alt={gal_title}
-                        width={203}
-                        height={263}
+                        fill
                         sizes="203px"
                         quality={60}
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
