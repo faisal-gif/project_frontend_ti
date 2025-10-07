@@ -2,7 +2,6 @@
 import EKoranSection from '@/components/EKoranSection';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import GallerySection from '@/components/GallerySection';
-import GoogleAds from '@/components/GoogleAds';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
@@ -14,6 +13,13 @@ import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHori
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
+import dynamic from 'next/dynamic';
+
+
+const GoogleAds = dynamic(() => import('@/components/GoogleAds'), {
+    ssr: false,
+    loading: () => <div style={{ minHeight: '90px', background: '#f0f0f0' }}></div>
+});
 
 
 
@@ -54,7 +60,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                     )}
                     {
                         allNews.length > 0 && (
-                            <FirstHightlightNewsSection url="#jelajah_berita" index={0} title={'Berita Terbaru'} news={allNews} />
+                            <FirstHightlightNewsSection url="#terbaru_jelajah_berita" index={0} title={'Berita Terbaru'} news={allNews} />
                         )
                     }
 
@@ -128,7 +134,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                         )}
                     </div>
                     {wansusNews.length > 0 && (
-                        <FirstHighlightHorizontalNewsSection  url='/kanal/wawancara-khusus/' articles={wansusNews} />
+                        <FirstHighlightHorizontalNewsSection url='/kanal/wawancara-khusus/' articles={wansusNews} />
                     )}
                 </div>
                 <div className='md:col-span-2'>
@@ -153,16 +159,14 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
             <VideoSection />
 
             {/* Last News */}
-            <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4"  id='jelajah_berita' >
+            <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4" id="jelajah_berita">
                 <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
-                    <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4">
+                    <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4" >
                         <LastestNewsSection />
                     </div>
                     {/* Last news Sidebar */}
-                    <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2 ">
+                    <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
-
-
                         <div className='flex items-center justify-center mb-8'>
                             <GoogleAds size='netboard' adsEksternal={initialAdsRectangle} />
                         </div>
