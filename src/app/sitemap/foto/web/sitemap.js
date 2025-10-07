@@ -13,7 +13,5 @@ export default async function sitemap() {
     return getFotoData.map((foto) => ({
         url: `${process.env.NEXT_PUBLIC_URL}${foto.url_ci4}`,
         lastModified: foto.gal_datepub ? new Date(foto.gal_datepub) : new Date(),
-        changeFrequency: "weekly",
-        priority: 0.5,
     }));
 }
