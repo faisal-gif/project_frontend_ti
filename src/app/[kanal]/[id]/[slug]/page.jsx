@@ -73,7 +73,7 @@ export default async function page({ params }) {
         '@type': 'NewsArticle',
         'mainEntityOfPage': {
             '@type': 'WebPage',
-            '@id': `${process.env.NEXT_PUBLIC_URL}/${initialNewsDetail.url_ci4 || ''}`,
+            '@id': `${process.env.NEXT_PUBLIC_URL}${initialNewsDetail.url_ci4 || ''}`,
         },
         'headline': initialNewsDetail.news_title,
         'description': initialNewsDetail.news_description,
