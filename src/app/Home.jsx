@@ -128,7 +128,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                         )}
                     </div>
                     {wansusNews.length > 0 && (
-                        <FirstHighlightHorizontalNewsSection articles={wansusNews} />
+                        <FirstHighlightHorizontalNewsSection  url='/kanal/wawancara-khusus/' articles={wansusNews} />
                     )}
                 </div>
                 <div className='md:col-span-2'>

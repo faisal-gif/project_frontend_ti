@@ -2,16 +2,19 @@ import React from 'react'
 import FeaturedNewsCard from './FeaturedNewsCard'
 import HorizontalNewsSection from './HorizontalNewsSection'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
-function FirstHighlightHorizontalNewsSection({ articles }) {
+function FirstHighlightHorizontalNewsSection({ articles,url ='/' }) {
     return (
         <div className="space-y-6 border-t-2 border-base-300">
             <div className="flex items-center justify-between mt-2">
+                  <Link href={url} >
                 <h2 className="text-lg font-bold text-news-category flex items-center gap-2 uppercase">
                     <div className="w-1 h-6 bg-[#C31815] rounded-full "></div>
                     Wawancara Khusus
                     <ChevronRight className="w-6 h-6" />
                 </h2>
+                </Link>
             </div>
             <div>
                 <FeaturedNewsCard
