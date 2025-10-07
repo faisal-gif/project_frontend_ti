@@ -20,6 +20,7 @@ const menu = [
   { name: "Daerah", slug: "daerah", src: "/kanal/peristiwa-daerah" },
   { name: "Cek Fakta", slug: "cek-fakta", src: "/kanal/cek-fakta" },
   { name: "Kopi Times", slug: "kopi-times", src: "/kanal/kopi-times" },
+  { name: "Ekonomi", slug: "ekonomi", src: "/kanal/ekonomi" },
   { name: "Tekno", slug: "tekno", src: "/kanal/tekno" },
   { name: "Pendidikan", slug: "pendidikan", src: "/kanal/pendidikan" },
   { name: "Olahraga", slug: "olahraga", src: "/kanal/olahraga" },

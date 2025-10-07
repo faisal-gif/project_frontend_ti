@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Shield, CheckCircle, X } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Link from "next/link";
 
@@ -21,10 +21,13 @@ export default function CekFaktaCard({ CekFaktaNews }) {
         {/* Content with relative positioning */}
         <div className="relative z-10">
           {/* Header */}
-          <div className="bg-neutral text-white p-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Shield className="w-5 h-5" />
-              <span className="font-semibold text-sm">Cek Fakta</span>
+          <div className="flex items-center gap-3 p-6">
+            <div className="bg-white/20 backdrop-blur-sm p-2.5 rounded-lg">
+              <CheckCircle className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h3 className="text-white font-bold text-xl">Cek Fakta</h3>
+              <p className="text-white/80 text-xs">Validasi apakah beritamu Hoax atau Fakta</p>
             </div>
           </div>
 
