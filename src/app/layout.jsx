@@ -72,21 +72,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" data-theme="light" className='scroll-smooth'>
       <head>
-
-        {/* Article metadata */}
-        <meta
-          property="article:publisher"
-          content="https://www.facebook.com/timesindonesia.co.id"
-        />
-        <meta
-          property="article:author"
-          content="https://www.facebook.com/timesindonesia.co.id"
-        />
-        <meta
-          property="article:tag"
-          content="times indonesia, timesindonesia, portal berita, berita positif, berita terbaru, berita terkini, informasi terkini, informasi terbaru, peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times"
-        />
-
         {/* Extra SEO */}
         <meta name="city" content="Jakarta" />
         <meta name="language" content="id" />

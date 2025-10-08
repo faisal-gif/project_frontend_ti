@@ -12,6 +12,7 @@ export const revalidate = 60;
 export async function generateMetadata({ params }) {
     const { id } = await params;
     const newsDetail = await getNews(id);
+    const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
     if (!newsDetail) {
         return {
@@ -24,11 +25,15 @@ export async function generateMetadata({ params }) {
         title: `${newsDetail.news_title} - TIMES Indonesia`,
         description: newsDetail.news_description,
         keywords: newsDetail.news_tags,
-        authors: [{ name: newsDetail.news_writer }],
+        authors: [{ name: newsDetail.news_writer, url: 'https://timesindonesia.co.id' }],
+        keywords: newsDetail.news_tags,
+        lastModified: correctedDateString,
         openGraph: {
             locale: 'id_ID',
             title: newsDetail.news_title,
+            keywords: newsDetail.news_tags,
             description: newsDetail.news_description,
+            publisher: 'https://timesindonesia.co.id',
             images: [
                 {
                     url: newsDetail.news_image_new,
@@ -39,6 +44,9 @@ export async function generateMetadata({ params }) {
             ],
             type: "article",
             url: `https://timesindonesia.co.id${newsDetail.url_ci4 || ''}`,
+            publishedTime: correctedDateString,
+            authors: [{ name: newsDetail.news_writer }],
+            tags: newsDetail.news_tags,
             siteName: 'TIMES Indonesia',
         },
         twitter: {

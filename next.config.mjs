@@ -21,30 +21,30 @@ const nextConfig = {
   },
 
   // 🚀 Tambahkan bagian ini
-  async headers() {
-    return [
-      {
-        // Semua file hasil build Next.js (/_next/static)
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Semua file di folder /public (gambar, font, ikon, dll)
-        source: "/(.*\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|woff2?))",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       // Semua file hasil build Next.js (/_next/static)
+  //       source: "/_next/static/:path*",
+  //       headers: [
+  //         {
+  //           key: "Cache-Control",
+  //           value: "public, max-age=31536000, immutable",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       // Semua file di folder /public (gambar, font, ikon, dll)
+  //       source: "/(.*\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|woff2?))",
+  //       headers: [
+  //         {
+  //           key: "Cache-Control",
+  //           value: "public, max-age=31536000, immutable",
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;
