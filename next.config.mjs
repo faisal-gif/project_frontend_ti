@@ -11,7 +11,7 @@ const nextConfig = {
       { protocol: "https", hostname: "img.youtube.com", pathname: "/**" },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
     ],
-    formats: ["image/webp", "image/avif"],
+    formats: ["image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // cache image di server Next selama 30 hari
   },
 
