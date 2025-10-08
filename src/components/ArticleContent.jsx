@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import parse, { domToReact } from 'html-react-parser';
 import ReadAlso from './ReadAlso.jsx';
 import Script from 'next/script.js';
+import LazyAdopAd from './LazyAdopAd.jsx';
 
 const ArticleContent = ({
   htmlContent = "",
@@ -21,26 +22,6 @@ const ArticleContent = ({
     const step = Math.ceil(totalParagraphs / totalReadAlso);
     distributeIndexes = readAlsoArticles.map((_, i) => (i + 2) * step);
   }
-
-  // Komponen Advertisement
-  const Advertisement = () => (
-    <div className="my-2 mx-auto">
-      <p className="font-light text-sm text-center mb-1">Advertisement</p>
-      <ins
-        className="adsbyadop"
-        _adop_zon="424c828c-767f-47c2-bf93-4bb10c62e94e"
-        _adop_type="re"
-        style={{ display: "inline-block", width: "300px", height: "250px" }}
-        _page_url=""
-      ></ins>
-
-      <Script
-        src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
-        strategy="lazyOnload"
-        crossOrigin="anonymous"
-      />
-    </div>
-  );
 
 
 
@@ -70,7 +51,7 @@ const ArticleContent = ({
             <p className={`text-foreground mb-6 ${getTextSizeClasses()}`}>
               {domToReact(node.children || [])}
             </p>
-            <Advertisement />
+           <LazyAdopAd />
           </React.Fragment>
         );
       }
