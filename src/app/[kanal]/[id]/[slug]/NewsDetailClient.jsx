@@ -124,13 +124,13 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
                                 <div className="py-4 md:py-2">
                                     {/* Title */}
-                                    <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-4 leading-snug">
+                                    <h1 className="text-xl md:text-4xl font-bold text-foreground mb-4 leading-snug">
                                         {newsDetail.news_title}
                                     </h1>
                                     {/* Description */}
-                                    <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed italic">
+                                    <h2 className="text-sm md:text-lg text-gray-600 mb-6 leading-relaxed italic">
                                         {newsDetail.news_description}
-                                    </p>
+                                    </h2>
                                 </div>
                                 {/* Meta */}
                                 <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
