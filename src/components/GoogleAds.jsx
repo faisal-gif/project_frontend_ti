@@ -24,10 +24,10 @@ export default function GoogleAds({
     }, [adsEksternal]);
 
     const adSizes = {
-        inline_rectangle: { width: "300px", height: "250px" },
+        inline_rectangle: { width: "336px", height: "280px" },
         netboard: { width: "580px", height: "400px" },
         square: { width: "250px", height: "250px" },
-        top_banner: { width: "930px", height: "180px" },
+        top_banner: { width: "970px", height: "250px" },
         banner: { width: "468px", height: "60px" },
         leaderboard: { width: "728px", height: "90px" },
         skyscraper: { width: "120px", height: "600px" },
