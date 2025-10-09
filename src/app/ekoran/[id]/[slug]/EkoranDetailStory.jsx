@@ -122,7 +122,7 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
             </div>
 
             <EkoranReader ekoranArticle={ekoranArticle} />
-            <ModalShare title={ekoranArticle.title} url={`${ekoranArticle.url_ci4}`} />
+            <ModalShare title={ekoranArticle.title} />
         </div>
     )
 }
