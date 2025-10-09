@@ -1,4 +1,4 @@
-import { clientAxios } from "./axiosInstance";
+import { clientAxios, serverAxios } from "./axiosInstance";
 
 const getAllEkoran = async ({ offset = 0, limit = 10 }) => {
     try {
@@ -16,7 +16,7 @@ const getAllEkoran = async ({ offset = 0, limit = 10 }) => {
 
 const getDetailEkoran = async ({ id }) => {
     try {
-        const response = await clientAxios.get(`/ekoran/detail/${id}`);
+        const response = await serverAxios.get(`/koran_detail/${id}`);
         return response.data.data;
     } catch (error) {
         console.error("Error fetching detail ekoran:", error);
