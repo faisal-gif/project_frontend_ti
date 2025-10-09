@@ -78,9 +78,9 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
     }
 
     // Keyboard navigation
-    // const handleClose = () => {
-    //     navigate.back();
-    // };
+    const handleClose = () => {
+        navigate.back();
+    };
 
     if (!ekoranDetail) {
         return (
@@ -100,6 +100,7 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
                         <Button
                             variant="ghost"
                             size="icon"
+                            onClick={handleClose}
                             className="text-white hover:bg-white/20"
                         >
                             <X className="h-5 w-5" />
@@ -121,7 +122,7 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
             </div>
 
             <EkoranReader ekoranArticle={ekoranArticle} />
-            <ModalShare title={ekoranArticle.title} />
+            <ModalShare title={ekoranArticle.title} url={`${process.env.NEXT_PUBLIC_URL}${ekoranArticle.link}`} />
         </div>
     )
 }
