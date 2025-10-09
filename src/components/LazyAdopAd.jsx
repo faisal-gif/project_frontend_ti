@@ -2,7 +2,6 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Script from 'next/script';
 import React, { useEffect, memo } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -43,11 +42,7 @@ const LazyAdopAd = () => {
           ></ins>
         </div>
       )}
-        <Script
-        src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14'"
-        strategy="afterInteractive" // Anda bisa tetap gunakan lazyOnload atau hapus strategy
-        crossOrigin="anonymous"
-      />
+      
     </div>
   );
 };
