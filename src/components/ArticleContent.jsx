@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import parse, { domToReact } from 'html-react-parser';
 import ReadAlso from './ReadAlso.jsx';
-import Script from 'next/script.js';
 import LazyAdopAd from './LazyAdopAd.jsx';
+import Script from 'next/script.js';
 
 const ArticleContent = ({
   htmlContent = "",
@@ -23,7 +23,15 @@ const ArticleContent = ({
     distributeIndexes = readAlsoArticles.map((_, i) => (i + 2) * step);
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.instgrm) {
+        window.instgrm.Embeds.process();
+      }
+    }, 100);
 
+    return () => clearTimeout(timer);
+  }, [htmlContent]);
 
   const transform = (node, index) => {
 
@@ -51,7 +59,7 @@ const ArticleContent = ({
             <p className={`text-foreground mb-6 ${getTextSizeClasses()}`}>
               {domToReact(node.children || [])}
             </p>
-           <LazyAdopAd />
+            <LazyAdopAd />
           </React.Fragment>
         );
       }

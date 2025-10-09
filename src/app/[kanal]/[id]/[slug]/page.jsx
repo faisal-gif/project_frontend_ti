@@ -1,7 +1,7 @@
 import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
-import { getWriterDetail } from '@/lib/api/jurnalist';
+import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -70,7 +70,7 @@ export default async function page({ params }) {
     let writer = {};
 
     if (initialNewsDetail.writer_slug) {
-        writer = await getWriterDetail({ slug: initialNewsDetail.writer_slug });
+        writer = await getWriterDetailServer({ slug: initialNewsDetail.writer_slug });
     }
 
     const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';

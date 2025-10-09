@@ -406,7 +406,7 @@ function FotoDetail({ initialFotoDetail }) {
                 </aside>
             </div>
 
-            <ModalShare title={fotoDetail?.gal_title} />
+            <ModalShare title={fotoDetail?.gal_title} url={`${process.env.NEXT_PUBLIC_URL}${initialFotoDetail.url_ci4}`} />
         </div>
     )
 }

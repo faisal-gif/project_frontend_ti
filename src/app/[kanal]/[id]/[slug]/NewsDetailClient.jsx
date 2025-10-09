@@ -13,12 +13,13 @@ import { Eye, Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
-import ClientOnly from '@/components/ClientOnly';
+import Script from 'next/script';
+import { incrementView } from '@/lib/actions/updateView';
 
 function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
@@ -29,13 +30,14 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
-    const [newsViews, setNewsViews] = useState([]);
+    const [newsViews, setNewsViews] = useState(initialNewsDetail.views || 0);
     const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
+    const viewUpdated = useRef(false);
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
-        if (newsDetail) {
+        if (newsDetail && !viewUpdated.current) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
 
             if (Number(newsDetail.focnews_id) !== 0) {
@@ -46,7 +48,16 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
             if (firstTag) {
                 getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
             }
-            updateView({ id: newsDetail.news_id }).then(setNewsViews).catch(console.error);
+
+            incrementView(newsDetail.news_id)
+                .then(result => {
+                    if (result.success && result.newViewCount) {
+                        setNewsViews(result.newViewCount);
+                    }
+                })
+                .catch(console.error);
+            viewUpdated.current = true;
+
         }
     }, [newsDetail]);
 
@@ -134,7 +145,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
                                             <div>
-                                                <FormattedViews count={newsViews.pageviews} />
+                                                <FormattedViews count={newsViews} />
                                             </div>
                                         </span>
                                     </div>
@@ -281,7 +292,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </div>
+                                        <h2 className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </h2>
 
                                         {/* Content News */}
                                         <ArticleContent
@@ -350,6 +361,8 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
                             <EkoranNewsDetailCard />
 
+
+
                             {/* <ModalShare /> */}
                         </main>
 
@@ -414,8 +427,13 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 ))}
             </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
-
+            <Script
+                src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
+                strategy="lazyOnload" // Anda bisa tetap gunakan lazyOnload atau hapus strategy
+                crossOrigin="anonymous"
+            />
         </div>
+
     )
 }
 
