@@ -214,11 +214,6 @@ export default function RootLayout({ children }) {
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
           crossOrigin="anonymous" />
-        <Script
-          src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14'"
-          strategy="afterInteractive" // Anda bisa tetap gunakan lazyOnload atau hapus strategy
-          crossOrigin="anonymous"
-        />
       </body>
     </html>
   );
