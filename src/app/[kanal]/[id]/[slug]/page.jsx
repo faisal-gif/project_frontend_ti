@@ -88,7 +88,6 @@ export default async function page({ params }) {
         'image': [
             initialNewsDetail.news_image_new,
         ],
-        // Pastikan 'news_datepub' adalah string tanggal dalam format ISO 8601
         'datePublished': correctedDateString,
         'dateModified': correctedDateString,
         'author': {
