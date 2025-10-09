@@ -18,7 +18,6 @@ import { getFocusDetail } from '@/lib/api/focus';
 import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
-import Script from 'next/script';
 import { incrementView } from '@/lib/actions/updateView';
 
 function NewsDetailClient({ initialNewsDetail, initialWriter }) {
@@ -287,6 +286,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                     fill
                                                     className="object-contain"
                                                     priority
+                                                    quality={100}
                                                     fetchPriority="high"
                                                     sizes="(max-width: 768px) 300px, 750px"
                                                 />
@@ -427,11 +427,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 ))}
             </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
-            <Script
-                src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
-                strategy="lazyOnload" // Anda bisa tetap gunakan lazyOnload atau hapus strategy
-                crossOrigin="anonymous"
-            />
         </div>
 
     )

@@ -44,7 +44,7 @@ const LazyAdopAd = () => {
         </div>
       )}
         <Script
-        src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14"
+        src="https://compass.adop.cc/assets/js/adop/adopJ.js?v=14'"
         strategy="afterInteractive" // Anda bisa tetap gunakan lazyOnload atau hapus strategy
         crossOrigin="anonymous"
       />
