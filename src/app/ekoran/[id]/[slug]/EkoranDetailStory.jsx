@@ -78,9 +78,9 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
     }
 
     // Keyboard navigation
-    const handleClose = () => {
-        navigate.back();
-    };
+    // const handleClose = () => {
+    //     navigate.back();
+    // };
 
     if (!ekoranDetail) {
         return (
@@ -100,7 +100,6 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
                         <Button
                             variant="ghost"
                             size="icon"
-                            onClick={handleClose}
                             className="text-white hover:bg-white/20"
                         >
                             <X className="h-5 w-5" />
