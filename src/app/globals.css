@@ -22,3 +22,10 @@
 #jelajah_berita {
   scroll-margin-top: 80px;
 }
+
+.prose img {
+  width: auto;      
+  height: auto;     
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -35,6 +35,28 @@ const ArticleContent = ({
 
   const transform = (node, index) => {
 
+    if (node.type === 'tag' && node.name === 'p') {
+      const firstChild = node.children.find(child => child.type === 'tag');
+
+      if (firstChild && firstChild.name === 'img') {
+        // --- PERBAIKAN DI SINI ---
+        // Kita pisahkan atribut 'style' dari sisa atribut lainnya
+        const { style, ...restOfAttribs } = firstChild.attribs;
+
+        const captionNodes = node.children.slice(1);
+
+        return (
+          <figure className="mb-6">
+            {/* Gunakan sisa atribut, sehingga 'style' dari DB akan terbuang */}
+            <img {...restOfAttribs} className="block w-full rounded-lg" />
+            <figcaption className="mt-2 text-sm italic text-gray-600 text-center">
+              {domToReact(captionNodes, { replace: transform })}
+            </figcaption>
+          </figure>
+        );
+      }
+    }
+
     if (node.name === 'span') {
       return <>{domToReact(node.children, { replace: transform })}</>;
     }
@@ -116,7 +138,7 @@ const ArticleContent = ({
 
   return (
     <>
-      <div className={`prose prose-img:rounded-lg prose-img:mx-auto max-w-none w-full mx-auto ${className}`} onCopy={handleCopy}>
+      <div className={`prose prose-img:rounded-lg prose-img:mx-auto prose-img:!w-auto max-w-none w-full mx-auto ${className}`} onCopy={handleCopy}>
         {htmlContent ? parse(htmlContent, { replace: transform }) : null}
         <p className='italic text-foreground text-base md:text-lg'>
           Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!

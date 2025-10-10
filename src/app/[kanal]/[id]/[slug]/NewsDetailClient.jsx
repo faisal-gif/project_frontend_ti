@@ -146,7 +146,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         </span>
                                     </div>
                                     <span>
-                                        <FormattedDateDetail dateString={newsDetail.news_datepub} />
+                                         <FormattedDateDetail dateString={newsDetail.news_datepub} />
                                     </span>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">
@@ -271,7 +271,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                 />
                                             </div>
                                         </div>
-                                        <h2 className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </h2>
+                                        <figcaption className="mt-2 text-sm italic text-gray-600 text-center">{newsDetail.news_caption} </figcaption>
 
                                         <div className='w-1/2 max-w-xs mx-auto my-2'>
                                             <input
