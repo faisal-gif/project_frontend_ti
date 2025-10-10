@@ -5,15 +5,14 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import TopLoader from "@/components/ui/TopLoader";
 import SearchDropdown from "@/components/SearchDropdown";
-
 import DesktopListMenu from "@/components/DesktopListMenu";
-
-import MobileListMenu from "@/components/MobileListMenu";
+import dynamic from 'next/dynamic'
 import DrawerAutoClose from "@/components/DrawerAutoClose";
-import MobileMenuKanal from "@/components/MobileMenuKanal";
 import Script from "next/script";
 import BackToTop from "@/components/BackToTop";
 
+const MobileListMenu = dynamic(() => import('@/components/MobileListMenu'))
+const MobileMenuKanal = dynamic(() => import('@/components/MobileMenuKanal'))
 const menu = [
   { name: "Internasional", slug: "internasional", src: "/kanal/peristiwa-internasional" },
   { name: "Nasional", slug: "nasional", src: "/kanal/peristiwa-nasional" },
