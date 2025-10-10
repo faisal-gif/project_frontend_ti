@@ -81,7 +81,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
         switch (size) {
             case 1: return 'text-sm md:text-base';
             case 2: return 'text-base md:text-lg';
-            case 3: return 'text-lg md:text-xl';
+            case 3: return 'text-xl md:text-xl';
             default: return 'text-base md:text-lg';
         }
     };
@@ -234,22 +234,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                             <Card className="  py-2 flex flex-row items-center">
                                                 <div className="dropdown dropdown-end">
                                                     <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold">Aa</button>
-                                                    <div tabIndex={0} className="dropdown-content bg-white rounded-box w-52 p-3 shadow">
-                                                        <input
-                                                            type="range"
-                                                            min={1}
-                                                            max="3"
-                                                            value={size}
-                                                            onChange={(e) => setSize(Number(e.target.value))}
-                                                            className="range range-xs"
-                                                            step="1"
-                                                        />
-                                                        <div className="flex justify-between text-sm font-semibold mt-2 px-2.5">
-                                                            <span>A-</span>
-                                                            <span>A</span>
-                                                            <span>A+</span>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div className="dropdown dropdown-end">
                                                     <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold"><Volume2 className="w-5 h-5 cursor-pointer" /></button>
@@ -286,13 +270,30 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                     fill
                                                     className="object-contain"
                                                     priority
-                                                    quality={100}
                                                     fetchPriority="high"
                                                     sizes="(max-width: 768px) 300px, 750px"
                                                 />
                                             </div>
                                         </div>
                                         <h2 className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </h2>
+                                        
+                                        <div className='"w-full max-w-xs mx-auto my-2'>
+                                            <input
+                                                type="range"
+                                                min={1}
+                                                max="3"
+                                                value={size}
+                                                onChange={(e) => setSize(Number(e.target.value))}
+                                                className="range range-xs"
+                                                step="1"
+                                            />
+                                            <div className="flex justify-between text-sm font-semibold mt-2 px-2.5">
+                                                <span>A-</span>
+                                                <span>A</span>
+                                                <span>A+</span>
+                                            </div>
+                                        </div>
+
 
                                         {/* Content News */}
                                         <ArticleContent
@@ -368,26 +369,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
                         {/* Float Menu */}
                         <div className="hidden lg:block w-16">
-                            <Card className=" shadow-md py-2 sticky top-28 flex flex-col items-center gap-4 mt-[29rem]">
-                                <div className="dropdown dropdown-left">
-                                    <button tabIndex={0} className="btn btn-ghost text-lg font-bold">Aa</button>
-                                    <div tabIndex={0} className="dropdown-content bg-white rounded-box w-52 p-3 shadow">
-                                        <input
-                                            type="range"
-                                            min={1}
-                                            max="3"
-                                            value={size}
-                                            onChange={(e) => setSize(Number(e.target.value))}
-                                            className="range range-xs"
-                                            step="1"
-                                        />
-                                        <div className="flex justify-between text-sm font-semibold mt-2 px-2.5">
-                                            <span>A-</span>
-                                            <span>A</span>
-                                            <span>A+</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <Card className=" shadow-md py-2 sticky top-36 flex flex-col items-center gap-4 mt-[29rem]">
                                 <div className="dropdown dropdown-end">
                                     <button tabIndex={0} className="btn btn-ghost text-lg font-bold">
                                         <Volume2 className="w-5 h-5" />
