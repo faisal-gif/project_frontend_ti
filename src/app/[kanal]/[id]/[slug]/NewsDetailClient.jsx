@@ -19,6 +19,7 @@ import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 import { incrementView } from '@/lib/actions/updateView';
+import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 
 function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
@@ -138,7 +139,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <span className='font-bold'>TIMES Indonesia</span>
                                         <span className="inline">-</span>
                                         <span>
-                                            <FormattedDate dateString={newsDetail.news_datepub} />
+                                            <FormattedDateDetail dateString={newsDetail.news_datepub} />
                                         </span>
                                         <span className="font-bold">-</span>
                                         <span className='flex flex-row gap-1 items-center pl-1'>
@@ -232,9 +233,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         </div>
                                         <div className='lg:hidden'>
                                             <Card className="  py-2 flex flex-row items-center">
-                                                <div className="dropdown dropdown-end">
-                                                    <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold">Aa</button>
-                                                </div>
                                                 <div className="dropdown dropdown-end">
                                                     <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold"><Volume2 className="w-5 h-5 cursor-pointer" /></button>
                                                 </div>
