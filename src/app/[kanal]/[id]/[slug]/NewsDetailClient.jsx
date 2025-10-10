@@ -282,7 +282,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                 max="3"
                                                 value={size}
                                                 onChange={(e) => setSize(Number(e.target.value))}
-                                                className="range range-xs"
+                                                className="range range-xs [--range-bg:#7b0f1f]"
                                                 step="1"
                                             />
                                             <div className="flex justify-between text-sm font-semibold mt-2 px-2.5">
