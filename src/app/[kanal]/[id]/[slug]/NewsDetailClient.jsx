@@ -137,10 +137,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                 <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
                                     <div className="flex flex-row items-center gap-1">
                                         <span className='font-bold'>TIMES Indonesia</span>
-                                        <span className="inline">-</span>
-                                        <span>
-                                            <FormattedDateDetail dateString={newsDetail.news_datepub} />
-                                        </span>
                                         <span className="font-bold">-</span>
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
@@ -149,6 +145,9 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                             </div>
                                         </span>
                                     </div>
+                                    <span>
+                                        <FormattedDateDetail dateString={newsDetail.news_datepub} />
+                                    </span>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">
                                             <button tabIndex={0} className="font-semibold flex flex-row items-center gap-3 cursor-pointer">
@@ -268,13 +267,12 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                     fill
                                                     className="object-contain"
                                                     priority
-                                                    fetchPriority="high"
                                                     sizes="(max-width: 768px) 300px, 750px"
                                                 />
                                             </div>
                                         </div>
                                         <h2 className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </h2>
-                                        
+
                                         <div className='w-1/2 max-w-xs mx-auto my-2'>
                                             <input
                                                 type="range"
