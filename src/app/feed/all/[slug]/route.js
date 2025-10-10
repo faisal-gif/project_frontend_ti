@@ -33,7 +33,7 @@ export async function GET(request, { params }) {
 
     try {
         kanal = await getKanalDetail({ slug });
-        news = await getAllNews({ news_type: 'cat', cat_id: kanal.catnews_id, offset: 0, limit: 500 }) || [];
+        news = await getAllNews({ news_type: 'cat', cat_id: kanal.catnews_id, offset: 0, limit: 60 }) || [];
     } catch (error) {
         console.error("Error fetch focus:", error);
         news = [];
