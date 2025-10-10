@@ -13,6 +13,7 @@ import DrawerAutoClose from "@/components/DrawerAutoClose";
 import MobileMenuKanal from "@/components/MobileMenuKanal";
 import Script from "next/script";
 import BackToTop from "@/components/BackToTop";
+import { Inter } from 'next/font/google';
 
 const menu = [
   { name: "Internasional", slug: "internasional", src: "/kanal/peristiwa-internasional" },
@@ -67,10 +68,15 @@ export const metadata = {
   },
 };
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap', 
+});
+
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" data-theme="light" className='scroll-smooth'>
+    <html lang="id" data-theme="light" className={`scroll-smooth ${inter.className}`}>
       <head>
         {/* Extra SEO */}
         <meta name="city" content="Jakarta" />
