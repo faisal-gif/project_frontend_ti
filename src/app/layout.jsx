@@ -4,7 +4,6 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import TopLoader from "@/components/ui/TopLoader";
-import SearchDropdown from "@/components/SearchDropdown";
 import DesktopListMenu from "@/components/DesktopListMenu";
 import dynamic from 'next/dynamic'
 import DrawerAutoClose from "@/components/DrawerAutoClose";
@@ -13,6 +12,8 @@ import BackToTop from "@/components/BackToTop";
 
 const MobileListMenu = dynamic(() => import('@/components/MobileListMenu'))
 const MobileMenuKanal = dynamic(() => import('@/components/MobileMenuKanal'))
+const SearchDropdown = dynamic(() => import('@/components/SearchDropdown'))
+
 const menu = [
   { name: "Internasional", slug: "internasional", src: "/kanal/peristiwa-internasional" },
   { name: "Nasional", slug: "nasional", src: "/kanal/peristiwa-nasional" },

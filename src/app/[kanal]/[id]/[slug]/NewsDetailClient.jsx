@@ -260,14 +260,13 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                 />
                                             )}
                                             <div className="w-[340px] h-[252px] md:w-[750px] md:h-[500px] relative">
-
                                                 <Image
                                                     src={newsDetail.news_image_new}
                                                     alt={newsDetail.news_title}
                                                     fill
                                                     className="object-contain"
                                                     priority
-                                                    sizes="(max-width: 768px) 300px, 750px"
+                                                    sizes="(max-width: 768px) 340px , 750px"
                                                 />
                                             </div>
                                         </div>
