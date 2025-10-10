@@ -275,7 +275,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         </div>
                                         <h2 className="text-sm text-gray-600 pt-2">{newsDetail.news_caption} </h2>
                                         
-                                        <div className='"w-full max-w-xs mx-auto my-2'>
+                                        <div className='w-1/2 max-w-xs mx-auto my-2'>
                                             <input
                                                 type="range"
                                                 min={1}
