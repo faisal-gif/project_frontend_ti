@@ -20,7 +20,11 @@ const getViewAds = async ({ id }) => {
         const data = await response.json();
 
         // 5. Kembalikan data yang dibutuhkan
-        return data.data;
+        if (data && data.data.unique_id) {
+            return data.data; // Kembalikan data jika valid
+        } else {
+            return null; // BAGUS: Kembalikan null jika data kosong atau tidak valid
+        }
 
     } catch (error) {
         // 6. Tangani error dan kembalikan null agar halaman bisa menampilkan pesan "tidak ditemukan"

@@ -36,7 +36,8 @@ export default async function page() {
   const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
   const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10, })
   const cekFaktaNewsPromise = getCekFaktaNewsServer();
-  const adsRectanglePromise = getViewAds({ id: 5 });
+  const adsRectangle2Promise = getViewAds({ id: 5 });
+  const adsRectangle3Promise = getViewAds({ id: 6 });
 
   const [
     newsFirstSections,
@@ -45,7 +46,8 @@ export default async function page() {
     allNews,
     headlineNews,
     cekFaktaNews,
-    adsRectangle
+    adsRectangle2,
+    adsRectangle3
   ] = await Promise.all([
     firstSectionsPromise,
     secondSectionsPromise,
@@ -53,18 +55,19 @@ export default async function page() {
     allNewsPromise,
     headlineNewsPromise,
     cekFaktaNewsPromise,
-    adsRectanglePromise
+    adsRectangle2Promise,
+    adsRectangle3Promise
   ]);
 
   return (<>
     <Head>
       <link
-      rel="preload"
-      as="image"
-      href="/_next/image?url=%2FPopUpAds.jpg&w=1080&q=70"
-      imageSrcset="/_next/image?url=%2FPopUpAds.jpg&w=640&q=70 640w, /_next/image?url=%2FPopUpAds.jpg&w=1080&q=70 1080w"
-      imageSizes="(max-width: 768px) 90vw, 512px" 
-    />
+        rel="preload"
+        as="image"
+        href="/_next/image?url=%2FPopUpAds.jpg&w=1080&q=70"
+        imageSrcset="/_next/image?url=%2FPopUpAds.jpg&w=640&q=70 640w, /_next/image?url=%2FPopUpAds.jpg&w=1080&q=70 1080w"
+        imageSizes="(max-width: 768px) 90vw, 512px"
+      />
     </Head>
     <Home
       newsFirstSections={newsFirstSections}
@@ -73,7 +76,8 @@ export default async function page() {
       allNews={allNews}
       initialHeadlineNews={headlineNews}
       initialCekFaktaNews={cekFaktaNews}
-      initialAdsRectangle={adsRectangle}
+      initialAdsRectangle2={adsRectangle2}
+      initialAdsRectangle3={adsRectangle3}
     />
   </>
 

@@ -16,7 +16,7 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import GoogleAds from '@/components/GoogleAds';
 
 
-function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews, initialAdsRectangle }) {
+function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews, initialAdsRectangle2, initialAdsRectangle3 }) {
 
     return (
         <div className="">
@@ -88,9 +88,6 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                 <EKoranSection />
             </div>
 
-
-
-
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
                 {newsSecondSections.length === 0 && (
                     [1, 2, 3].map((i) => (
@@ -161,13 +158,16 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='netboard' adsEksternal={initialAdsRectangle} />
+                            <GoogleAds size='netboard' key={1} adsEksternal={initialAdsRectangle2} />
                         </div>
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
-                        <div className='sticky top-30'>
-                            <div className='hidden md:flex items-center justify-center my-8'>
+                        <div className='flex items-center justify-center my-4 '>
+                            <GoogleAds size='netboard' key={2} adsEksternal={initialAdsRectangle3} />
+                        </div>
+                        <div className=''>
+                            <div className='hidden md:flex items-center justify-center my-8 sticky top-30'>
                                 <GoogleAds size='half_page_ad' />
                             </div>
                         </div>
