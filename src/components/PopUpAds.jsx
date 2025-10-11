@@ -1,12 +1,13 @@
 'use client'
 import { X } from "lucide-react";
 import React, { useEffect, useRef } from "react";
-import Button from "./ui/Button";
 import Image from "next/image";
 
-const PopupAd = ({ onClose }) => {
+// Anda bisa mengganti URL default ini atau mengirimkannya sebagai prop
+const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg" }) => {
   const modalRef = useRef(null);
 
+  // Logika untuk menampilkan popup sekali per sesi tetap sama
   useEffect(() => {
     const hasShown = sessionStorage.getItem("popupAdShown");
 
@@ -16,7 +17,7 @@ const PopupAd = ({ onClose }) => {
           modalRef.current.showModal();
           sessionStorage.setItem("popupAdShown", "true");
         }
-      }, 1000);
+      }, 1000); // Muncul setelah 1 detik
 
       return () => clearTimeout(timer);
     }
@@ -31,66 +32,42 @@ const PopupAd = ({ onClose }) => {
 
   return (
     <dialog ref={modalRef} className="modal">
-      <div className="modal-box relative bg-gradient-to-br from-[#800b19] to-[#3e154f] text-white rounded-2xl shadow-2xl">
-        {/* Tombol close */}
+      {/* Styling diubah: padding dihilangkan (p-0) dan overflow-hidden 
+        agar gambar pas dengan kotak modal yang membulat.
+      */}
+      <div className="modal-box relative w-11/12 max-w-lg p-0 overflow-hidden rounded-lg">
+        
+        {/* Tombol close diposisikan di atas gambar */}
         <form method="dialog">
           <button
             onClick={handleClose}
-            className="btn btn-circle btn-sm absolute right-2 top-2 bg-base-100 hover:bg-base-200"
+            className="btn btn-circle btn-sm absolute right-2 top-2 z-10 
+                       bg-black bg-opacity-50 text-white border-none
+                       hover:bg-opacity-75"
           >
             <X className="h-5 w-5" />
             <span className="sr-only">Tutup</span>
           </button>
         </form>
 
-        {/* Konten iklan */}
-
-        <div className="text-center space-y-4">
-          {/* Heading */}
-          <div className="flex flex-col gap-4">
-            <h2 className="text-lg text-muted-foreground font-normal">
-              Jelajahi Wajah Baru
-            </h2>
-            <Image
-              src="/logo.png"
-              alt="News Logo"
-              className="h-10 w-auto object-contain mx-auto lg:mx-0"
-              width={100}
-              height={60}
-              priority
-            />
-          </div>
-
-          {/* Separator */}
-          <div className="flex justify-center py-2">
-            <div className="w-32 h-px bg-border"></div>
-          </div>
-
-          {/* Description */}
-          <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
-            Mari Berkolaborasi untuk menemukan berita berkualitas tinggi
-          </p>
-
-          {/* CTA Button */}
-          <div className="pt-4">
-            <Button
-              onClick={handleClose}
-              className="bg-neutral hover:bg-neutral/90 text-white border-0 shadow-none font-semibold px-8 py-2 rounded-md"
-            >
-              Ikuti!
-            </Button>
-          </div>
-
-          {/* Domain */}
-          <div className="pt-2">
-            <p className="text-xs text-muted-foreground">
-              timesindonesia.co.id
-            </p>
-          </div>
-        </div>
+        {/* Konten Iklan: Hanya Gambar */}
+        <Image
+          src={imageUrl}
+          alt="Iklan Promosi"
+          width={800}
+          height={1000}
+          style={{ 
+            width: '100%', 
+            height: 'auto',
+            display: 'block'          
+            }}
+        />
       </div>
-
-
+      
+      {/* Ini agar bisa ditutup saat klik di luar area modal */}
+      <form method="dialog" className="modal-backdrop">
+        <button onClick={handleClose}>close</button>
+      </form>
     </dialog>
   );
 };
