@@ -18,7 +18,7 @@ const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl = "https://wha
           modalRef.current.showModal();
           sessionStorage.setItem("popupAdShown", "true");
         }
-      }, 1000); // Muncul setelah 1 detik
+      }, 200); // Muncul setelah 1 detik
 
       return () => clearTimeout(timer);
     }

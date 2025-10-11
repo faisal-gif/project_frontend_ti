@@ -3,7 +3,7 @@
 const nextConfig = {
   images: {
     qualities: [40, 50, 55, 60, 65, 70, 80, 90, 100],
-    deviceSizes: [384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     remotePatterns: [
       { protocol: "https", hostname: "cdn-1.timesmedia.co.id", pathname: "/**" },
       { protocol: "https", hostname: "cdn-1.tin.co.id", pathname: "/**" },
