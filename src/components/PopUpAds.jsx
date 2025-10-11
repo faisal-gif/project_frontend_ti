@@ -63,6 +63,7 @@ const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl = "https://wha
             height={1440}
             priority
             sizes="(max-width: 768px) 90vw, 512px"
+            fetchPriority="high"
             style={{
               width: '100%',
               height: 'auto',
