@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Anda bisa mengganti URL default ini atau mengirimkannya sebagai prop
-const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D" }) => {
+const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl = "https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D" }) => {
   const modalRef = useRef(null);
 
   // Logika untuk menampilkan popup sekali per sesi tetap sama
@@ -62,10 +62,10 @@ const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl="https://whats
             width={1080}
             height={1440}
             priority
-            sizes="(max-width: 768px) 90vw, 448px"
+            sizes="(max-width: 768px) 90vw, 512px"
             style={{
-              width: '512',
-              height: '683',
+              width: '100%',
+              height: 'auto',
               display: 'block'
             }}
           />

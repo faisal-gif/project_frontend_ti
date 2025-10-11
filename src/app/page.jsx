@@ -59,12 +59,12 @@ export default async function page() {
   return (<>
     <Head>
       <link
-        rel="preload"
-        as="image"
-        href="/_next/image?url=%2FPopUpAds.jpg&w=1080&q=70" // URL gambar fallback/utama
-        imageSrcset="/_next/image?url=%2FPopUpAds.jpg&w=640&q=70 640w, /_next/image?url=%2FPopUpAds.jpg&w=1080&q=70 1080w"
-        imageSizes="(max-width: 768px) 90vw, 448px"
-      />
+      rel="preload"
+      as="image"
+      href="/_next/image?url=%2FPopUpAds.jpg&w=1080&q=70"
+      imageSrcset="/_next/image?url=%2FPopUpAds.jpg&w=640&q=70 640w, /_next/image?url=%2FPopUpAds.jpg&w=1080&q=70 1080w"
+      imageSizes="(max-width: 768px) 90vw, 512px" 
+    />
     </Head>
     <Home
       newsFirstSections={newsFirstSections}
