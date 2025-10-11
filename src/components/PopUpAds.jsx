@@ -59,11 +59,13 @@ const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl="https://whats
           <Image
             src={imageUrl}
             alt="Iklan Promosi"
-            width={512}
-            height={683}
+            width={1080}
+            height={1440}
+            priority
+            sizes="(max-width: 768px) 90vw, 448px"
             style={{
-              width: '100%',
-              height: 'auto',
+              width: '512',
+              height: '683',
               display: 'block'
             }}
           />
