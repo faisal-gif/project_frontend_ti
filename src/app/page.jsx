@@ -3,6 +3,7 @@ import Home from './Home'
 import { getCekFaktaNews, getCekFaktaNewsServer, getNewsFirstSections, getNewsFirstSectionsServer, getNewsSecondSections, getNewsSecondSectionsServer, getWansusNews, getWansusNewsServer } from '@/lib/data';
 import { getAllNews, getAllNewsServer } from '@/lib/api/newsApi';
 import { getViewAds } from '@/lib/api/adsApi';
+import Head from 'next/head';
 
 export const metadata = {
   title: "TIMES Indonesia - Berita Positif Terbaru dan Terkini",
@@ -55,7 +56,16 @@ export default async function page() {
     adsRectanglePromise
   ]);
 
-  return (
+  return (<>
+    <Head>
+      <link
+        rel="preload"
+        as="image"
+        href="/_next/image?url=%2FPopUpAds.jpg&w=1080&q=70" // URL gambar fallback/utama
+        imageSrcset="/_next/image?url=%2FPopUpAds.jpg&w=640&q=70 640w, /_next/image?url=%2FPopUpAds.jpg&w=1080&q=70 1080w"
+        imageSizes="(max-width: 768px) 90vw, 448px"
+      />
+    </Head>
     <Home
       newsFirstSections={newsFirstSections}
       newsSecondSections={newsSecondSections}
@@ -65,5 +75,7 @@ export default async function page() {
       initialCekFaktaNews={cekFaktaNews}
       initialAdsRectangle={adsRectangle}
     />
+  </>
+
   )
 }
