@@ -35,6 +35,9 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
     const [isMounted, setIsMounted] = useState(false);
     const viewUpdated = useRef(false);
 
+
+    
+
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
         if (newsDetail && !viewUpdated.current) {
@@ -313,7 +316,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                     ))}
                                 </div>
 
-                                {newsDetail.news_writer && (
+                                {writerDetail && newsDetail.writer_slug && (
                                     <div className="mt-8 pt-6 border-t border-base-content/20">
                                         <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
                                             <div className="avatar avatar-placeholder"  >
