@@ -5,7 +5,7 @@ import { getDetailEkoran } from '@/lib/api/ekoran';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const ekoranDetail = await getDetailEkoran({id});
+  const ekoranDetail = await getDetailEkoran({ id });
 
   if (!ekoranDetail) {
     return {
@@ -25,6 +25,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: ekoranDetail.img1,
+          width: 500,
+          height: 750,
           alt: ekoranDetail.title,
         },
       ],
@@ -37,7 +39,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: ekoranDetail.img1,
-
+          width: 500,
+          height: 750,
           alt: ekoranDetail.title,
         },
       ],
@@ -49,7 +52,7 @@ export async function generateMetadata({ params }) {
 
 export default async function page({ params }) {
   const { id } = await params;
-  const ekoranDetail = await getDetailEkoran({id});
+  const ekoranDetail = await getDetailEkoran({ id });
   return (
     <EkoranDetailStory InitialEkoranDetail={ekoranDetail} />
   )
