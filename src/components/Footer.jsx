@@ -15,10 +15,21 @@ function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-[#b51d1d] mb-2">  <img src="https://timesindonesia.co.id/themes/times/assets/images/logo-timesindonesia-white-web.png" alt="News Logo" className="h-8 w-auto object-contain mx-auto lg:mx-0"></img> </h2>
+              <h2 className="text-2xl font-bold text-[#b51d1d] mb-2">
+                <Link href={'/'}>
+                  <Image
+                    src="/logo.png"
+                    alt="News Logo"
+                    className="h-10 w-auto object-contain mx-auto lg:mx-0"
+                    width={200}
+                    height={60}
+                    priority
+                  />
+                </Link>
+              </h2>
               <p className="text-white/65 leading-relaxed">
                 Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times
-             </p>
+              </p>
             </div>
 
             {/* Social Media */}
