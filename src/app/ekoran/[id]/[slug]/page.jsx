@@ -6,6 +6,8 @@ import { getDetailEkoran } from '@/lib/api/ekoran';
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const ekoranDetail = await getDetailEkoran({ id });
+  const originalImageUrl = ekoranDetail.img1;
+  const mediumImageUrl = originalImageUrl.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1');
 
   if (!ekoranDetail) {
     return {
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }) {
       url: `https://timesindonesia.co.id${ekoranDetail.url_ci4}`,
       images: [
         {
-          url: ekoranDetail.img1,
+          url: mediumImageUrl,
           width: 1200,
           height: 630,
           alt: ekoranDetail.title,
