@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
           alt: ekoranDetail.title,
         },
       ],
-      type: "website",
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",
