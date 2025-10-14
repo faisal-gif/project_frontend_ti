@@ -17,7 +17,7 @@ function DetailEditor({ authorData }) {
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                     <div className="avatar avatar-placeholder">
                         {authorData.editor_image ? (
-                            <div className="w-28 bg-neutral rounded-full">
+                            <div className="w-28 bg-neutral rounded-xl">
                                 <img src={authorData.editor_image} alt={authorData.editor_name} />
                             </div>
                         ) : (
@@ -45,17 +45,9 @@ function DetailEditor({ authorData }) {
                         </div> */}
 
                         <div className="flex flex-wrap gap-6 text-sm text-black/50">
-                            <div className="flex items-center gap-2">
-                                <span className="font-semibold text-foreground">180</span>
-                                <span>Artikel</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="font-semibold text-foreground">100</span>
-                                <span>Pengikut</span>
-                            </div>
-                            <div>Bergabung sejak
+                            <div>Bergabung sejak {''}
                                 <ClientOnly>
-                                    <FormattedDate dateString={authorData.created} />
+                                     <FormattedDate dateString={authorData.created} />
                                 </ClientOnly>
                             </div>
                         </div>
