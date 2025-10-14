@@ -23,7 +23,7 @@ function FeaturedNewsCard({
         <Link href={url}>
             <Card className={`group relative h-64 w-full cursor-pointer overflow-hidden rounded-lg border-0 shadow-lg transition-all duration-300 hover:shadow-2xl  ${className}`}>
                 <Image
-                    src={image}
+                    src={image.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1')}
                     alt={`${title} Fetured Image`}
                     fill
                     quality={70}
