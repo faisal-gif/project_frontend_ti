@@ -121,7 +121,7 @@ function EditorClient({ initialEditorDetail }) {
                                     title={item.news_title}
                                     description={item.news_description}
                                     author={item.news_writer}
-                                    datePub={item.datePub}
+                                    datePub={item.news_datepub}
                                     views={Number(item.pageviews)}
                                     image={item.news_image_new}
                                     url={item.url_ci4}

@@ -18,7 +18,7 @@ function DetailWriter({ authorData }) {
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                     <div className="avatar avatar-placeholder">
                         {authorData.image ? (
-                            <div className="w-28 bg-neutral rounded-full">
+                            <div className="w-28 h-32 bg-neutral rounded-sm">
                                 <img src={authorData.image} alt={authorData.name} />
                             </div>
                         ) : (
