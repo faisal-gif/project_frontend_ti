@@ -22,7 +22,7 @@ function HorizontalNewsCard({
             <Link href={url} className="block h-full">
                 <div className="relative overflow-hidden h-30 w-full rounded-lg">
                     <Image
-                        src={image}
+                        src={image.replace(/\.(jpg|jpeg|png|webp)$/i, '.th.$1')}
                         alt={title}
                         width={180}
                         height={120}

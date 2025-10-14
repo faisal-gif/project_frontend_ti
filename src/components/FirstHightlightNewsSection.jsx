@@ -47,11 +47,11 @@ export default function FirstHightlightNewsSection({ title, url = '/', index = 1
                         <div className="relative">
                             <div className="aspect-[16/9] relative overflow-hidden">
                                 <Image
-                                    src={news[0].news_image_new}
+                                    src={news[0].news_image_new.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1')}
                                     alt={news[0].news_title}
                                     fill
                                     loading='lazy'
-                                    quality={70}
+                                    quality={80}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />

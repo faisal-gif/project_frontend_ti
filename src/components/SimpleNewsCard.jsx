@@ -17,7 +17,7 @@ function SimpleNewsCard({ title, timeAgo, image, url, layout }) {
                             <div className="w-full">
                                 <div className="relative aspect-square w-full h-[98] overflow-hidden rounded-lg ">
                                     <Image
-                                        src={image}
+                                        src={image.replace(/\.(jpg|jpeg|png|webp)$/i, '.th.$1')}
                                         alt={title}
                                         width={171}
                                         height={98}
