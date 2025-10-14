@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Anda bisa mengganti URL default ini atau mengirimkannya sebagai prop
-const PopupAd = ({ onClose, imageUrl = "/PopUpAds.jpg", targetUrl = "https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D" }) => {
+const PopupAd = ({ onClose, imageUrl = "https://cdn-1.timesmedia.co.id/images/2025/10/14/Pop-Up-Ads.jpg", targetUrl = "https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D" }) => {
   const modalRef = useRef(null);
 
   // Logika untuk menampilkan popup sekali per sesi tetap sama
