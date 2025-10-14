@@ -9,8 +9,8 @@ export async function generateMetadata({ params }) {
 
   if (!ekoranDetail) {
     return {
-      title: "Kanal tidak ditemukan - TIMES Indonesia",
-      description: "Kanal yang Anda cari tidak tersedia.",
+      title: "Ekoran tidak ditemukan - TIMES Indonesia",
+      description: "Ekoran yang Anda cari tidak tersedia.",
     };
   }
 
@@ -22,11 +22,12 @@ export async function generateMetadata({ params }) {
       locale: 'id_ID',
       title: ekoranDetail.title,
       description: ekoranDetail.title,
+      url: `https://timesindonesia.co.id${ekoranDetail.url_ci4}`,
       images: [
         {
           url: ekoranDetail.img1,
-          width: 500,
-          height: 750,
+          width: 1200,
+          height: 630,
           alt: ekoranDetail.title,
         },
       ],
@@ -39,8 +40,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: ekoranDetail.img1,
-          width: 500,
-          height: 750,
+          width: 1200,
+          height: 630,
           alt: ekoranDetail.title,
         },
       ],
