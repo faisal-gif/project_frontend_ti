@@ -63,6 +63,8 @@ const SearchDropdown = () => {
     <div className="dropdown dropdown-bottom dropdown-end ">
       {/* tombol trigger */}
       <button
+        tabIndex={0}
+        role="button"
         aria-label="Open search"
         className="btn btn-ghost bg-transparent"
       >
