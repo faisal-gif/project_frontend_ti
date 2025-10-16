@@ -176,7 +176,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                 </div>
             </div>
 
-            <PopupAds />
+            {/* <PopupAds /> */}
         </div>
     );
 }
