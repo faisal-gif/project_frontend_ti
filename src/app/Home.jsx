@@ -5,7 +5,6 @@ import GallerySection from '@/components/GallerySection';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
-import PopupAds from '@/components/PopUpAds';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
 import VideoSection from '@/components/VideoSection';
 import CekFaktaCard from '@/components/CekFaktaCard';
