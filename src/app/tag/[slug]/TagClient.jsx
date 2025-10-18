@@ -20,14 +20,12 @@ function TagClient() {
       .replace(/\b\w/g, (c) => c.toUpperCase()); // kapitalisasi awal kata
   };
 
-  const [viewMode, setViewMode] = useState('grid');
+  const [viewMode, setViewMode] = useState('list');
   const [tagNews, setTagNews] = useState([]);
   const [offset, setOffset] = useState(0)
-  const [limit] = useState(10)
-  const [loadCount, setLoadCount] = useState(1)
+  const [limit] = useState(9)
   const [hasMore, setHasMore] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
-  const loaderRef = useRef(null)
 
 
   const fetchNews = async (currentOffset, slug) => {
@@ -66,6 +64,11 @@ function TagClient() {
     fetchNews(offset, slug)
   }, [offset, slug]);
 
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 768;
+    setViewMode(isDesktop ? 'grid' : 'list');
+  }, []);
+
   const loadMoreManually = () => {
     if (hasMore && !isLoading) {
       setOffset(prev => prev + limit)
@@ -84,22 +87,7 @@ function TagClient() {
         <h2 className="text-2xl font-bold text-foreground">
           Berita Tag  {unslugify(slug) || ''}
         </h2>
-        <div className="flex border border-base-300 rounded-md">
-          <Button variant="ghost" size="sm"
-            onClick={() => setViewMode('grid')}
-            aria-label="View Grid"
-            title="View Grid"
-            className={viewMode == 'grid' ? "btn-active" : ""}>
-            <Grid className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="sm"
-            onClick={() => setViewMode('list')}
-            aria-label="View List"
-            title="View List"
-            className={viewMode === 'list' ? "btn-active" : ""}    >
-            <List className="h-4 w-4" />
-          </Button>
-        </div>
+      
       </div>
 
       {isLoading && tagNews.length === 0 && (
@@ -156,7 +144,7 @@ function TagClient() {
 
 
       {/* Manual Load Button */}
-      {hasMore && loadCount >= 4 && (
+      {hasMore && (
         <div className="text-center mt-6">
           <button
             onClick={loadMoreManually}
