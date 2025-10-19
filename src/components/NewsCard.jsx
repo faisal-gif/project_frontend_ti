@@ -23,19 +23,7 @@ function NewsCard({
             <Link href={url} className="block group">
                 <div className="grid grid-cols-5 gap-0">
                     <div className="col-span-2 md:col-span-1 relative overflow-hidden rounded-md">
-                        {/* Blurred background */}
-                        <div className="absolute inset-0 z-0 overflow-hidden">
-                            <Image
-                                src={image}
-                                alt={`${title} background`}
-                                width={148}
-                                height={99}
-                                quality={60}
-                                loading='lazy'
-                                fetchPriority='high'
-                                className="object-cover blur-md opacity-50"
-                            />
-                        </div>
+                      
 
                         {/* Main image */}
                         <div className="relative z-10 w-full h-20 md:h-24 ">
@@ -45,8 +33,7 @@ function NewsCard({
                                 width={148}
                                 height={99}
                                 quality={60}
-                                loading='lazy'
-                                fetchPriority='high'
+                                priority
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>

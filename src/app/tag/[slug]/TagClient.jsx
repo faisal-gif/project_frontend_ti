@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
-  const [viewMode, setViewMode] = useState('list');
+  const [viewMode, setViewMode] = useState('grid');
   const [tagNews, setTagNews] = useState(initialNews || []);
   const [limit] = useState(9);
 
