@@ -15,109 +15,104 @@ function NewsCard({
     image,
     url,
     category,
-    layout = "grid", // "grid" atau "list"
+    priority = false, // Tambahkan prop ini untuk LCP
 }) {
 
-    if (layout === "list") {
-        return (
-            <Link href={url} className="block group">
-                <div className="grid grid-cols-5 gap-0">
-                    <div className="col-span-2 md:col-span-1 relative overflow-hidden rounded-md">
-                      
+    return (
+        <Link href={url} className="block group h-full">
+            <Card className="
+        h-full 
+        transition-all duration-300 
+        border-0 shadow-none overflow-hidden
+        md:shadow-lg md:hover:shadow-2xl md:hover:-translate-y-1 
+        flex flex-row 
+        md:flex-col
+      ">
 
-                        {/* Main image */}
-                        <div className="relative z-10 w-full h-20 md:h-24 ">
-                            <Image
-                                src={image.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1')}
-                                alt={title}
-                                width={148}
-                                height={99}
-                                quality={60}
-                                priority
-                                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                        </div>
+                {/* === BAGIAN GAMBAR === */}
+                {image && (
+                    <div className="
+            relative overflow-hidden 
+            flex-shrink-0
+            w-2/5 // MOBILE (list): 40% width
+            rounded-md 
+            md:w-full md:h-64
+            md:rounded-t-lg md:rounded-b-none
+          ">
+                        <Image
+                            // Gunakan URL gambar asli, biarkan next/image mengoptimasi
+                            src={image}
+                            alt={title}
+                            fill
+                            sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
 
-                    </div>
+                            // Gunakan prop 'priority' untuk mengontrol loading
+                            // Hanya LCP (gambar pertama) yg boleh 'priority'
+                            loading={priority ? undefined : 'lazy'}
+                            priority={priority}
 
-                    {/* Text */}
-                    <div className="flex flex-col justify-between col-span-3 md:col-span-4 px-2 md:px-6">
-                        <div>
-                            <h3 className="text-sm font-semibold text-foreground line-clamp-3 md:line-clamp-2 leading-tight mb-2 hover:text-red-600 transition-colors duration-200">
-                                {title}
-                            </h3>
-                            <p className="hidden md:line-clamp-2 text-black/50 text-xs leading-relaxed mb-3">
-                                {description}
-                            </p>
-                        </div>
-                        <div className="flex items-center justify-start gap-2 text-xs text-muted-foreground">
-                            <div className="flex items-center space-x-1">
-                                <Clock className="h-3 w-3" />
-                                <span>
-                                    <ClientOnly>
-                                        <FormattedDate dateString={datePub} />
-                                    </ClientOnly>
+                            quality={priority ? 75 : 60} // Kualitas lebih baik untuk LCP
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        {category && (
+                            // Kategori HANYA tampil di mode desktop (grid)
+                            <div className="absolute top-4 left-4 hidden md:block">
+                                <span className="bg-[#7a0f1f] text-white px-3 py-1 rounded-full text-xs font-medium">
+                                    {category}
                                 </span>
                             </div>
+                        )}
+                    </div>
+                )}
 
+                {/* === BAGIAN TEKS === */}
+                <div className="
+            flex flex-col justify-between flex-grow
+            p-3 // MOBILE (list): padding kecil
+            md:p-6 // DESKTOP (grid): padding normal
+        ">
+                    {/* Judul & Deskripsi */}
+                    <div>
+                        <h3 className="
+                font-semibold text-foreground 
+                text-sm leading-tight // MOBILE (list): text kecil
+                line-clamp-3 // MOBILE (list): 3 baris
+                hover:text-red-600 // MOBILE (list): hover
+                md:font-bold md:text-base md:line-clamp-2 // DESKTOP (grid): text normal, 2 baris
+                md:group-hover:text-[#7a0f1f] // DESKTOP (grid): hover
+                transition-colors mb-2 md:mb-3
+            ">
+                            {title}
+                        </h3>
+                        <p className="
+                text-black/50 text-xs leading-relaxed mb-3 // MOBILE (list): text & style
+                line-clamp-2 // MOBILE (list): 2 baris
+                md:text-muted-foreground md:line-clamp-3 // DESKTOP (grid): text & style
+                hidden md:block // Deskripsi disembunyikan di mobile (seperti di list asli)
+            ">
+                            {description}
+                        </p>
+                    </div>
+
+                    {/* Meta Info (Tanggal & Views) */}
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        {/* Tanggal (selalu ada) */}
+                        <div className="flex items-center space-x-1">
+                            <Clock className="h-3 w-3" />
+                            <span>
+                                <ClientOnly>
+                                    <FormattedDate dateString={datePub} />
+                                </ClientOnly>
+                            </span>
+                        </div>
+
+                        {/* Views (HANYA tampil di desktop) */}
+                        <div className="hidden md:flex items-center space-x-1">
+                            <Eye className="h-3 w-3" />
+                            <span><FormattedViews count={views} /></span>
                         </div>
                     </div>
                 </div>
-            </Link>
-        )
-    }
-
-    // === GRID MODE (versi card normal) ===
-    return (
-        <Link href={url} className="block group">
-            <Card className="h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0 shadow-lg">
-                <Card.Body className="p-0">
-                    {image && (
-                        <div className="relative w-full h-64 overflow-hidden rounded-t-lg">
-                            <Image
-                                src={image}
-                                alt={title}
-                                fill
-                                sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
-                                loading='lazy'
-                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            {category && (
-                                <div className="absolute top-4 left-4">
-                                    <span className="bg-[#7a0f1f] text-white px-3 py-1 rounded-full text-xs font-medium">
-                                        {category}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-
-                    )}
-
-                    <div className="p-6">
-                        <h3 className="font-bold text-base group-hover:text-[#7a0f1f] transition-colors line-clamp-2 mb-3">
-                            {title}
-                        </h3>
-
-                        <p className="text-muted-foreground mb-4 line-clamp-3">
-                            {description}
-                        </p>
-
-                        <div className="flex items-center justify-between text-xs text-muted-foreground">
-                            <div className="flex items-center space-x-4">
-                                <div className="flex items-center space-x-1">
-                                    <Clock className="h-3 w-3" />
-                                    <span><FormattedDate dateString={datePub} /></span>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                                <Eye className="h-3 w-3" />
-                                <span><FormattedViews count={views} /></span>
-                            </div>
-                        </div>
-                    </div>
-                </Card.Body>
             </Card>
         </Link>
     )

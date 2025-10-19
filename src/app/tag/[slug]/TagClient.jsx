@@ -5,21 +5,18 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
-  const [viewMode, setViewMode] = useState('grid');
   const [tagNews, setTagNews] = useState(initialNews || []);
   const [limit] = useState(9);
 
-  // 1. Simpan offset awal (misalnya: 9) ke dalam konstanta
   const initialOffset = initialNews?.length || 0;
 
-  // 2. State offset tetap dimulai dari offset awal
+
   const [offset, setOffset] = useState(initialOffset);
 
   const [hasMore, setHasMore] = useState((initialNews?.length || 0) === limit);
   const [isLoading, setIsLoading] = useState(false)
 
-  // 3. HAPUS STATE 'isInitialLoad'
-  // const [isInitialLoad, setIsInitialLoad] = useState(true); // <-- HAPUS INI
+
 
   const fetchNews = useCallback(async (currentOffset) => {
     if (!unslugifiedSlug) return;
@@ -54,26 +51,14 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
   useEffect(() => {
     if (!slug) return;
-
-    // 4. UBAH LOGIKA 'useEffect'
-    // Cek apakah offset SAAT INI lebih besar dari offset AWAL.
-    // - Saat render pertama: offset (9) TIDAK > initialOffset (9). Fetch tidak jalan.
-    // - Saat klik "Lainnya": offset jadi (18). 18 > 9. Fetch AKAN jalan.
     if (offset > initialOffset) {
       fetchNews(offset);
     }
 
   }, [offset, slug, fetchNews, initialOffset]); // <-- Tambahkan initialOffset
 
-  useEffect(() => {
-    const isDesktop = window.innerWidth >= 768;
-    setViewMode(isDesktop ? 'grid' : 'list');
-  }, []);
-
   const loadMoreManually = () => {
     if (hasMore && !isLoading) {
-      // Ini akan mengubah offset dari 9 -> 18,
-      // yang akan memicu useEffect di atas
       setOffset(prev => prev + limit)
     }
   }
@@ -105,13 +90,9 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
       {/* Regular News */}
       {tagNews.length > 0 && (
         <div>
-          <div className={`mb-12 ${viewMode === 'grid'
-            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-            : 'space-y-6'
-            }`}>
+          <div className="mb-12 space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
             {tagNews.map((news) => (
               <NewsCard
-                layout={viewMode}
                 key={news.news_id}
                 title={news.news_title}
                 description={news.news_description}
