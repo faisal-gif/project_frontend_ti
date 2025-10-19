@@ -22,7 +22,7 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
 
   const fetchNews = useCallback(async (currentOffset) => {
-    if (!unslugifiedSlug) return; 
+    if (!unslugifiedSlug) return;
 
     try {
       setIsLoading(true)
@@ -79,8 +79,12 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
   return (
     <main className="max-w-6xl  mx-auto px-4 py-20">
 
-      <div className='flex items-center justify-center mb-8'>
+      <div className='hidden md:flex items-center justify-center mb-8'>
         <GoogleAds size='top_banner' />
+      </div>
+
+      <div className='md:hidden flex items-center justify-center my-4'>
+        <GoogleAds size='square' />
       </div>
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
