@@ -207,10 +207,10 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         <BackToTop />
-        <GoogleAnalytics gaId='G-VWQ4STDNVX' />
+        <GoogleAnalytics gaId='G-VWQ4STDNVX' strategy="worker" />
         <Script
           id="adsbygoogle-init"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
           crossOrigin="anonymous" />
