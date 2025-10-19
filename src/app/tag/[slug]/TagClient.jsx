@@ -1,5 +1,4 @@
 'use client'
-import GoogleAds from '@/components/GoogleAds';
 import NewsCard from '@/components/NewsCard';
 import { getAllNews } from '@/lib/api/newsApi';
 import React, { useCallback, useEffect, useState } from 'react'
@@ -78,14 +77,6 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
   return (
     <main className="max-w-6xl  mx-auto px-4 py-20">
-
-      <div className='hidden md:flex items-center justify-center mb-8'>
-        <GoogleAds size='top_banner' />
-      </div>
-
-      <div className='md:hidden flex items-center justify-center my-4'>
-        <GoogleAds size='square' />
-      </div>
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <h2 className="text-2xl font-bold text-foreground">
