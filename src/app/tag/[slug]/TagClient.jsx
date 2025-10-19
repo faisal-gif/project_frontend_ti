@@ -5,20 +5,21 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
-
   const [viewMode, setViewMode] = useState('list');
-
   const [tagNews, setTagNews] = useState(initialNews || []);
-  const [limit] = useState(9); // <-- Samakan dengan server (10)
+  const [limit] = useState(9);
 
-  const [offset, setOffset] = useState(initialNews?.length || 0);
+  // 1. Simpan offset awal (misalnya: 9) ke dalam konstanta
+  const initialOffset = initialNews?.length || 0;
+
+  // 2. State offset tetap dimulai dari offset awal
+  const [offset, setOffset] = useState(initialOffset);
 
   const [hasMore, setHasMore] = useState((initialNews?.length || 0) === limit);
-
   const [isLoading, setIsLoading] = useState(false)
 
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
+  // 3. HAPUS STATE 'isInitialLoad'
+  // const [isInitialLoad, setIsInitialLoad] = useState(true); // <-- HAPUS INI
 
   const fetchNews = useCallback(async (currentOffset) => {
     if (!unslugifiedSlug) return;
@@ -34,7 +35,6 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
       });
 
       const newData = res || []
-
       setTagNews(prev => {
         const existingIds = new Set(prev.map(item => item.news_id))
         const filtered = newData.filter(item => !existingIds.has(item.news_id))
@@ -49,19 +49,21 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
     } finally {
       setIsLoading(false)
     }
-  }, [limit, unslugifiedSlug]); // <-- Tambahkan dependensi
+  }, [limit, unslugifiedSlug]);
+
 
   useEffect(() => {
     if (!slug) return;
 
-    if (isInitialLoad) {
-      setIsInitialLoad(false); // Matikan flag
-      return;
+    // 4. UBAH LOGIKA 'useEffect'
+    // Cek apakah offset SAAT INI lebih besar dari offset AWAL.
+    // - Saat render pertama: offset (9) TIDAK > initialOffset (9). Fetch tidak jalan.
+    // - Saat klik "Lainnya": offset jadi (18). 18 > 9. Fetch AKAN jalan.
+    if (offset > initialOffset) {
+      fetchNews(offset);
     }
 
-    fetchNews(offset);
-
-  }, [offset, slug, isInitialLoad, fetchNews]);
+  }, [offset, slug, fetchNews, initialOffset]); // <-- Tambahkan initialOffset
 
   useEffect(() => {
     const isDesktop = window.innerWidth >= 768;
@@ -70,10 +72,12 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
   const loadMoreManually = () => {
     if (hasMore && !isLoading) {
-      // Ini akan menaikkan offset (misal: 10 -> 20) dan trigger useEffect
+      // Ini akan mengubah offset dari 9 -> 18,
+      // yang akan memicu useEffect di atas
       setOffset(prev => prev + limit)
     }
   }
+
 
   return (
     <main className="max-w-6xl  mx-auto px-4 py-20">
