@@ -1,17 +1,21 @@
+// app/.../page.jsx
+
 import React from 'react'
 import TagClient from './TagClient'
+import { getAllNewsServer } from '@/lib/api/newsApi'; // <-- 1. Import fungsi fetch data
+
+const unslugify = (slug) => {
+  if (!slug) return "";
+  return slug
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+};
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-
-  const unslugify = (slug) => {
-    if (!slug) return "";
-    return slug
-      .replace(/-/g, " ")         // ubah strip jadi spasi
-      .replace(/\s+/g, " ")       // rapikan spasi berlebih
-      .trim()                     // buang spasi awal/akhir
-      .replace(/\b\w/g, (c) => c.toUpperCase()); // kapitalisasi awal kata
-  };
+  const tagTitle = unslugify(slug);
 
   if (!slug) {
     return {
@@ -21,11 +25,11 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${unslugify(slug)} - TIMES Indonesia`,
+    title: `${tagTitle} - TIMES Indonesia`,
     openGraph: {
       locale: 'id_ID',
-      title: unslugify(slug),
-      description: unslugify(slug),
+      title: tagTitle,
+      description: tagTitle,
       images: [
         {
           url: `${process.env.NEXT_PUBLIC_URL}/icon.png`,
@@ -35,13 +39,13 @@ export async function generateMetadata({ params }) {
         },
       ],
       type: "website",
-      url: `https://timesindonesia.co.id/tag/${unslugify(slug)}`,
+      url: `https://timesindonesia.co.id/tag/${tagTitle}`,
       siteName: 'TIMES Indonesia',
     },
     twitter: {
       card: "summary_large_image",
-      title: unslugify(slug),
-      description: unslugify(slug),
+      title: tagTitle,
+      description: tagTitle,
       images: [
         {
           url: `${process.env.NEXT_PUBLIC_URL}/icon.png`,
@@ -55,9 +59,29 @@ export async function generateMetadata({ params }) {
 }
 
 
-async function page() {
+async function page({ params }) {
+  const { slug } = await params;
+  const tag = unslugify(slug);
+  const limit = 9; 
+  let initialNews = [];
+
+  try {
+    initialNews = await getAllNewsServer({
+      news_type: 'tag',
+      title: tag,
+      limit: limit,
+      offset: 0, 
+    });
+  } catch (error) {
+    console.error("Failed to fetch initial news:", error);
+  }
+
   return (
-    <TagClient />
+    <TagClient
+      initialNews={initialNews || []}
+      slug={slug}
+      unslugifiedSlug={tag}
+    />
   )
 }
 

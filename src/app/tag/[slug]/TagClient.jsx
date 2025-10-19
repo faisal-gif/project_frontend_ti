@@ -1,37 +1,32 @@
 'use client'
 import GoogleAds from '@/components/GoogleAds';
 import NewsCard from '@/components/NewsCard';
-import Button from '@/components/ui/Button'
 import { getAllNews } from '@/lib/api/newsApi';
-import { Filter, Grid, List, Search } from 'lucide-react'
-import { useParams } from 'next/navigation';
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
-function TagClient() {
-  const params = useParams();
-  const { slug } = params;
+function TagClient({ initialNews, slug, unslugifiedSlug }) {
 
-  const unslugify = (slug) => {
-    if (!slug) return "";
-    return slug
-      .replace(/-/g, " ")         // ubah strip jadi spasi
-      .replace(/\s+/g, " ")       // rapikan spasi berlebih
-      .trim()                     // buang spasi awal/akhir
-      .replace(/\b\w/g, (c) => c.toUpperCase()); // kapitalisasi awal kata
-  };
 
   const [viewMode, setViewMode] = useState('list');
-  const [tagNews, setTagNews] = useState([]);
-  const [offset, setOffset] = useState(0)
-  const [limit] = useState(9)
-  const [hasMore, setHasMore] = useState(true)
+
+  const [tagNews, setTagNews] = useState(initialNews || []);
+  const [limit] = useState(9); // <-- Samakan dengan server (10)
+
+  const [offset, setOffset] = useState(initialNews?.length || 0);
+
+  const [hasMore, setHasMore] = useState((initialNews?.length || 0) === limit);
+
   const [isLoading, setIsLoading] = useState(false)
 
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  const fetchNews = async (currentOffset, slug) => {
+
+  const fetchNews = useCallback(async (currentOffset) => {
+    if (!unslugifiedSlug) return; 
+
     try {
       setIsLoading(true)
-      const tag = unslugify(slug)   // ← ubah slug ke tag asli
+      const tag = unslugifiedSlug;
       const res = await getAllNews({
         news_type: 'tag',
         title: tag,
@@ -41,14 +36,12 @@ function TagClient() {
 
       const newData = res || []
 
-      // Filter duplikat berdasarkan news_id
       setTagNews(prev => {
         const existingIds = new Set(prev.map(item => item.news_id))
         const filtered = newData.filter(item => !existingIds.has(item.news_id))
         return [...prev, ...filtered]
       })
 
-      // Kalau data kurang dari limit → tidak ada data lagi
       if (newData.length < limit) {
         setHasMore(false)
       }
@@ -57,12 +50,19 @@ function TagClient() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [limit, unslugifiedSlug]); // <-- Tambahkan dependensi
 
   useEffect(() => {
     if (!slug) return;
-    fetchNews(offset, slug)
-  }, [offset, slug]);
+
+    if (isInitialLoad) {
+      setIsInitialLoad(false); // Matikan flag
+      return;
+    }
+
+    fetchNews(offset);
+
+  }, [offset, slug, isInitialLoad, fetchNews]);
 
   useEffect(() => {
     const isDesktop = window.innerWidth >= 768;
@@ -71,10 +71,10 @@ function TagClient() {
 
   const loadMoreManually = () => {
     if (hasMore && !isLoading) {
+      // Ini akan menaikkan offset (misal: 10 -> 20) dan trigger useEffect
       setOffset(prev => prev + limit)
     }
   }
-
 
   return (
     <main className="max-w-6xl  mx-auto px-4 py-20">
@@ -85,9 +85,9 @@ function TagClient() {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <h2 className="text-2xl font-bold text-foreground">
-          Berita Tag  {unslugify(slug) || ''}
+          Berita Tag  {unslugifiedSlug || ''}
         </h2>
-      
+
       </div>
 
       {isLoading && tagNews.length === 0 && (
