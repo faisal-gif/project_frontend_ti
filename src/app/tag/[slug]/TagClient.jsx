@@ -1,5 +1,5 @@
 'use client'
-import NewsCard from '@/components/NewsCard';
+
 import NewsCardAuto from '@/components/NewsCardList';
 import { getAllNews } from '@/lib/api/newsApi';
 import React, { useCallback, useEffect, useState } from 'react'
@@ -103,7 +103,7 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
                 views={Number(news.pageviews)}
                 url={news.url_ci4}
                 category={news.cat_title}
-                priority={index === 0 && initialOffset === 0}
+                priority={index === 0}
               />
             ))}
           </div>

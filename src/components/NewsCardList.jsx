@@ -32,7 +32,7 @@ function NewsCardAuto({
                             sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
                             loading={priority ? undefined : 'lazy'}
                             priority={priority}
-                            quality={priority ? 75 : 60} // Kualitas lebih baik untuk LCP
+                            quality={priority ? 70 : 60}
                             className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         {category && (

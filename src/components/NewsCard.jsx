@@ -35,7 +35,7 @@ function NewsCard({
                                 height={99}
                                 loading={priority ? undefined : 'lazy'}
                                 priority={priority}
-                                quality={priority ? 75 : 60} // Kualitas lebih baik untuk LCP
+                                quality={priority ? 70 : 60} // Kualitas lebih baik untuk LCP
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>
