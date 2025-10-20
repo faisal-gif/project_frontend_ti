@@ -26,7 +26,7 @@ function NewsCardAuto({
                 {image && (
                     <div className="relative overflow-hidden flex-shrink-0 w-2/5 rounded-md md:w-full md:h-64 md:rounded-t-lg md:rounded-b-none">
                         <Image
-                            src={image}
+                            src={image.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1')}
                             alt={title}
                             fill
                             sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
