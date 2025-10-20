@@ -9,6 +9,8 @@ export async function generateMetadata({ params }) {
   const originalImageUrl = ekoranDetail.img1;
   const mediumImageUrl = originalImageUrl.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1');
 
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${ekoranDetail.url_ci4 || ''}`;
+
   if (!ekoranDetail) {
     return {
       title: "Ekoran tidak ditemukan - TIMES Indonesia",
@@ -20,6 +22,9 @@ export async function generateMetadata({ params }) {
     title: `${ekoranDetail.title} - TIMES Indonesia`,
     description: ekoranDetail.title,
     keywords: 'ekoran,TIMES Indonesia, ekoran times indonesia',
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       locale: 'id_ID',
       title: ekoranDetail.title,

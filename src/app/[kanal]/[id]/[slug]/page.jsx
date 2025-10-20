@@ -14,6 +14,8 @@ export async function generateMetadata({ params }) {
     const newsDetail = await getNews(id);
     const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
+    const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
+
     if (!newsDetail) {
         return {
             title: "Berita tidak ditemukan - TIMES Indonesia",
@@ -28,6 +30,9 @@ export async function generateMetadata({ params }) {
         authors: [{ name: newsDetail.news_writer, url: 'https://timesindonesia.co.id' }],
         keywords: newsDetail.news_tags,
         lastModified: correctedDateString,
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             locale: 'id_ID',
             title: newsDetail.news_title,
