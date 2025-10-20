@@ -1,5 +1,6 @@
 'use client'
 import NewsCard from '@/components/NewsCard';
+import NewsCardAuto from '@/components/NewsCardList';
 import { getAllNews } from '@/lib/api/newsApi';
 import React, { useCallback, useEffect, useState } from 'react'
 
@@ -91,8 +92,8 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
       {tagNews.length > 0 && (
         <div>
           <div className="mb-12 space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
-            {tagNews.map((news) => (
-              <NewsCard
+            {tagNews.map((news,index) => (
+              <NewsCardAuto
                 key={news.news_id}
                 title={news.news_title}
                 description={news.news_description}
@@ -102,6 +103,7 @@ function TagClient({ initialNews, slug, unslugifiedSlug }) {
                 views={Number(news.pageviews)}
                 url={news.url_ci4}
                 category={news.cat_title}
+                priority={index === 0 && initialOffset === 0}
               />
             ))}
           </div>
