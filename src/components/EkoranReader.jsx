@@ -37,7 +37,7 @@ export default function EkoranReader({ ekoranArticle }) {
                 }
                 return prev + 1;
             });
-        }, 50);
+        }, 100);
 
         return () => clearInterval(autoProgressRef.current);
     }, [scale]);
