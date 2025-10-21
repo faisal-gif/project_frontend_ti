@@ -10,7 +10,6 @@ export function middleware(request) {
   const userAgent = request.headers.get('user-agent') || '';
   const ip = request.ip || 'unknown';
 
-  console.log(`[REQUEST_LOG] Path: ${pathname} | IP: ${ip} | User-Agent: ${userAgent}`);
 
   // --- LOGIKA 1: Melindungi API Routes ---
   if (pathname.startsWith('/api/')) {
