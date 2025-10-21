@@ -7,6 +7,9 @@ const BLOCKED_USER_AGENTS = ['BadBot/1.0', 'python-requests', 'curl'];
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const userAgent = request.headers.get('user-agent') || '';
+  const ip = request.ip || 'unknown';
+
+  console.log(`[REQUEST_LOG] Path: ${pathname} | IP: ${ip} | User-Agent: ${userAgent}`);
 
   // --- LOGIKA 1: Melindungi API Routes ---
   if (pathname.startsWith('/api/')) {
