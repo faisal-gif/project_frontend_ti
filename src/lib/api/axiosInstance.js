@@ -6,6 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_URL;
 export const clientAxios = axios.create({
   baseURL: `${baseUrl}/api`,
   headers: {
+    'User-Agent': 'TimesIndonesiaInternalFetcher/1.0',
     'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
     'Content-Type': 'application/json',
   },
