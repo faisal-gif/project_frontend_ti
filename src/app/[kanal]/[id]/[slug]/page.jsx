@@ -2,7 +2,7 @@ import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -18,10 +18,7 @@ export async function generateMetadata({ params }) {
     const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
 
     if (!newsDetail) {
-        return {
-            title: "Berita tidak ditemukan - TIMES Indonesia",
-            description: "Berita yang Anda cari tidak tersedia.",
-        };
+        notFound();
     }
 
     const urlPathFromParams = `/${kanal}/${id}/${slug}`;
