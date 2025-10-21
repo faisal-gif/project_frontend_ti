@@ -25,10 +25,10 @@ export async function generateMetadata({ params }) {
     }
 
     const urlPathFromParams = `/${kanal}/${id}/${slug}`;
+    const correctUrl = newsDetail.url_ci4 || '';
 
     if (newsDetail.url_ci4 !== urlPathFromParams) {
-        notFound();
-
+        redirect(correctUrl, 'permanent');
     }
 
     return {
