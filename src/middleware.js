@@ -11,7 +11,7 @@ export function middleware(request) {
   const userAgent = request.headers.get('user-agent') || '';
   const ip = request.ip || 'unknown';
 
-  
+
   console.log(`[REQUEST_LOG] Path: ${pathname} | IP: ${ip} | User-Agent: ${userAgent}`);
 
   // --- LOGIKA 1: Melindungi API Routes ---
@@ -29,7 +29,7 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
-  if (BLOCKED_IPS.includes(requestIp)) {
+  if (BLOCKED_IPS.includes(ip)) {
     // Kirim respons 403 Forbidden (Dilarang)
     return new NextResponse(null, { status: 403, statusText: "Forbidden" });
   }
