@@ -2,6 +2,7 @@ import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
+import { notFound } from 'next/navigation';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -10,7 +11,7 @@ const getNews = cache(async (id) => {
 export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
-    const { id } = await params;
+    const { id, kanal, slug } = params;
     const newsDetail = await getNews(id);
     const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
@@ -21,6 +22,13 @@ export async function generateMetadata({ params }) {
             title: "Berita tidak ditemukan - TIMES Indonesia",
             description: "Berita yang Anda cari tidak tersedia.",
         };
+    }
+
+    const urlPathFromParams = `/${kanal}/${id}/${slug}`;
+
+    if (newsDetail.url_ci4 !== urlPathFromParams) {
+        notFound();
+
     }
 
     return {
