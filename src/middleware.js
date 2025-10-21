@@ -5,12 +5,14 @@ import { NextResponse } from 'next/server';
 const BLOCKED_IPS = ['146.247.137.101', '104.250.56.153', '114.4.82.118', '94.100.26.170', '94.100.26.170'];
 const BLOCKED_USER_AGENTS = ['BadBot/1.0', 'python-requests', 'curl'];
 
-  console.log(`[REQUEST_LOG] Path: ${pathname} | IP: ${ip} | User-Agent: ${userAgent}`);
+
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const userAgent = request.headers.get('user-agent') || '';
   const ip = request.ip || 'unknown';
 
+  
+  console.log(`[REQUEST_LOG] Path: ${pathname} | IP: ${ip} | User-Agent: ${userAgent}`);
 
   // --- LOGIKA 1: Melindungi API Routes ---
   if (pathname.startsWith('/api/')) {
