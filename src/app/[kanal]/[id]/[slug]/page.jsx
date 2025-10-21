@@ -2,7 +2,7 @@ import { getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect, redirect } from 'next/navigation';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
     const correctUrl = newsDetail.url_ci4 || '';
 
     if (newsDetail.url_ci4 !== urlPathFromParams) {
-        redirect(correctUrl, 'permanent');
+    permanentRedirect(correctUrl);   
     }
 
     return {
