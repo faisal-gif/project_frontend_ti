@@ -3,7 +3,7 @@ export default function robots() {
   return {
     rules: [
       {
-        userAgent: '*',
+        userAgent: 'Googlebot',
         allow: '/',
         disallow: ['/search/*', '/search*']
       },
