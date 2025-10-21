@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 
 // Daftar User-Agent bot yang ingin Anda blokir
+const BLOCKED_IPS = ['146.247.137.101', '94.100.26.170', '94.100.26.170'];
 const BLOCKED_USER_AGENTS = ['BadBot/1.0', 'python-requests', 'curl'];
 
 export function middleware(request) {
@@ -14,7 +15,7 @@ export function middleware(request) {
   // --- LOGIKA 1: Melindungi API Routes ---
   if (pathname.startsWith('/api/')) {
     const apiKey = request.headers.get('x-api-key');
-    
+
     // Gunakan process.env.API_KEY (BUKAN NEXT_PUBLIC_)
     if (!apiKey || apiKey !== process.env.NEXT_PUBLIC_API_KEY) {
       return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
@@ -24,6 +25,11 @@ export function middleware(request) {
     }
     // Jika API key valid, lanjutkan ke API route
     return NextResponse.next();
+  }
+
+  if (BLOCKED_IPS.includes(requestIp)) {
+    // Kirim respons 403 Forbidden (Dilarang)
+    return new NextResponse(null, { status: 403, statusText: "Forbidden" });
   }
 
   // --- LOGIKA 2: Memblokir Bot Scraper di Halaman Berita ---
@@ -43,7 +49,7 @@ export function middleware(request) {
 // Jalankan middleware di SEMUA rute, KECUALI file statis dan gambar
 export const config = {
   matcher: [
-   
+
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|webp)$).*)',
   ],
 };
