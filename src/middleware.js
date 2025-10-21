@@ -4,13 +4,14 @@ import { NextResponse } from 'next/server';
 // Daftar User-Agent bot yang ingin Anda blokir
 const BLOCKED_IPS = ['146.247.137.101', '104.250.56.153', '114.4.82.118', '94.100.26.170', '94.100.26.170'];
 const BLOCKED_USER_AGENTS = [
-  'axios/1.12.2',             
-  'aiohttp/3.7.2',            
-  'MSIE 6.0',                  
-  'Chrome/1.0.154.36',       
-  'Chrome/4.0.223.3',       
-  'Firefox/3.1b2'            
+  'BadBot/1.0', 
+  'python-requests', 
+  'curl',
+  'Chrome/1.0.154.36',
+  'Chrome/4.0.223.3',
+  'Firefox/3.1b2'
 ];
+
 
 
 export function middleware(request) {
