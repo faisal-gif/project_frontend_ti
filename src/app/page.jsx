@@ -36,8 +36,16 @@ export default async function page() {
   const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
   const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10, })
   const cekFaktaNewsPromise = getCekFaktaNewsServer();
+  const adsPremiumPromise = getViewAds({ id: 1 });
+  const adsLeaderboard1Promise = getViewAds({ id: 3 });
+  const adsLeaderboard2Promise = getViewAds({ id: 7 });
+  const adsRectangle1Promise = getViewAds({ id: 4 });
   const adsRectangle2Promise = getViewAds({ id: 5 });
   const adsRectangle3Promise = getViewAds({ id: 6 });
+  const adsRectangle4Promise = getViewAds({ id: 93 });
+  const adsRectangle5Promise = getViewAds({ id: 94 });
+  const adsRectangle6Promise = getViewAds({ id: 95 });
+  const adsRectangle7Promise = getViewAds({ id: 96 });
 
   const [
     newsFirstSections,
@@ -46,8 +54,16 @@ export default async function page() {
     allNews,
     headlineNews,
     cekFaktaNews,
+    adsPremium,
+    adsLeaderboard1,
+    adsLeaderboard2,
+    adsRectangle1,
     adsRectangle2,
-    adsRectangle3
+    adsRectangle3,
+    adsRectangle4,
+    adsRectangle5,
+    adsRectangle6,
+    adsRectangle7,
   ] = await Promise.all([
     firstSectionsPromise,
     secondSectionsPromise,
@@ -55,8 +71,16 @@ export default async function page() {
     allNewsPromise,
     headlineNewsPromise,
     cekFaktaNewsPromise,
+    adsPremiumPromise,
+    adsLeaderboard1Promise,
+    adsLeaderboard2Promise,
+    adsRectangle1Promise,
     adsRectangle2Promise,
-    adsRectangle3Promise
+    adsRectangle3Promise,
+    adsRectangle4Promise,
+    adsRectangle5Promise,
+    adsRectangle6Promise,
+    adsRectangle7Promise,
   ]);
 
   return (<>
@@ -76,8 +100,16 @@ export default async function page() {
       allNews={allNews}
       initialHeadlineNews={headlineNews}
       initialCekFaktaNews={cekFaktaNews}
+      initialAdsPremium={adsPremium}
+      initialAdsLeaderboard1={adsLeaderboard1}
+      initialAdsLeaderboard2={adsLeaderboard2}
+      initialAdsRectangle1={adsRectangle1}
       initialAdsRectangle2={adsRectangle2}
       initialAdsRectangle3={adsRectangle3}
+      initialAdsRectangle4={adsRectangle4}
+      initialAdsRectangle5={adsRectangle5}
+      initialAdsRectangle6={adsRectangle6}
+      initialAdsRectangle7={adsRectangle7}
     />
   </>
 

@@ -15,7 +15,23 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import GoogleAds from '@/components/GoogleAds';
 
 
-function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, initialHeadlineNews, initialCekFaktaNews, initialAdsRectangle2, initialAdsRectangle3 }) {
+function Home({
+    newsFirstSections,
+    newsSecondSections,
+    allNews,
+    wansusNews,
+    initialHeadlineNews,
+    initialCekFaktaNews,
+    initialAdsPremium,
+    initialAdsLeaderboard1,
+    initialAdsLeaderboard2,
+    initialAdsRectangle1,
+    initialAdsRectangle2,
+    initialAdsRectangle3,
+    initialAdsRectangle4,
+    initialAdsRectangle5,
+    initialAdsRectangle6,
+    initialAdsRectangle7 }) {
 
     return (
         <div className="">
@@ -31,7 +47,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
             <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center mb-8'>
-                    <GoogleAds size='top_banner' />
+                    <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} />
                 </div>
 
                 <div className='md:hidden flex items-center justify-center my-4'>
@@ -79,7 +95,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
             <div className="mx-auto max-w-6xl ">
                 <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="top_banner" />
+                    <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} />
                 </div>
             </div>
 
@@ -106,7 +122,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
             <div className="mx-auto max-w-6xl ">
                 <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="top_banner" />
+                    <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} />
                 </div>
             </div>
 
@@ -140,14 +156,14 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
             </div>
 
-          <div className="mx-auto max-w-6xl ">
-                  <div className='flex md:hidden items-center justify-between mb-8'>
-                    <GoogleAds size="inline_rectangle" />
+            <div className="mx-auto max-w-6xl ">
+                <div className='flex md:hidden items-center justify-center mb-8'>
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
                 </div>
                 <div className='hidden md:flex items-center justify-between mb-8'>
-                    <GoogleAds size="inline_rectangle" />
-                    <GoogleAds size="inline_rectangle" />
-                    <GoogleAds size="inline_rectangle" />
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
                 </div>
             </div>
 
@@ -158,13 +174,13 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
             </section>
 
             <div className="mx-auto max-w-6xl ">
-                  <div className='flex md:hidden items-center justify-between mb-8'>
-                    <GoogleAds size="inline_rectangle" />
+                <div className='flex md:hidden items-center justify-center mb-8'>
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
                 </div>
                 <div className='hidden md:flex items-center justify-between mb-8'>
-                    <GoogleAds size="inline_rectangle" />
-                    <GoogleAds size="inline_rectangle" />
-                    <GoogleAds size="inline_rectangle" />
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
+                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
                 </div>
             </div>
 
@@ -181,13 +197,13 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='netboard' key={1} adsEksternal={initialAdsRectangle2} />
+                            <GoogleAds size='netboard' key={1} adsEksternal={initialAdsRectangle6} />
                         </div>
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
                         <div className='flex items-center justify-center my-4 '>
-                            <GoogleAds size='netboard' key={2} adsEksternal={initialAdsRectangle3} />
+                            <GoogleAds size='netboard' key={2} adsEksternal={initialAdsRectangle7} />
                         </div>
                         <div className=''>
                             <div className='hidden md:flex items-center justify-center my-8 sticky top-30'>
