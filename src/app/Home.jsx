@@ -79,7 +79,7 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
             <div className="mx-auto max-w-6xl ">
                 <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="leaderboard" />
+                    <GoogleAds size="top_banner" />
                 </div>
             </div>
 
@@ -102,6 +102,14 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
                 ))}
 
             </div>
+
+
+            <div className="mx-auto max-w-6xl ">
+                <div className='flex items-center justify-center mb-8'>
+                    <GoogleAds size="top_banner" />
+                </div>
+            </div>
+
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
                 <div className='md:col-span-4'>
@@ -132,9 +140,14 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
 
             </div>
 
-            <div className="mx-auto max-w-6xl ">
-                <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="top_banner" />
+          <div className="mx-auto max-w-6xl ">
+                  <div className='flex md:hidden items-center justify-between mb-8'>
+                    <GoogleAds size="inline_rectangle" />
+                </div>
+                <div className='hidden md:flex items-center justify-between mb-8'>
+                    <GoogleAds size="inline_rectangle" />
+                    <GoogleAds size="inline_rectangle" />
+                    <GoogleAds size="inline_rectangle" />
                 </div>
             </div>
 
@@ -143,6 +156,17 @@ function Home({ newsFirstSections, newsSecondSections, allNews, wansusNews, init
             <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
                 <GallerySection />
             </section>
+
+            <div className="mx-auto max-w-6xl ">
+                  <div className='flex md:hidden items-center justify-between mb-8'>
+                    <GoogleAds size="inline_rectangle" />
+                </div>
+                <div className='hidden md:flex items-center justify-between mb-8'>
+                    <GoogleAds size="inline_rectangle" />
+                    <GoogleAds size="inline_rectangle" />
+                    <GoogleAds size="inline_rectangle" />
+                </div>
+            </div>
 
 
             <VideoSection />
