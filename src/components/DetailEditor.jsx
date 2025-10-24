@@ -44,13 +44,13 @@ function DetailEditor({ authorData }) {
                             ))}
                         </div> */}
 
-                        <div className="flex flex-wrap gap-6 text-sm text-black/50">
+                        {/* <div className="flex flex-wrap gap-6 text-sm text-black/50">
                             <div>Bergabung sejak {''}
                                 <ClientOnly>
                                      <FormattedDate dateString={authorData.created} />
                                 </ClientOnly>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </Card>
