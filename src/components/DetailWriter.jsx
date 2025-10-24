@@ -55,9 +55,9 @@ function DetailWriter({ authorData }) {
                                 <span>Pengikut</span>
                             </div> */}
                             {
-                                authorData.datejoin && (
-                                    <div>Bergabung sejak  <FormattedDate dateString={authorData.datejoin} /> </div>
-                                )
+                                // authorData.datejoin && (
+                                //     <div>Bergabung sejak  <FormattedDate dateString={authorData.datejoin} /> </div>
+                                // )
                             }
 
                         </div>
