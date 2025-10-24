@@ -7,6 +7,7 @@ export default function GoogleAds({
     size = "inline_rectangle",
     className = "",
     adsEksternal = null,
+    slot = '8134946479',
 
 }) {
     const [isVisible, setIsVisible] = useState(true);
@@ -82,7 +83,7 @@ export default function GoogleAds({
                         height: currentSize.height,
                     }}
                     data-ad-client="ca-pub-5117046027656864"
-                    data-ad-slot="8134946479"
+                    data-ad-slot={slot}
                 ></ins>
             )}
         </div>
