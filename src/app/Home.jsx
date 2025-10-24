@@ -51,7 +51,7 @@ function Home({
                 </div>
 
                 <div className='md:hidden flex items-center justify-center my-4'>
-                    <GoogleAds size='square'  slot='4691830761'/>
+                    <GoogleAds size='square' slot='4691830761' />
                 </div>
 
             </div>
@@ -93,11 +93,14 @@ function Home({
                 ))}
             </div>
 
-            <div className="mx-auto max-w-6xl ">
-                <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} slot='9812419210' />
+            {initialAdsLeaderboard1 && (
+                <div className="mx-auto max-w-6xl ">
+                    <div className='flex items-center justify-center mb-8'>
+                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} slot='9812419210' />
+                    </div>
                 </div>
-            </div>
+            )}
+
 
             <div className="mx-auto max-w-6xl px-4 py-8 ">
                 <EKoranSection />
@@ -118,13 +121,14 @@ function Home({
                 ))}
 
             </div>
-
-
-            <div className="mx-auto max-w-6xl ">
-                <div className='flex items-center justify-center mb-8'>
-                    <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} slot='9812419210' />
+            {initialAdsLeaderboard2 && (
+                <div className="mx-auto max-w-6xl ">
+                    <div className='flex items-center justify-center mb-8'>
+                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} slot='9812419210' />
+                    </div>
                 </div>
-            </div>
+            )}
+
 
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
@@ -156,32 +160,40 @@ function Home({
 
             </div>
 
-            <div className="mx-auto max-w-6xl ">
-                <div className='flex md:hidden items-center justify-center mb-8'>
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+
+            {initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3 && (
+                <div className="mx-auto max-w-6xl ">
+                    <div className='flex md:hidden items-center justify-center mb-8'>
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                    </div>
+                    <div className='hidden md:flex items-center justify-between mb-8'>
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
+                    </div>
                 </div>
-                <div className='hidden md:flex items-center justify-between mb-8'>
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
-                </div>
-            </div>
+            )}
+
 
 
             {/* Jurnalistik Fotografi */}
             <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
                 <GallerySection />
             </section>
-            <div className="mx-auto max-w-6xl ">
-                <div className='flex md:hidden items-center justify-center mb-8'>
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+
+            {initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6 && (
+                <div className="mx-auto max-w-6xl ">
+                    <div className='flex md:hidden items-center justify-center mb-8'>
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                    </div>
+                    <div className='hidden md:flex items-center justify-between mb-8'>
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
+                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
+                    </div>
                 </div>
-                <div className='hidden md:flex items-center justify-between mb-8'>
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
-                    <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
-                </div>
-            </div>
+            )}
+
 
 
             <VideoSection />
