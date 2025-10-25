@@ -216,8 +216,8 @@ function Home({
                         <div className='flex items-center justify-center my-4 '>
                             <GoogleAds size='netboard' key={2} adsEksternal={initialAdsRectangle7} slot='3172340314' />
                         </div>
-                        <div className=''>
-                            <div className='hidden md:flex items-center justify-center my-8 sticky top-30'>
+                        <div className='sticky top-30'>
+                            <div className='hidden md:flex items-center justify-center my-8 '>
                                 <GoogleAds size='half_page_ad' slot='2065667423' />
                             </div>
                         </div>
