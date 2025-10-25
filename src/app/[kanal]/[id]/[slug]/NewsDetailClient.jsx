@@ -36,7 +36,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
     const viewUpdated = useRef(false);
 
 
-    
+
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
@@ -131,10 +131,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                     <h1 className="text-xl md:text-4xl font-bold text-foreground mb-4 leading-snug">
                                         {newsDetail.news_title}
                                     </h1>
-                                    {/* Description */}
-                                    <h2 className="text-sm md:text-lg text-gray-600 mb-6 leading-relaxed italic">
-                                        {newsDetail.news_description}
-                                    </h2>
+
                                 </div>
                                 {/* Meta */}
                                 <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
@@ -149,7 +146,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         </span>
                                     </div>
                                     <span>
-                                         <FormattedDateDetail dateString={newsDetail.news_datepub} />
+                                        <FormattedDateDetail dateString={newsDetail.news_datepub} />
                                     </span>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">
@@ -247,9 +244,8 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-6">
                                     <div className='flex-1'>
-
                                         {/* Header Image */}
-                                        <div className="flex flex-col justify-center items-center my-2">
+                                        <div className="flex flex-col justify-center items-center">
                                             {focusDetail && focusDetail.focnews_image_body && (
                                                 <Image
                                                     src={focusDetail.focnews_image_body}
@@ -273,9 +269,14 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                 />
                                             </div>
                                         </div>
-                                        <figcaption className="mt-2 text-sm italic text-gray-600 text-center">{newsDetail.news_caption} </figcaption>
+                                        <figcaption className="mt-2 text-sm italic text-gray-600 text-center ">{newsDetail.news_caption} </figcaption>
 
-                                        <div className='w-1/2 max-w-xs mx-auto my-2'>
+                                        {/* Description */}
+                                        <h2 className="text-sm md:text-lg text-gray-400 mb-6 mt-4 leading-relaxed italic">
+                                            {newsDetail.news_description}
+                                        </h2>
+
+                                        <div className='w-1/2 max-w-xs mx-auto'>
                                             <input
                                                 type="range"
                                                 min={1}
