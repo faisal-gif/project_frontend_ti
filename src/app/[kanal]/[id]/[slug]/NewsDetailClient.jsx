@@ -272,7 +272,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <figcaption className="mt-2 text-sm italic text-gray-600 text-center ">{newsDetail.news_caption} </figcaption>
 
                                         {/* Description */}
-                                        <h2 className="text-sm md:text-lg text-gray-400 mb-6 mt-4 leading-relaxed italic">
+                                        <h2 className="text-sm md:text-lg text-gray-600 mb-6 mt-4 leading-relaxed italic">
                                             {newsDetail.news_description}
                                         </h2>
 
