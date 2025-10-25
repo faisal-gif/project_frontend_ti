@@ -132,6 +132,10 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         {newsDetail.news_title}
                                     </h1>
 
+                                    {/* Description */}
+                                    <h2 className="text-sm md:text-lg text-gray-600 mb-6 mt-4 leading-relaxed italic">
+                                        {newsDetail.news_description}
+                                    </h2>
                                 </div>
                                 {/* Meta */}
                                 <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
@@ -271,10 +275,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         </div>
                                         <figcaption className="mt-2 text-sm italic text-gray-600 text-center ">{newsDetail.news_caption} </figcaption>
 
-                                        {/* Description */}
-                                        <h2 className="text-sm md:text-lg text-gray-600 mb-6 mt-4 leading-relaxed italic">
-                                            {newsDetail.news_description}
-                                        </h2>
 
                                         <div className='w-1/2 max-w-xs mx-auto'>
                                             <input
