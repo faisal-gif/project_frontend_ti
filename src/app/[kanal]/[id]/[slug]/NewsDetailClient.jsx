@@ -96,10 +96,14 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-24 ">
-
             <div className='hidden md:flex items-center justify-center'>
-                <GoogleAds size='top_banner' />
+                <GoogleAds size='top_banner' slot='9812419210' />
             </div>
+
+            <div className='md:hidden flex items-center justify-center'>
+                <GoogleAds size='square' slot='4691830761' />
+            </div>
+
 
             <div className="breadcrumbs text-sm mt-6">
                 <ul>
@@ -133,14 +137,14 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                     </h1>
 
                                     {/* Description */}
-                                    <h2 className="text-sm md:text-lg text-gray-600 mb-6 mt-4 leading-relaxed italic">
+                                    <h2 className="text-sm md:text-lg text-gray-600 my-4 leading-relaxed italic">
                                         {newsDetail.news_description}
                                     </h2>
                                 </div>
                                 {/* Meta */}
-                                <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
+                                <div className="flex flex-col gap-2 border-b border-base-content/20 pb-4 text-sm text-muted-foreground">
                                     <div className="flex flex-row justify-between items-center">
-                                        <div className="flex flex-row items-center gap-1">
+                                        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2 font-medium">
                                             <span className='font-bold'>TIMES Indonesia,</span>
                                             <FormattedDateDetail dateString={newsDetail.news_datepub} />
                                         </div>
@@ -277,9 +281,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                             </div>
                                         </div>
                                         <figcaption className="mt-2 text-sm italic text-gray-600 text-center ">{newsDetail.news_caption} </figcaption>
-
-
-                                        <div className='w-1/2 max-w-xs mx-auto'>
+                                        <div className='w-1/2 max-w-xs mx-auto mt-4'>
                                             <input
                                                 type="range"
                                                 min={1}

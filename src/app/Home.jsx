@@ -46,11 +46,11 @@ function Home({
             </div> */}
 
             <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
-                <div className='hidden md:flex items-center justify-center mb-8'>
+                <div className='hidden md:flex items-center justify-center'>
                     <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='9812419210' />
                 </div>
 
-                <div className='md:hidden flex items-center justify-center my-4'>
+                <div className='md:hidden flex items-center justify-center'>
                     <GoogleAds size='square' slot='4691830761' />
                 </div>
 
