@@ -9,7 +9,7 @@ import logo_x_black from '@/../public/logo_x_black.png';
 const ModalShare = ({ title = 'TIMES Indonesia', url = '' }) => {
   const [copied, setCopied] = useState(false);
 
-  const shareText = `${title}\n\nKlik Untuk Baca\n${url}\n\nDapatkan akses berita TIMES Indonesia lebih mudah dan cepat.`;
+  const shareText = `${title}\n\nKlik Untuk Baca\n${url}`;
 
   const copyToClipboard = () => {
     if (!url) return;
