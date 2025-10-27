@@ -139,9 +139,12 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                 </div>
                                 {/* Meta */}
                                 <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
-                                    <div className="flex flex-row items-center gap-1">
-                                        <span className='font-bold'>TIMES Indonesia</span>
-                                        <span className="font-bold">-</span>
+                                    <div className="flex flex-row justify-between items-center">
+                                        <div className="flex flex-row items-center gap-1">
+                                            <span className='font-bold'>TIMES Indonesia,</span>
+                                            <FormattedDateDetail dateString={newsDetail.news_datepub} />
+                                        </div>
+
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
                                             <div>
@@ -150,7 +153,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         </span>
                                     </div>
                                     <span>
-                                        <FormattedDateDetail dateString={newsDetail.news_datepub} />
+
                                     </span>
                                     <div className='flex flex-row justify-between items-center'>
                                         <div className="dropdown">
