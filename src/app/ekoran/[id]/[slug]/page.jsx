@@ -33,8 +33,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: mediumImageUrl,
-          width: 500,
-          height: 750,
+          width: 400,
+          height: 520,
           alt: ekoranDetail.title,
         },
       ],
@@ -47,8 +47,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: ekoranDetail.img1,
-          width: 500,
-          height: 750,
+          width: 400,
+          height: 520,
           alt: ekoranDetail.title,
         },
       ],
