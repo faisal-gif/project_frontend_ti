@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
             publisher: 'https://timesindonesia.co.id',
             images: [
                 {
-                    url: newsDetail.news_image_new.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1'),
+                    url: newsDetail.news_image_new,
                     width: 1200,
                     height: 630,
                     alt: newsDetail.news_title,
