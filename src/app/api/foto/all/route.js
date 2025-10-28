@@ -4,7 +4,8 @@ import { serverAxios } from "@/lib/api/axiosInstance";
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
-     const news_type = searchParams.get("news_type") || 'all';
+    const news_type = searchParams.get("news_type") || 'all';
+    const title = searchParams.get("title") || '';
     const offset = searchParams.get("offset") || 0;
     const limit = searchParams.get("limit") || 10;
 
@@ -12,6 +13,7 @@ export async function GET(req) {
         const response = await serverAxios.get('/all_gallery/', {
             params: {
                 news_type,
+                title,
                 offset,
                 limit,
             },

@@ -1,10 +1,11 @@
 import { clientAxios, serverAxios } from "./axiosInstance";
 
-const getAllFoto = async ({ news_type = 'all', offset = 0, limit = 10 }) => {
+const getAllFoto = async ({ news_type = 'all', title = '', offset = 0, limit = 10 }) => {
     try {
         const response = await clientAxios.get("/foto/all", {
             params: {
                 news_type: news_type,
+                title: title,
                 offset: offset,
                 limit: limit
             }
