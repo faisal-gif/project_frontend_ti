@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 import DrawerAutoClose from "@/components/DrawerAutoClose";
 import Script from "next/script";
 import BackToTop from "@/components/BackToTop";
+import ConditionalAdScript from '@/components/ConditionalAdScript';
 
 const MobileListMenu = dynamic(() => import('@/components/MobileListMenu'))
 const MobileMenuKanal = dynamic(() => import('@/components/MobileMenuKanal'))
@@ -208,12 +209,7 @@ export default function RootLayout({ children }) {
         </div>
         <BackToTop />
         <GoogleAnalytics gaId='G-VWQ4STDNVX' strategy="worker" />
-        <Script
-          id="adsbygoogle-init"
-          strategy="afterInteractive"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
-          crossOrigin="anonymous" />
+        <ConditionalAdScript />
       </body>
     </html>
   );
