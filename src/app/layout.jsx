@@ -7,7 +7,6 @@ import TopLoader from "@/components/ui/TopLoader";
 import DesktopListMenu from "@/components/DesktopListMenu";
 import dynamic from 'next/dynamic'
 import DrawerAutoClose from "@/components/DrawerAutoClose";
-import Script from "next/script";
 import BackToTop from "@/components/BackToTop";
 import ConditionalAdScript from '@/components/ConditionalAdScript';
 
