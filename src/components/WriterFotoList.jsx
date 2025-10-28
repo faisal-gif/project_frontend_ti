@@ -28,7 +28,7 @@ function WriterFotoList(writerDetail) {
             });
             const newData = res || [];
 
-            setArticles(prev => {
+            setArticlesFoto(prev => {
                 const existingIds = new Set(prev.map(item => item.news_id));
                 const filtered = newData.filter(item => !existingIds.has(item.news_id));
                 return [...prev, ...filtered];
