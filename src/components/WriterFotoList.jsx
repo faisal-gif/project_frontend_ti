@@ -99,14 +99,14 @@ function WriterFotoList(writerDetail) {
                     articlesFoto.length > 0 && articlesFoto.map((item) => (
                         <NewsCard
                             layout='list'
-                            key={item.news_id}
-                            id={item.news_id}
-                            title={item.news_title}
-                            description={item.news_description}
-                            author={item.news_writer}
-                            datePub={item.news_datepub}
-                            views={Number(item.pageviews)}
-                            image={item.news_image_new}
+                            key={item.gal_id}
+                            id={item.gal_id}
+                            title={item.gal_title}
+                            description={item.gal_description}
+                            author={item.gal_writer}
+                            datePub={item.gal_datepub}
+                            views={Number(item.gal_view)}
+                            image={item.gal_cover}
                             url={item.url_ci4}
                             category={item.cat_title}
 
