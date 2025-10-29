@@ -17,6 +17,7 @@ export default function robots() {
         crawlDelay: 10,
         allow: '/',
       },
+      
 
     ],
     sitemap: 'https://www.timesindonesia.co.id/sitemap.xml',
