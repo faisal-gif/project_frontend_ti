@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 
 // Daftar User-Agent bot yang ingin Anda blokir
-const BLOCKED_IPS = ['146.247.137.101', '104.250.56.153', '114.4.82.118', '94.100.26.170', '94.100.26.170','34.143.*','146.247.137.101','94.100.26.170'];
+const BLOCKED_IPS = ['146.247.137.101', '104.250.56.153', '114.4.82.118', '94.100.26.170','34.143.*.*','5.45.207.71'];
 const BLOCKED_USER_AGENTS = [
   'BadBot/1.0', 
   'python-requests', 
@@ -12,8 +12,6 @@ const BLOCKED_USER_AGENTS = [
   'Firefox/3.1b2',
   'python-requests/2.x',
   'curl/8.x',
-  'empty UA',
-  'generic Linux UA',
 ];
 
 
@@ -63,7 +61,6 @@ export function middleware(request) {
 // Jalankan middleware di SEMUA rute, KECUALI file statis dan gambar
 export const config = {
   matcher: [
-
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|webp)$).*)',
   ],
 };
