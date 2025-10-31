@@ -45,7 +45,7 @@ function Home({
            
             </div> */}
 
-            <div className='max-w-6xl mx-auto gap-6 pt-18 pb-8 px-4'>
+            <div className='max-w-6xl mx-auto gap-6 pt-28 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center'>
                     <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='9812419210' />
                 </div>
@@ -208,13 +208,13 @@ function Home({
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='netboard' key={1} adsEksternal={initialAdsRectangle6} slot='4691830761' />
+                            <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle6} slot='4691830761' />
                         </div>
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
                         <div className='flex items-center justify-center my-4 '>
-                            <GoogleAds size='netboard' key={2} adsEksternal={initialAdsRectangle7} slot='3172340314' />
+                            <GoogleAds size='inline_rectangle' key={2} adsEksternal={initialAdsRectangle7} slot='3172340314' />
                         </div>
                         <div className='sticky top-30'>
                             <div className='hidden md:flex items-center justify-center my-8 '>

@@ -49,43 +49,45 @@ export default function GoogleAds({
                 maxWidth: "100%",
             }}
         >
+            <div className="relative indicator">
 
-            <button
-                onClick={() => setIsVisible(false)}
-                className="absolute top-1 right-1 text-gray-600 hover:text-red-500"
-            >
-                <X size={16} />
-                <span className="sr-only">Tutup</span>
-            </button>
-
-            {adsEksternal ? (
-                <a
-                    href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full relative"
+                <button
+                    onClick={() => setIsVisible(false)}
+                    className="indicator-item btn btn-xs btn-active btn-circle bg-[#b41d1d] text-white hover:bg-[#7b0f1f]"
                 >
-                    <Image
-                        src={adsEksternal.d_img}
-                        alt="Advertisement"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 300px"
-                        className="object-contain"
-                        priority={false}
-                    />
-                </a>
-            ) : (
-                <ins
-                    className="adsbygoogle"
-                    style={{
-                        display: "inline-block",
-                        width: currentSize.width,
-                        height: currentSize.height,
-                    }}
-                    data-ad-client="ca-pub-5117046027656864"
-                    data-ad-slot={slot}
-                ></ins>
-            )}
+                    <X size={16} />
+                    <span className="sr-only">Tutup</span>
+                </button>
+
+                {adsEksternal ? (
+                    <a
+                        href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full h-full relative"
+                    >
+                        <Image
+                            src={adsEksternal.d_img}
+                            alt="Advertisement"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 300px"
+                            className="object-contain"
+                            priority={false}
+                        />
+                    </a>
+                ) : (
+                    <ins
+                        className="adsbygoogle"
+                        style={{
+                            display: "inline-block",
+                            width: currentSize.width,
+                            height: currentSize.height,
+                        }}
+                        data-ad-client="ca-pub-5117046027656864"
+                        data-ad-slot={slot}
+                    ></ins>
+                )}
+            </div>
         </div>
     );
 }
