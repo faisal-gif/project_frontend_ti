@@ -135,7 +135,7 @@ function LastestNewsSection() {
 
                     {/* Skeleton saat infinite scroll (bukan pertama) */}
                     {isLoading && lastNews.length > 0 && (
-                        Array.from({ length: 3 }).map((_, index) => (
+                        Array.from({ length: 10 }).map((_, index) => (
                             <LastestNewsCardSkeleton key={`scroll-${index}`} />
                         ))
                     )}
