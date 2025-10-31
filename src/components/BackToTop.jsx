@@ -48,11 +48,15 @@ export default function BackToTop() {
                 {/* Tombol WhatsApp tetap sama, selalu terlihat */}
                 <Link
                     href={"https://www.whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D"}
-                    className="p-3 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-900 transition flex items-center gap-2"
+                    className="p-3 rounded-lg bg-green-500 text-white shadow-lg hover:bg-green-900 transition flex items-center gap-2"
                     aria-label="Whatsapp Channel"
                 >
-                    <FaWhatsapp size={16} />
-                    <span className="text-sm">Channel Whatsapp</span>
+                    <FaWhatsapp className="ml-5" size={18} />
+                    <div className="text-sm font-semibold space-y-1 leading-tight flex flex-col">
+                        <span >Berita Terkini Eksklusif </span>
+                        <span>di WhatsApp TIMES Indonesia</span>
+                    </div>
+                   
                 </Link>
             </div>
         </>
