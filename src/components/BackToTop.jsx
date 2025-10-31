@@ -60,7 +60,7 @@ export default function BackToTop() {
                 {/* 4. Bungkus tombol WhatsApp dengan conditional rendering */}
                 {isWaVisible && (
                     // 5. Buat wrapper 'relative'
-                    <div className="relative">
+                    <div className="relative indicator">
                         <Link
                             href={"https://www.whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D"}
                             // 6. Tambahkan padding di kanan (pr-8) untuk memberi ruang bagi tombol X
@@ -77,10 +77,10 @@ export default function BackToTop() {
                         {/* 7. Tombol Close (X) */}
                         <button
                             onClick={closeWaButton}
-                            className="absolute top-1 right-1 p-0.5 rounded-full text-white/70 hover:text-white hover:bg-black/20 transition-colors"
+                            className="indicator-item btn btn-xs btn-active btn-circle bg-[#b41d1d] text-white hover:bg-[#7b0f1f] "
                             aria-label="Tutup"
                         >
-                            <X size={16} />
+                            <X size={12} />
                         </button>
                     </div>
                 )}
