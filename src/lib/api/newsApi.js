@@ -108,6 +108,43 @@ const getNewsDetail = async ({ id }) => {
     }
 };
 
+const getRelatedNews = async (
+    { related = 'no', news_id = '', cat_id = '', rel_title = '' }
+) => {
+    try {
+        // 1. Siapkan URL dan query parameters
+        const baseUrl = process.env.API_URL;
+        const apiUrl = new URL(`${baseUrl}/news_related/`);
+        const params = { related, news_id, cat_id, rel_title, key: process.env.SECRET_KEY, };
+
+        // Tambahkan parameter ke URL hanya jika nilainya ada
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== undefined && value !== null && value !== '') {
+                apiUrl.searchParams.append(key, value);
+            }
+        });
+
+        const response = await fetch(apiUrl.toString(), {
+            method: 'GET',
+            next: { revalidate: 60 },
+        });
+
+        // 3. Cek jika respons tidak berhasil
+        if (!response.ok) {
+            throw new Error(`API call failed with status: ${response.status}`);
+        }
+
+        // 4. Ambil data JSON dan kembalikan
+        const data = await response.json();
+        return data.data; // Sesuaikan dengan struktur respons API Anda
+
+    } catch (error) {
+        // 5. Tangani error dan kembalikan nilai default agar aplikasi tidak crash
+        console.error("Error fetching news:", error);
+        return []; // Mengembalikan array kosong adalah praktik yang aman
+    }
+};
+
 const getNewsDetailUniq = async ({ id }) => {
     try {
         // 1. Buat URL lengkap ke endpoint API

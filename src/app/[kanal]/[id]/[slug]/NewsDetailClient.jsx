@@ -48,11 +48,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
 
-            const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
-            if (firstTag) {
-                getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
-            }
-
 
             incrementView(newsDetail.news_id)
                 .then(result => {
