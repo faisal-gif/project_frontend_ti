@@ -85,7 +85,7 @@ export default async function page({ params }) {
 
     const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
-    const allNewsPromise = await getAllNewsServer({ news_type: "all", offset: 0, limit: 9 });
+    // const allNewsPromise = await getAllNewsServer({ news_type: "all", offset: 0, limit: 9 });
 
     // --- MULAI PENAMBAHAN SCHEMA ---
     const schemaData = {
@@ -132,7 +132,7 @@ export default async function page({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
             {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialWriter={writer} initAllNews={allNewsPromise} />
+            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialWriter={writer} />
         </>
     );
 }

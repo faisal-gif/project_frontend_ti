@@ -20,12 +20,12 @@ import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import NewsCard from '@/components/NewsCard';
 
-function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
+function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
-    const [lastNews, setLastNews] = useState(initAllNews || []);
+    // const [lastNews, setLastNews] = useState(initAllNews || []);
     const [writerDetail] = useState(initialWriter);
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
