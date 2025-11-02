@@ -17,7 +17,9 @@ import { getFocusDetail } from '@/lib/api/focus';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
-import NewsCard from '@/components/NewsCard';
+import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
+import { getAllNews } from '@/lib/api/newsApi';
+import { getNewsFirstSectionsClient } from '@/lib/data';
 
 function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
@@ -30,6 +32,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState(initialNewsDetail.views || 0);
+    const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
     const viewUpdated = useRef(false);
 
@@ -45,6 +48,12 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
 
+            const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
+            if (firstTag) {
+                getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
+            }
+
+
             incrementView(newsDetail.news_id)
                 .then(result => {
                     if (result.success && result.newViewCount) {
@@ -59,6 +68,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
 
     useEffect(() => {
+        getNewsFirstSectionsClient().then(setNewsFirstSections).catch(console.error)
         setIsMounted(true);
     }, []);
 
@@ -402,6 +412,15 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                     </div>
                 </aside>
             </div>
+
+            <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
+                {newsFirstSections.map((section, index) => (
+                    <div key={index} className="space-y-8">
+                        <FirstHightlightNewsSection title={section.title} news={section.news} />
+                    </div>
+                ))}
+            </div>
+
 
             {/* <div>
                 <div className="flex mt-8 items-center justify-between">

@@ -11,13 +11,15 @@ export default function robots() {
         userAgent: 'SemrushBot',
         crawlDelay: 10,
         allow: '/',
+        disallow: ['/search/*', '/search*']
       },
       {
         userAgent: 'SerpstatBot',
         crawlDelay: 10,
         allow: '/',
+        disallow: ['/search/*', '/search*']
       },
-      
+
 
     ],
     sitemap: 'https://www.timesindonesia.co.id/sitemap.xml',
