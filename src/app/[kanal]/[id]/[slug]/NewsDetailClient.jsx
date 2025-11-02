@@ -18,7 +18,6 @@ import FormattedViews from '@/utils/view/FormattedViews';
 import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import NewsCard from '@/components/NewsCard';
-import ClientOnly from '@/components/ClientOnly';
 
 function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
 
