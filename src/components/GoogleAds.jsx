@@ -42,14 +42,14 @@ export default function GoogleAds({
 
     return (
         <div
-            className={`relative bg-gray-100 border border-gray-200 rounded-[3px] flex items-center justify-center ${className}`}
+            className={`relative indicator bg-gray-100 border border-gray-200 rounded-[3px] flex items-center justify-center ${className}`}
             style={{
                 width: currentSize.width,
                 height: currentSize.height,
                 maxWidth: "100%",
             }}
         >
-            <div className="relative indicator">
+         
 
                 <button
                     onClick={() => setIsVisible(false)}
@@ -87,7 +87,6 @@ export default function GoogleAds({
                         data-ad-slot={slot}
                     ></ins>
                 )}
-            </div>
-        </div>
+          </div>
     );
 }

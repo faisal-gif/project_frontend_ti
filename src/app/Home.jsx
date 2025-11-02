@@ -214,7 +214,7 @@ function Home({
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
                         <div className='flex items-center justify-center my-4 '>
-                            <GoogleAds size='inline_rectangle' key={2} adsEksternal={initialAdsRectangle7} slot='3172340314' />
+                            <GoogleAds size='inline_rectangle' key={2} adsEksternal={initialAdsRectangle7} slot='4691830761' />
                         </div>
                         <div className='sticky top-30'>
                             <div className='hidden md:flex items-center justify-center my-8 '>
