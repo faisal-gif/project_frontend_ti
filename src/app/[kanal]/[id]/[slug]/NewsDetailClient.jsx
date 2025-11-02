@@ -396,7 +396,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                         <PopularNews />
 
                         <div className='flex items-center justify-center'>
-                            <GoogleAds size='inline_rectangle' />
+                         
                         </div>
                     </div>
                 </aside>
