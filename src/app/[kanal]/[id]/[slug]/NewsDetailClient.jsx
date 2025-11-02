@@ -45,9 +45,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
             if (Number(newsDetail.focnews_id) !== 0) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
-
-
-
+            
             incrementView(newsDetail.news_id)
                 .then(result => {
                     if (result.success && result.newViewCount) {
