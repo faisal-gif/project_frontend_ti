@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 
 // Daftar User-Agent bot yang ingin Anda blokir
-const BLOCKED_IPS = ['146.247.137.101', '104.250.56.153', '114.4.82.118', '94.100.26.170','34.143.*.*','5.45.207.71'];
+const BLOCKED_IPS = ['146.247.137.101', '104.250.56.153', '114.4.82.118', '94.100.26.170','5.45.207.71'];
 const BLOCKED_USER_AGENTS = [
   'BadBot/1.0', 
   'python-requests', 
