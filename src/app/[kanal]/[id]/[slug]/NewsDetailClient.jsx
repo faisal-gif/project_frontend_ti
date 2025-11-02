@@ -272,6 +272,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                                                     fill
                                                     className="object-contain"
                                                     priority
+                                                    fetchPriority="high"
                                                     sizes="(max-width: 768px) 340px , 750px"
                                                 />
                                             </div>
@@ -296,16 +297,16 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
 
 
                                         {/* Content News */}
-                                        {isMounted && (
-                                            <ArticleContent
-                                                htmlContent={newsDetail.news_content}
-                                                getTextSizeClasses={getTextSizeClasses}
-                                                readAlsoArticles={relatedNews}
-                                                lokus={newsDetail.news_city}
-                                                url={newsDetail.url_ci4}
-                                                className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
-                                            />
-                                        )}
+
+                                        <ArticleContent
+                                            htmlContent={newsDetail.news_content}
+                                            getTextSizeClasses={getTextSizeClasses}
+                                            readAlsoArticles={relatedNews}
+                                            lokus={newsDetail.news_city}
+                                            url={newsDetail.url_ci4}
+                                            className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
+                                        />
+
                                     </div>
                                 </div>
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
@@ -396,7 +397,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                         <PopularNews />
 
                         <div className='flex items-center justify-center'>
-                         
+                            <GoogleAds size='inline_rectangle' />
                         </div>
                     </div>
                 </aside>
