@@ -19,12 +19,12 @@ import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import NewsCard from '@/components/NewsCard';
 
-function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
+function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
-    const [lastNews, setLastNews] = useState(initAllNews || []);
+
     const [writerDetail] = useState(initialWriter);
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
@@ -403,7 +403,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                 </aside>
             </div>
 
-            <div>
+            {/* <div>
                 <div className="flex mt-8 items-center justify-between">
                     <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
                         <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
@@ -427,7 +427,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                     ))}
 
                 </div>
-            </div>
+            </div> */}
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
         </div>
 
