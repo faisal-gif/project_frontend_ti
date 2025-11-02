@@ -1,31 +1,31 @@
 'use client';
 import ArticleContent from '@/components/ArticleContent';
 import EkoranNewsDetailCard from '@/components/EkoranNewsDetailCard';
-import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
+
 import GoogleAds from '@/components/GoogleAds';
 import ModalShare from '@/components/ModalShare';
 import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
-import { getAllNews, updateView } from '@/lib/api/newsApi';
 import { Eye, Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import React, { useEffect, useRef, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
-import FormattedDate from '@/utils/date/FormattedDate';
 import FormattedViews from '@/utils/view/FormattedViews';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
+import NewsCard from '@/components/NewsCard';
 
-function NewsDetailClient({ initialNewsDetail, initialWriter }) {
+function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
 
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
+    const [lastNews, setLastNews] = useState(initAllNews || []);
     const [writerDetail] = useState(initialWriter);
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
@@ -47,10 +47,10 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
 
-            const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
-            if (firstTag) {
-                getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
-            }
+            // const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
+            // if (firstTag) {
+            //     getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
+            // }
 
             incrementView(newsDetail.news_id)
                 .then(result => {
@@ -66,7 +66,6 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
 
 
     useEffect(() => {
-        getNewsFirstSectionsClient().then(setNewsFirstSections).catch(console.error)
         setIsMounted(true);
     }, []);
 
@@ -404,13 +403,30 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 </aside>
             </div>
 
+            <div>
+                <div className="flex mt-8 items-center justify-between">
+                    <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
+                        <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
+                        BERITA TERBARU
+                    </h2>
+                </div>
+                <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
+                    {lastNews && lastNews.map((item) => (
+                        <NewsCard
+                            key={item.news_id}
+                            layout={'grid'}
+                            id={item.news_id}
+                            title={item.news_title}
+                            description={item.news_description}
+                            author={item.news_writer}
+                            datePub={item.news_datepub}
+                            views={Number(item.pageviews)}
+                            image={item.news_image_new}
+                            url={item.url_ci4}
+                        />
+                    ))}
 
-            <div className="mx-auto grid  grid-cols-1 md:grid-cols-2 gap-6 py-8 lg:grid-cols-3">
-                {newsFirstSections.map((section, index) => (
-                    <div key={index} className="space-y-8">
-                        <FirstHightlightNewsSection title={section.title} news={section.news} />
-                    </div>
-                ))}
+                </div>
             </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
         </div>

@@ -1,4 +1,4 @@
-import { getNewsDetail } from '@/lib/api/newsApi';
+import { getAllNewsServer, getNewsDetail } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
     const correctUrl = newsDetail.url_ci4 || '';
 
     if (newsDetail.url_ci4 !== urlPathFromParams) {
-    permanentRedirect(correctUrl);   
+        permanentRedirect(correctUrl);
     }
 
     return {
@@ -85,6 +85,8 @@ export default async function page({ params }) {
 
     const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
+    const allNewsPromise = await getAllNewsServer({ news_type: "all", offset: 0, limit: 9 });
+
     // --- MULAI PENAMBAHAN SCHEMA ---
     const schemaData = {
         '@context': 'https://schema.org',
@@ -130,7 +132,7 @@ export default async function page({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
             {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialWriter={writer} />
+            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialWriter={writer} initAllNews={allNewsPromise} />
         </>
     );
 }
