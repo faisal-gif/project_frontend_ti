@@ -15,23 +15,22 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react'
 import { getFocusDetail } from '@/lib/api/focus';
 import FormattedViews from '@/utils/view/FormattedViews';
-import { getNewsFirstSectionsClient } from '@/lib/data';
 import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import NewsCard from '@/components/NewsCard';
+import ClientOnly from '@/components/ClientOnly';
 
-function NewsDetailClient({ initialNewsDetail, initialWriter }) {
+function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
 
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
-    // const [lastNews, setLastNews] = useState(initAllNews || []);
+    const [lastNews, setLastNews] = useState(initAllNews || []);
     const [writerDetail] = useState(initialWriter);
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
     const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState(initialNewsDetail.views || 0);
-    const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
     const viewUpdated = useRef(false);
 
@@ -47,10 +46,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
 
-            // const firstTag = (newsDetail.news_tags?.split(',').map(tag => tag.trim()).filter(Boolean)[0]) || '';
-            // if (firstTag) {
-            //     getAllNews({ news_type: 'tag', title: firstTag, limit: 5, offset: 0 }).then(setRelatedNews).catch(console.error);
-            // }
+          
 
             incrementView(newsDetail.news_id)
                 .then(result => {
@@ -151,7 +147,9 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
                                             <div>
-                                                <FormattedViews count={newsViews} />
+                                                <ClientOnly>
+                                                    <FormattedViews count={newsViews} />
+                                                </ClientOnly>
                                             </div>
                                         </span>
                                     </div>
@@ -403,7 +401,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                 </aside>
             </div>
 
-            {/* <div>
+            <div>
                 <div className="flex mt-8 items-center justify-between">
                     <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
                         <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
@@ -427,7 +425,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                     ))}
 
                 </div>
-            </div> */}
+            </div>
             <ModalShare title={newsDetail.news_title} url={`${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4}`} />
         </div>
 
