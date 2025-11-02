@@ -46,7 +46,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
 
-          
+
 
             incrementView(newsDetail.news_id)
                 .then(result => {
@@ -141,7 +141,9 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                                     <div className="flex flex-row justify-between items-center">
                                         <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2 font-medium">
                                             <span className='font-bold'>TIMES Indonesia,</span>
-                                            <FormattedDateDetail dateString={newsDetail.news_datepub} />
+                                            <ClientOnly>
+                                                <FormattedDateDetail dateString={newsDetail.news_datepub} />
+                                            </ClientOnly>
                                         </div>
 
                                         <span className='flex flex-row gap-1 items-center pl-1'>
