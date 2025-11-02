@@ -141,17 +141,17 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                                     <div className="flex flex-row justify-between items-center">
                                         <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2 font-medium">
                                             <span className='font-bold'>TIMES Indonesia,</span>
-                                            <ClientOnly>
+                                            {isMounted && (
                                                 <FormattedDateDetail dateString={newsDetail.news_datepub} />
-                                            </ClientOnly>
+                                            )}
                                         </div>
 
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
                                             <div>
-                                                <ClientOnly>
+                                               {isMounted && (
                                                     <FormattedViews count={newsViews} />
-                                                </ClientOnly>
+                                                )}
                                             </div>
                                         </span>
                                     </div>
