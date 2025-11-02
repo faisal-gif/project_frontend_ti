@@ -206,7 +206,7 @@ export default function RootLayout({ children }) {
             </ul>
           </div>
         </div>
-        <BackToTop />
+        {/* <BackToTop /> */}
         <GoogleAnalytics gaId='G-VWQ4STDNVX' strategy="worker" />
         <ConditionalAdScript />
       </body>
