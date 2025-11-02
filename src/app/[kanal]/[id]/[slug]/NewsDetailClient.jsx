@@ -44,7 +44,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
             if (Number(newsDetail.focnews_id) !== 0) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
-            
+
             incrementView(newsDetail.news_id)
                 .then(result => {
                     if (result.success && result.newViewCount) {
@@ -146,7 +146,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
                                         <span className='flex flex-row gap-1 items-center pl-1'>
                                             <Eye size={16} />
                                             <div>
-                                               {isMounted && (
+                                                {isMounted && (
                                                     <FormattedViews count={newsViews} />
                                                 )}
                                             </div>
@@ -296,14 +296,16 @@ function NewsDetailClient({ initialNewsDetail, initialWriter, initAllNews }) {
 
 
                                         {/* Content News */}
-                                        <ArticleContent
-                                            htmlContent={newsDetail.news_content}
-                                            getTextSizeClasses={getTextSizeClasses}
-                                            readAlsoArticles={relatedNews}
-                                            lokus={newsDetail.news_city}
-                                            url={newsDetail.url_ci4}
-                                            className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
-                                        />
+                                        {isMounted && (
+                                            <ArticleContent
+                                                htmlContent={newsDetail.news_content}
+                                                getTextSizeClasses={getTextSizeClasses}
+                                                readAlsoArticles={relatedNews}
+                                                lokus={newsDetail.news_city}
+                                                url={newsDetail.url_ci4}
+                                                className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
+                                            />
+                                        )}
                                     </div>
                                 </div>
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
