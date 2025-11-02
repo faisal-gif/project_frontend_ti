@@ -81,7 +81,7 @@ const ArticleContent = ({
             <p className={`text-foreground mb-6 ${getTextSizeClasses()}`}>
               {domToReact(node.children || [])}
             </p>
-            <LazyAdopAd />
+            {/* <LazyAdopAd /> */}
           </React.Fragment>
         );
       }
