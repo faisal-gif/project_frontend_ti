@@ -5,11 +5,9 @@ function EventWidget() {
         <iframe
             src="https://event.times.co.id/api/horizontal/widget"
             title="Widget Acara Times.co.id"
-            width="100%"
-            height="950"
             frameBorder="0"
             loading="lazy"
-            style={{ border: 'none', overflow: 'hidden' }}
+            className="w-full border-none overflow-hidden h-[700px] md:h-[950px]"
         />
     )
 }
