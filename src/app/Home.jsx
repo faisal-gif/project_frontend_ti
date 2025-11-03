@@ -13,6 +13,7 @@ import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkelet
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import GoogleAds from '@/components/GoogleAds';
+import EventWidget from '@/components/EventWidget';
 
 
 function Home({
@@ -159,6 +160,8 @@ function Home({
                 </div>
 
             </div>
+
+            <EventWidget />
 
 
             {initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3 && (
