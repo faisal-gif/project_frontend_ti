@@ -25,16 +25,20 @@ import ModalShare from '@/components/ModalShare';
 import FormattedDate from '@/utils/date/FormattedDate';
 import ClientOnly from '@/components/ClientOnly';
 
-function FotoDetail({ initialFotoDetail }) {
+function FotoDetail({ initialFotoDetail, initialWriter }) {
 
     const [size, setSize] = useState(2);
     const [fotoDetail] = useState(initialFotoDetail);
+    const [writerDetail] = useState(initialWriter);
     const [editorDetail, setEditorDetail] = useState(null);
     const [foto, setFoto] = useState([]);
     const [index, setIndex] = useState(0);
     const [open, setOpen] = useState(false);
     const [autoplay, setAutoplay] = useState(true);
     const [delay, setDelay] = useState(3000);
+console.log(fotoDetail);
+
+
 
     useEffect(() => {
         if (fotoDetail) {
@@ -56,7 +60,7 @@ function FotoDetail({ initialFotoDetail }) {
     // }, [newsDetail]);
 
     const tim = [
-        { name: fotoDetail?.gal_pewarta || '', role: "Fotografer", foto: null, url: `/writer/${fotoDetail?.writer_slug}` || '' },
+        { name: fotoDetail?.gal_pewarta || '', role: "Fotografer", foto: writerDetail?.image || null, url: `/writer/${fotoDetail?.writer_slug}` || '' },
         { name: editorDetail?.editor_name || '', role: "Editor", foto: editorDetail?.editor_image || null, url: `/editor/${fotoDetail?.editor_alias}` || '' },
         { name: fotoDetail?.publisher_name || '', role: "Publisher", foto: null, url: '' }
     ];
@@ -95,7 +99,7 @@ function FotoDetail({ initialFotoDetail }) {
                 <ul>
                     <li className='hover:text-[#b41d1d]'><Link href={'/'}>Home</Link></li>
                     <li className='hover:text-[#b41d1d] '><Link href={`/foto`}>Foto</Link></li>
-                     <li className='text-[#b41d1d] font-semibold'><Link href={`${fotoDetail.url_ci4}`}>{fotoDetail.gal_title}</Link></li>
+                    <li className='text-[#b41d1d] font-semibold'><Link href={`${fotoDetail.url_ci4}`}>{fotoDetail.gal_title}</Link></li>
                 </ul>
             </div>
 
@@ -327,24 +331,36 @@ function FotoDetail({ initialFotoDetail }) {
                                 </div>
 
 
-                                {fotoDetail.gal_pewarta && (
+                                {writerDetail && fotoDetail?.gal_pewarta && (
                                     <div className="mt-8 pt-6 border-t border-base-content/20">
                                         <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
-                                            <div className="avatar avatar-placeholder" >
-                                                <div className="bg-neutral text-neutral-content w-20 rounded-full ">
-                                                    <span className="text-3xl">
-                                                        {fotoDetail?.gal_pewarta.charAt(0).toUpperCase()}
-                                                    </span>
-                                                </div>
-
+                                            <div className="avatar avatar-placeholder"  >
+                                                {writerDetail.image ? (
+                                                    <div className="w-20 bg-neutral rounded-full">
+                                                        <Image
+                                                            src={writerDetail.image}
+                                                            alt={writerDetail.name}
+                                                            width={64}
+                                                            height={64}
+                                                            loading='lazy'
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="bg-neutral text-neutral-content w-20 rounded-full flex items-center justify-center">
+                                                        <span className="text-3xl">
+                                                            {writerDetail.name.charAt(0).toUpperCase()}
+                                                        </span>
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className='flex flex-col justify-center'>
-                                                <span className='text-sm text-base-200/60'>Fotografer</span>
+                                                <span className='text-sm text-base-200/60'>Penulis</span>
                                                 <span className='text-lg font-semibold text-white'>
-                                                    {fotoDetail?.gal_pewarta}
+                                                    {writerDetail?.gal_pewarta}
                                                 </span>
                                                 <span className='text-sm text-white/80 mt-2'>
-                                                    Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya.
+                                                    {writerDetail.bio ? writerDetail.bio :
+                                                        " Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya."}
                                                 </span>
 
                                             </div>

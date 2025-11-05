@@ -1,6 +1,7 @@
 import { getFotoDetail } from '@/lib/api/fotoApi';
 import React, { cache } from 'react'
 import FotoDetail from './FotoDetail';
+import { getWriterDetailServer } from '@/lib/api/jurnalist';
 
 const getFoto = cache(async (id) => {
   return await getFotoDetail({ id });
@@ -55,7 +56,18 @@ export async function generateMetadata({ params }) {
 export default async function page({ params }) {
   const { id } = await params;
   const fotoDetail = await getFoto(id);
+
+  if (!fotoDetail) {
+    notFound();
+  }
+
+  let writer = {};
+
+  if (fotoDetail.writer_slug) {
+    writer = await getWriterDetailServer({ slug: fotoDetail.writer_slug });
+  }
+
   return (
-    <FotoDetail initialFotoDetail={fotoDetail} />
+    <FotoDetail initialFotoDetail={fotoDetail} initialWriter={writer} />
   )
 }
