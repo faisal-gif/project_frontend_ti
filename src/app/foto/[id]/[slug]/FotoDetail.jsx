@@ -36,8 +36,6 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
     const [open, setOpen] = useState(false);
     const [autoplay, setAutoplay] = useState(true);
     const [delay, setDelay] = useState(3000);
-console.log(fotoDetail);
-
 
 
     useEffect(() => {
