@@ -7,7 +7,7 @@ function EventWidget() {
             title="Widget Acara Times.co.id"
             frameBorder="0"
             loading="lazy"
-            className="w-full border-none overflow-hidden h-[900px] md:h-[950px]"
+            className="w-full border-none overflow-hidden h-[700px] md:h-[800px]"
         />
     )
 }
