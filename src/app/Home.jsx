@@ -196,7 +196,7 @@ function Home({
 
                         </Carousel>
                     </div>
-                    <div className='hidden md:flex items-center justify-between mb-8'>
+                    <div className='hidden md:flex items-center justify-center mb-8'>
                         {initialAdsRectangle1 && (
                             <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
                         )}
@@ -246,7 +246,7 @@ function Home({
 
                         </Carousel>
                     </div>
-                    <div className='hidden md:flex items-center justify-between mb-8'>
+                    <div className='hidden md:flex items-center justify-center mb-8'>
                         {initialAdsRectangle4 && (
                             <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
                         )}
