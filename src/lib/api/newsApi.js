@@ -58,6 +58,7 @@ const getAllNewsServer = async (
 
         const response = await fetch(apiUrl.toString(), {
             method: 'GET',
+            next: { revalidate: 60 },
         });
 
         // 3. Cek jika respons tidak berhasil
