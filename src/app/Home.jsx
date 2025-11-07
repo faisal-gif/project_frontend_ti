@@ -14,6 +14,9 @@ import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import GoogleAds from '@/components/GoogleAds';
 import EventWidget from '@/components/EventWidget';
+import Carousel from '@/components/ui/Carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import Fade from 'embla-carousel-fade';
 
 
 function Home({
@@ -167,12 +170,42 @@ function Home({
             {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex md:hidden items-center justify-center mb-8'>
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                        <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
+                            <Carousel.Content>
+                                {initialAdsRectangle1 && (
+                                    <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                                    </Carousel.Item>
+                                )}
+                                {initialAdsRectangle2 && (
+                                    <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
+                                    </Carousel.Item>
+                                )}
+                                {initialAdsRectangle3 && (
+                                    <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
+                                    </Carousel.Item>
+                                )}
+
+                            </Carousel.Content>
+
+                            <Carousel.Previous position={'inner'} />
+                            <Carousel.Next position={'inner'} />
+
+
+                        </Carousel>
                     </div>
                     <div className='hidden md:flex items-center justify-between mb-8'>
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
+                        {initialAdsRectangle1 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                        )}
+                        {initialAdsRectangle2 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
+                        )}
+                        {initialAdsRectangle3 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
+                        )}
                     </div>
                 </div>
             )}
@@ -187,12 +220,42 @@ function Home({
             {(initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6) && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex md:hidden items-center justify-center mb-8'>
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                        <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
+                            <Carousel.Content>
+                                {initialAdsRectangle4 && (
+                                    <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                                    </Carousel.Item>
+                                )}
+                                {initialAdsRectangle5 && (
+                                    <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
+                                    </Carousel.Item>
+                                )}
+                                {initialAdsRectangle6 && (
+                                    <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
+                                    </Carousel.Item>
+                                )}
+
+                            </Carousel.Content>
+
+                            <Carousel.Previous position={'inner'} />
+                            <Carousel.Next position={'inner'} />
+
+
+                        </Carousel>
                     </div>
                     <div className='hidden md:flex items-center justify-between mb-8'>
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
-                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
+                        {initialAdsRectangle4 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                        )}
+                        {initialAdsRectangle5 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
+                        )}
+                        {initialAdsRectangle6 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
+                        )}
                     </div>
                 </div>
             )}
