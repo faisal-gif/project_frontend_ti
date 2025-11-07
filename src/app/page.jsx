@@ -82,17 +82,11 @@ export default async function page() {
     adsRectangle6Promise,
     adsRectangle7Promise,
   ]);
+  
+
 
   return (<>
-    <Head>
-      <link
-        rel="preload"
-        as="image"
-        href="/_next/image?url=%2FPopUpAds.jpg&w=1080&q=70"
-        imageSrcset="/_next/image?url=%2FPopUpAds.jpg&w=640&q=70 640w, /_next/image?url=%2FPopUpAds.jpg&w=1080&q=70 1080w"
-        imageSizes="(max-width: 768px) 90vw, 512px"
-      />
-    </Head>
+   
     <Home
       newsFirstSections={newsFirstSections}
       newsSecondSections={newsSecondSections}

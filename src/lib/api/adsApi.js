@@ -7,7 +7,7 @@ const getViewAds = async ({ id }) => {
         const apiUrlWithKey = `${apiUrl}?key=${process.env.SECRET_KEY}`;
 
         const response = await fetch(apiUrlWithKey, {
-            next: { revalidate: 300 },
+            
         });
 
 

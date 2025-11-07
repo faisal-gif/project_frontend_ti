@@ -164,7 +164,7 @@ function Home({
             <EventWidget />
 
 
-            {initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3 && (
+            {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex md:hidden items-center justify-center mb-8'>
                         <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
@@ -184,7 +184,7 @@ function Home({
                 <GallerySection />
             </section>
 
-            {initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6 && (
+            {(initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6) && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex md:hidden items-center justify-center mb-8'>
                         <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
