@@ -17,13 +17,26 @@ function character_limiter(str, limit) {
 }
 
 function setLocusNews(content, city) {
-    // Memastikan city adalah string dan tidak kosong
-    const cityText = city ? `**${city.trim().toUpperCase()}**` : ''; 
+    const cityText = city ? `<strong>${city.trim().toUpperCase()}</strong>` : ''; 
 
-    // Menggabungkan city yang dicetak tebal dengan konten, 
-    // menambahkan spasi atau pemisah jika city ada.
-    const result = cityText ? `${cityText} ${content}` : content;
+    let result = content;
 
+    if (cityText) {
+        const firstPIndex = content.indexOf('<p>'); 
+        
+        const afterFirstPIndex = firstPIndex + 3;
+        
+        if (firstPIndex !== -1) {
+            const beforeP = content.substring(0, firstPIndex);          
+            const afterP = content.substring(afterFirstPIndex); 
+            
+            result = `${beforeP}<p>${cityText} ${afterP}`;
+        } else {
+            result = `${cityText} ${content}`;
+        }
+    }
+    
+   
     return result;
 }
 
