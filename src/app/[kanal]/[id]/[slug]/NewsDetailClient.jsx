@@ -360,7 +360,7 @@ function NewsDetailClient({ initialNewsDetail, initialWriter }) {
                                                 </span>
                                                 <span className='text-sm text-white/80 mt-2'>
                                                     {writerDetail.bio ? writerDetail.bio :
-                                                        " Penulis lepas yang telah bergabung dengan TIMES Indonesia sejak tahun 2020. Memiliki minat khusus dalam peliputan berita sosial dan budaya."}
+                                                        " Penulis TIMES Indonesia."}
                                                 </span>
 
                                             </div>

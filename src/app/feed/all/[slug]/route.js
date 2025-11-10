@@ -1,5 +1,5 @@
 import { getKanalDetail } from "@/lib/api/kanalApi";
-import { getAllNews } from "@/lib/api/newsApi";
+import { getAllNews, getAllNewsIndex } from "@/lib/api/newsApi";
 
 export const dynamic = "force-dynamic"; // sitemap selalu runtime
 
@@ -17,8 +17,14 @@ function character_limiter(str, limit) {
 }
 
 function setLocusNews(content, city) {
+    // Memastikan city adalah string dan tidak kosong
+    const cityText = city ? `**${city.trim().toUpperCase()}**` : ''; 
 
-    return content;
+    // Menggabungkan city yang dicetak tebal dengan konten, 
+    // menambahkan spasi atau pemisah jika city ada.
+    const result = cityText ? `${cityText} ${content}` : content;
+
+    return result;
 }
 
 function paragraph_fig_gnews(content) {
@@ -33,7 +39,7 @@ export async function GET(request, { params }) {
 
     try {
         kanal = await getKanalDetail({ slug });
-        news = await getAllNews({ news_type: 'cat', cat_id: kanal.catnews_id, offset: 0, limit: 60 }) || [];
+        news = await getAllNewsIndex({ news_type: 'cat', cat_id: kanal.catnews_id, offset: 0, limit: 60 }) || [];
     } catch (error) {
         console.error("Error fetch focus:", error);
         news = [];
@@ -44,7 +50,7 @@ export async function GET(request, { params }) {
         const imageUrl = `${r.news_image_new}?v=7.0.0`;
 
         // Proses konten berita (jika perlu)
-        const content = paragraph_fig_gnews(setLocusNews(r.news_content, r.news_city));
+        const content = setLocusNews(r.news_content, r.news_city);
 
         // Tentukan nama kreator
         const creator = r.news_writer ? xmlConvert(r.news_writer) : xmlConvert(r.editor_name);
