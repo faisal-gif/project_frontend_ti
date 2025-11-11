@@ -98,6 +98,8 @@ function Home({
                 ))}
             </div>
 
+            <ATIWidget />
+
             {initialAdsLeaderboard1 && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
@@ -127,7 +129,7 @@ function Home({
 
             </div>
 
-            <ATIWidget />
+
             {initialAdsLeaderboard2 && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
