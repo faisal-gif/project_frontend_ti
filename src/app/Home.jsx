@@ -174,22 +174,28 @@ function Home({
 
             {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
                 <div className="mx-auto max-w-6xl ">
-                    <div className='flex md:hidden items-center justify-center mb-8'>
+                    <div className='mx-auto block md:hidden mb-8'>
                         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
                             <Carousel.Content>
                                 {initialAdsRectangle1 && (
-                                    <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                                    <Carousel.Item key={1} className="pl-0 min-w-0 shrink-0 grow-0 basis-full">
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
+                                        </div>
                                     </Carousel.Item>
                                 )}
                                 {initialAdsRectangle2 && (
-                                    <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
+                                    <Carousel.Item key={2} className="pl-0 min-w-0 shrink-0 grow-0 basis-full">
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
+                                        </div>
                                     </Carousel.Item>
                                 )}
                                 {initialAdsRectangle3 && (
-                                    <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
+                                    <Carousel.Item key={3} className="pl-0 min-w-0 shrink-0 grow-0 basis-full">
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
+                                        </div>
                                     </Carousel.Item>
                                 )}
 
@@ -201,7 +207,7 @@ function Home({
 
                         </Carousel>
                     </div>
-                    <div className='hidden md:flex items-center justify-center mb-8'>
+                    <div className='hidden md:flex items-center gap-10 justify-center mb-8'>
                         {initialAdsRectangle1 && (
                             <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
                         )}
@@ -224,22 +230,28 @@ function Home({
 
             {(initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6) && (
                 <div className="mx-auto max-w-6xl ">
-                    <div className='flex md:hidden items-center justify-center mb-8'>
+                    <div className='mx-auto block md:hidden mb-8'>
                         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
                             <Carousel.Content>
                                 {initialAdsRectangle4 && (
                                     <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
+                                        </div>
                                     </Carousel.Item>
                                 )}
                                 {initialAdsRectangle5 && (
                                     <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
+                                        </div>
                                     </Carousel.Item>
                                 )}
                                 {initialAdsRectangle6 && (
                                     <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
+                                        </div>
                                     </Carousel.Item>
                                 )}
 
@@ -251,7 +263,7 @@ function Home({
 
                         </Carousel>
                     </div>
-                    <div className='hidden md:flex items-center justify-center mb-8'>
+                    <div className='hidden md:flex items-center gap-10 justify-center mb-8'>
                         {initialAdsRectangle4 && (
                             <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
                         )}
