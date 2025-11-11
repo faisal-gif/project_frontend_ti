@@ -17,6 +17,7 @@ import EventWidget from '@/components/EventWidget';
 import Carousel from '@/components/ui/Carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
+import ATIWidget from '@/components/ATIWidget';
 
 
 function Home({
@@ -125,6 +126,8 @@ function Home({
                 ))}
 
             </div>
+
+            <ATIWidget />
             {initialAdsLeaderboard2 && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
