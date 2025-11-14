@@ -114,15 +114,7 @@ const getRelatedNews = async (
     try {
         // 1. Siapkan URL dan query parameters
         const baseUrl = process.env.API_URL;
-        const apiUrl = new URL(`${baseUrl}/news_related/`);
-        const params = { related, news_id, cat_id, rel_title, key: process.env.SECRET_KEY, };
-
-        // Tambahkan parameter ke URL hanya jika nilainya ada
-        Object.entries(params).forEach(([key, value]) => {
-            if (value !== undefined && value !== null && value !== '') {
-                apiUrl.searchParams.append(key, value);
-            }
-        });
+        const apiUrl = new URL(`${baseUrl}/news_related/?news_id=${news_id}&cat_id=${cat_id}&rel_title=${rel_title}&key=${process.env.SECRET_KEY}`);
 
         const response = await fetch(apiUrl.toString(), {
             method: 'GET',
@@ -193,5 +185,6 @@ export {
     getAllNewsServer,
     getNewsDetail,
     getNewsDetailUniq,
+    getRelatedNews,
     updateView,
 }

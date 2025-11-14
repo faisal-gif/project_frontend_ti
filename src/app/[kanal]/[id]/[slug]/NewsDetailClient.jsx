@@ -21,23 +21,20 @@ import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection'
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 
-function NewsDetailClient({ initialNewsDetail, initialWriter }) {
+function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter }) {
 
 
     const [size, setSize] = useState(2);
     const [newsDetail] = useState(initialNewsDetail);
-
     const [writerDetail] = useState(initialWriter);
+    const [relatedNews, setRelatedNews] = useState(initialRelatedNews);
+
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
-    const [relatedNews, setRelatedNews] = useState([]);
     const [newsViews, setNewsViews] = useState(initialNewsDetail.views || 0);
     const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
     const viewUpdated = useRef(false);
-
-
-
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {

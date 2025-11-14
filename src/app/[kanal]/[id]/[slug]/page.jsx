@@ -1,4 +1,4 @@
-import { getAllNewsServer, getNewsDetail } from '@/lib/api/newsApi';
+import { getAllNewsServer, getNewsDetail, getRelatedNews } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
@@ -117,6 +117,7 @@ export default async function page({ params }) {
         },
     };
 
+    const relatedNews = await getRelatedNews({ cat_id: initialNewsDetail.catnews_id, news_id: initialNewsDetail.news_id, rel_title: initialNewsDetail.news_title });
 
     const newsDetailForClient = {
         ...initialNewsDetail,
@@ -130,7 +131,7 @@ export default async function page({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
             {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialWriter={writer} />
+            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialRelatedNews={relatedNews} initialWriter={writer} />
         </>
     );
 }
