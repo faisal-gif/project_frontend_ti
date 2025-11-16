@@ -1,4 +1,4 @@
-import { getAllNews } from "@/lib/api/newsApi";
+import { getAllNews, getAllNewsIndex } from "@/lib/api/newsApi";
 
 export const dynamic = "force-dynamic"; // sitemap selalu runtime
 
@@ -15,7 +15,7 @@ export async function GET() {
     let news = [];
 
     try {
-        news = await getAllNews({ offset: 0, limit: 1000 }) || [];
+        news = await getAllNewsIndex({ offset: 0, limit: 500 }) || [];
     } catch (error) {
         console.error("Error fetch focus:", error);
         news = []; // fallback supaya tidak crash
