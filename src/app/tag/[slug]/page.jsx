@@ -75,14 +75,15 @@ async function page({ params }) {
   } catch (error) {
     console.error("Failed to fetch initial news:", error);
   }
-
-  return (
-    <TagClient
-      initialNews={initialNews || []}
-      slug={slug}
-      unslugifiedSlug={tag}
-    />
-  )
+ return notFound();
+  // return (
+    
+  //   <TagClient
+  //     initialNews={initialNews || []}
+  //     slug={slug}
+  //     unslugifiedSlug={tag}
+  //   />
+  // )
 }
 
 export default page
