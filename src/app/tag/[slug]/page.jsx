@@ -3,6 +3,8 @@
 import React from 'react'
 import TagClient from './TagClient'
 import { getAllNewsServer } from '@/lib/api/newsApi'; // <-- 1. Import fungsi fetch data
+import { redirect } from 'next/navigation';
+
 
 const unslugify = (slug) => {
   if (!slug) return "";
