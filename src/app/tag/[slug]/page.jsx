@@ -62,22 +62,25 @@ export async function generateMetadata({ params }) {
 
 
 async function page({ params }) {
-  const { slug } = await params;
-  const tag = unslugify(slug);
-  const limit = 9;
-  let initialNews = [];
 
-  try {
-    initialNews = await getAllNewsServer({
-      news_type: 'tag',
-      title: tag,
-      limit: limit,
-      offset: 0,
-    });
-  } catch (error) {
-    console.error("Failed to fetch initial news:", error);
-  }
   redirect("/maintenance");
+
+  // const { slug } = await params;
+  // const tag = unslugify(slug);
+  // const limit = 9;
+  // let initialNews = [];
+
+  // try {
+  //   initialNews = await getAllNewsServer({
+  //     news_type: 'tag',
+  //     title: tag,
+  //     limit: limit,
+  //     offset: 0,
+  //   });
+  // } catch (error) {
+  //   console.error("Failed to fetch initial news:", error);
+  // }
+
   // return (
 
   //   <TagClient
