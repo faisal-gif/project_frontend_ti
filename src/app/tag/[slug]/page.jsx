@@ -62,7 +62,7 @@ export async function generateMetadata({ params }) {
 async function page({ params }) {
   const { slug } = await params;
   const tag = unslugify(slug);
-  const limit = 9; 
+  const limit = 9;
   let initialNews = [];
 
   try {
@@ -70,14 +70,14 @@ async function page({ params }) {
       news_type: 'tag',
       title: tag,
       limit: limit,
-      offset: 0, 
+      offset: 0,
     });
   } catch (error) {
     console.error("Failed to fetch initial news:", error);
   }
- return notFound();
+  redirect("/");
   // return (
-    
+
   //   <TagClient
   //     initialNews={initialNews || []}
   //     slug={slug}
