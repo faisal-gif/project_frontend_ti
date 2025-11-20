@@ -15,50 +15,50 @@ const unslugify = (slug) => {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 };
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const tagTitle = unslugify(slug);
+// export async function generateMetadata({ params }) {
+//   const { slug } = await params;
+//   const tagTitle = unslugify(slug);
 
-  if (!slug) {
-    return {
-      title: "Berita tidak ditemukan - TIMES Indonesia",
-      description: "Berita yang Anda cari tidak tersedia.",
-    };
-  }
+//   if (!slug) {
+//     return {
+//       title: "Berita tidak ditemukan - TIMES Indonesia",
+//       description: "Berita yang Anda cari tidak tersedia.",
+//     };
+//   }
 
-  return {
-    title: `${tagTitle} - TIMES Indonesia`,
-    openGraph: {
-      locale: 'id_ID',
-      title: tagTitle,
-      description: tagTitle,
-      images: [
-        {
-          url: `${process.env.NEXT_PUBLIC_URL}/icon.png`,
-          width: 500,
-          height: 500,
-          alt: "TIMES Indonesia Logo",
-        },
-      ],
-      type: "website",
-      url: `https://timesindonesia.co.id/tag/${tagTitle}`,
-      siteName: 'TIMES Indonesia',
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: tagTitle,
-      description: tagTitle,
-      images: [
-        {
-          url: `${process.env.NEXT_PUBLIC_URL}/icon.png`,
-          width: 500,
-          height: 500,
-          alt: "TIMES Indonesia Logo",
-        },
-      ],
-    },
-  };
-}
+//   return {
+//     title: `${tagTitle} - TIMES Indonesia`,
+//     openGraph: {
+//       locale: 'id_ID',
+//       title: tagTitle,
+//       description: tagTitle,
+//       images: [
+//         {
+//           url: `${process.env.NEXT_PUBLIC_URL}/icon.png`,
+//           width: 500,
+//           height: 500,
+//           alt: "TIMES Indonesia Logo",
+//         },
+//       ],
+//       type: "website",
+//       url: `https://timesindonesia.co.id/tag/${tagTitle}`,
+//       siteName: 'TIMES Indonesia',
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title: tagTitle,
+//       description: tagTitle,
+//       images: [
+//         {
+//           url: `${process.env.NEXT_PUBLIC_URL}/icon.png`,
+//           width: 500,
+//           height: 500,
+//           alt: "TIMES Indonesia Logo",
+//         },
+//       ],
+//     },
+//   };
+// }
 
 
 async function page({ params }) {
