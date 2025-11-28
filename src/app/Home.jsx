@@ -17,7 +17,7 @@ import EventWidget from '@/components/EventWidget';
 import Carousel from '@/components/ui/Carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
-import ATIWidget from '@/components/ATIWidget';
+// import ATIWidget from '@/components/ATIWidget';
 
 
 function Home({
@@ -98,7 +98,7 @@ function Home({
                 ))}
             </div>
 
-            <ATIWidget />
+            {/* <ATIWidget /> */}
 
             {initialAdsLeaderboard1 && (
                 <div className="mx-auto max-w-6xl ">
