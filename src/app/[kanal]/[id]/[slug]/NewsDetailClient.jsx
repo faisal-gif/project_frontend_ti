@@ -275,6 +275,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
                                                     priority
                                                     fetchPriority="high"
                                                     sizes="(max-width: 768px) 340px , 750px"
+                                                    data-adbro-processed='true'
                                                 />
                                             </div>
                                         </div>
@@ -320,7 +321,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
                                         //     {tag}
                                         // </Link>
 
-                                         <Link
+                                        <Link
                                             key={index}
                                             href={`#`}
                                             className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
