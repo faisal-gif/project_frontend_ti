@@ -101,7 +101,7 @@ export default function RootLayout({ children }) {
           <input id="drawer-nav" type="checkbox" aria-label="Drawer toggle" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             {/* Navbar */}
-            <div className="fixed top-0 w-full z-50">
+            <div className="fixed top-0 w-full z-[9999]">
               {/* Navbar Atas */}
               <div className="navbar bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-[#7a0f1f]">
                 <div className="max-w-6xl w-full md:px-4 mx-auto flex gap-4 justify-between items-center">

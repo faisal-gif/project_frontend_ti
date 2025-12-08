@@ -157,7 +157,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
 
                                     </span>
                                     <div className='flex flex-row justify-between items-center'>
-                                        <div className="dropdown">
+                                        <div className="dropdown ">
                                             <button tabIndex={0} className="font-semibold flex flex-row items-center gap-3 cursor-pointer">
                                                 <div className="avatar-group -space-x-6 rtl:space-x-reverse">
                                                     {
