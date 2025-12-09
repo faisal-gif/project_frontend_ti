@@ -94,7 +94,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
             </div>
 
             <div className='md:hidden flex items-center justify-center'>
-                <GoogleAds size='square' slot='4691830761' />
+                <GoogleAds size='inline_rectangle' slot='4691830761' />
             </div>
 
 
@@ -381,7 +381,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
                                 </div>
 
                                 <div className='md:hidden flex items-center justify-center'>
-                                    <GoogleAds size='square' slot='4691830761' />
+                                    <GoogleAds size='inline_rectangle' slot='4691830761' />
                                 </div>
                             </div>
 
@@ -416,7 +416,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
 
                     <div className=" sticky top-28">
                         <div className='flex items-center justify-center my-6'>
-                            <GoogleAds size='square' slot='4691830761' />
+                            <GoogleAds size='inline_rectangle' slot='4691830761' />
                         </div>
                         <PopularNews />
 

@@ -56,7 +56,7 @@ function Home({
                 </div>
 
                 <div className='md:hidden flex items-center justify-center'>
-                    <GoogleAds size='square' slot='4691830761' />
+                    <GoogleAds size='inline_rectangle' slot='4691830761' />
                 </div>
 
             </div>
