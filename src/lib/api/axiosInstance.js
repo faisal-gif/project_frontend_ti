@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const baseUrl = process.env.NEXT_PUBLIC_URL;
+const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://timesindonesia.co.id/';
 
 export const clientAxios = axios.create({
   baseURL: `${baseUrl}/api`,
