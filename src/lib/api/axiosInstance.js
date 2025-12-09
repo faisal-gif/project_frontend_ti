@@ -1,6 +1,10 @@
 import axios from 'axios';
 
 
+if (!process.env.NEXT_PUBLIC_API_URL) {
+  console.error("KRITIS: NEXT_PUBLIC_API_URL tidak ditemukan. Cek .env.local!");
+}
+
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://timesindonesia.co.id';
 
 const TIMEOUT_MS = 5000;
