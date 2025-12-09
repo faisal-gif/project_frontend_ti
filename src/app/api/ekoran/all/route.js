@@ -12,6 +12,8 @@ export async function GET(req) {
             params: {
                 offset,
                 limit,
+                timeout: 5000,
+                validateStatus: () => true,
             },
         });
 
