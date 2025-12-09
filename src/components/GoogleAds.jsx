@@ -10,7 +10,6 @@ export default function GoogleAds({
     slot = '8134946479',
 
 }) {
-    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         if (!adsEksternal) {
@@ -38,7 +37,6 @@ export default function GoogleAds({
 
     const currentSize = adSizes[size];
 
-    if (!isVisible) return null;
 
     return (
         <div
@@ -49,15 +47,6 @@ export default function GoogleAds({
                 maxWidth: "100%",
             }}
         >
-         
-
-                <button
-                    onClick={() => setIsVisible(false)}
-                    className="indicator-item btn btn-xs btn-active btn-circle bg-[#b41d1d] text-white hover:bg-[#7b0f1f]"
-                >
-                    <X size={16} />
-                    <span className="sr-only">Tutup</span>
-                </button>
 
                 {adsEksternal ? (
                     <a
