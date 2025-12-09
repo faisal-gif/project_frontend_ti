@@ -24,7 +24,7 @@
     "html-react-parser": "^5.2.6",
     "lucide-react": "^0.536.0",
     "motion": "^12.23.12",
-    "next": "^15.5.7",
+    "next": "^15.4.8",
     "nprogress": "^0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
