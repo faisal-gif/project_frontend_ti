@@ -40,7 +40,7 @@ export default function GoogleAds({
 
     return (
         <div
-            className={`relative indicator bg-gray-100 border border-gray-200 rounded-[3px] flex items-center justify-center ${className}`}
+            className={`relative indicator rounded-[3px] flex items-center justify-center ${className}`}
             style={{
                 width: currentSize.width,
                 height: currentSize.height,
