@@ -12,15 +12,14 @@ export async function GET(req) {
             params: {
                 offset,
                 limit,
-                timeout: 5000,
-                validateStatus: () => true,
+              
             },
         });
 
         return NextResponse.json(response.data);
     } catch (error) {
         return NextResponse.json(
-            { error: error.message },
+            { error: error },
             { status: error.response?.status || 500 }
         );
     }
