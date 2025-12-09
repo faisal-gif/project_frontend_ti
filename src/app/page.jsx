@@ -5,6 +5,8 @@ import { getAllNews, getAllNewsServer } from '@/lib/api/newsApi';
 import { getViewAds } from '@/lib/api/adsApi';
 import Head from 'next/head';
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "TIMES Indonesia - Berita Positif Terbaru dan Terkini",
   description: "Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",
