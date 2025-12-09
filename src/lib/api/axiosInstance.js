@@ -1,4 +1,9 @@
 import axios from 'axios';
+import https from 'https';
+
+const httpsAgent = new https.Agent({
+  keepAlive: false,
+});
 
 
 const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://timesindonesia.co.id/';
