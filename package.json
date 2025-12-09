@@ -11,11 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@next/third-parties": "^16.0.8",
-=======
     "@next/third-parties": "^15.5.4",
->>>>>>> parent of 1e20fea (	modified:   package-lock.json)
     "axios": "^1.11.0",
     "critters": "^0.0.23",
     "daisyui": "^5.0.50",
@@ -28,11 +24,7 @@
     "html-react-parser": "^5.2.6",
     "lucide-react": "^0.536.0",
     "motion": "^12.23.12",
-<<<<<<< HEAD
-    "next": "^16.0.8",
-=======
     "next": "^15.5.4",
->>>>>>> parent of 1e20fea (	modified:   package-lock.json)
     "nprogress": "^0.2.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
