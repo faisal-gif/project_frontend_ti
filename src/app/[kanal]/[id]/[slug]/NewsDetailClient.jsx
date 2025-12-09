@@ -373,12 +373,22 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
 
                             </article>
 
+
                             <EkoranNewsDetailCard />
+                            <div className='my-6'>
+                                <div className='hidden md:flex items-center justify-center'>
+                                    <GoogleAds size='banner' slot='9812419210' />
+                                </div>
 
-
+                                <div className='md:hidden flex items-center justify-center'>
+                                    <GoogleAds size='square' slot='4691830761' />
+                                </div>
+                            </div>
 
                             {/* <ModalShare /> */}
                         </main>
+
+
 
                         {/* Float Menu */}
                         <div className="hidden lg:block w-16">
@@ -403,7 +413,11 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
 
                 )}
                 <aside className="hidden lg:block w-80">
+
                     <div className=" sticky top-28">
+                        <div className='flex items-center justify-center my-6'>
+                            <GoogleAds size='square' slot='4691830761' />
+                        </div>
                         <PopularNews />
 
                         <div className='flex items-center justify-center'>
