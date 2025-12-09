@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import { X } from "lucide-react";
 import Image from "next/image";
 
 export default function GoogleAds({
     size = "inline_rectangle",
+    className = "",
     adsEksternal = null,
     slot = '8134946479',
 

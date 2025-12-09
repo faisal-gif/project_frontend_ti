@@ -11,7 +11,7 @@ const getNews = cache(async (id) => {
 export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
-    const { id, kanal, slug } = await params;
+    const { id, kanal, slug } = params;
     const newsDetail = await getNews(id);
     const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
-    const { id } = await params;
+    const { id } = params;
 
     const initialNewsDetail = await getNews(id);
 
