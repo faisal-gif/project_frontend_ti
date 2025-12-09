@@ -39,14 +39,7 @@ export default function GoogleAds({
 
 
     return (
-        <div
-            className={`relative indicator rounded-[3px] flex items-center justify-center ${className}`}
-            style={{
-                width: currentSize.width,
-                height: currentSize.height,
-                maxWidth: "100%",
-            }}
-        >
+        <div>
 
                 {adsEksternal ? (
                     <a
