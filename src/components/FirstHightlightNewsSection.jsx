@@ -42,7 +42,7 @@ export default function FirstHightlightNewsSection({ title, url = '/', index = 1
             
             {/* Sisa dari komponen tidak diubah dan tetap di-render di server */}
             <div className="space-y-6">
-                <Link href={'#'}>
+                <Link href={news[0].url_ci4}>
                     <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg border-0 bg-card overflow-hidden">
                         <div className="relative">
                             <div className="aspect-[16/9] relative overflow-hidden">
