@@ -179,7 +179,7 @@ export default function RootLayout({ children }) {
             {/* Footer */}
             <Footer />
           </div>
-          <div className="drawer-side z-80">
+          <div className="drawer-side z-[9999]">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
             <ul className="menu text-black bg-base-200  min-h-full w-72">
               <li className="text-xl font-bold text-white mb-6">
