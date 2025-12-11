@@ -3,6 +3,7 @@ import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
+import { incrementView } from '@/lib/actions/updateView';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -72,6 +73,9 @@ export default async function page({ params }) {
     const { id } = await params;
 
     const initialNewsDetail = await getNews(id);
+    const viewResult = await incrementView(initialNewsDetail.news_id);
+    console.log(viewResult.newViewCount);
+    
 
     if (!initialNewsDetail) {
         notFound();
@@ -131,7 +135,7 @@ export default async function page({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
             {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialNewsDetail={newsDetailForClient} initialRelatedNews={relatedNews} initialWriter={writer} />
+            <NewsDetailClient initialView={viewResult?.newViewCount} initialNewsDetail={newsDetailForClient} initialRelatedNews={relatedNews} initialWriter={writer} />
         </>
     );
 }

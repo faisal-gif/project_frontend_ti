@@ -21,11 +21,13 @@ import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection'
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 
-function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter }) {
+function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, initialWriter }) {
 
 
     const [size, setSize] = useState(2);
+    const [newsView] = useState(initialView);
     const [newsDetail] = useState(initialNewsDetail);
+    
     const [writerDetail] = useState(initialWriter);
     const [relatedNews, setRelatedNews] = useState(initialRelatedNews);
 
@@ -38,22 +40,12 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
-        if (newsDetail && !viewUpdated.current) {
+        if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
 
             if (Number(newsDetail.focnews_id) !== 0) {
                 getFocusDetail({ id: newsDetail.focnews_id }).then(setFocusDetail).catch(console.error);
             }
-
-            incrementView(newsDetail.news_id)
-                .then(result => {
-                    if (result.success && result.newViewCount) {
-                        setNewsViews(result.newViewCount);
-                    }
-                })
-                .catch(console.error);
-            viewUpdated.current = true;
-
         }
     }, [newsDetail]);
 
@@ -148,7 +140,7 @@ function NewsDetailClient({ initialNewsDetail, initialRelatedNews, initialWriter
                                             <Eye size={16} />
                                             <div>
                                                 {isMounted && (
-                                                    <FormattedViews count={newsViews} />
+                                                    <FormattedViews count={newsView} />
                                                 )}
                                             </div>
                                         </span>
