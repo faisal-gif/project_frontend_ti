@@ -73,9 +73,7 @@ export default async function page({ params }) {
     const { id } = await params;
 
     const initialNewsDetail = await getNews(id);
-    const viewResult = await incrementView(initialNewsDetail.news_id);
-    console.log(viewResult.newViewCount);
-    
+    const viewResult = await incrementView(initialNewsDetail.news_id);    
 
     if (!initialNewsDetail) {
         notFound();
