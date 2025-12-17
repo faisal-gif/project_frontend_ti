@@ -11,6 +11,7 @@ const DISABLED_AD_PATHS = [
     '/glutera-news/432953/5-cara-ampuh-membuat-wanita-orgasme-berkalikali',
     '/glutera-news/394036/7-tanda-wanita-mencapai-kenikmatan',
     '/cek-fakta/500746/cek-fakta-hoaks-video-mayat-tergantung-di-jembatan-layang-kotalama-malang',
+    '/glutera-news/374548/4-tips-nyaman-saat-hubungan-suami-istri-tanpa-rasa-nyeri'
 ];
 
 export default function ConditionalAdScript() {

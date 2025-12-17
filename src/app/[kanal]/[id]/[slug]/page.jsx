@@ -73,11 +73,12 @@ export default async function page({ params }) {
     const { id } = await params;
 
     const initialNewsDetail = await getNews(id);
-    const viewResult = await incrementView(initialNewsDetail.news_id);    
+
 
     if (!initialNewsDetail) {
         notFound();
     }
+    const viewResult = await incrementView(initialNewsDetail.news_id);
 
     let writer = {};
 

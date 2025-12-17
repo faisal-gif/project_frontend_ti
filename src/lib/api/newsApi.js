@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import { clientAxios, serverAxios } from "./axiosInstance";
 
 const getAllNews = async (
@@ -92,7 +93,7 @@ const getNewsDetail = async ({ id }) => {
 
         // 3. Cek jika respons dari server tidak berhasil (misal: 404 Not Found)
         if (!response.ok) {
-            throw new Error(`API call failed with status: ${response.status}`);
+            NotFound();
         }
 
         // 4. Ambil data dalam format JSON
