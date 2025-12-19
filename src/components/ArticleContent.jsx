@@ -81,7 +81,7 @@ const ArticleContent = ({
           <p
             key={`p-img-${index}`}
             style={reactStyle}
-            className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+            className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
           >
             <figure className="my-4">
               <img
@@ -106,7 +106,7 @@ const ArticleContent = ({
           <p
             key={`p-${index}`}
             style={reactStyle}
-            className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+            className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
           >
             <strong className="uppercase">
               {lokus?.trim() ? lokus : 'TIMESINDONESIA'} –{' '}
@@ -124,7 +124,7 @@ const ArticleContent = ({
           <React.Fragment key={`frag-${index}`}>
             <p
               style={reactStyle}
-              className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+              className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
             >
               {domToReact(node.children, { replace: transform })}
             </p>
@@ -142,7 +142,7 @@ const ArticleContent = ({
           <React.Fragment key={`frag-${index}`}>
             <p
               style={reactStyle}
-              className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+              className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
             >
               {domToReact(node.children, { replace: transform })}
             </p>
@@ -160,7 +160,7 @@ const ArticleContent = ({
         <p
           key={`p-${index}`}
           style={reactStyle}
-          className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+          className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
         >
           {domToReact(node.children, { replace: transform })}
         </p>
