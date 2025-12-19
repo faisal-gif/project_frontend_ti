@@ -2,10 +2,20 @@ import React, { useCallback, useEffect } from 'react';
 import parse, { domToReact } from 'html-react-parser';
 import ReadAlso from './ReadAlso.jsx';
 import LazyAdopAd from './LazyAdopAd.jsx';
-import Script from 'next/script.js';
+
+/**
+ * Convert inline style string to React style object
+ */
+const parseStyleString = (style = '') =>
+  style.split(';').reduce((acc, item) => {
+    const [key, value] = item.split(':');
+    if (!key || !value) return acc;
+    acc[key.trim().replace(/-([a-z])/g, g => g[1].toUpperCase())] = value.trim();
+    return acc;
+  }, {});
 
 const ArticleContent = ({
-  htmlContent = "",
+  htmlContent = '',
   readAlsoArticles = [],
   getTextSizeClasses,
   lokus = '',
@@ -34,65 +44,107 @@ const ArticleContent = ({
   }, [htmlContent]);
 
   const transform = (node, index) => {
+    if (node.type !== 'tag') return;
 
-    if (node.type === 'tag' && node.name === 'p') {
-      const firstChild = node.children.find(child => child.type === 'tag');
-
-      if (firstChild && firstChild.name === 'img') {
-        // --- PERBAIKAN DI SINI ---
-        // Kita pisahkan atribut 'style' dari sisa atribut lainnya
-        const { style, ...restOfAttribs } = firstChild.attribs;
-
-        const captionNodes = node.children.slice(1);
-
-        return (
-          <figure className="mb-6">
-            {/* Gunakan sisa atribut, sehingga 'style' dari DB akan terbuang */}
-            <img {...restOfAttribs} className="block w-full rounded-lg" />
-            <figcaption className="mt-2 text-sm italic text-gray-600 text-center">
-              {domToReact(captionNodes, { replace: transform })}
-            </figcaption>
-          </figure>
-        );
-      }
-    }
-
+    /**
+     * =====================
+     * HANDLE <span>
+     * =====================
+     */
     if (node.name === 'span') {
       return <>{domToReact(node.children, { replace: transform })}</>;
     }
 
+    /**
+     * =====================
+     * HANDLE <p>
+     * =====================
+     */
     if (node.name === 'p') {
       paragraphCount++;
 
-      // Paragraf pertama
-      if (paragraphCount === 1) {
+      const { style, class: htmlClass } = node.attribs || {};
+      const reactStyle = style ? parseStyleString(style) : undefined;
+
+      const firstTagChild = node.children?.find(
+        child => child.type === 'tag'
+      );
+
+      /**
+       * === P with IMAGE ===
+       */
+      if (firstTagChild?.name === 'img') {
+        const { style: imgStyle, ...imgAttribs } = firstTagChild.attribs || {};
+        const captionNodes = node.children.slice(1);
+
         return (
-          <p className={`text-foreground mb-6 ${getTextSizeClasses()}`} key={`p-${index}`}>
-            <strong className='uppercase'>{lokus && lokus.trim() !== "" ? lokus : "TIMESINDONESIA"} – </strong>
-            {domToReact(node.children || [])}
+          <p
+            key={`p-img-${index}`}
+            style={reactStyle}
+            className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+          >
+            <figure className="my-4">
+              <img
+                {...imgAttribs}
+                className="block w-full rounded-lg mx-auto"
+              />
+              {captionNodes.length > 0 && (
+                <figcaption className="mt-2 text-sm italic text-gray-600 text-center">
+                  {domToReact(captionNodes, { replace: transform })}
+                </figcaption>
+              )}
+            </figure>
           </p>
         );
       }
 
-      // Setelah paragraf ke-2 → tampilkan iklan
+      /**
+       * === PARAGRAPH FIRST ===
+       */
+      if (paragraphCount === 1) {
+        return (
+          <p
+            key={`p-${index}`}
+            style={reactStyle}
+            className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+          >
+            <strong className="uppercase">
+              {lokus?.trim() ? lokus : 'TIMESINDONESIA'} –{' '}
+            </strong>
+            {domToReact(node.children, { replace: transform })}
+          </p>
+        );
+      }
+
+      /**
+       * === AFTER PARAGRAPH 2 (ADS) ===
+       */
       if (paragraphCount === 2) {
         return (
           <React.Fragment key={`frag-${index}`}>
-            <p className={`text-foreground mb-6 ${getTextSizeClasses()}`}>
-              {domToReact(node.children || [])}
+            <p
+              style={reactStyle}
+              className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+            >
+              {domToReact(node.children, { replace: transform })}
             </p>
             {/* <LazyAdopAd /> */}
           </React.Fragment>
         );
       }
 
-      // Cek distribusi ReadAlso
+      /**
+       * === READ ALSO DISTRIBUTION ===
+       */
       const readAlsoIndex = distributeIndexes.indexOf(paragraphCount);
       if (readAlsoIndex !== -1 && readAlsoArticles[readAlsoIndex]) {
         return (
           <React.Fragment key={`frag-${index}`}>
-            <p className={`text-foreground mb-6 ${getTextSizeClasses()}`}>
-              {domToReact(node.children || [])}
+            <p
+              style={reactStyle}
+              className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+            >
+              {domToReact(node.children, { replace: transform })}
             </p>
             <div className="my-2">
               <ReadAlso articles={[readAlsoArticles[readAlsoIndex]]} />
@@ -101,14 +153,26 @@ const ArticleContent = ({
         );
       }
 
+      /**
+       * === NORMAL PARAGRAPH ===
+       */
       return (
-        <p className={`text-foreground mb-6 ${getTextSizeClasses()}`} key={`p-${index}`}>
-          {domToReact(node.children || [])}
+        <p
+          key={`p-${index}`}
+          style={reactStyle}
+          className={`text-foreground mb-6 ${getTextSizeClasses()} ${htmlClass || ''}`}
+        >
+          {domToReact(node.children, { replace: transform })}
         </p>
       );
     }
   };
 
+  /**
+   * =====================
+   * COPY WATERMARK
+   * =====================
+   */
   const handleCopy = useCallback(
     (e) => {
       e.preventDefault();
@@ -116,43 +180,55 @@ const ArticleContent = ({
       const selection = window.getSelection();
       if (!selection || !selection.rangeCount) return;
 
-      const container = document.createElement("div");
+      const container = document.createElement('div');
       for (let i = 0; i < selection.rangeCount; i++) {
         container.appendChild(selection.getRangeAt(i).cloneContents());
       }
-      const selectedHtml = container.innerHTML || "";
 
-      const tempDiv = document.createElement("div");
+      const selectedHtml = container.innerHTML || '';
+      const tempDiv = document.createElement('div');
       tempDiv.innerHTML = selectedHtml;
-      const plainText = tempDiv.innerText || "";
 
-      const fullUrl = url ? `https://timesindonesia.co.id${url}` : "";
-      const watermarkText = fullUrl ? `\n\n---\nSumber: TIMES INDONESIA\n${fullUrl}` : "";
-      const watermarkHtml = fullUrl ? `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank" rel="noopener noreferrer">TIMES INDONESIA</a>` : "";
+      const plainText = tempDiv.innerText || '';
+      const fullUrl = url ? `https://timesindonesia.co.id${url}` : '';
 
-      e.clipboardData.setData("text/plain", plainText + watermarkText);
-      e.clipboardData.setData("text/html", selectedHtml + watermarkHtml);
+      e.clipboardData.setData(
+        'text/plain',
+        plainText +
+          (fullUrl
+            ? `\n\n---\nSumber: TIMES INDONESIA\n${fullUrl}`
+            : '')
+      );
+
+      e.clipboardData.setData(
+        'text/html',
+        selectedHtml +
+          (fullUrl
+            ? `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank">TIMES INDONESIA</a>`
+            : '')
+      );
     },
     [url]
   );
 
   return (
-    <>
-      <div className={`prose prose-img:rounded-lg prose-img:mx-auto prose-img:!w-auto max-w-none w-full mx-auto ${className}`} onCopy={handleCopy}>
-        {htmlContent ? parse(htmlContent, { replace: transform }) : null}
-        <p className='italic text-foreground text-base md:text-lg'>
-          Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
-          <br />
-          Klik 👉 <a href="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D">Channel TIMES Indonesia</a>
-          <br />
-          Pastikan WhatsApp kamu sudah terpasang.
-        </p>
-      </div>
+    <div
+      className={`prose prose-img:rounded-lg prose-img:mx-auto max-w-none w-full mx-auto ${className}`}
+      onCopy={handleCopy}
+    >
+      {htmlContent ? parse(htmlContent, { replace: transform }) : null}
 
-
-
-    </>
-
+      <p className="italic text-foreground text-base md:text-lg">
+        Simak breaking news dan berita pilihan TIMES Indonesia langsung dari WhatsApp-mu!
+        <br />
+        Klik 👉{' '}
+        <a href="https://whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D">
+          Channel TIMES Indonesia
+        </a>
+        <br />
+        Pastikan WhatsApp kamu sudah terpasang.
+      </p>
+    </div>
   );
 };
 
