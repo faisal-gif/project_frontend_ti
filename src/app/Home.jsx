@@ -6,7 +6,7 @@ import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import LastestNewsSection from '@/components/LastestNewsSection';
 import PopularNews from '@/components/PopularNews';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
-// import VideoSection from '@/components/VideoSection';
+import VideoSection from '@/components/VideoSection';
 import CekFaktaCard from '@/components/CekFaktaCard';
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
@@ -279,7 +279,7 @@ function Home({
 
 
 
-            {/* <VideoSection /> */}
+            <VideoSection />
 
             {/* Last News */}
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4" id="jelajah_berita">
