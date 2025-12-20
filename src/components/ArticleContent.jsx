@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import parse, { domToReact } from 'html-react-parser';
 import ReadAlso from './ReadAlso.jsx';
-import LazyAdopAd from './LazyAdopAd.jsx';
+// import LazyAdopAd from './LazyAdopAd.jsx';
+import GoogleAds from './GoogleAds.jsx';
 
 /**
  * Convert inline style string to React style object
@@ -129,6 +130,9 @@ const ArticleContent = ({
               {domToReact(node.children, { replace: transform })}
             </p>
             {/* <LazyAdopAd /> */}
+            <div className="my-6 flex justify-center w-full" key={`ad-wrapper-${index}`}>
+              <GoogleAds size='inline_rectangle' slot='4691830761' />
+            </div>
           </React.Fragment>
         );
       }
@@ -195,17 +199,17 @@ const ArticleContent = ({
       e.clipboardData.setData(
         'text/plain',
         plainText +
-          (fullUrl
-            ? `\n\n---\nSumber: TIMES INDONESIA\n${fullUrl}`
-            : '')
+        (fullUrl
+          ? `\n\n---\nSumber: TIMES INDONESIA\n${fullUrl}`
+          : '')
       );
 
       e.clipboardData.setData(
         'text/html',
         selectedHtml +
-          (fullUrl
-            ? `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank">TIMES INDONESIA</a>`
-            : '')
+        (fullUrl
+          ? `<br><br>---<br>Sumber: <a href="${fullUrl}" target="_blank">TIMES INDONESIA</a>`
+          : '')
       );
     },
     [url]

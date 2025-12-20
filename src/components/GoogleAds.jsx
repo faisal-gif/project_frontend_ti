@@ -11,16 +11,24 @@ export default function GoogleAds({
 }) {
 
     useEffect(() => {
-        if (!adsEksternal) {
-            try {
-                if (typeof window !== "undefined") {
-                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+        if (!adsEksternal && typeof window !== "undefined") {
+            const adTimeout = setTimeout(() => {
+                try {
+                    // Cari element <ins> milik komponen ini saja
+                    // Kita gunakan ad-status sebagai penanda agar tidak double push
+                    const adsbygoogle = window.adsbygoogle || [];
+                    adsbygoogle.push({});
+                } catch (e) {
+                    // Abaikan error "All ins elements already have ads"
+                    if (!e.message.includes("already have ads")) {
+                        console.error("Adsense error", e);
+                    }
                 }
-            } catch (e) {
-                console.error("Adsense error", e);
-            }
+            }, 100); // Beri sedikit delay agar DOM benar-benar siap
+
+            return () => clearTimeout(adTimeout);
         }
-    }, [adsEksternal]);
+    }, [adsEksternal, slot]);
 
     const adSizes = {
         inline_rectangle: { width: "336px", height: "280px" },
@@ -40,34 +48,34 @@ export default function GoogleAds({
     return (
         <div>
 
-                {adsEksternal ? (
-                    <a
-                        href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full h-full relative"
-                    >
-                        <Image
-                            src={adsEksternal.d_img}
-                            alt="Advertisement"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 300px"
-                            className="object-contain"
-                            priority={false}
-                        />
-                    </a>
-                ) : (
-                    <ins
-                        className="adsbygoogle"
-                        style={{
-                            display: "inline-block",
-                            width: currentSize.width,
-                            height: currentSize.height,
-                        }}
-                        data-ad-client="ca-pub-5117046027656864"
-                        data-ad-slot={slot}
-                    ></ins>
-                )}
-          </div>
+            {adsEksternal ? (
+                <a
+                    href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full relative"
+                >
+                    <Image
+                        src={adsEksternal.d_img}
+                        alt="Advertisement"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 300px"
+                        className="object-contain"
+                        priority={false}
+                    />
+                </a>
+            ) : (
+                <ins
+                    className="adsbygoogle"
+                    style={{
+                        display: "inline-block",
+                        width: currentSize.width,
+                        height: currentSize.height,
+                    }}
+                    data-ad-client="ca-pub-5117046027656864"
+                    data-ad-slot={slot}
+                ></ins>
+            )}
+        </div>
     );
 }
