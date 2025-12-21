@@ -75,8 +75,12 @@ function Kanal() {
 
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
-            <div className='flex items-center justify-center mb-8'>
-                <GoogleAds size='top_banner' />
+            <div className='hidden md:flex items-center justify-center'>
+                <GoogleAds size='top_banner' slot='9812419210' />
+            </div>
+
+            <div className='md:hidden flex items-center justify-center'>
+                <GoogleAds size='inline_rectangle' slot='4691830761' />
             </div>
 
             <div className="breadcrumbs text-sm my-6">
