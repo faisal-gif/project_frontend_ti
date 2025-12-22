@@ -49,21 +49,29 @@ export default function GoogleAds({
         <div>
 
             {adsEksternal ? (
-                <a
-                    href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full relative"
+                <div
+                    className="relative"
+                    style={{
+                        width: currentSize.width,
+                        height: currentSize.height,
+                    }}
                 >
-                    <Image
-                        src={adsEksternal.d_img}
-                        alt="Advertisement"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 300px"
-                        className="object-contain"
-                        priority={false}
-                    />
-                </a>
+                    <a
+                        href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full h-full relative"
+                    >
+                        <Image
+                            src={adsEksternal.d_img}
+                            alt="Advertisement"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 300px"
+                            className="object-contain"
+                            priority={false}
+                        />
+                    </a>
+                </div>
             ) : (
                 <ins
                     className="adsbygoogle"

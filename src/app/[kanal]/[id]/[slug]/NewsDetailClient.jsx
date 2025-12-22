@@ -20,6 +20,7 @@ import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
+// import KopiTimesCard from '@/components/KopiTimesCard';
 
 function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, initialWriter }) {
 
@@ -302,7 +303,11 @@ function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, i
                                         />
 
                                     </div>
+
+
                                 </div>
+                                {/* <KopiTimesCard /> */}
+
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
                                     {getTags().map((tag, index) => (
                                         // <Link

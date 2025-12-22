@@ -120,7 +120,7 @@ const ArticleContent = ({
       /**
        * === AFTER PARAGRAPH 2 (ADS) ===
        */
-      if (paragraphCount === 2) {
+      if (paragraphCount === 2 || paragraphCount === 7) {
         return (
           <React.Fragment key={`frag-${index}`}>
             <p

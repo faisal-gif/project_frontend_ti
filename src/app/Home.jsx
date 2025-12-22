@@ -171,6 +171,7 @@ function Home({
 
             <EventWidget />
 
+          
 
             {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
                 <div className="mx-auto max-w-6xl ">
