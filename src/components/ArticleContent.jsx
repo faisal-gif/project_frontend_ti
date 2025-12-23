@@ -27,12 +27,38 @@ const ArticleContent = ({
 
   const totalParagraphs = (htmlContent.match(/<p[\s>]/g) || []).length;
   const totalReadAlso = readAlsoArticles.length;
+  const forbiddenParagraphs = [2, 7];
+
+  const getSafeParagraphIndex = (start, max) => {
+    let i = start;
+
+    while (
+      i <= max &&
+      (i === 2 || i === 7)
+    ) {
+      i++;
+    }
+
+    return i <= max ? i : null;
+  };
+
 
   let distributeIndexes = [];
+
   if (totalParagraphs > 0 && totalReadAlso > 0) {
-    const step = Math.ceil(totalParagraphs / totalReadAlso);
-    distributeIndexes = readAlsoArticles.map((_, i) => (i + 2) * step);
+    const safeLimit = totalParagraphs - 6; // ❌ 6 paragraf terakhir
+    const step = Math.ceil(safeLimit / totalReadAlso);
+
+    readAlsoArticles.forEach((_, i) => {
+      const target = (i + 1) * step + 1;
+      const safeIndex = getSafeParagraphIndex(target, safeLimit);
+
+      if (safeIndex) {
+        distributeIndexes.push(safeIndex);
+      }
+    });
   }
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -120,6 +146,8 @@ const ArticleContent = ({
       /**
        * === AFTER PARAGRAPH 2 (ADS) ===
        */
+
+
       if (paragraphCount === 2 || paragraphCount === 7) {
         return (
           <React.Fragment key={`frag-${index}`}>
@@ -140,6 +168,7 @@ const ArticleContent = ({
       /**
        * === READ ALSO DISTRIBUTION ===
        */
+
       const readAlsoIndex = distributeIndexes.indexOf(paragraphCount);
       if (readAlsoIndex !== -1 && readAlsoArticles[readAlsoIndex]) {
         return (
