@@ -7,6 +7,7 @@ export default function GoogleAds({
     size = "inline_rectangle",
     adsEksternal = null,
     slot = '8134946479',
+    type = 'desktop',
 
 }) {
 
@@ -62,14 +63,27 @@ export default function GoogleAds({
                         rel="noopener noreferrer"
                         className="block w-full h-full relative"
                     >
-                        <Image
-                            src={adsEksternal.d_img}
-                            alt="Advertisement"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 300px"
-                            className="object-contain"
-                            priority={false}
-                        />
+
+                        {type === 'mobile' ? (
+                            <Image
+                                src={adsEksternal.m_img}
+                                alt="Advertisement"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 300px"
+                                className="object-contain"
+                                priority={false}
+                            />
+                        ) : (
+                            <Image
+                                src={adsEksternal.d_img}
+                                alt="Advertisement"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 300px"
+                                className="object-contain"
+                                priority={false}
+                            />
+                        )
+                        }
                     </a>
                 </div>
             ) : (
