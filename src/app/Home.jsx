@@ -36,7 +36,8 @@ function Home({
     initialAdsRectangle4,
     initialAdsRectangle5,
     initialAdsRectangle6,
-    initialAdsRectangle7 }) {
+    initialAdsRectangle7,
+    initialAdsRectangleLeaderboard2, }) {
 
     return (
         <div className="">
@@ -131,12 +132,20 @@ function Home({
 
 
             {initialAdsLeaderboard2 && (
-                <div className="mx-auto max-w-6xl ">
+                <div className="hidden md:block mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
                         <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} slot='9812419210' />
                     </div>
                 </div>
             )}
+
+            {
+                initialAdsRectangleLeaderboard2 && (
+                    <div className='flex items-center justify-center'>
+                        <GoogleAds size='inline_rectangle' adsEksternal={initialAdsRectangleLeaderboard2} slot='9812419210' />
+                    </div>
+                )
+            }
 
 
 
@@ -171,7 +180,7 @@ function Home({
 
             <EventWidget />
 
-          
+
 
             {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
                 <div className="mx-auto max-w-6xl ">
