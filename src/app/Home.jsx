@@ -142,7 +142,7 @@ function Home({
             {
                 initialAdsRectangleLeaderboard2 && (
                     <div className='flex md:hidden items-center justify-center'>
-                        <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard2}  slot='9812419210' />
+                        <GoogleAds size='rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard2}  slot='9812419210' />
                     </div>
                 )
             }

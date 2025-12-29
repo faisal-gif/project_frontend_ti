@@ -33,6 +33,7 @@ export default function GoogleAds({
 
     const adSizes = {
         inline_rectangle: { width: "336px", height: "280px" },
+        rectangle: { width: "336px", height: "400px" },
         netboard: { width: "580px", height: "400px" },
         square: { width: "250px", height: "250px" },
         top_banner: { width: "970px", height: "250px" },
