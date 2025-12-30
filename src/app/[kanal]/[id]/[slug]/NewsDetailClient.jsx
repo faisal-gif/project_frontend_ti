@@ -20,6 +20,7 @@ import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
+
 // import KopiTimesCard from '@/components/KopiTimesCard';
 
 function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, initialWriter }) {

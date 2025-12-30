@@ -3,6 +3,7 @@ import parse, { domToReact } from 'html-react-parser';
 import ReadAlso from './ReadAlso.jsx';
 // import LazyAdopAd from './LazyAdopAd.jsx';
 import GoogleAds from './GoogleAds.jsx';
+import SurveyWidget from './SurveyWidget.jsx';
 
 /**
  * Convert inline style string to React style object
@@ -165,6 +166,21 @@ const ArticleContent = ({
         );
       }
 
+       if (paragraphCount === 3) {
+        return (
+          <React.Fragment key={`frag-${index}`}>
+            <p
+              style={reactStyle}
+              className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
+            >
+              {domToReact(node.children, { replace: transform })}
+            </p>
+            {/* <LazyAdopAd /> */}
+           <SurveyWidget />
+          </React.Fragment>
+        );
+      }
+
       /**
        * === READ ALSO DISTRIBUTION ===
        */
@@ -185,6 +201,7 @@ const ArticleContent = ({
           </React.Fragment>
         );
       }
+
 
       /**
        * === NORMAL PARAGRAPH ===
