@@ -4,10 +4,6 @@ import Card from './ui/Card'
 function SurveyWidget() {
     return (
         <Card className="p-4 bg-base-100 space-y-4 border border-base-300">
-            <div>
-                <h3 className="font-bold text-foreground text-lg">Survei Kelayakan Web</h3>
-                <p className="text-sm text-muted-foreground">Bantu kami meningkatkan kualitas layanan dengan mengisi survei singkat</p>
-            </div>
 
             <div className="bg-card rounded-lg overflow-hidden shadow-sm">
                 <iframe
