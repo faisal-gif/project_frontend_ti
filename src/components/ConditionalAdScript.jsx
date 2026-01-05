@@ -25,7 +25,8 @@ const DISABLED_AD_PATHS = [
     '/gaya-hidup/398043/doa-serta-adab-berhubungan-suami-istri-dalam-kitab-qurrotul-uyun-dan-fathul-izar',
     '/peristiwa/117515/jiad-kalau-bersih-mui-tak-usah-takut-diaudit',
     '/politik/486020/gawagus-muda-jombang-haramkan-pilih-pemimpin-cacat-etik-dan-moral',
-    '/glutera-news/373804/8-bagian-tubuh-pria-yang-mudah-terangsang'
+    '/glutera-news/373804/8-bagian-tubuh-pria-yang-mudah-terangsang',
+    '/glutera-news/432578/6-tips-istri-memuaskan-suami-di-ranjang'
 ];
 
 export default function ConditionalAdScript() {

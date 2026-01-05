@@ -89,9 +89,13 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
     return (
         <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
 
-            <div className='flex items-center justify-center'>
-                <GoogleAds size='top_banner' />
-            </div>
+            <div className='hidden md:flex items-center justify-center'>
+                         <GoogleAds size='top_banner' slot='9812419210' />
+                     </div>
+         
+                     <div className='md:hidden flex items-center justify-center'>
+                         <GoogleAds size='inline_rectangle' slot='4691830761' />
+                     </div>
 
             <div className="breadcrumbs text-sm my-6">
                 <ul>
