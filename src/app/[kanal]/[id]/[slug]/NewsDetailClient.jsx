@@ -20,16 +20,17 @@ import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
 import { getAllNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
+import KopiTimesCard from '@/components/KopiTimesCard';
 
 // import KopiTimesCard from '@/components/KopiTimesCard';
 
-function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, initialWriter }) {
+function NewsDetailClient({ initialView, initialNewsDetail, initialRelatedNews, initialWriter }) {
 
 
     const [size, setSize] = useState(2);
     const [newsView] = useState(initialView);
     const [newsDetail] = useState(initialNewsDetail);
-    
+
     const [writerDetail] = useState(initialWriter);
     const [relatedNews, setRelatedNews] = useState(initialRelatedNews);
 
@@ -291,7 +292,7 @@ function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, i
                                             </div>
                                         </div>
 
-
+                                        <KopiTimesCard />
                                         {/* Content News */}
 
                                         <ArticleContent
@@ -307,7 +308,7 @@ function NewsDetailClient({ initialView,initialNewsDetail, initialRelatedNews, i
 
 
                                 </div>
-                                {/* <KopiTimesCard /> */}
+
 
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
                                     {getTags().map((tag, index) => (
