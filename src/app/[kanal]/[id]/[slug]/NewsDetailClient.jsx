@@ -291,8 +291,8 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialRelatedNews, 
                                                 <span>A+</span>
                                             </div>
                                         </div>
+                                        {newsDetail.catnews_id == 15 && (<KopiTimesCard />)}
 
-                                        <KopiTimesCard />
                                         {/* Content News */}
 
                                         <ArticleContent
