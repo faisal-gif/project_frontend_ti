@@ -7,7 +7,7 @@ function KopiTimesCard() {
         <>
             {/* Writer Subscription Card */}
             <div className="mt-10 mb-8">
-                <div className="relative overflow-hidden bg-gradient-to-br from-[#121a2d] to-[#1a2540] border-2 border-[#b41d1d]/30 rounded-2xl p-8">
+                <div className="relative overflow-hidden bg-gradient-to-br from-[#121a2d] to-[#1a2540] border-2 border-[#b41d1d]/30 rounded-2xl p-4">
                     {/* Decorative elements */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#b41d1d]/20 to-[#121a2d]/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#b41d1d]/15 to-[#121a2d]/15 rounded-full blur-2xl"></div>
