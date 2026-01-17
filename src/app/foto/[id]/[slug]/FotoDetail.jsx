@@ -7,7 +7,7 @@ import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
 import { getFotoSlide } from '@/lib/api/fotoApi';
-import { Share2, Volume2 } from 'lucide-react';
+import { Eye, Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,6 +24,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import ModalShare from '@/components/ModalShare';
 import FormattedDate from '@/utils/date/FormattedDate';
 import ClientOnly from '@/components/ClientOnly';
+import FormattedViews from '@/utils/view/FormattedViews';
 
 function FotoDetail({ initialFotoDetail, initialWriter }) {
 
@@ -90,12 +91,12 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
         <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
 
             <div className='hidden md:flex items-center justify-center'>
-                         <GoogleAds size='top_banner' slot='9812419210' />
-                     </div>
-         
-                     <div className='md:hidden flex items-center justify-center'>
-                         <GoogleAds size='inline_rectangle' slot='4691830761' />
-                     </div>
+                <GoogleAds size='top_banner' slot='9812419210' />
+            </div>
+
+            <div className='md:hidden flex items-center justify-center'>
+                <GoogleAds size='inline_rectangle' slot='4691830761' />
+            </div>
 
             <div className="breadcrumbs text-sm my-6">
                 <ul>
@@ -127,13 +128,22 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                 </div>
                                 {/* Meta */}
                                 <div className="flex flex-col gap-4 border-b border-base-content/20 pb-4 mb-6 text-sm text-muted-foreground">
-                                    <div className="flex flex-row items-center gap-1">
-                                        <span className='font-bold'>TIMES Indonesia</span>
-                                        <span className="inline">-</span>
-                                        <span>
-                                            <ClientOnly>
-                                                <FormattedDate dateString={fotoDetail.gal_datepub} />
-                                            </ClientOnly>
+                                    <div className="flex flex-row justify-between items-center">
+                                        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2 font-medium">
+                                            <span className='font-bold'>TIMES Indonesia,</span>
+                                            <span>
+                                                <ClientOnly>
+                                                    <FormattedDate dateString={fotoDetail.gal_datepub} />
+                                                </ClientOnly>
+                                            </span>
+                                        </div>
+                                        <span className='flex flex-row gap-1 items-center pl-1'>
+                                            <Eye size={16} />
+                                            <div>
+                                                <ClientOnly>
+                                                    <FormattedViews count={fotoDetail.gal_view} />
+                                                </ClientOnly>
+                                            </div>
                                         </span>
                                     </div>
                                     <div className='flex flex-row justify-between items-center'>
@@ -207,6 +217,7 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                             </ul>
 
                                         </div>
+
                                         <div className='lg:hidden'>
                                             <Card className="  py-2 flex flex-row items-center">
                                                 <div className="dropdown dropdown-end">
