@@ -166,20 +166,20 @@ const ArticleContent = ({
         );
       }
 
-       if (paragraphCount === 3) {
-        return (
-          <React.Fragment key={`frag-${index}`}>
-            <p
-              style={reactStyle}
-              className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
-            >
-              {domToReact(node.children, { replace: transform })}
-            </p>
-            {/* <LazyAdopAd /> */}
-           <SurveyWidget />
-          </React.Fragment>
-        );
-      }
+      //  if (paragraphCount === 3) {
+      //   return (
+      //     <React.Fragment key={`frag-${index}`}>
+      //       <p
+      //         style={reactStyle}
+      //         className={`text-foreground mb-4 ${getTextSizeClasses()} ${htmlClass || ''}`}
+      //       >
+      //         {domToReact(node.children, { replace: transform })}
+      //       </p>
+      //       {/* <LazyAdopAd /> */}
+      //      <SurveyWidget />
+      //     </React.Fragment>
+      //   );
+      // }
 
       /**
        * === READ ALSO DISTRIBUTION ===
