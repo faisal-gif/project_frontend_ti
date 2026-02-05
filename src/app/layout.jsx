@@ -90,7 +90,12 @@ export default function RootLayout({ children }) {
           name="msapplication-TileImage"
           content="https://timesindonesia.co.id/themes/times/assets/images/timesindonesia-favicon-144.png"
         />
-
+        <ConditionalAdScript />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className={`antialiased`}
@@ -208,7 +213,7 @@ export default function RootLayout({ children }) {
         </div>
         <BackToTop />
         <GoogleAnalytics gaId='G-VWQ4STDNVX' strategy="worker" />
-        <ConditionalAdScript />
+
       </body>
     </html>
   );
