@@ -30,7 +30,7 @@ export const getSportsNewsClient = async () => {
 export const getBusinessNewsClient = async () => {
   return await getAllNews({
     news_type: "cat",
-    cat_id: 8,
+    cat_id: 3,
     offset: 0,
     limit: 5,
   });
