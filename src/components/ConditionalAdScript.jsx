@@ -46,7 +46,7 @@ export default function ConditionalAdScript() {
     return (
         <Script
             id="adsbygoogle-init"
-            strategy="beforeInteractive"
+            strategy="afterInteractive"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
             crossOrigin="anonymous"
