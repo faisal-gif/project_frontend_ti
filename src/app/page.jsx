@@ -38,6 +38,7 @@ export default async function page() {
   const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10, })
   const cekFaktaNewsPromise = getCekFaktaNewsServer();
   const adsPremiumPromise = getViewAds({ id: 1 });
+  const adsPremiumMobilePromise = getViewAds({ id: 43 });
   const adsLeaderboard1Promise = getViewAds({ id: 3 });
   const adsLeaderboard2Promise = getViewAds({ id: 7 });
   const adsRectangle1Promise = getViewAds({ id: 4 });
@@ -57,6 +58,7 @@ export default async function page() {
     headlineNews,
     cekFaktaNews,
     adsPremium,
+    adsPremiumMobile,
     adsLeaderboard1,
     adsLeaderboard2,
     adsRectangle1,
@@ -75,6 +77,7 @@ export default async function page() {
     headlineNewsPromise,
     cekFaktaNewsPromise,
     adsPremiumPromise,
+    adsPremiumMobilePromise,
     adsLeaderboard1Promise,
     adsLeaderboard2Promise,
     adsRectangle1Promise,
@@ -99,6 +102,7 @@ export default async function page() {
       initialHeadlineNews={headlineNews}
       initialCekFaktaNews={cekFaktaNews}
       initialAdsPremium={adsPremium}
+      initialAdsPremiumMobile={adsPremiumMobile}
       initialAdsLeaderboard1={adsLeaderboard1}
       initialAdsLeaderboard2={adsLeaderboard2}
       initialAdsRectangle1={adsRectangle1}
