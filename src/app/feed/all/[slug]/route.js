@@ -91,7 +91,7 @@ export async function GET(request, { params }) {
     <description><![CDATA[Berita Positif Terbaru dan Terkini]]></description>
     <link>${process.env.NEXT_PUBLIC_URL}</link>
  
-    <pubDate>${new Date(r.news_datepub).toUTCString().replace(' GMT', ' +0000')}</pubDate>
+    <pubDate>${new Date(news[0].news_datepub).toUTCString().replace(' GMT', ' +0000')}</pubDate>
     ${rssItems}
   </channel>
 </rss>`;
