@@ -11,6 +11,8 @@ function TopikPilihanWidget() {
         getAllFocus({ offset: 0, limit: 8 }).then(setFokus).catch(console.error);
     }, []);
 
+    console.log(fokus);
+
     if (fokus.length === 0) {
         return (
             <div className="bg-[#7b0f1f] opacity-65 shadow-lg rounded-md p-5 mb-6 animate-pulse">
@@ -46,7 +48,7 @@ function TopikPilihanWidget() {
                         <div key={index} className="border-b last:border-0 border-gray-200 pb-3">
                             <Link
                                 key={topic.focnews_id}
-                                href={topic.urlPath}
+                                href={topic.link_eksternal || topic.urlPath}
                                 className="block transition-colors rounded p-2 -m-2"
                             >
                                 <div className="flex items-start gap-3">
@@ -58,6 +60,9 @@ function TopikPilihanWidget() {
                                             <h2 className="text-lg line-clamp-2 md:line-clamp-none md:text-lg  font-medium text-white leading-5 mb-2 hover:text-[#b41d1d] transition-colors">
                                                 {topic.focnews_title}
                                             </h2>
+                                            {topic.hot_focus && (
+                                                <span className="badge badge-xs text-xs bg-[#7b0f1f] border-0 text-white">Terkini</span>
+                                            )}
                                         </div>
 
                                     </div>
