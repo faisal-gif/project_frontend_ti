@@ -5,7 +5,6 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        crawlDelay: 10,
         disallow: ['/search/*', '/search*']
       },
       {
