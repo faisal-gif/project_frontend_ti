@@ -90,14 +90,8 @@ export async function GET(request, { params }) {
     <title><![CDATA[RSS Feed TIMES Indonesia - ${kanal.catnews_title}]]></title>
     <description><![CDATA[Berita Positif Terbaru dan Terkini]]></description>
     <link>${process.env.NEXT_PUBLIC_URL}</link>
-    <image>
-      <url>${process.env.NEXT_PUBLIC_URL}/icon.png</url>
-      <title><![CDATA[RSS Feed TIMES Indonesia - ${kanal.catnews_title}]]></title>
-      <link>${process.env.NEXT_PUBLIC_URL}</link>
-    </image>
-    <generator>${process.env.NEXT_PUBLIC_URL}</generator>
-    <lastBuildDate>${new Date(news[0].news_datepub).toUTCString()}</lastBuildDate>
-    <atom:link href="${process.env.NEXT_PUBLIC_URL}/feed/all/${slug}" rel="self" type="application/rss+xml"/>
+ 
+    <pubDate>${new Date(news[0].news_datepub).toUTCString()}</pubDate>
     ${rssItems}
   </channel>
 </rss>`;
