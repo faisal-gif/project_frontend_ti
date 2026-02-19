@@ -73,12 +73,11 @@ export async function GET(request, { params }) {
         <title><![CDATA[${r.news_title}]]></title>
         <description><![CDATA[${character_limiter(r.news_description, 200)}]]></description>
         <link>${newsUrl}</link>
-        <guid isPermaLink="true">${newsUrl}</guid>
         <content:encoded><![CDATA[${content}]]></content:encoded>
         <dc:creator><![CDATA[${creator}]]></dc:creator>
-        <pubDate>${new Date(r.news_datepub).toUTCString()}</pubDate>
+        <pubDate>${new Date(r.news_datepub).toUTCString().replace(' GMT', '')}</pubDate>
         <enclosure url="${imageUrl}" length="0" type="image/jpeg"/>
-        <media:content medium="image" url="${imageUrl}"/>
+        <guid>${newsUrl}</guid>
       </item>
         `;
     }).join('');
