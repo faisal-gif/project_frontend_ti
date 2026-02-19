@@ -75,9 +75,9 @@ export async function GET(request, { params }) {
         <link>${newsUrl}</link>
         <content:encoded><![CDATA[${content}]]></content:encoded>
         <dc:creator><![CDATA[${creator}]]></dc:creator>
-        <pubDate>${new Date(r.news_datepub).toUTCString().replace(' GMT', '')}</pubDate>
         <enclosure url="${imageUrl}" length="0" type="image/jpeg"/>
         <guid>${newsUrl}</guid>
+        <pubDate>${new Date(r.news_datepub).toUTCString().replace(' GMT', ' +0000')}</pubDate>
       </item>
         `;
     }).join('');
