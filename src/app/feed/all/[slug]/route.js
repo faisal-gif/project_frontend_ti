@@ -70,12 +70,12 @@ export async function GET(request, { params }) {
 
         return `
       <item>
-        <title><![CDATA[${r.news_title}]]></title>
-        <description><![CDATA[<div><img src="${imageUrl}" style="width: 100%;"><div>${character_limiter(r.news_description, 200)}</div></div>]]></description>
+        <title>${r.news_title}</title>
+        <description>${character_limiter(r.news_description, 200)}</description>
         <link>${newsUrl}</link>
-        <guid isPermaLink="true">${newsUrl}</guid>
-        <content:encoded><![CDATA[${content}]]></content:encoded>
-        <dc:creator><![CDATA[${creator}]]></dc:creator>
+        <guid>${newsUrl}</guid>
+        <content:encoded>${content}</content:encoded>
+        <dc:creator>${creator}</dc:creator>
         <pubDate>${new Date(r.news_datepub).toUTCString()}</pubDate>
         <enclosure url="${imageUrl}" length="0" type="image/jpeg"/>
         <media:content medium="image" url="${imageUrl}"/>
