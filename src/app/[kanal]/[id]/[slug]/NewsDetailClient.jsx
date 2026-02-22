@@ -50,13 +50,14 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                 const firstTag = tags.length > 0 ? tags[0].trim() : null;
                 
                 // Ubah tag pertama menjadi slug untuk parameter 'title' (berdasarkan logika API sebelumnya)
-                const tagSlug = firstTag ? slugify(firstTag) : '';
+                const tagSlug = firstTag;
 
                 try {
                     const data = await getBajaJugaNews({
                         news_type: 'tag',
                         title: tagSlug,           // Digunakan jika news_type adalah 'tag'
                         cat_id: newsDetail.catnews_id, // Digunakan sebagai fallback jika tag < 5
+                        offset:0,
                         limit: 5
                     });
                     
