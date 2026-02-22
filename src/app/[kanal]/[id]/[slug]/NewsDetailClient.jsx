@@ -73,9 +73,6 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
         fetchRelated();
     }, [newsDetail]);
 
-
-    
-
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
         if (newsDetail) {
@@ -346,21 +343,21 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
 
                                 <div className="mt-8 pt-6 border-t border-base-content/20 flex flex-wrap gap-2">
                                     {getTags().map((tag, index) => (
-                                        // <Link
-                                        //     key={index}
-                                        //     href={`/tag/${slugify(tag)}`}
-                                        //     className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
-                                        // >
-                                        //     {tag}
-                                        // </Link>
-
                                         <Link
                                             key={index}
-                                            href={`#`}
+                                            href={`/tag/${slugify(tag)}`}
                                             className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
                                         >
                                             {tag}
                                         </Link>
+
+                                        // <Link
+                                        //     key={index}
+                                        //     href={`#`}
+                                        //     className="badge badge-soft text-secondary-foreground px-3 py-1 rounded-full text-sm hover:bg-base-200 transition"
+                                        // >
+                                        //     {tag}
+                                        // </Link>
                                     ))}
                                 </div>
 

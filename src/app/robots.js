@@ -5,19 +5,19 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/search/*', '/search*']
+        disallow: ['/search/*', '/search*', '/tag/*', '/tag*']
       },
       {
         userAgent: 'SemrushBot',
         crawlDelay: 10,
         allow: '/',
-        disallow: ['/search/*', '/search*']
+        disallow: ['/search/*', '/search*', '/tag/*', '/tag*']
       },
       {
         userAgent: 'SerpstatBot',
         crawlDelay: 10,
         allow: '/',
-        disallow: ['/search/*', '/search*']
+        disallow: ['/search/*', '/search*', '/tag/*', '/tag*']
       },
 
 
