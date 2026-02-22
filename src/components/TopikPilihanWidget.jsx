@@ -11,8 +11,6 @@ function TopikPilihanWidget() {
         getAllFocus({ offset: 0, limit: 8 }).then(setFokus).catch(console.error);
     }, []);
 
-    console.log(fokus);
-
     if (fokus.length === 0) {
         return (
             <div className="bg-[#7b0f1f] opacity-65 shadow-lg rounded-md p-5 mb-6 animate-pulse">

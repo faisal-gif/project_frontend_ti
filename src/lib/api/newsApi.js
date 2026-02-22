@@ -189,7 +189,6 @@ const getBajaJugaNews = async ({ news_type = 'tag', offset = 0, limit = 5, title
 
     // 2. Cek apakah data sudah ada di cache
     if (newsCache.has(cacheKey)) {
-        console.log("Mengambil data dari cache...");
         return newsCache.get(cacheKey);
     }
 
@@ -207,9 +206,7 @@ const getBajaJugaNews = async ({ news_type = 'tag', offset = 0, limit = 5, title
         let data = response.data?.data || [];
 
         // 4. Jika data < 5, ambil berdasarkan Category (menggunakan parameter cat_id)
-        if (data.length < 5) {
-            console.log("Data tag kurang dari 5, mengambil dari category...");
-            
+        if (data.length < 5) { 
             const fallbackResponse = await clientAxios.get("news/all", {
                 params: {
                     news_type: 'cat',
