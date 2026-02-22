@@ -19,8 +19,6 @@ export async function GET(req) {
                 title,
                 limit,
                 editor_id,
-                timeout: 5000,
-                validateStatus: () => true,
             },
         });
 
