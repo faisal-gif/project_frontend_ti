@@ -120,8 +120,7 @@ export default async function page({ params }) {
         },
     };
 
-    const relatedNews = await getRelatedNews({ cat_id: initialNewsDetail.catnews_id, news_id: initialNewsDetail.news_id, rel_title: initialNewsDetail.news_title });
-
+    
     const newsDetailForClient = {
         ...initialNewsDetail,
         news_datepub: correctedDateString, // Kirim tanggal yang sudah benar ke client
@@ -134,7 +133,7 @@ export default async function page({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
             {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialView={viewResult?.newViewCount} initialNewsDetail={newsDetailForClient} initialRelatedNews={relatedNews} initialWriter={writer} />
+            <NewsDetailClient initialView={viewResult?.newViewCount} initialNewsDetail={newsDetailForClient} initialWriter={writer} />
         </>
     );
 }

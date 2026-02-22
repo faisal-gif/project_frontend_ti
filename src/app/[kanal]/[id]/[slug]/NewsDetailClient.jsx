@@ -18,21 +18,20 @@ import FormattedViews from '@/utils/view/FormattedViews';
 import { incrementView } from '@/lib/actions/updateView';
 import FormattedDateDetail from '@/utils/date/FormattedDateDetail';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
-import { getAllNews } from '@/lib/api/newsApi';
+import { getAllNews, getBajaJugaNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 import KopiTimesCard from '@/components/KopiTimesCard';
 
 // import KopiTimesCard from '@/components/KopiTimesCard';
 
-function NewsDetailClient({ initialView, initialNewsDetail, initialRelatedNews, initialWriter }) {
-
+function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
 
     const [size, setSize] = useState(2);
     const [newsView] = useState(initialView);
     const [newsDetail] = useState(initialNewsDetail);
 
     const [writerDetail] = useState(initialWriter);
-    const [relatedNews, setRelatedNews] = useState(initialRelatedNews);
+    const [relatedNews, setRelatedNews] = useState();
 
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
@@ -40,6 +39,42 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialRelatedNews, 
     const [newsFirstSections, setNewsFirstSections] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
     const viewUpdated = useRef(false);
+
+    const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
+
+    useEffect(() => {
+        const fetchRelated = async () => {
+            if (newsDetail) {
+                // Ambil semua tag, lalu pilih yang pertama
+                const tags = newsDetail.news_tags ? newsDetail.news_tags.split(',') : [];
+                const firstTag = tags.length > 0 ? tags[0].trim() : null;
+                
+                // Ubah tag pertama menjadi slug untuk parameter 'title' (berdasarkan logika API sebelumnya)
+                const tagSlug = firstTag ? slugify(firstTag) : '';
+
+                try {
+                    const data = await getBajaJugaNews({
+                        news_type: 'tag',
+                        title: tagSlug,           // Digunakan jika news_type adalah 'tag'
+                        cat_id: newsDetail.catnews_id, // Digunakan sebagai fallback jika tag < 5
+                        limit: 5
+                    });
+                    
+                    // Opsional: Filter agar berita yang sedang dibaca tidak muncul di "Baca Juga"
+                    const filteredData = data.filter(item => item.news_id !== newsDetail.news_id);
+                    
+                    setRelatedNews(filteredData);
+                } catch (error) {
+                    console.error("Gagal mengambil berita terkait:", error);
+                }
+            }
+        };
+
+        fetchRelated();
+    }, [newsDetail]);
+
+
+    
 
     // Hooks selalu dipanggil, logic conditional di dalam
     useEffect(() => {
@@ -79,7 +114,6 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialRelatedNews, 
     };
 
 
-    const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
 
 
     return (

@@ -180,6 +180,63 @@ const updateView = async ({ id }) => {
     }
 };
 
+// Variable cache diletakkan di luar fungsi agar persisten selama sesi aplikasi berjalan
+const newsCache = new Map();
+
+const getBajaJugaNews = async ({ news_type = 'tag', offset = 0, limit = 5, title, cat_id }) => {
+    // 1. Buat Unique Cache Key berdasarkan parameter
+    const cacheKey = `${news_type}-${title}-${cat_id}-${offset}-${limit}`;
+
+    // 2. Cek apakah data sudah ada di cache
+    if (newsCache.has(cacheKey)) {
+        console.log("Mengambil data dari cache...");
+        return newsCache.get(cacheKey);
+    }
+
+    try {
+        // 3. Request pertama: Berdasarkan Tag (menggunakan parameter title)
+        let response = await clientAxios.get("news/all", {
+            params: {
+                news_type: 'tag',
+                title: title, // Slug dari tag pertama
+                offset: offset,
+                limit: limit,
+            },
+        });
+
+        let data = response.data?.data || [];
+
+        // 4. Jika data < 5, ambil berdasarkan Category (menggunakan parameter cat_id)
+        if (data.length < 5) {
+            console.log("Data tag kurang dari 5, mengambil dari category...");
+            
+            const fallbackResponse = await clientAxios.get("news/all", {
+                params: {
+                    news_type: 'cat',
+                    cat_id: cat_id, // Berdasarkan ID Kategori
+                    offset: offset,
+                    limit: limit,
+                },
+            });
+
+            const fallbackData = fallbackResponse.data?.data || [];
+            
+            // Gabungkan data tag dan category (opsional: jika ingin mencampur)
+            // Atau timpa jika ingin full category saat tag dikit
+            data = [...data, ...fallbackData].slice(0, limit);
+        }
+
+        // 5. Simpan hasil ke cache sebelum dikembalikan
+        newsCache.set(cacheKey, data);
+        
+        return data;
+
+    } catch (error) {
+        console.error("Error fetching news:", error);
+        return []; 
+    }
+};
+
 export {
     getAllNews,
     getAllNewsIndex,
@@ -187,5 +244,6 @@ export {
     getNewsDetail,
     getNewsDetailUniq,
     getRelatedNews,
+    getBajaJugaNews,
     updateView,
 }
