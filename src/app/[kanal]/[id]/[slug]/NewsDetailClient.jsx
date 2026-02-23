@@ -116,7 +116,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-24 ">
-            <div className='hidden md:flex items-center'>
+            <div className='hidden md:flex items-center justify-center'>
                 <GoogleAds size='top_banner' slot='6315037307' />
             </div>
 
