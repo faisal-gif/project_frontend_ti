@@ -160,7 +160,7 @@ const ArticleContent = ({
             </p>
             {/* <LazyAdopAd /> */}
             <div className="my-6 flex justify-center w-full" key={`ad-wrapper-${index}`}>
-              <GoogleAds size='inline_rectangle' slot='4691830761' />
+              <GoogleAds size='inline_rectangle' slot='9639204649' />
             </div>
           </React.Fragment>
         );
