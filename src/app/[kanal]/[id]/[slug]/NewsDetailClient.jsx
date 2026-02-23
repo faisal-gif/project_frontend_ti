@@ -117,11 +117,11 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
     return (
         <div className="max-w-6xl mx-auto px-4 py-24 ">
             <div className='hidden md:flex items-center justify-center'>
-                <GoogleAds size='top_banner' slot='9812419210' />
+                <GoogleAds size='top_banner' slot='6315037307' />
             </div>
 
             <div className='md:hidden flex items-center justify-center'>
-                <GoogleAds size='inline_rectangle' slot='4691830761' />
+                <GoogleAds size='inline_rectangle' slot='9639204649' />
             </div>
 
 
@@ -408,11 +408,11 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                             <EkoranNewsDetailCard />
                             <div className='my-6'>
                                 <div className='hidden md:flex items-center justify-center'>
-                                    <GoogleAds size='banner' slot='9812419210' />
+                                    <GoogleAds size='top_banner' slot='6315037307' />
                                 </div>
 
                                 <div className='md:hidden flex items-center justify-center'>
-                                    <GoogleAds size='inline_rectangle' slot='4691830761' />
+                                    <GoogleAds size='inline_rectangle' slot='9639204649' />
                                 </div>
                             </div>
 
@@ -447,12 +447,12 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
 
                     <div className=" sticky top-28">
                         <div className='flex items-center justify-center my-6'>
-                            <GoogleAds size='inline_rectangle' slot='4691830761' />
+                            <GoogleAds size='inline_rectangle' slot='9639204649' />
                         </div>
                         <PopularNews />
 
                         <div className='flex items-center justify-center'>
-                            <GoogleAds size='inline_rectangle' />
+                            <GoogleAds size='inline_rectangle' slot='9639204649' />
                         </div>
                     </div>
                 </aside>

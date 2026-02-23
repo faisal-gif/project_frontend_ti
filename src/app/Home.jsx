@@ -54,11 +54,11 @@ function Home({
 
             <div className='max-w-6xl mx-auto gap-6 pt-28 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center'>
-                    <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='9812419210' />
+                    <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='6315037307' />
                 </div>
 
                 <div className='md:hidden flex items-center justify-center'>
-                    <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='4691830761' />
+                    <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' />
                 </div>
 
             </div>
@@ -105,7 +105,7 @@ function Home({
             {initialAdsLeaderboard1 && (
                 <div className="mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
-                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} slot='9812419210' />
+                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} slot='6315037307' />
                     </div>
                 </div>
             )}
@@ -135,7 +135,7 @@ function Home({
             {initialAdsLeaderboard2 && (
                 <div className="hidden md:block mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
-                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} slot='9812419210' />
+                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} slot='6315037307' />
                     </div>
                 </div>
             )}
@@ -143,7 +143,7 @@ function Home({
             {
                 initialAdsRectangleLeaderboard2 && (
                     <div className='flex md:hidden items-center justify-center'>
-                        <GoogleAds size='rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard2} slot='9812419210' />
+                        <GoogleAds size='rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard2} slot='6315037307' />
                     </div>
                 )
             }
@@ -302,17 +302,17 @@ function Home({
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle6} slot='4691830761' />
+                            <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle6} slot='9639204649' />
                         </div>
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
                         <div className='flex items-center justify-center my-4 '>
-                            <GoogleAds size='half_page_ad' key={2} adsEksternal={initialAdsRectangle7} slot='2065667423' />
+                            <GoogleAds size='half_page_ad' key={2} adsEksternal={initialAdsRectangle7} slot='6105311407' />
                         </div>
                         <div className='sticky top-30'>
                             <div className='hidden md:flex items-center justify-center my-8 '>
-                                <GoogleAds size='inline_rectangle' slot='4691830761' />
+                                <GoogleAds size='inline_rectangle' slot='9639204649' />
                             </div>
                         </div>
 

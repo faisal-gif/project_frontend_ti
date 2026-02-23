@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function GoogleAds({
     size = "inline_rectangle",
     adsEksternal = null,
-    slot = '8134946479',
+    slot = "2166066399",
     type = 'desktop',
 
 }) {
