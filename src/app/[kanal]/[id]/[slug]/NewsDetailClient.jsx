@@ -48,7 +48,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                 // Ambil semua tag, lalu pilih yang pertama
                 const tags = newsDetail.news_tags ? newsDetail.news_tags.split(',') : [];
                 const firstTag = tags.length > 0 ? tags[0].trim() : null;
-
+                
                 // Ubah tag pertama menjadi slug untuk parameter 'title' (berdasarkan logika API sebelumnya)
                 const tagSlug = firstTag;
 
@@ -57,13 +57,13 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                         news_type: 'tag',
                         title: tagSlug,           // Digunakan jika news_type adalah 'tag'
                         cat_id: newsDetail.catnews_id, // Digunakan sebagai fallback jika tag < 5
-                        offset: 0,
+                        offset:0,
                         limit: 5
                     });
-
+                    
                     // Opsional: Filter agar berita yang sedang dibaca tidak muncul di "Baca Juga"
                     const filteredData = data.filter(item => item.news_id !== newsDetail.news_id);
-
+                    
                     setRelatedNews(filteredData);
                 } catch (error) {
                     console.error("Gagal mengambil berita terkait:", error);
@@ -446,12 +446,12 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                 <aside className="hidden lg:block w-80">
 
                     <div className=" sticky top-28">
-
-                        <PopularNews />
-                        <div>
+                        <div className='flex items-center justify-center my-6'>
                             <GoogleAds size='inline_rectangle' slot='6216992041' />
                         </div>
-                        <div className=''>
+                        <PopularNews />
+
+                        <div className='flex items-center justify-center'>
                             <GoogleAds size='inline_rectangle' slot='6216992041' />
                         </div>
                     </div>

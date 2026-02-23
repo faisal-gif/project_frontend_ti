@@ -41,7 +41,7 @@ export default function PopularNews() {
                             </span>
                             <div className="flex-1">
                                 <div className='flex flex-row justify-between items-center gap-2 '>
-                                    <h4 className="text-xs line-clamp-2 md:line-clamp-none md:text-sm  font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
+                                    <h4 className="text-xs line-clamp-2 md:line-clamp-2 md:text-sm  font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
                                         {article.news_title}
                                     </h4>
                                     <div className="w-20 h-16 flex-shrink-0 relative">
