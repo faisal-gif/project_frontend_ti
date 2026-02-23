@@ -448,10 +448,10 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                     <div className=" sticky top-28">
 
                         <PopularNews />
-                        <div className='flex items-center justify-center my-6'>
+                        <div>
                             <GoogleAds size='inline_rectangle' slot='6216992041' />
                         </div>
-                        <div className='flex items-center justify-center'>
+                        <div className=''>
                             <GoogleAds size='inline_rectangle' slot='6216992041' />
                         </div>
                     </div>
