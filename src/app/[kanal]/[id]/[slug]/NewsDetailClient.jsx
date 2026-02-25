@@ -116,13 +116,78 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-24 ">
-            <div className='hidden md:flex items-center justify-center'>
-                <GoogleAds size='top_banner' slot='6315037307' />
-            </div>
 
-            <div className='md:hidden flex items-center justify-center'>
-                <GoogleAds size='inline_rectangle' slot='9639204649' />
-            </div>
+            {
+                newsDetail.catnews_slug === 'kopi-times' ? (
+                    <>
+                        <div className='hidden md:flex items-center justify-center mb-6'>
+                            <div
+                                className="relative"
+                                style={{
+                                    width: 970,
+                                    height: 250,
+                                }}
+                            >
+                                <a
+                                    href={'https://kopi.times.co.id/'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full h-full relative"
+                                >
+
+                                    <Image
+                                        src={'https://cdn-1.times.co.id/images/2026/02/25/kopi-times.jpg'}
+                                        alt="Advertisement"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 300px"
+                                        className="object-contain"
+                                        priority={false}
+                                    />
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className='md:hidden flex items-center justify-center'>
+                            <div
+                                className="relative"
+                                style={{
+                                    width: 336,
+                                    height: 280,
+                                }}
+                            >
+                                <a
+                                    href={'https://kopi.times.co.id/'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full h-full relative"
+                                >
+                                      <Image
+                                        src={'https://cdn-1.times.co.id/images/2026/02/25/m_kopi-times.jpg'}
+                                        alt="Advertisement"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 300px"
+                                        className="object-contain"
+                                        priority={false}
+                                    />
+                                </a>
+                            </div>
+                        </div>
+
+                    </>
+
+                ) : (
+                    <>
+                        <div className='hidden md:flex items-center justify-center'>
+                            <GoogleAds size='top_banner' slot='6315037307' />
+                        </div>
+
+                        <div className='md:hidden flex items-center justify-center'>
+                            <GoogleAds size='inline_rectangle' slot='9639204649' />
+                        </div>
+                    </>
+                )
+            }
+
 
 
             <div className="breadcrumbs text-sm mt-6">

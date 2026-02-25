@@ -8,6 +8,7 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn-1.timesmedia.co.id", pathname: "/**" },
       { protocol: "https", hostname: "cdn.inatimes.co.id", pathname: "/**" },
       { protocol: "https", hostname: "cdn-1.tin.co.id", pathname: "/**" },
+      { protocol: "https", hostname: "cdn-1.times.co.id", pathname: "/**" },
       { protocol: "https", hostname: "picsum.photos", pathname: "/**" },
       { protocol: "https", hostname: "cdn.timesmedia.co.id", pathname: "/**" },
       { protocol: "https", hostname: "img.youtube.com", pathname: "/**" },
@@ -23,30 +24,30 @@ const nextConfig = {
   },
 
   // 🚀 Tambahkan bagian ini
-  async headers() {
-    return [
-      {
-        // Semua file hasil build Next.js (/_next/static)
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Semua file di folder /public (gambar, font, ikon, dll)
-        source: "/(.*\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|woff2?))",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       // Semua file hasil build Next.js (/_next/static)
+  //       source: "/_next/static/:path*",
+  //       headers: [
+  //         {
+  //           key: "Cache-Control",
+  //           value: "public, max-age=31536000, immutable",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       // Semua file di folder /public (gambar, font, ikon, dll)
+  //       source: "/(.*\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|woff2?))",
+  //       headers: [
+  //         {
+  //           key: "Cache-Control",
+  //           value: "public, max-age=31536000, immutable",
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;
