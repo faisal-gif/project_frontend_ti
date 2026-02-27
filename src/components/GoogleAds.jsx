@@ -95,7 +95,7 @@ export default function GoogleAds({
                         width: currentSize.width,
                         height: currentSize.height,
                     }}
-                    data-ad-client="ca-pub-5117046027656864"
+                    data-ad-client="ca-pub-2259519132704244"
                     data-ad-slot={slot}
                 ></ins>
             )}

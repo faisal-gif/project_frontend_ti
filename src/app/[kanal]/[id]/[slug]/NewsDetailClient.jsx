@@ -177,13 +177,13 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
 
                 ) : (
                     <>
-                        <div className='hidden md:flex items-center justify-center'>
+                        {/* <div className='hidden md:flex items-center justify-center'>
                             <GoogleAds size='top_banner' slot='6315037307' />
                         </div>
 
                         <div className='md:hidden flex items-center justify-center'>
                             <GoogleAds size='inline_rectangle' slot='9639204649' />
-                        </div>
+                        </div> */}
                     </>
                 )
             }
