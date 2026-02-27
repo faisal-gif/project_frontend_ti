@@ -88,16 +88,8 @@ export default function GoogleAds({
                     </a>
                 </div>
             ) : (
-                <ins
-                    className="adsbygoogle"
-                    style={{
-                        display: "inline-block",
-                        width: currentSize.width,
-                        height: currentSize.height,
-                    }}
-                    data-ad-client="ca-pub-2259519132704244"
-                    data-ad-slot={slot}
-                ></ins>
+             <>
+             </>
             )}
         </div>
     );
