@@ -48,7 +48,7 @@ export default function ConditionalAdScript() {
             id="adsbygoogle-init"
             strategy="afterInteractive"
             async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117046027656864"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244"
             crossOrigin="anonymous"
         />
     );
