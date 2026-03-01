@@ -473,9 +473,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                             <EkoranNewsDetailCard />
                             <div className='my-6'>
 
-                                {/* <div className='flex items-center justify-center'>
-                                    <GoogleAds size='inline_rectangle' slot='9639204649' />
-                                </div> */}
+                             
                             </div>
 
                             {/* <ModalShare /> */}
