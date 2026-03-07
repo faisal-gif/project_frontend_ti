@@ -136,7 +136,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                                 >
 
                                     <Image
-                                        src={'https://cdn-1.times.co.id/images/2026/02/25/kopi-times.jpg'}
+                                        src={'https://cdn-1.times.co.id/images/2026/03/07/kopi-times.jpg'}
                                         alt="Advertisement"
                                         fill
                                         sizes="(max-width: 768px) 100vw, 300px"
@@ -162,7 +162,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter }) {
                                     className="block w-full h-full relative"
                                 >
                                       <Image
-                                        src={'https://cdn-1.times.co.id/images/2026/02/25/m_kopi-times.jpg'}
+                                        src={'https://cdn-1.times.co.id/images/2026/03/07/m_kopi-times.jpg'}
                                         alt="Advertisement"
                                         fill
                                         sizes="(max-width: 768px) 100vw, 300px"
