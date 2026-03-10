@@ -104,7 +104,7 @@ function Home({
 
             {initialAdsLeaderboard1 && (
                 <div className="mx-auto max-w-6xl ">
-                    <div className='flex items-center justify-center mb-8'>
+                    <div className='hidden md:flex items-center justify-center mb-8'>
                         <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} slot='6315037307' />
                     </div>
                 </div>
