@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
   const { id } = await params;
   const ekoranDetail = await getDetailEkoran({ id });
   const originalImageUrl = ekoranDetail.img1;
-  const mediumImageUrl = originalImageUrl.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1');
+  const mediumImageUrl = originalImageUrl;
 
   const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${ekoranDetail.url_ci4 || ''}`;
 

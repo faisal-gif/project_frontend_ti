@@ -29,7 +29,7 @@ function NewsCard({
                         {/* Main image */}
                         <div className="relative z-10 w-full h-20 md:h-24 ">
                             <Image
-                                src={image.replace(/\.(jpg|jpeg|png|webp)$/i, '.md.$1')}
+                                src={image}
                                 alt={title}
                                 width={148}
                                 height={99}
