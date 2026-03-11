@@ -38,6 +38,7 @@ function Home({
     initialAdsRectangle5,
     initialAdsRectangle6,
     initialAdsRectangle7,
+    initialAdsRectangleLeaderboard1,
     initialAdsRectangleLeaderboard2, }) {
 
     return (
@@ -109,6 +110,15 @@ function Home({
                     </div>
                 </div>
             )}
+
+            {
+                initialAdsRectangleLeaderboard1 && (
+                    <div className='flex md:hidden items-center justify-center'>
+                        <GoogleAds size='rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard1} slot='6315037307' />
+                    </div>
+                )
+            }
+
 
 
             <div className="mx-auto max-w-6xl px-4 py-8 ">
