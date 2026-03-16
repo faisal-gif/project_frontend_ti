@@ -4,6 +4,7 @@ import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import { incrementView } from '@/lib/actions/updateView';
+import { getWriterKopiTimes } from '@/lib/api/kopiTimesApi';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -85,6 +86,7 @@ export default async function page({ params }) {
     if (initialNewsDetail.writer_slug) {
         writer = await getWriterDetailServer({ slug: initialNewsDetail.writer_slug });
     }
+    const writerKopiTimes = await getWriterKopiTimes({ id: initialNewsDetail.is_code });
 
     const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
@@ -120,7 +122,7 @@ export default async function page({ params }) {
         },
     };
 
-    
+
     const newsDetailForClient = {
         ...initialNewsDetail,
         news_datepub: correctedDateString, // Kirim tanggal yang sudah benar ke client
@@ -133,7 +135,10 @@ export default async function page({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
             {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialView={viewResult?.newViewCount} initialNewsDetail={newsDetailForClient} initialWriter={writer} />
+            <NewsDetailClient initialView={viewResult?.newViewCount}
+                initialNewsDetail={newsDetailForClient}
+                initialWriter={writer}
+                initialWriterKopiTimes={writerKopiTimes} />
         </>
     );
 }
