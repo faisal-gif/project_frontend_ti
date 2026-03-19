@@ -48,6 +48,11 @@ export default async function page() {
   const adsRectangle5Promise = getViewAds({ id: 94 });
   const adsRectangle6Promise = getViewAds({ id: 95 });
   const adsRectangle7Promise = getViewAds({ id: 96 });
+  const adsRectangle8Promise = getViewAds({ id: 97 });
+  const adsRectangle9Promise = getViewAds({ id: 98 });
+  const adsRectangle10Promise = getViewAds({ id: 99 });
+  const adsRectangle11Promise = getViewAds({ id: 100 });
+  
   const adsRectangleLeaderboard1Promise = getViewAds({ id: 44 });
   const adsRectangleLeaderboard2Promise = getViewAds({ id: 47 });
 
@@ -69,6 +74,10 @@ export default async function page() {
     adsRectangle5,
     adsRectangle6,
     adsRectangle7,
+    adsRectangle8,
+    adsRectangle9,
+    adsRectangle10,
+    adsRectangle11,
     adsRectangleLeaderboard1,
     adsRectangleLeaderboard2,
   ] = await Promise.all([
@@ -89,6 +98,10 @@ export default async function page() {
     adsRectangle5Promise,
     adsRectangle6Promise,
     adsRectangle7Promise,
+    adsRectangle8Promise,
+    adsRectangle9Promise,
+    adsRectangle10Promise,
+    adsRectangle11Promise,
     adsRectangleLeaderboard1Promise,
     adsRectangleLeaderboard2Promise,
   ]);
@@ -115,6 +128,10 @@ export default async function page() {
       initialAdsRectangle5={adsRectangle5}
       initialAdsRectangle6={adsRectangle6}
       initialAdsRectangle7={adsRectangle7}
+      initialAdsRectangle8={adsRectangle8}
+      initialAdsRectangle9={adsRectangle9}
+      initialAdsRectangle10={adsRectangle10}
+      initialAdsRectangle11={adsRectangle11}
       initialAdsRectangleLeaderboard1={adsRectangleLeaderboard1}
       initialAdsRectangleLeaderboard2={adsRectangleLeaderboard2}
     />

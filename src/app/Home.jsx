@@ -38,6 +38,10 @@ function Home({
     initialAdsRectangle5,
     initialAdsRectangle6,
     initialAdsRectangle7,
+    initialAdsRectangle8,
+    initialAdsRectangle9,
+    initialAdsRectangle10,
+    initialAdsRectangle11,
     initialAdsRectangleLeaderboard1,
     initialAdsRectangleLeaderboard2, }) {
 
@@ -125,23 +129,6 @@ function Home({
                 <EKoranSection />
             </div>
 
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
-                {newsSecondSections.length === 0 && (
-                    [1, 2, 3].map((i) => (
-                        <div key={i} className="space-y-8">
-                            <FirstHighlightNewsSectionSkeleton />
-                        </div>
-                    ))
-                )}
-                {newsSecondSections.map((section) => (
-                    <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection url={section.url} title={section.title} news={section.news} layout={section.layout} />
-                    </div>
-                ))}
-
-            </div>
-
-
             {initialAdsLeaderboard2 && (
                 <div className="hidden md:block mx-auto max-w-6xl ">
                     <div className='flex items-center justify-center mb-8'>
@@ -159,38 +146,21 @@ function Home({
             }
 
 
-
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
-                <div className='md:col-span-4'>
-                    {wansusNews.length === 0 && (
-                        <HeadlineCardSkeleton />
-                    )}
-                    <div className="animate-pulse grid grid-cols-4 gap-2 mt-4">
-                        {wansusNews.length === 0 && (
-                            [1, 2, 3, 4].map((index) => (
-                                <div
-                                    key={index}
-                                    className="pl-2 min-w-0 shrink-0 grow-0 basis-4/9  sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-                                >
-                                    <div className="h-full">
-                                        <HorizontalNewsCardSkeleton />
-                                    </div>
-                                </div>
-                            ))
-                        )}
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
+                {newsSecondSections.length === 0 && (
+                    [1, 2, 3].map((i) => (
+                        <div key={i} className="space-y-8">
+                            <FirstHighlightNewsSectionSkeleton />
+                        </div>
+                    ))
+                )}
+                {newsSecondSections.map((section) => (
+                    <div key={section.title} className="space-y-8">
+                        <FirstHightlightNewsSection url={section.url} title={section.title} news={section.news} layout={section.layout} />
                     </div>
-                    {wansusNews.length > 0 && (
-                        <FirstHighlightHorizontalNewsSection url='/kanal/wawancara-khusus/' articles={wansusNews} />
-                    )}
-                </div>
-                <div className='md:col-span-2'>
-                    <TopikPilihanWidget />
-                </div>
+                ))}
 
             </div>
-
-            <EventWidget />
-
 
 
             {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
@@ -243,11 +213,34 @@ function Home({
             )}
 
 
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
+                <div className='md:col-span-4'>
+                    {wansusNews.length === 0 && (
+                        <HeadlineCardSkeleton />
+                    )}
+                    <div className="animate-pulse grid grid-cols-4 gap-2 mt-4">
+                        {wansusNews.length === 0 && (
+                            [1, 2, 3, 4].map((index) => (
+                                <div
+                                    key={index}
+                                    className="pl-2 min-w-0 shrink-0 grow-0 basis-4/9  sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                                >
+                                    <div className="h-full">
+                                        <HorizontalNewsCardSkeleton />
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                    {wansusNews.length > 0 && (
+                        <FirstHighlightHorizontalNewsSection url='/kanal/wawancara-khusus/' articles={wansusNews} />
+                    )}
+                </div>
+                <div className='md:col-span-2'>
+                    <TopikPilihanWidget />
+                </div>
 
-            {/* Jurnalistik Fotografi */}
-            <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
-                <GallerySection />
-            </section>
+            </div>
 
             {(initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6) && (
                 <div className="mx-auto max-w-6xl ">
@@ -298,6 +291,68 @@ function Home({
                 </div>
             )}
 
+            <EventWidget />
+
+
+
+            {(initialAdsRectangle7 || initialAdsRectangle8 || initialAdsRectangle9) && (
+                <div className="mx-auto max-w-6xl ">
+                    <div className='mx-auto block md:hidden mb-8'>
+                        <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
+                            <Carousel.Content>
+                                {initialAdsRectangle7 && (
+                                    <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle7} />
+                                        </div>
+                                    </Carousel.Item>
+                                )}
+                                {initialAdsRectangle8 && (
+                                    <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle8} />
+                                        </div>
+                                    </Carousel.Item>
+                                )}
+                                {initialAdsRectangle9 && (
+                                    <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                        <div className="w-full flex justify-center items-center">
+                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle9} />
+                                        </div>
+                                    </Carousel.Item>
+                                )}
+
+                            </Carousel.Content>
+
+                            <Carousel.Previous position={'inner'} />
+                            <Carousel.Next position={'inner'} />
+
+
+                        </Carousel>
+                    </div>
+                    <div className='hidden md:flex items-center gap-10 justify-center mb-8'>
+                        {initialAdsRectangle7 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle7} />
+                        )}
+                        {initialAdsRectangle8 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle8} />
+                        )}
+                        {initialAdsRectangle9 && (
+                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle9} />
+                        )}
+                    </div>
+                </div>
+            )}
+
+
+
+            {/* Jurnalistik Fotografi */}
+            <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
+                <GallerySection />
+            </section>
+
+
+
 
 
             {/* <VideoSection /> */}
@@ -312,13 +367,13 @@ function Home({
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle6} slot='9639204649' />
+                            <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle10} slot='9639204649' />
                         </div>
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
                         <div className='flex items-center justify-center my-4 '>
-                            <GoogleAds size='half_page_ad' key={2} adsEksternal={initialAdsRectangle7} slot='6105311407' />
+                            <GoogleAds size='inline_rectangle' key={2} adsEksternal={initialAdsRectangle11} slot='6105311407' />
                         </div>
                         <div className='sticky top-30'>
                             <div className='hidden md:flex items-center justify-center my-8 '>
