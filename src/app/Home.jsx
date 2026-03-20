@@ -394,8 +394,8 @@ function Home({
                                         // Desktop Carousel 2 & 3: lg:basis-1/4 (tampil 4 item sejajar, atau sesuaikan)
 
                                         const basisClass = groupIndex === 0
-                                            ? "basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                                            : "basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4";
+                                            ? "basis-full md:basis-1/2 lg:basis-1/3 "
+                                            : "basis-full md:basis-1/2 lg:basis-1/3";
 
                                         return (
                                             <Carousel.Item
