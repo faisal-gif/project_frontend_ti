@@ -46,10 +46,20 @@ function Home({
     initialAdsRectangleLeaderboard2, }) {
     const adsArray = Array.isArray(initialAdsListRectangle11) ? initialAdsListRectangle11 : [];
 
-    const chunkedAds = [[], [], []];
-    adsArray.forEach((ads, index) => {
-        chunkedAds[index % 3].push(ads);
-    });
+    // 2. Logika Pembagian Data (Chunking) sesuai permintaan:
+    // - Carousel 1: Maksimal 6 item pertama
+    const carousel1 = adsArray.slice(0, 6);
+
+    // - Ambil sisa iklan setelah 6 item pertama diambil
+    const remainingAds = adsArray.slice(6);
+
+    // - Carousel 2 & 3: Sisa iklan dibagi rata untuk keduanya
+    const halfRemaining = Math.ceil(remainingAds.length / 2);
+    const carousel2 = remainingAds.slice(0, halfRemaining);
+    const carousel3 = remainingAds.slice(halfRemaining);
+
+    // Gabungkan menjadi satu array bersarang agar mudah di-looping
+    const chunkedAds = [carousel1, carousel2, carousel3];
 
     return (
         <div className="">
@@ -362,51 +372,57 @@ function Home({
 
 
             {/* <VideoSection /> */}
-            <>
-                {/* --- DESKTOP VIEW: Tampil sebagai Grid 3 Kolom (Disembunyikan di Layar HP) --- */}
-                <div className='hidden md:grid grid-cols-3 justify-center items-center max-w-6xl mx-auto px-4 py-8 gap-6'>
-                    {adsArray.map((ads, index) => (
-                        <div key={`desktop-${index}`} className='flex items-center justify-center mb-8'>
-                            {/* Catatan: Gunakan adsEksternal={[ads]} jika komponen GoogleAds masih meminta array */}
-                            <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
-                        </div>
-                    ))}
-                </div>
+            <div className='flex flex-col px-4 max-w-7xl mx-auto'>
+                {chunkedAds.map((adGroup, groupIndex) => {
+                    // Jangan render carousel jika grup ini kosong (misal total iklan kurang dari 7)
+                    if (adGroup.length === 0) return null;
 
-                {/* --- MOBILE VIEW: Tampil sebagai 3 Carousel Menumpuk (Disembunyikan di Layar Desktop) --- */}
-                <div className='grid md:hidden grid-cols-1 gap-8 px-4 py-8 max-w-md mx-auto'>
-                    {chunkedAds.map((adGroup, groupIndex) => {
-                        // Jika tidak ada iklan di grup ini (misal total iklan kurang dari 3), jangan render carousel yang kosong
-                        if (adGroup.length === 0) return null;
-
-                        return (
+                    return (
+                        <div key={`carousel-wrapper-${groupIndex}`} className="w-full relative px-8">
                             <Carousel
-                                key={`carousel-${groupIndex}`}
                                 opts={{ align: "start", loop: true }}
-                                plugins={[Autoplay(), Fade()]}
+                                plugins={[Autoplay({ delay: 3000 })]} // Hapus Fade() agar rapi saat tampil banyak item
+                                className="w-full"
                             >
-                                <Carousel.Content>
-                                    {adGroup.map((ads, index) => (
-                                        <Carousel.Item key={`mob-${groupIndex}-${index}`} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                            <div className="w-full flex justify-center items-center">
-                                                <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
-                                            </div>
-                                        </Carousel.Item>
-                                    ))}
+                                <Carousel.Content className="-ml-4">
+                                    {adGroup.map((ads, index) => {
+
+                                        // Pengaturan jumlah item yang tampil:
+                                        // Mobile: basis-full (1 item)
+                                        // Tablet: md:basis-1/3 (3 item)
+                                        // Desktop Khusus Carousel 1 (groupIndex 0): lg:basis-1/6 (tampil 6 item sejajar)
+                                        // Desktop Carousel 2 & 3: lg:basis-1/4 (tampil 4 item sejajar, atau sesuaikan)
+
+                                        const basisClass = groupIndex === 0
+                                            ? "basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                                            : "basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4";
+
+                                        return (
+                                            <Carousel.Item
+                                                key={`item-${groupIndex}-${index}`}
+                                                className={`pl-4 min-w-0 shrink-0 grow-0 ${basisClass}`}
+                                            >
+                                                <div className="w-full flex justify-center items-center">
+                                                    {/* Kirim sebagai array [ads] jika GoogleAds masih butuh format array */}
+                                                    <GoogleAds size='square' adsEksternal={ads} slot='9639204649' />
+                                                </div>
+                                            </Carousel.Item>
+                                        );
+                                    })}
                                 </Carousel.Content>
 
-                                {/* Tampilkan tombol navigasi (Prev/Next) HANYA jika isi carousel ini lebih dari 1 iklan */}
+                                {/* Tampilkan navigasi hanya jika jumlah item lebih banyak dari yang bisa ditampilkan di layar */}
                                 {adGroup.length > 1 && (
                                     <>
-                                        <Carousel.Previous position={'inner'} />
-                                        <Carousel.Next position={'inner'} />
+                                        <Carousel.Previous position="outer" />
+                                        <Carousel.Next position="outer" />
                                     </>
                                 )}
                             </Carousel>
-                        );
-                    })}
-                </div>
-            </>
+                        </div>
+                    );
+                })}
+            </div>
 
 
             {/* Last News */}
