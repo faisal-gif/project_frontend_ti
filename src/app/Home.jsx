@@ -41,9 +41,15 @@ function Home({
     initialAdsRectangle8,
     initialAdsRectangle9,
     initialAdsRectangle10,
-    initialAdsRectangle11,
+    initialAdsListRectangle11,
     initialAdsRectangleLeaderboard1,
     initialAdsRectangleLeaderboard2, }) {
+    const adsArray = Array.isArray(initialAdsListRectangle11) ? initialAdsListRectangle11 : [];
+
+    const chunkedAds = [[], [], []];
+    adsArray.forEach((ads, index) => {
+        chunkedAds[index % 3].push(ads);
+    });
 
     return (
         <div className="">
@@ -356,6 +362,52 @@ function Home({
 
 
             {/* <VideoSection /> */}
+            <>
+                {/* --- DESKTOP VIEW: Tampil sebagai Grid 3 Kolom (Disembunyikan di Layar HP) --- */}
+                <div className='hidden md:grid grid-cols-3 justify-center items-center max-w-6xl mx-auto px-4 py-8 gap-6'>
+                    {adsArray.map((ads, index) => (
+                        <div key={`desktop-${index}`} className='flex items-center justify-center mb-8'>
+                            {/* Catatan: Gunakan adsEksternal={[ads]} jika komponen GoogleAds masih meminta array */}
+                            <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
+                        </div>
+                    ))}
+                </div>
+
+                {/* --- MOBILE VIEW: Tampil sebagai 3 Carousel Menumpuk (Disembunyikan di Layar Desktop) --- */}
+                <div className='grid md:hidden grid-cols-1 gap-8 px-4 py-8 max-w-md mx-auto'>
+                    {chunkedAds.map((adGroup, groupIndex) => {
+                        // Jika tidak ada iklan di grup ini (misal total iklan kurang dari 3), jangan render carousel yang kosong
+                        if (adGroup.length === 0) return null;
+
+                        return (
+                            <Carousel
+                                key={`carousel-${groupIndex}`}
+                                opts={{ align: "start", loop: true }}
+                                plugins={[Autoplay(), Fade()]}
+                            >
+                                <Carousel.Content>
+                                    {adGroup.map((ads, index) => (
+                                        <Carousel.Item key={`mob-${groupIndex}-${index}`} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
+                                            <div className="w-full flex justify-center items-center">
+                                                <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
+                                            </div>
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel.Content>
+
+                                {/* Tampilkan tombol navigasi (Prev/Next) HANYA jika isi carousel ini lebih dari 1 iklan */}
+                                {adGroup.length > 1 && (
+                                    <>
+                                        <Carousel.Previous position={'inner'} />
+                                        <Carousel.Next position={'inner'} />
+                                    </>
+                                )}
+                            </Carousel>
+                        );
+                    })}
+                </div>
+            </>
+
 
             {/* Last News */}
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4" id="jelajah_berita">
@@ -372,9 +424,7 @@ function Home({
                         <div>
                             <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
                         </div>
-                        <div className='flex items-center justify-center my-4 '>
-                            <GoogleAds size='inline_rectangle' key={2} adsEksternal={initialAdsRectangle11} slot='6105311407' />
-                        </div>
+
                         <div className='sticky top-30'>
                             <div className='hidden md:flex items-center justify-center my-8 '>
                                 <GoogleAds size='inline_rectangle' slot='9639204649' />
