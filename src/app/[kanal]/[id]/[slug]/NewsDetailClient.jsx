@@ -164,7 +164,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                     className="block w-full h-full relative"
                                 >
                                     <Image
-                                        src={'https://cdn-1.times.co.id/images/2026/03/07/m_kopi-times.jpg'}
+                                        src={'https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/03/20/ads-kopi-times-mrev6blw.webp'}
                                         alt="Advertisement"
                                         fill
                                         sizes="(max-width: 768px) 100vw, 300px"
