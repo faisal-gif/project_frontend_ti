@@ -404,7 +404,7 @@ function Home({
                                             >
                                                 <div className="w-full flex justify-center items-center">
                                                     {/* Kirim sebagai array [ads] jika GoogleAds masih butuh format array */}
-                                                    <GoogleAds size='square' adsEksternal={ads} slot='9639204649' />
+                                                    <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
                                                 </div>
                                             </Carousel.Item>
                                         );
