@@ -24,7 +24,7 @@ export default function GoogleAds({
 
     // 2. Dapatkan konfigurasi berdasarkan size (fallback ke inline_rectangle jika tidak ditemukan)
     const currentConfig = adConfigs[size] || adConfigs.inline_rectangle;
-    
+
     // 3. Tentukan slot final: gunakan customSlot jika ada, jika tidak gunakan dari adConfigs
     const activeSlot = customSlot || currentConfig.slotId;
 
@@ -32,8 +32,9 @@ export default function GoogleAds({
         if (!adsEksternal && typeof window !== "undefined") {
             const adTimeout = setTimeout(() => {
                 try {
-                    const adsbygoogle = window.adsbygoogle || [];
-                    adsbygoogle.push({});
+                    // PERBAIKAN DI SINI:
+                    // Pastikan push dilakukan langsung ke object window secara global
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
                 } catch (e) {
                     if (!e.message.includes("already have ads")) {
                         console.error("Adsense error", e);
@@ -43,7 +44,7 @@ export default function GoogleAds({
 
             return () => clearTimeout(adTimeout);
         }
-    }, [adsEksternal, activeSlot]); // update dependency effect ke activeSlot
+    }, [adsEksternal, activeSlot]);
 
     return (
         <div>
