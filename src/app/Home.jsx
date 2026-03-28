@@ -1,22 +1,24 @@
-'use client'
-import EKoranSection from '@/components/EKoranSection';
+import dynamic from 'next/dynamic';
 import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
-import GallerySection from '@/components/GallerySection';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
-import LastestNewsSection from '@/components/LastestNewsSection';
-import PopularNews from '@/components/PopularNews';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
-// import VideoSection from '@/components/VideoSection';
-import CekFaktaCard from '@/components/CekFaktaCard';
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
+// import VideoSection from '@/components/VideoSection';
+const EKoranSection = dynamic(() => import('@/components/EKoranSection'));
+const GallerySection = dynamic(() => import('@/components/GallerySection'));
+const LastestNewsSection = dynamic(() => import('@/components/LastestNewsSection'));
+const PopularNews = dynamic(() => import('@/components/PopularNews'));
+const CekFaktaCard = dynamic(() => import('@/components/CekFaktaCard'));
+const EventWidget = dynamic(() => import('@/components/EventWidget'));
+
 import GoogleAds from '@/components/GoogleAds';
-import EventWidget from '@/components/EventWidget';
-import Carousel from '@/components/ui/Carousel';
-import Autoplay from 'embla-carousel-autoplay';
-import Fade from 'embla-carousel-fade';
+
+const AdsCarouselGroup = dynamic(() => import('@/components/AdsCarouselGroup'));
+
+const LazyAdsRectangleCarousel = dynamic(() => import('@/components/AdsRectangleCarousel'));
 // import ATIWidget from '@/components/ATIWidget';
 
 
@@ -44,17 +46,6 @@ function Home({
     initialAdsListRectangle11,
     initialAdsRectangleLeaderboard1,
     initialAdsRectangleLeaderboard2, }) {
-    const adsArray = Array.isArray(initialAdsListRectangle11) ? initialAdsListRectangle11 : [];
-
-    // 2. Pecah data menjadi 3 kelompok (Untuk 3 Carousel di Mobile)
-    // Sistem akan membagi rata. Misal ada 6 iklan:
-    // Carousel 1 berisi iklan ke-1 dan ke-4
-    // Carousel 2 berisi iklan ke-2 dan ke-5
-    // Carousel 3 berisi iklan ke-3 dan ke-6
-    const chunkedAds = [[], [], []];
-    adsArray.forEach((ads, index) => {
-        chunkedAds[index % 3].push(ads);
-    });
 
     return (
         <div className="">
@@ -174,54 +165,13 @@ function Home({
             </div>
 
 
-            {(initialAdsRectangle1 || initialAdsRectangle2 || initialAdsRectangle3) && (
-                <div className="mx-auto max-w-6xl ">
-                    <div className='mx-auto block md:hidden mb-8'>
-                        <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
-                            <Carousel.Content>
-                                {initialAdsRectangle1 && (
-                                    <Carousel.Item key={1} className="pl-0 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-                                {initialAdsRectangle2 && (
-                                    <Carousel.Item key={2} className="pl-0 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-                                {initialAdsRectangle3 && (
-                                    <Carousel.Item key={3} className="pl-0 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
+            <LazyAdsRectangleCarousel
+                ads1={initialAdsRectangle1}
+                ads2={initialAdsRectangle2}
+                ads3={initialAdsRectangle3}
+            />
 
-                            </Carousel.Content>
-
-                            <Carousel.Previous position={'inner'} />
-                            <Carousel.Next position={'inner'} />
-
-
-                        </Carousel>
-                    </div>
-                    <div className='hidden md:flex items-center gap-10 justify-center mb-8'>
-                        {initialAdsRectangle1 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle1} />
-                        )}
-                        {initialAdsRectangle2 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle2} />
-                        )}
-                        {initialAdsRectangle3 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle3} />
-                        )}
-                    </div>
-                </div>
-            )}
+          
 
 
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
@@ -253,107 +203,21 @@ function Home({
 
             </div>
 
-            {(initialAdsRectangle4 || initialAdsRectangle5 || initialAdsRectangle6) && (
-                <div className="mx-auto max-w-6xl ">
-                    <div className='mx-auto block md:hidden mb-8'>
-                        <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
-                            <Carousel.Content>
-                                {initialAdsRectangle4 && (
-                                    <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-                                {initialAdsRectangle5 && (
-                                    <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-                                {initialAdsRectangle6 && (
-                                    <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-
-                            </Carousel.Content>
-
-                            <Carousel.Previous position={'inner'} />
-                            <Carousel.Next position={'inner'} />
-
-
-                        </Carousel>
-                    </div>
-                    <div className='hidden md:flex items-center gap-10 justify-center mb-8'>
-                        {initialAdsRectangle4 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle4} />
-                        )}
-                        {initialAdsRectangle5 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle5} />
-                        )}
-                        {initialAdsRectangle6 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle6} />
-                        )}
-                    </div>
-                </div>
-            )}
+            <LazyAdsRectangleCarousel
+                ads1={initialAdsRectangle4}
+                ads2={initialAdsRectangle5}
+                ads3={initialAdsRectangle6}
+            />
 
             <EventWidget />
 
 
 
-            {(initialAdsRectangle7 || initialAdsRectangle8 || initialAdsRectangle9) && (
-                <div className="mx-auto max-w-6xl ">
-                    <div className='mx-auto block md:hidden mb-8'>
-                        <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay(), Fade()]}>
-                            <Carousel.Content>
-                                {initialAdsRectangle7 && (
-                                    <Carousel.Item key={1} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle7} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-                                {initialAdsRectangle8 && (
-                                    <Carousel.Item key={2} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle8} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-                                {initialAdsRectangle9 && (
-                                    <Carousel.Item key={3} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                        <div className="w-full flex justify-center items-center">
-                                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle9} />
-                                        </div>
-                                    </Carousel.Item>
-                                )}
-
-                            </Carousel.Content>
-
-                            <Carousel.Previous position={'inner'} />
-                            <Carousel.Next position={'inner'} />
-
-
-                        </Carousel>
-                    </div>
-                    <div className='hidden md:flex items-center gap-10 justify-center mb-8'>
-                        {initialAdsRectangle7 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle7} />
-                        )}
-                        {initialAdsRectangle8 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle8} />
-                        )}
-                        {initialAdsRectangle9 && (
-                            <GoogleAds size="inline_rectangle" adsEksternal={initialAdsRectangle9} />
-                        )}
-                    </div>
-                </div>
-            )}
+           <LazyAdsRectangleCarousel
+                ads1={initialAdsRectangle7}
+                ads2={initialAdsRectangle8}
+                ads3={initialAdsRectangle9}
+            />
 
 
 
@@ -368,49 +232,9 @@ function Home({
 
             {/* <VideoSection /> */}
             <>
-                {/* --- DESKTOP VIEW: Tampil sebagai Grid 3 Kolom (Disembunyikan di Layar HP) --- */}
-                <div className='hidden md:grid grid-cols-3 justify-center items-center max-w-6xl mx-auto px-4 py-8 gap-6'>
-                    {adsArray.map((ads, index) => (
-                        <div key={`desktop-${index}`} className='flex items-center justify-center mb-8'>
-                            {/* Catatan: Gunakan adsEksternal={[ads]} jika komponen GoogleAds masih meminta array */}
-                            <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
-                        </div>
-                    ))}
-                </div>
-
-                {/* --- MOBILE VIEW: Tampil sebagai 3 Carousel Menumpuk (Disembunyikan di Layar Desktop) --- */}
-                <div className='grid md:hidden grid-cols-1 gap-8 px-4 py-8 max-w-md mx-auto'>
-                    {chunkedAds.map((adGroup, groupIndex) => {
-                        // Jika tidak ada iklan di grup ini (misal total iklan kurang dari 3), jangan render carousel yang kosong
-                        if (adGroup.length === 0) return null;
-
-                        return (
-                            <Carousel
-                                key={`carousel-${groupIndex}`}
-                                opts={{ align: "start", loop: true }}
-                                plugins={[Autoplay(), Fade()]}
-                            >
-                                <Carousel.Content>
-                                    {adGroup.map((ads, index) => (
-                                        <Carousel.Item key={`mob-${groupIndex}-${index}`} className="pl-4 min-w-0 shrink-0 grow-0 basis-full">
-                                            <div className="w-full flex justify-center items-center">
-                                                <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
-                                            </div>
-                                        </Carousel.Item>
-                                    ))}
-                                </Carousel.Content>
-
-                                {/* Tampilkan tombol navigasi (Prev/Next) HANYA jika isi carousel ini lebih dari 1 iklan */}
-                                {adGroup.length > 1 && (
-                                    <>
-                                        <Carousel.Previous position={'inner'} />
-                                        <Carousel.Next position={'inner'} />
-                                    </>
-                                )}
-                            </Carousel>
-                        );
-                    })}
-                </div>
+                <AdsCarouselGroup
+                    adsArray={Array.isArray(initialAdsListRectangle11) ? initialAdsListRectangle11 : []}
+                />
             </>
 
 

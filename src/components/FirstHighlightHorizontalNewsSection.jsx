@@ -1,3 +1,4 @@
+
 import React from 'react'
 import FeaturedNewsCard from './FeaturedNewsCard'
 import HorizontalNewsSection from './HorizontalNewsSection'

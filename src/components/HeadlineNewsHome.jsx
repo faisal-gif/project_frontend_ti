@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Carousel from './ui/Carousel'
 import Autoplay from 'embla-carousel-autoplay'
