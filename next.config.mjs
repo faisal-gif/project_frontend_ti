@@ -15,7 +15,7 @@ const nextConfig = {
       { protocol: "https", hostname: "img.youtube.com", pathname: "/**" },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "kopi.times.co.id", pathname: "/**" },
-      
+
     ],
     formats: ["image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // cache image di server Next selama 30 hari
@@ -24,6 +24,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     cssChunking: true,
+    optimizePackageImports: ['react-icons'],
   },
 
   // 🚀 Tambahkan bagian ini
