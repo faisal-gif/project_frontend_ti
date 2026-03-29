@@ -31,7 +31,28 @@ const DISABLED_AD_PATHS = [
 
 export default function ConditionalAdScript() {
     const pathname = usePathname();
+    const [shouldLoadAds, setShouldLoadAds] = useState(false);
 
+    useEffect(() => {
+        const handleInteraction = () => {
+            setShouldLoadAds(true);
+            // Hapus event listener setelah iklan dimuat agar tidak boros memori
+            window.removeEventListener('scroll', handleInteraction);
+            window.removeEventListener('mousemove', handleInteraction);
+            window.removeEventListener('touchstart', handleInteraction);
+        };
+
+        // Pasang listener untuk mendeteksi interaksi user
+        window.addEventListener('scroll', handleInteraction, { once: true });
+        window.addEventListener('mousemove', handleInteraction, { once: true });
+        window.addEventListener('touchstart', handleInteraction, { once: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleInteraction);
+            window.removeEventListener('mousemove', handleInteraction);
+            window.removeEventListener('touchstart', handleInteraction);
+        };
+    }, []);
     // Cek apakah URL saat ini dimulai dengan salah satu path yang dilarang
     const isDisabled = DISABLED_AD_PATHS.some(prefix =>
         pathname.startsWith(prefix)
@@ -46,7 +67,7 @@ export default function ConditionalAdScript() {
     return (
         <Script
             id="adsbygoogle-init"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244"
             crossOrigin="anonymous"

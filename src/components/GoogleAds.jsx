@@ -1,14 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function GoogleAds({
     size = "inline_rectangle",
     adsEksternal = null,
-    customSlot = null, // Diubah namanya agar tidak bentrok, bisa dipakai jika ingin override
+    customSlot = null,
     type = 'desktop',
 }) {
-    // 1. Tambahkan slotId ke dalam masing-masing konfigurasi ukuran
+    // Gunakan useRef untuk melacak apakah iklan ini sudah di-push ke antrean Adsense
+    const adPushed = useRef(false);
+
     const adConfigs = {
         inline_rectangle: { width: "336px", height: "280px", slotId: "5922452344" },
         rectangle: { width: "336px", height: "400px", slotId: "3831475624" },
@@ -22,32 +24,26 @@ export default function GoogleAds({
         half_page_ad: { width: "300px", height: "600px", slotId: "3831475624" },
     };
 
-    // 2. Dapatkan konfigurasi berdasarkan size (fallback ke inline_rectangle jika tidak ditemukan)
     const currentConfig = adConfigs[size] || adConfigs.inline_rectangle;
-
-    // 3. Tentukan slot final: gunakan customSlot jika ada, jika tidak gunakan dari adConfigs
     const activeSlot = customSlot || currentConfig.slotId;
 
     useEffect(() => {
-        if (!adsEksternal && typeof window !== "undefined") {
-            const adTimeout = setTimeout(() => {
-                try {
-                    // PERBAIKAN DI SINI:
-                    // Pastikan push dilakukan langsung ke object window secara global
-                    (window.adsbygoogle = window.adsbygoogle || []).push({});
-                } catch (e) {
-                    if (!e.message.includes("already have ads")) {
-                        console.error("Adsense error", e);
-                    }
+        // Cek apakah bukan iklan eksternal, window tersedia, DAN belum pernah di-push
+        if (!adsEksternal && typeof window !== "undefined" && !adPushed.current) {
+            adPushed.current = true; // Langsung tandai sudah di-push
+            
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                if (!e.message.includes("already have ads")) {
+                    console.error("Adsense error", e);
                 }
-            }, 100);
-
-            return () => clearTimeout(adTimeout);
+            }
         }
-    }, [adsEksternal, activeSlot]);
+    }, [adsEksternal, activeSlot]); 
 
     return (
-        <div>
+        <div className="ad-container relative flex justify-center w-full my-4">
             {adsEksternal ? (
                 <div
                     className="relative"
@@ -92,7 +88,7 @@ export default function GoogleAds({
                         height: currentConfig.height,
                     }}
                     data-ad-client="ca-pub-2259519132704244"
-                    data-ad-slot={activeSlot} // 4. Gunakan activeSlot di sini
+                    data-ad-slot={activeSlot}
                 ></ins>
             )}
         </div>
