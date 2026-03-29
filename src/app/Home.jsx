@@ -1,11 +1,18 @@
+'use client';
+
+import React, { use, Suspense } from 'react';
 import dynamic from 'next/dynamic';
+
+// Skeletons
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
-import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
+
+import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
-// import VideoSection from '@/components/VideoSection';
-const HeadlineNewsHome = dynamic(() => import('@/components/HeadlineNewsHome'));
+import HeadlineNewsHome from '@/components/HeadlineNewsHome';
+
+// Dynamic Imports
 const FirstHightlightNewsSection = dynamic(() => import('@/components/FirstHightlightNewsSection'));
 const EKoranSection = dynamic(() => import('@/components/EKoranSection'));
 const GallerySection = dynamic(() => import('@/components/GallerySection'));
@@ -13,258 +20,261 @@ const LastestNewsSection = dynamic(() => import('@/components/LastestNewsSection
 const PopularNews = dynamic(() => import('@/components/PopularNews'));
 const CekFaktaCard = dynamic(() => import('@/components/CekFaktaCard'));
 const EventWidget = dynamic(() => import('@/components/EventWidget'));
-
 const GoogleAds = dynamic(() => import('@/components/GoogleAds'));
-
 const AdsCarouselGroup = dynamic(() => import('@/components/AdsCarouselGroup'));
-
 const LazyAdsRectangleCarousel = dynamic(() => import('@/components/AdsRectangleCarousel'));
-// import ATIWidget from '@/components/ATIWidget';
 
+
+// =========================================================================
+// ASYNC WRAPPERS (Untuk membuka Promise dari server tanpa memblokir UI)
+// =========================================================================
+
+function AsyncAllNews({ promise }) {
+    const news = promise ? use(promise) : [];
+    if (!news || news.length === 0) return null;
+    return <FirstHightlightNewsSection url="#terbaru_jelajah_berita" index={0} title={'Berita Terbaru'} news={news} />;
+}
+
+function AsyncFirstSections({ promise }) {
+    const sections = promise ? use(promise) : [];
+    if (!sections || sections.length === 0) return null;
+    return sections.map((section) => (
+        <div key={section.title} className="space-y-8">
+            <FirstHightlightNewsSection url={section.url} index={0} title={section.title} news={section.news} layout={section.layout} />
+        </div>
+    ));
+}
+
+function AsyncSecondSections({ promise }) {
+    const sections = promise ? use(promise) : [];
+    if (!sections || sections.length === 0) return null;
+    return sections.map((section) => (
+        <div key={section.title} className="space-y-8">
+            <FirstHightlightNewsSection url={section.url} title={section.title} news={section.news} layout={section.layout} />
+        </div>
+    ));
+}
+
+function AsyncWansusNews({ promise }) {
+    const news = promise ? use(promise) : [];
+    if (!news || news.length === 0) return null;
+    return <FirstHighlightHorizontalNewsSection url='/kanal/wawancara-khusus/' articles={news} />;
+}
+
+function AsyncCekFakta({ promise }) {
+    const news = promise ? use(promise) : [];
+    return <CekFaktaCard CekFaktaNews={news} />;
+}
+
+function AsyncGoogleAds({ promise, size, type, slot }) {
+    const adsData = promise ? use(promise) : null;
+    return <GoogleAds size={size} type={type} adsEksternal={adsData} slot={slot} />;
+}
+
+function AsyncAdsCarousel({ p1, p2, p3 }) {
+    const ads1 = p1 ? use(p1) : null;
+    const ads2 = p2 ? use(p2) : null;
+    const ads3 = p3 ? use(p3) : null;
+    return <LazyAdsRectangleCarousel ads1={ads1} ads2={ads2} ads3={ads3} />;
+}
+
+function AsyncAdsCarouselGroup({ promise }) {
+    const adsArray = promise ? use(promise) : [];
+    return <AdsCarouselGroup adsArray={Array.isArray(adsArray) ? adsArray : []} />;
+}
+
+
+// =========================================================================
+// KOMPONEN UTAMA
+// =========================================================================
 
 function Home({
-    newsFirstSections,
-    newsSecondSections,
-    allNews,
-    wansusNews,
+    // --- DATA MATANG (Above the Fold) ---
     initialHeadlineNews,
-    initialCekFaktaNews,
     initialAdsPremium,
     initialAdsPremiumMobile,
-    initialAdsLeaderboard1,
-    initialAdsLeaderboard2,
-    initialAdsRectangle1,
-    initialAdsRectangle2,
-    initialAdsRectangle3,
-    initialAdsRectangle4,
-    initialAdsRectangle5,
-    initialAdsRectangle6,
-    initialAdsRectangle7,
-    initialAdsRectangle8,
-    initialAdsRectangle9,
-    initialAdsRectangle10,
-    initialAdsListRectangle11,
-    initialAdsRectangleLeaderboard1,
-    initialAdsRectangleLeaderboard2, }) {
+
+    // --- PROMISES (Below the Fold) ---
+    newsFirstSectionsPromise,
+    newsSecondSectionsPromise,
+    allNewsPromise,
+    wansusNewsPromise,
+    initialCekFaktaNewsPromise,
+    initialAdsLeaderboard1Promise,
+    initialAdsLeaderboard2Promise,
+    initialAdsRectangle1Promise,
+    initialAdsRectangle2Promise,
+    initialAdsRectangle3Promise,
+    initialAdsRectangle4Promise,
+    initialAdsRectangle5Promise,
+    initialAdsRectangle6Promise,
+    initialAdsRectangle7Promise,
+    initialAdsRectangle8Promise,
+    initialAdsRectangle9Promise,
+    initialAdsRectangle10Promise,
+    initialAdsListRectangle11Promise,
+    initialAdsRectangleLeaderboard1Promise,
+    initialAdsRectangleLeaderboard2Promise,
+}) {
 
     return (
         <div className="">
-
-            {/* Left Skyscraper Ad */}
-            {/* <div className="fixed left-6 top-7/12 transform -translate-y-1/2 z-10 hidden xl:block">
-            </div> */}
-
-            {/* Right Skyscraper Ad */}
-            {/* <div className="fixed right-6 top-7/12 transform -translate-y-1/2 z-10 hidden xl:block">
-           
-            </div> */}
-
+            {/* --- IKLAN PREMIUM (Tampil Instan) --- */}
             <div className='max-w-6xl mx-auto gap-6 pt-28 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center'>
                     <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='6315037307' />
                 </div>
-
                 <div className='md:hidden flex items-center justify-center'>
                     <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' />
                 </div>
-
             </div>
-            {/* Hero */}
+
+            {/* --- HERO SECTION --- */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
                 <div className="md:col-span-4">
+                    {/* Headline langsung menggunakan data array, tidak perlu Suspense */}
                     <HeadlineNewsHome initialHeadlineNews={initialHeadlineNews} />
                 </div>
                 <div className="md:col-span-2">
-                    {allNews.length === 0 && (
-                        <div className="space-y-8">
-                            <FirstHighlightNewsSectionSkeleton />
-                        </div>
-                    )}
-                    {
-                        allNews.length > 0 && (
-                            <FirstHightlightNewsSection url="#terbaru_jelajah_berita" index={0} title={'Berita Terbaru'} news={allNews} />
-                        )
-                    }
-
+                    {/* Berita Terbaru (All News) - Streaming */}
+                    <Suspense fallback={<div className="space-y-8"><FirstHighlightNewsSectionSkeleton /></div>}>
+                        <AsyncAllNews promise={allNewsPromise} />
+                    </Suspense>
                 </div>
             </div>
 
-
+            {/* --- FIRST SECTIONS --- */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3">
-
-                {newsFirstSections.length === 0 && (
-                    [1, 2, 3].map((i) => (
-                        <div key={i} className="space-y-8">
-                            <FirstHighlightNewsSectionSkeleton />
-                        </div>
-                    ))
-                )}
-
-                {newsFirstSections.map((section) => (
-                    <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection url={section.url} index={0} title={section.title} news={section.news} layout={section.layout} />
-                    </div>
-                ))}
+                <Suspense fallback={[1, 2, 3].map((i) => <div key={i} className="space-y-8"><FirstHighlightNewsSectionSkeleton /></div>)}>
+                    <AsyncFirstSections promise={newsFirstSectionsPromise} />
+                </Suspense>
             </div>
 
-            {/* <ATIWidget /> */}
-
-            {initialAdsLeaderboard1 && (
-                <div className="mx-auto max-w-6xl ">
-                    <div className='hidden md:flex items-center justify-center mb-8'>
-                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard1} slot='6315037307' />
-                    </div>
+            {/* --- LEADERBOARD 1 --- */}
+            <div className="mx-auto max-w-6xl">
+                <div className='hidden md:flex items-center justify-center mb-8'>
+                    <Suspense fallback={<div className="w-[970px] h-[250px] bg-gray-100 animate-pulse rounded"></div>}>
+                        <AsyncGoogleAds promise={initialAdsLeaderboard1Promise} size="top_banner" slot='6315037307' />
+                    </Suspense>
                 </div>
-            )}
+            </div>
 
-            {
-                initialAdsRectangleLeaderboard1 && (
-                    <div className='flex md:hidden items-center justify-center'>
-                        <GoogleAds size='rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard1} slot='6315037307' />
-                    </div>
-                )
-            }
+            {/* --- RECTANGLE LEADERBOARD 1 (Mobile) --- */}
+            <div className='flex md:hidden items-center justify-center'>
+                <Suspense fallback={<div className="w-[336px] h-[400px] bg-gray-100 animate-pulse rounded"></div>}>
+                    <AsyncGoogleAds promise={initialAdsRectangleLeaderboard1Promise} size='rectangle' type='mobile' slot='6315037307' />
+                </Suspense>
+            </div>
 
-
-
-            <div className="mx-auto max-w-6xl px-4 py-8 ">
+            <div className="mx-auto max-w-6xl px-4 py-8">
                 <EKoranSection />
             </div>
 
-            {initialAdsLeaderboard2 && (
-                <div className="hidden md:block mx-auto max-w-6xl ">
-                    <div className='flex items-center justify-center mb-8'>
-                        <GoogleAds size="top_banner" adsEksternal={initialAdsLeaderboard2} slot='6315037307' />
-                    </div>
+            {/* --- LEADERBOARD 2 --- */}
+            <div className="hidden md:block mx-auto max-w-6xl">
+                <div className='flex items-center justify-center mb-8'>
+                    <Suspense fallback={<div className="w-[970px] h-[250px] bg-gray-100 animate-pulse rounded"></div>}>
+                        <AsyncGoogleAds promise={initialAdsLeaderboard2Promise} size="top_banner" slot='6315037307' />
+                    </Suspense>
                 </div>
-            )}
-
-            {
-                initialAdsRectangleLeaderboard2 && (
-                    <div className='flex md:hidden items-center justify-center'>
-                        <GoogleAds size='rectangle' type='mobile' adsEksternal={initialAdsRectangleLeaderboard2} slot='6315037307' />
-                    </div>
-                )
-            }
-
-
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-3">
-                {newsSecondSections.length === 0 && (
-                    [1, 2, 3].map((i) => (
-                        <div key={i} className="space-y-8">
-                            <FirstHighlightNewsSectionSkeleton />
-                        </div>
-                    ))
-                )}
-                {newsSecondSections.map((section) => (
-                    <div key={section.title} className="space-y-8">
-                        <FirstHightlightNewsSection url={section.url} title={section.title} news={section.news} layout={section.layout} />
-                    </div>
-                ))}
-
             </div>
 
+            {/* --- RECTANGLE LEADERBOARD 2 (Mobile) --- */}
+            <div className='flex md:hidden items-center justify-center'>
+                <Suspense fallback={<div className="w-[336px] h-[400px] bg-gray-100 animate-pulse rounded"></div>}>
+                    <AsyncGoogleAds promise={initialAdsRectangleLeaderboard2Promise} size='rectangle' type='mobile' slot='6315037307' />
+                </Suspense>
+            </div>
 
-            <LazyAdsRectangleCarousel
-                ads1={initialAdsRectangle1}
-                ads2={initialAdsRectangle2}
-                ads3={initialAdsRectangle3}
-            />
+            {/* --- SECOND SECTIONS --- */}
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3">
+                <Suspense fallback={[1, 2, 3].map((i) => <div key={i} className="space-y-8"><FirstHighlightNewsSectionSkeleton /></div>)}>
+                    <AsyncSecondSections promise={newsSecondSectionsPromise} />
+                </Suspense>
+            </div>
 
-          
+            {/* --- ADS RECTANGLE CAROUSEL 1 --- */}
+            <Suspense fallback={<div className="h-[280px] w-full bg-gray-50 animate-pulse"></div>}>
+                <AsyncAdsCarousel p1={initialAdsRectangle1Promise} p2={initialAdsRectangle2Promise} p3={initialAdsRectangle3Promise} />
+            </Suspense>
 
-
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8  md:grid-cols-6">
+            {/* --- WANSUS & TOPIK PILIHAN --- */}
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-6">
                 <div className='md:col-span-4'>
-                    {wansusNews.length === 0 && (
-                        <HeadlineCardSkeleton />
-                    )}
-                    <div className="animate-pulse grid grid-cols-4 gap-2 mt-4">
-                        {wansusNews.length === 0 && (
-                            [1, 2, 3, 4].map((index) => (
-                                <div
-                                    key={index}
-                                    className="pl-2 min-w-0 shrink-0 grow-0 basis-4/9  sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-                                >
-                                    <div className="h-full">
-                                        <HorizontalNewsCardSkeleton />
+                    <Suspense fallback={
+                        <>
+                            <HeadlineCardSkeleton />
+                            <div className="animate-pulse grid grid-cols-4 gap-2 mt-4">
+                                {[1, 2, 3, 4].map((index) => (
+                                    <div key={index} className="pl-2 min-w-0 shrink-0 grow-0 basis-4/9 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                                        <div className="h-full"><HorizontalNewsCardSkeleton /></div>
                                     </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                    {wansusNews.length > 0 && (
-                        <FirstHighlightHorizontalNewsSection url='/kanal/wawancara-khusus/' articles={wansusNews} />
-                    )}
+                                ))}
+                            </div>
+                        </>
+                    }>
+                        <AsyncWansusNews promise={wansusNewsPromise} />
+                    </Suspense>
                 </div>
                 <div className='md:col-span-2'>
                     <TopikPilihanWidget />
                 </div>
-
             </div>
 
-            <LazyAdsRectangleCarousel
-                ads1={initialAdsRectangle4}
-                ads2={initialAdsRectangle5}
-                ads3={initialAdsRectangle6}
-            />
+            {/* --- ADS RECTANGLE CAROUSEL 2 --- */}
+            <Suspense fallback={<div className="h-[280px] w-full bg-gray-50 animate-pulse"></div>}>
+                <AsyncAdsCarousel p1={initialAdsRectangle4Promise} p2={initialAdsRectangle5Promise} p3={initialAdsRectangle6Promise} />
+            </Suspense>
 
             <EventWidget />
 
+            {/* --- ADS RECTANGLE CAROUSEL 3 --- */}
+            <Suspense fallback={<div className="h-[280px] w-full bg-gray-50 animate-pulse"></div>}>
+                <AsyncAdsCarousel p1={initialAdsRectangle7Promise} p2={initialAdsRectangle8Promise} p3={initialAdsRectangle9Promise} />
+            </Suspense>
 
-
-           <LazyAdsRectangleCarousel
-                ads1={initialAdsRectangle7}
-                ads2={initialAdsRectangle8}
-                ads3={initialAdsRectangle9}
-            />
-
-
-
-            {/* Jurnalistik Fotografi */}
-            <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300" >
+            {/* --- GALLERY SECTION --- */}
+            <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300">
                 <GallerySection />
             </section>
 
+            {/* --- ADS CAROUSEL GROUP --- */}
+            <Suspense fallback={<div className="h-[250px] w-full bg-gray-50 animate-pulse"></div>}>
+                <AsyncAdsCarouselGroup promise={initialAdsListRectangle11Promise} />
+            </Suspense>
 
-
-
-
-            {/* <VideoSection /> */}
-            <>
-                <AdsCarouselGroup
-                    adsArray={Array.isArray(initialAdsListRectangle11) ? initialAdsListRectangle11 : []}
-                />
-            </>
-
-
-            {/* Last News */}
+            {/* --- LATEST NEWS & SIDEBAR --- */}
             <div className="max-w-6xl mx-auto px-4 py-8 max-md:px-4" id="jelajah_berita">
-                <div className='grid grid-cols-1  gap-4 md:grid-cols-6 md:gap-4'>
-                    <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4" >
+                <div className='grid grid-cols-1 gap-4 md:grid-cols-6 md:gap-4'>
+                    <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4">
                         <LastestNewsSection />
                     </div>
-                    {/* Last news Sidebar */}
+                    
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
+                        {/* Jika PopularNews sekarang adalah Server Component (seperti saran sebelumnya), tidak perlu over props */}
                         <PopularNews />
+                        
                         <div className='flex items-center justify-center mb-8'>
-                            <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle10} slot='9639204649' />
+                            <Suspense fallback={<div className="w-[336px] h-[280px] bg-gray-100 animate-pulse rounded"></div>}>
+                                <AsyncGoogleAds promise={initialAdsRectangle10Promise} size='inline_rectangle' slot='9639204649' />
+                            </Suspense>
                         </div>
+                        
                         <div>
-                            <CekFaktaCard CekFaktaNews={initialCekFaktaNews} />
+                            <Suspense fallback={<div className="h-[400px] w-full bg-gray-100 animate-pulse rounded"></div>}>
+                                <AsyncCekFakta promise={initialCekFaktaNewsPromise} />
+                            </Suspense>
                         </div>
 
                         <div className='sticky top-30'>
-                            <div className='hidden md:flex items-center justify-center my-8 '>
+                            <div className='hidden md:flex items-center justify-center my-8'>
                                 <GoogleAds size='inline_rectangle' slot='9639204649' />
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            {/* <PopupAds /> */}
         </div>
     );
 }

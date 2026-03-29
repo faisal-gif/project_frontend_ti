@@ -1,10 +1,13 @@
-import React from 'react'
-import Home from './Home'
-import { getCekFaktaNews, getCekFaktaNewsServer, getNewsFirstSections, getNewsFirstSectionsServer, getNewsSecondSections, getNewsSecondSectionsServer, getWansusNews, getWansusNewsServer } from '@/lib/data';
-import { getAllNews, getAllNewsServer } from '@/lib/api/newsApi';
+import React from 'react';
+import Home from './Home';
+import {
+  getCekFaktaNewsServer,
+  getNewsFirstSectionsServer,
+  getNewsSecondSectionsServer,
+  getWansusNewsServer
+} from '@/lib/data';
+import { getAllNewsServer } from '@/lib/api/newsApi';
 import { getViewAds, getViewAdsList } from '@/lib/api/adsApi';
-import Head from 'next/head';
-
 
 export const metadata = {
   title: "TIMES Indonesia - Berita Positif Terbaru dan Terkini",
@@ -20,7 +23,7 @@ export const metadata = {
     siteName: 'TIMES Indonesia',
     images: [
       {
-        url: `${process.env.API_URL}\icon.png`,
+        url: `${process.env.API_URL}\\icon.png`,
         width: 500,
         height: 500,
         alt: "TIMES Indonesia Logo",
@@ -29,14 +32,18 @@ export const metadata = {
   },
 };
 
-export default async function page() {
+export default async function Page() { // Biasakan menggunakan huruf kapital untuk Server Component utama
 
+  // =====================================================================
+  // 1. INISIALISASI SEMUA PROMISE (API CALL BERJALAN BERSAMAAN)
+  // =====================================================================
   const firstSectionsPromise = getNewsFirstSectionsServer();
   const secondSectionsPromise = getNewsSecondSectionsServer();
   const wansusPromise = getWansusNewsServer();
   const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
-  const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10, })
+  const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10 });
   const cekFaktaNewsPromise = getCekFaktaNewsServer();
+
   const adsPremiumPromise = getViewAds({ id: 1 });
   const adsPremiumMobilePromise = getViewAds({ id: 43 });
   const adsLeaderboard1Promise = getViewAds({ id: 3 });
@@ -52,91 +59,59 @@ export default async function page() {
   const adsRectangle9Promise = getViewAds({ id: 98 });
   const adsRectangle10Promise = getViewAds({ id: 99 });
   const adsListRectangle11Promise = getViewAdsList({ id: 100 });
-  
-  
+
   const adsRectangleLeaderboard1Promise = getViewAds({ id: 44 });
   const adsRectangleLeaderboard2Promise = getViewAds({ id: 47 });
 
+  // =====================================================================
+  // 2. TAHAN (AWAIT) HANYA UNTUK DATA "ABOVE THE FOLD"
+  // FCP & LCP Lighthouse aman karena server tidak menunggu 20 API yang lain.
+  // =====================================================================
   const [
-    newsFirstSections,
-    newsSecondSections,
-    wansusNews,
-    allNews,
     headlineNews,
-    cekFaktaNews,
     adsPremium,
-    adsPremiumMobile,
-    adsLeaderboard1,
-    adsLeaderboard2,
-    adsRectangle1,
-    adsRectangle2,
-    adsRectangle3,
-    adsRectangle4,
-    adsRectangle5,
-    adsRectangle6,
-    adsRectangle7,
-    adsRectangle8,
-    adsRectangle9,
-    adsRectangle10,
-    adsListRectangle11,
-    adsRectangleLeaderboard1,
-    adsRectangleLeaderboard2,
+    adsPremiumMobile
   ] = await Promise.all([
-    firstSectionsPromise,
-    secondSectionsPromise,
-    wansusPromise,
-    allNewsPromise,
     headlineNewsPromise,
-    cekFaktaNewsPromise,
     adsPremiumPromise,
-    adsPremiumMobilePromise,
-    adsLeaderboard1Promise,
-    adsLeaderboard2Promise,
-    adsRectangle1Promise,
-    adsRectangle2Promise,
-    adsRectangle3Promise,
-    adsRectangle4Promise,
-    adsRectangle5Promise,
-    adsRectangle6Promise,
-    adsRectangle7Promise,
-    adsRectangle8Promise,
-    adsRectangle9Promise,
-    adsRectangle10Promise,
-    adsListRectangle11Promise,
-    adsRectangleLeaderboard1Promise,
-    adsRectangleLeaderboard2Promise,
+    adsPremiumMobilePromise
   ]);
 
+  // =====================================================================
+  // 3. OPER KE COMPONENT CLIENT ('Home')
+  // Sebagian data sudah matang, sisanya masih berupa Promise.
+  // =====================================================================
+  return (
+    <>
+      <Home
+        // --- DATA MATANG (Langsung render tanpa loading) ---
+        initialHeadlineNews={headlineNews}
+        initialAdsPremium={adsPremium}
+        initialAdsPremiumMobile={adsPremiumMobile}
 
+        // --- DATA PROMISE (Di-unwrap menggunakan use() dan Suspense di Home.jsx) ---
+        newsFirstSectionsPromise={firstSectionsPromise}
+        newsSecondSectionsPromise={secondSectionsPromise}
+        wansusNewsPromise={wansusPromise}
+        allNewsPromise={allNewsPromise}
+        initialCekFaktaNewsPromise={cekFaktaNewsPromise}
 
-  return (<>
-
-    <Home
-      newsFirstSections={newsFirstSections}
-      newsSecondSections={newsSecondSections}
-      wansusNews={wansusNews}
-      allNews={allNews}
-      initialHeadlineNews={headlineNews}
-      initialCekFaktaNews={cekFaktaNews}
-      initialAdsPremium={adsPremium}
-      initialAdsPremiumMobile={adsPremiumMobile}
-      initialAdsLeaderboard1={adsLeaderboard1}
-      initialAdsLeaderboard2={adsLeaderboard2}
-      initialAdsRectangle1={adsRectangle1}
-      initialAdsRectangle2={adsRectangle2}
-      initialAdsRectangle3={adsRectangle3}
-      initialAdsRectangle4={adsRectangle4}
-      initialAdsRectangle5={adsRectangle5}
-      initialAdsRectangle6={adsRectangle6}
-      initialAdsRectangle7={adsRectangle7}
-      initialAdsRectangle8={adsRectangle8}
-      initialAdsRectangle9={adsRectangle9}
-      initialAdsRectangle10={adsRectangle10}
-      initialAdsListRectangle11={adsListRectangle11}
-      initialAdsRectangleLeaderboard1={adsRectangleLeaderboard1}
-      initialAdsRectangleLeaderboard2={adsRectangleLeaderboard2}
-    />
-  </>
-
-  )
+        initialAdsLeaderboard1Promise={adsLeaderboard1Promise}
+        initialAdsLeaderboard2Promise={adsLeaderboard2Promise}
+        initialAdsRectangle1Promise={adsRectangle1Promise}
+        initialAdsRectangle2Promise={adsRectangle2Promise}
+        initialAdsRectangle3Promise={adsRectangle3Promise}
+        initialAdsRectangle4Promise={adsRectangle4Promise}
+        initialAdsRectangle5Promise={adsRectangle5Promise}
+        initialAdsRectangle6Promise={adsRectangle6Promise}
+        initialAdsRectangle7Promise={adsRectangle7Promise}
+        initialAdsRectangle8Promise={adsRectangle8Promise}
+        initialAdsRectangle9Promise={adsRectangle9Promise}
+        initialAdsRectangle10Promise={adsRectangle10Promise}
+        initialAdsListRectangle11Promise={adsListRectangle11Promise}
+        initialAdsRectangleLeaderboard1Promise={adsRectangleLeaderboard1Promise}
+        initialAdsRectangleLeaderboard2Promise={adsRectangleLeaderboard2Promise}
+      />
+    </>
+  );
 }
