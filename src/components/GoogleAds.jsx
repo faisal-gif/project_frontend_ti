@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export default function GoogleAds({
@@ -8,8 +8,9 @@ export default function GoogleAds({
     customSlot = null,
     type = 'desktop',
 }) {
-    // Gunakan useRef untuk melacak apakah iklan ini sudah di-push ke antrean Adsense
+    const adRef = useRef(null);
     const adPushed = useRef(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     const adConfigs = {
         inline_rectangle: { width: "336px", height: "280px", slotId: "5922452344" },
@@ -28,9 +29,26 @@ export default function GoogleAds({
     const activeSlot = customSlot || currentConfig.slotId;
 
     useEffect(() => {
-        // Cek apakah bukan iklan eksternal, window tersedia, DAN belum pernah di-push
-        if (!adsEksternal && typeof window !== "undefined" && !adPushed.current) {
-            adPushed.current = true; // Langsung tandai sudah di-push
+        if (!adRef.current || adsEksternal) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "200px" }
+        );
+
+        observer.observe(adRef.current);
+
+        return () => observer.disconnect();
+    }, [adsEksternal]);
+
+    useEffect(() => {
+        if (isVisible && !adsEksternal && typeof window !== "undefined" && !adPushed.current) {
+            adPushed.current = true;
             
             try {
                 (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -40,57 +58,68 @@ export default function GoogleAds({
                 }
             }
         }
-    }, [adsEksternal, activeSlot]); 
+    }, [isVisible, adsEksternal, activeSlot]);
 
     return (
-        <div className="ad-container relative flex justify-center w-full my-4">
-            {adsEksternal ? (
-                <div
-                    className="relative"
-                    style={{
-                        width: currentConfig.width,
-                        height: currentConfig.height,
-                    }}
-                >
-                    <a
-                        href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full h-full relative"
-                    >
-                        {type === 'mobile' ? (
-                            <Image
-                                src={adsEksternal.m_img}
-                                alt="Advertisement"
-                                fill
-                                sizes="(max-width: 768px) 100vw, 300px"
-                                className="object-contain"
-                                priority={false}
-                            />
-                        ) : (
-                            <Image
-                                src={adsEksternal.d_img}
-                                alt="Advertisement"
-                                fill
-                                sizes="(max-width: 768px) 100vw, 300px"
-                                className="object-contain"
-                                priority={false}
-                            />
-                        )}
-                    </a>
+        <div className="flex justify-center w-full my-4">
+            {/* Container utama dengan relative positioning */}
+            <div 
+                ref={adRef} 
+                className="relative overflow-hidden bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center"
+                style={{ 
+                    width: currentConfig.width, 
+                    height: currentConfig.height,
+                    minWidth: currentConfig.width,
+                    minHeight: currentConfig.height
+                }} 
+            >
+                {/* SKELETON LOADER (Placeholder)
+                  Posisi absolute agar berada di dasar (background).
+                  Menggunakan animate-pulse untuk efek loading berkedip halus.
+                */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 animate-pulse pointer-events-none">
+                    <svg className="w-6 h-6 mb-2 text-gray-300 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+                    </svg>
+                    <span className="text-[10px] uppercase tracking-widest font-medium">Advertisement</span>
                 </div>
-            ) : (
-                <ins
-                    className="adsbygoogle"
-                    style={{
-                        display: "inline-block",
-                        width: currentConfig.width,
-                        height: currentConfig.height,
-                    }}
-                    data-ad-client="ca-pub-2259519132704244"
-                    data-ad-slot={activeSlot}
-                ></ins>
-            )}
+
+                {/* KONTEN IKLAN
+                  Posisi relative dengan z-10 agar berada di atas placeholder.
+                */}
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                    {adsEksternal ? (
+                        <a
+                            href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full h-full"
+                        >
+                            <Image
+                                src={type === 'mobile' ? adsEksternal.m_img : adsEksternal.d_img}
+                                alt="Advertisement"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 300px"
+                                className="object-contain"
+                                priority={false}
+                            />
+                        </a>
+                    ) : (
+                        isVisible && (
+                            <ins
+                                className="adsbygoogle"
+                                style={{
+                                    display: "block",
+                                    width: currentConfig.width,
+                                    height: currentConfig.height,
+                                }}
+                                data-ad-client="ca-pub-2259519132704244"
+                                data-ad-slot={activeSlot}
+                            ></ins>
+                        )
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
