@@ -32,28 +32,40 @@ const DISABLED_AD_PATHS = [
 
 export default function ConditionalAdScript() {
     const pathname = usePathname();
-    const [shouldLoadAds, setShouldLoadAds] = useState(false);
+
+    const [loadAds, setLoadAds] = useState(false);
 
     useEffect(() => {
-        const handleInteraction = () => {
-            setShouldLoadAds(true);
-            // Hapus event listener setelah iklan dimuat agar tidak boros memori
-            window.removeEventListener('scroll', handleInteraction);
-            window.removeEventListener('mousemove', handleInteraction);
-            window.removeEventListener('touchstart', handleInteraction);
+        // Fungsi untuk memicu download JS Iklan
+        const triggerAds = () => {
+            setLoadAds(true);
+            // Bersihkan event listener agar tidak jalan berkali-kali
+            window.removeEventListener('scroll', triggerAds);
+            window.removeEventListener('touchstart', triggerAds);
+            window.removeEventListener('mousemove', triggerAds);
         };
 
-        // Pasang listener untuk mendeteksi interaksi user
-        window.addEventListener('scroll', handleInteraction, { once: true });
-        window.addEventListener('mousemove', handleInteraction, { once: true });
-        window.addEventListener('touchstart', handleInteraction, { once: true });
+        // Pasang pendeteksi: Iklan baru didownload kalau user gerak/scroll!
+        window.addEventListener('scroll', triggerAds, { once: true });
+        window.addEventListener('touchstart', triggerAds, { once: true });
+        window.addEventListener('mousemove', triggerAds, { once: true });
+
+        // Fallback: Kalau user diam saja selama 5 detik, paksa load iklannya
+        const timer = setTimeout(() => {
+            triggerAds();
+        }, 5000);
 
         return () => {
-            window.removeEventListener('scroll', handleInteraction);
-            window.removeEventListener('mousemove', handleInteraction);
-            window.removeEventListener('touchstart', handleInteraction);
+            clearTimeout(timer);
+            window.removeEventListener('scroll', triggerAds);
+            window.removeEventListener('touchstart', triggerAds);
+            window.removeEventListener('mousemove', triggerAds);
         };
     }, []);
+
+    // Jika belum ada interaksi, JANGAN render script Adsense
+    if (!loadAds) return null;
+
     // Cek apakah URL saat ini dimulai dengan salah satu path yang dilarang
     const isDisabled = DISABLED_AD_PATHS.some(prefix =>
         pathname.startsWith(prefix)
