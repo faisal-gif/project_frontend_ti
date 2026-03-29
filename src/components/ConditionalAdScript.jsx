@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
+import { useState, useEffect } from 'react';
 
 const DISABLED_AD_PATHS = [
     '/glutera-news/374306/7-posisi-hubungan-suami-istri-favorit-pria',
