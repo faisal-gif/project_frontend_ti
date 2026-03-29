@@ -5,8 +5,6 @@
   themes: light --default;
 }
 
-@import './styles/nprogress.css';
-
 .yarl__container {
   background-color: rgba(0, 0, 0, 0.6) !important;
 }

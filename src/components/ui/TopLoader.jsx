@@ -3,6 +3,9 @@ import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import NProgress from 'nprogress'
 
+import '../../styles/nprogress.css'
+
+
 NProgress.configure({ showSpinner: false })
 
 const TopLoader = () => {
