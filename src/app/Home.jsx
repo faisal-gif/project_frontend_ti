@@ -10,7 +10,6 @@ const FirstHightlightNewsSection = dynamic(() => import('@/components/FirstHight
 const EKoranSection = dynamic(() => import('@/components/EKoranSection'));
 const GallerySection = dynamic(() => import('@/components/GallerySection'));
 const LastestNewsSection = dynamic(() => import('@/components/LastestNewsSection'));
-const PopularNews = dynamic(() => import('@/components/PopularNews'));
 const CekFaktaCard = dynamic(() => import('@/components/CekFaktaCard'));
 const EventWidget = dynamic(() => import('@/components/EventWidget'));
 
@@ -246,7 +245,7 @@ function Home({
                     </div>
                     {/* Last news Sidebar */}
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
-                        <PopularNews />
+                      
                         <div className='flex items-center justify-center mb-8'>
                             <GoogleAds size='inline_rectangle' key={1} adsEksternal={initialAdsRectangle10} slot='9639204649' />
                         </div>
