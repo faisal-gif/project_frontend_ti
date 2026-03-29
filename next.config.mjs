@@ -25,7 +25,6 @@ const nextConfig = {
     optimizeCss: true,
     cssChunking: true,
     optimizePackageImports: ['react-icons'],
-    nextScriptWorkers: true,
   },
 
   // 🚀 Tambahkan bagian ini
