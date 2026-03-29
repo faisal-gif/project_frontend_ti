@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
-import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection';
-import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNewsSectionSkeleton';
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 // import VideoSection from '@/components/VideoSection';
+const HeadlineNewsHome = dynamic(() => import('@/components/HeadlineNewsHome'));
+const FirstHightlightNewsSection = dynamic(() => import('@/components/FirstHightlightNewsSection'));
 const EKoranSection = dynamic(() => import('@/components/EKoranSection'));
 const GallerySection = dynamic(() => import('@/components/GallerySection'));
 const LastestNewsSection = dynamic(() => import('@/components/LastestNewsSection'));
@@ -14,7 +14,7 @@ const PopularNews = dynamic(() => import('@/components/PopularNews'));
 const CekFaktaCard = dynamic(() => import('@/components/CekFaktaCard'));
 const EventWidget = dynamic(() => import('@/components/EventWidget'));
 
-import GoogleAds from '@/components/GoogleAds';
+const GoogleAds = dynamic(() => import('@/components/GoogleAds'));
 
 const AdsCarouselGroup = dynamic(() => import('@/components/AdsCarouselGroup'));
 
