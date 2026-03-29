@@ -53,7 +53,7 @@ export default function ConditionalAdScript() {
         // Fallback: Kalau user diam saja selama 5 detik, paksa load iklannya
         const timer = setTimeout(() => {
             triggerAds();
-        }, 1500);
+        }, 5000);
 
         return () => {
             clearTimeout(timer);
