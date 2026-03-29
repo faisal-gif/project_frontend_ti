@@ -90,8 +90,7 @@ export default function RootLayout({ children }) {
           name="msapplication-TileImage"
           content="https://timesindonesia.co.id/themes/times/assets/images/timesindonesia-favicon-144.png"
         />
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+
       </head>
       <body
         className={`antialiased`}
