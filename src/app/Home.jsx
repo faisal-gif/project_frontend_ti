@@ -8,11 +8,12 @@ import FirstHighlightNewsSectionSkeleton from '@/components/ui/FirstHighlightNew
 import HorizontalNewsCardSkeleton from '@/components/ui/HorizontalNewsCardSkeleton';
 import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 
+// Imports Statis (TIDAK BOLEH DYNAMIC karena berada di Above the Fold / LCP)
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 
-// Dynamic Imports
+// Dynamic Imports (Aman karena berada di Below the Fold)
 const FirstHightlightNewsSection = dynamic(() => import('@/components/FirstHightlightNewsSection'));
 const EKoranSection = dynamic(() => import('@/components/EKoranSection'));
 const GallerySection = dynamic(() => import('@/components/GallerySection'));
@@ -132,7 +133,7 @@ function Home({
             {/* --- HERO SECTION --- */}
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 pb-2 md:pb-8 px-4 md:grid-cols-6">
                 <div className="md:col-span-4">
-                    {/* Headline langsung menggunakan data array, tidak perlu Suspense */}
+                    {/* Headline langsung menggunakan data array, import statis, tanpa Suspense */}
                     <HeadlineNewsHome initialHeadlineNews={initialHeadlineNews} />
                 </div>
                 <div className="md:col-span-2">
@@ -251,7 +252,6 @@ function Home({
                     </div>
                     
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
-                        {/* Jika PopularNews sekarang adalah Server Component (seperti saran sebelumnya), tidak perlu over props */}
                         <PopularNews />
                         
                         <div className='flex items-center justify-center mb-8'>
