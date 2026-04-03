@@ -121,62 +121,62 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
             {
                 newsDetail.catnews_slug === 'kopi-times' ? (
-                    <>
-                        <div className='hidden md:flex items-center justify-center mb-6'>
-                            <div
-                                className="relative"
-                                style={{
-                                    width: 970,
-                                    height: 250,
-                                }}
-                            >
-                                <a
-                                    href={'https://kopi.times.co.id/'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full h-full relative"
-                                >
+                    // <>
+                    //     <div className='hidden md:flex items-center justify-center mb-6'>
+                    //         <div
+                    //             className="relative"
+                    //             style={{
+                    //                 width: 970,
+                    //                 height: 250,
+                    //             }}
+                    //         >
+                    //             <a
+                    //                 href={'https://kopi.times.co.id/'}
+                    //                 target="_blank"
+                    //                 rel="noopener noreferrer"
+                    //                 className="block w-full h-full relative"
+                    //             >
 
-                                    <Image
-                                        src={'https://cdn-1.times.co.id/images/2026/03/07/kopi-times.jpg'}
-                                        alt="Advertisement"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 300px"
-                                        className="object-contain"
-                                        priority={false}
-                                    />
-                                </a>
-                            </div>
-                        </div>
+                    //                 <Image
+                    //                     src={'https://cdn-1.times.co.id/images/2026/03/07/kopi-times.jpg'}
+                    //                     alt="Advertisement"
+                    //                     fill
+                    //                     sizes="(max-width: 768px) 100vw, 300px"
+                    //                     className="object-contain"
+                    //                     priority={false}
+                    //                 />
+                    //             </a>
+                    //         </div>
+                    //     </div>
 
-                        <div className='md:hidden flex items-center justify-center'>
-                            <div
-                                className="relative"
-                                style={{
-                                    width: 336,
-                                    height: 280,
-                                }}
-                            >
-                                <a
-                                    href={'https://kopi.times.co.id/'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full h-full relative"
-                                >
-                                    <Image
-                                        src={'https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/03/20/ads-kopi-times-mrev6blw.webp'}
-                                        alt="Advertisement"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 300px"
-                                        className="object-contain"
-                                        priority={false}
-                                    />
-                                </a>
-                            </div>
-                        </div>
+                    //     <div className='md:hidden flex items-center justify-center'>
+                    //         <div
+                    //             className="relative"
+                    //             style={{
+                    //                 width: 336,
+                    //                 height: 280,
+                    //             }}
+                    //         >
+                    //             <a
+                    //                 href={'https://kopi.times.co.id/'}
+                    //                 target="_blank"
+                    //                 rel="noopener noreferrer"
+                    //                 className="block w-full h-full relative"
+                    //             >
+                    //                 <Image
+                    //                     src={'https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/03/20/ads-kopi-times-mrev6blw.webp'}
+                    //                     alt="Advertisement"
+                    //                     fill
+                    //                     sizes="(max-width: 768px) 100vw, 300px"
+                    //                     className="object-contain"
+                    //                     priority={false}
+                    //                 />
+                    //             </a>
+                    //         </div>
+                    //     </div>
 
-                    </>
-
+                    // </>
+                    ''
                 ) : (
                     <>
                         <div className='hidden md:flex items-center justify-center'>
@@ -251,22 +251,22 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                         writerKopiTimes && (
                                             <div className="flex items-center gap-2 ml-2">
                                                 <div className="avatar" >
-                                                        {writerKopiTimes.writer_avatar ? (
-                                                            <div className="w-10 bg-neutral rounded-full">
-                                                                <Image
-                                                                    src={writerKopiTimes.writer_avatar}
-                                                                    alt={writerKopiTimes.writer_name}
-                                                                    width={40}
-                                                                    height={40}
-                                                                    loading='lazy'
-                                                                />
-                                                            </div>
-                                                        ) : (
-                                                            <div className="bg-neutral text-neutral-content w-6 rounded-full flex items-center justify-center">
-                                                                {writerKopiTimes.writer_name.charAt(0)}
-                                                            </div>
-                                                        )}
-                                                  </div>
+                                                    {writerKopiTimes.writer_avatar ? (
+                                                        <div className="w-10 bg-neutral rounded-full">
+                                                            <Image
+                                                                src={writerKopiTimes.writer_avatar}
+                                                                alt={writerKopiTimes.writer_name}
+                                                                width={40}
+                                                                height={40}
+                                                                loading='lazy'
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        <div className="bg-neutral text-neutral-content w-6 rounded-full flex items-center justify-center">
+                                                            {writerKopiTimes.writer_name.charAt(0)}
+                                                        </div>
+                                                    )}
+                                                </div>
 
                                                 {/* Bagian span diubah menjadi flex agar ikon sejajar dengan teks */}
                                                 <span className='text-sm font-semibold flex items-center gap-1 capitalize'>
