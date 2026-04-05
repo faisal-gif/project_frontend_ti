@@ -247,8 +247,9 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                             </div>
                                         </span>
                                     </div>
+                                
                                     {
-                                        writerKopiTimes && (
+                                           newsDetail.catnews_slug === 'kopi-times' && (
                                             <div className="flex items-center gap-2 ml-2">
                                                 <div className="avatar" >
                                                     {writerKopiTimes.writer_avatar ? (
