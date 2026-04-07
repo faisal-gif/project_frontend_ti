@@ -93,11 +93,14 @@ const getNewsDetail = async ({ id }) => {
 
         // 3. Cek jika respons dari server tidak berhasil (misal: 404 Not Found)
         if (!response.ok) {
-            NotFound();
+            return null;
         }
 
         // 4. Ambil data dalam format JSON
         const data = await response.json();
+        if (!data || !data.data) {
+            return null;
+        }
 
         // 5. Kembalikan data yang dibutuhkan
         return data.data;
@@ -206,7 +209,7 @@ const getBajaJugaNews = async ({ news_type = 'tag', offset = 0, limit = 5, title
         let data = response.data?.data || [];
 
         // 4. Jika data < 5, ambil berdasarkan Category (menggunakan parameter cat_id)
-        if (data.length < 5) { 
+        if (data.length < 5) {
             const fallbackResponse = await clientAxios.get("news/all", {
                 params: {
                     news_type: 'cat',
@@ -217,7 +220,7 @@ const getBajaJugaNews = async ({ news_type = 'tag', offset = 0, limit = 5, title
             });
 
             const fallbackData = fallbackResponse.data?.data || [];
-            
+
             // Gabungkan data tag dan category (opsional: jika ingin mencampur)
             // Atau timpa jika ingin full category saat tag dikit
             data = [...data, ...fallbackData].slice(0, limit);
@@ -225,12 +228,12 @@ const getBajaJugaNews = async ({ news_type = 'tag', offset = 0, limit = 5, title
 
         // 5. Simpan hasil ke cache sebelum dikembalikan
         newsCache.set(cacheKey, data);
-        
+
         return data;
 
     } catch (error) {
         console.error("Error fetching news:", error);
-        return []; 
+        return [];
     }
 };
 

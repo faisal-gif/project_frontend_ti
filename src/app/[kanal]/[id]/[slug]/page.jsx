@@ -15,13 +15,15 @@ export const revalidate = 60;
 export async function generateMetadata({ params }) {
     const { id, kanal, slug } = await params;
     const newsDetail = await getNews(id);
-    const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
-
-    const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
 
     if (!newsDetail) {
         notFound();
     }
+
+    const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
+    const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
+
+
 
     const urlPathFromParams = `/${kanal}/${id}/${slug}`;
     const correctUrl = newsDetail.url_ci4 || '';
