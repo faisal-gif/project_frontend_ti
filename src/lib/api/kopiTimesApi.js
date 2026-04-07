@@ -10,7 +10,7 @@ const getWriterKopiTimes = async ({ id }) => {
 
         // 3. Cek jika respons dari server tidak berhasil (misal: 404 Not Found)
         if (!response.ok) {
-            NotFound();
+           return null;
         }
 
         // 4. Ambil data dalam format JSON

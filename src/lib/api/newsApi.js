@@ -1,4 +1,3 @@
-import NotFound from "@/app/not-found";
 import { clientAxios, serverAxios } from "./axiosInstance";
 
 const getAllNews = async (
