@@ -275,7 +275,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                                         {writerKopiTimes.writer_name} - Kopi Times
                                                         {/* Ikon Centang Kuning  */}
                                                         {
-                                                            writerKopiTimes.badge === 'kuning' && (
+                                                            writerKopiTimes.writer_badge === 'kuning' && (
                                                                 <svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     viewBox="0 0 24 24"
@@ -292,7 +292,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                                         }
                                                         {/* Ikon Centang Oren  */}
                                                         {
-                                                            writerKopiTimes.badge === 'oren' && (
+                                                            writerKopiTimes.writer_badge === 'oren' && (
                                                                 <svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     viewBox="0 0 24 24"
@@ -309,7 +309,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                                         }
                                                         {/* Ikon Centang Hijau  */}
                                                         {
-                                                            writerKopiTimes.badge === 'hijau' && (
+                                                            writerKopiTimes.writer_badge === 'hijau' && (
                                                                 <svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     viewBox="0 0 24 24"
@@ -327,7 +327,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
                                                         {/* Ikon Centang Biru  */}
                                                         {
-                                                            writerKopiTimes.badge === 'biru' && (
+                                                            writerKopiTimes.writer_badge === 'biru' && (
                                                                 <svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     viewBox="0 0 24 24"
