@@ -21,6 +21,7 @@ import FirstHightlightNewsSection from '@/components/FirstHightlightNewsSection'
 import { getAllNews, getBajaJugaNews } from '@/lib/api/newsApi';
 import { getNewsFirstSectionsClient } from '@/lib/data';
 import KopiTimesCard from '@/components/KopiTimesCard';
+import AjpCard from '@/components/AJPCard';
 
 // import KopiTimesCard from '@/components/KopiTimesCard';
 
@@ -494,7 +495,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                             </div>
                                         </div>
                                         {newsDetail.catnews_id == 15 && (<KopiTimesCard />)}
-
+                                        {newsDetail.catnews_id == 30 && (<AjpCard />)}
                                         {/* Content News */}
 
                                         <ArticleContent
