@@ -17,7 +17,7 @@ function character_limiter(str, limit) {
 }
 
 function setLocusNews(content, city) {
-    const cityText = city ? `<strong>${city.trim().toUpperCase()}</strong>` : ''; 
+    const cityText = city ? `<strong>${city.trim().toUpperCase()}</strong>  - ` : ''; 
 
     let result = content;
 
