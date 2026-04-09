@@ -88,8 +88,11 @@ function SearchDetail({ keyword }) {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-18">
-      <div className="flex items-center justify-center mb-8">
+      <div className="hidden md:flex items-center justify-center mb-8">
         <GoogleAds size="top_banner" />
+      </div>
+        <div className="md:hidden flex items-center justify-center mb-8">
+        <GoogleAds size="inline_rectangle" />
       </div>
 
       {/* Header */}
