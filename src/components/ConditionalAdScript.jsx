@@ -33,7 +33,7 @@ const DISABLED_AD_PATHS = [
 export default function ConditionalAdScript() {
     const pathname = usePathname();
 
-    const [loadAds, setLoadAds] = useState(false);
+    const [loadAds, setLoadAds] = useState(true);
 
     useEffect(() => {
         // Fungsi untuk memicu download JS Iklan
@@ -64,7 +64,7 @@ export default function ConditionalAdScript() {
     }, []);
 
     // Jika belum ada interaksi, JANGAN render script Adsense
-    if (!loadAds) return null;
+    // if (!loadAds) return null;
 
     // Cek apakah URL saat ini dimulai dengan salah satu path yang dilarang
     const isDisabled = DISABLED_AD_PATHS.some(prefix =>
@@ -80,7 +80,7 @@ export default function ConditionalAdScript() {
     return (
         <Script
             id="adsbygoogle-init"
-            strategy="lazyOnload"
+            strategy="beforeInteractive"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244"
             crossOrigin="anonymous"
