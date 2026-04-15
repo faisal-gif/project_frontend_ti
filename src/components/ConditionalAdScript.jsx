@@ -83,7 +83,6 @@ export default function ConditionalAdScript() {
             strategy="beforeInteractive"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244"
-            crossOrigin="anonymous"
         />
     );
 }
