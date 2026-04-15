@@ -80,7 +80,7 @@ export default function ConditionalAdScript() {
     return (
         <Script
             id="adsbygoogle-init"
-            strategy="worker"
+            strategy="lazyOnload"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244"
             crossOrigin="anonymous"
