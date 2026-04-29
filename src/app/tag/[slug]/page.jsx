@@ -3,8 +3,10 @@
 import React from 'react'
 import TagClient from './TagClient'
 import { getAllNewsServer } from '@/lib/api/newsApi';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
+
+export const revalidate = 3600; 
 
 const unslugify = (slug) => {
   if (!slug) return "";
@@ -60,9 +62,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-
 async function page({ params }) {
-
   // redirect("/maintenance");
 
   const { slug } = await params;
