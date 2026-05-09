@@ -6,8 +6,6 @@ import { getAllNewsServer } from '@/lib/api/newsApi';
 import { redirect } from 'next/navigation';
 
 
-export const revalidate = 3600; 
-
 const unslugify = (slug) => {
   if (!slug) return "";
   return slug
