@@ -78,6 +78,7 @@ async function page({ params }) {
   } catch (error) {
     console.error("Failed to fetch initial news:", error);
   }
+  
 
   return (
     <TagClient
