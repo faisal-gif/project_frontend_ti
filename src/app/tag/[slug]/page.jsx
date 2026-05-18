@@ -62,7 +62,7 @@ export async function generateMetadata({ params }) {
 }
 
 async function page({ params }) {
-  redirect("/maintenance");
+  // redirect("/maintenance");
 
   const { slug } = await params;
   const tag = unslugify(slug);
