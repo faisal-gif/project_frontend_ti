@@ -18,10 +18,14 @@ const getWriterDetailServer = async ({ slug }) => {
     try {
         const apiUrl = `${process.env.API_URL}/jurnalis/`;
 
-        const apiUrlWithKey = `${apiUrl}?key=${process.env.SECRET_KEY}&name=${slug}`;
+        // Hapus parameter key, sisakan parameter name saja
+        const apiUrlWithParams = `${apiUrl}?name=${slug}`;
 
-        const response = await fetch(apiUrlWithKey, {
-
+        const response = await fetch(apiUrlWithParams, {
+            // Tambahkan x-api-key di headers
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 300 },
         });
 
@@ -33,12 +37,10 @@ const getWriterDetailServer = async ({ slug }) => {
 
         return data.data;
 
-
     } catch (error) {
         console.log(error);
     }
 };
-
 
 
 

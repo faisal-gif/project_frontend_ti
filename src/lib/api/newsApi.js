@@ -79,16 +79,16 @@ const getAllNewsServer = async (
 
 const getNewsDetail = async ({ id }) => {
     try {
-        // 1. Buat URL lengkap ke endpoint API
+        // 1. Buat URL lengkap ke endpoint API (tanpa query key)
         const apiUrl = `${process.env.API_URL}/news_detail/${id}`;
 
-        // Tambahkan query parameter untuk key
-        const apiUrlWithKey = `${apiUrl}?key=${process.env.SECRET_KEY}`;
-
-        const response = await fetch(apiUrlWithKey, {
+        const response = await fetch(apiUrl, {
+            // Tambahkan x-api-key di headers
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 300 },
         });
-
 
         // 3. Cek jika respons dari server tidak berhasil (misal: 404 Not Found)
         if (!response.ok) {
@@ -115,12 +115,16 @@ const getRelatedNews = async (
     { related = 'no', news_id = '', cat_id = '', rel_title = '' }
 ) => {
     try {
-        // 1. Siapkan URL dan query parameters
+        // 1. Siapkan URL dan query parameters (Hapus bagian &key=...)
         const baseUrl = process.env.API_URL;
-        const apiUrl = new URL(`${baseUrl}/news_related/?news_id=${news_id}&cat_id=${cat_id}&rel_title=${rel_title}&key=${process.env.SECRET_KEY}`);
+        const apiUrl = new URL(`${baseUrl}/news_related/?news_id=${news_id}&cat_id=${cat_id}&rel_title=${rel_title}`);
 
         const response = await fetch(apiUrl.toString(), {
             method: 'GET',
+            // Tambahkan x-api-key di headers
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 60 },
         });
 
@@ -142,14 +146,14 @@ const getRelatedNews = async (
 
 const getNewsDetailUniq = async ({ id }) => {
     try {
-        // 1. Buat URL lengkap ke endpoint API
+        // 1. Buat URL lengkap ke endpoint API (tanpa query key)
         const apiUrl = `${process.env.API_URL}/news_detail/uniq/${id}`;
 
-        // Tambahkan query parameter untuk key
-        const apiUrlWithKey = `${apiUrl}?key=${process.env.SECRET_KEY}`;
-
-        const response = await fetch(apiUrlWithKey, {
-
+        const response = await fetch(apiUrl, {
+            // Tambahkan x-api-key di headers
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 300 },
         });
 
@@ -171,7 +175,6 @@ const getNewsDetailUniq = async ({ id }) => {
         return null;
     }
 };
-
 
 const updateView = async ({ id }) => {
     try {

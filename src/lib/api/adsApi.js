@@ -1,15 +1,15 @@
 const getViewAds = async ({ id }) => {
     try {
-        // 1. Buat URL lengkap ke endpoint API
+        // 1. Buat URL lengkap ke endpoint API (tanpa query key)
         const apiUrl = `${process.env.API_URL}/ads/view/1/${id}`;
 
-        // Tambahkan query parameter untuk key
-        const apiUrlWithKey = `${apiUrl}?key=${process.env.SECRET_KEY}`;
-
-        const response = await fetch(apiUrlWithKey, {
+        const response = await fetch(apiUrl, {
+            // Tambahkan x-api-key di headers
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 300 },
         });
-
 
         // 3. Cek jika respons dari server tidak berhasil (misal: 404 Not Found)
         if (!response.ok) {
@@ -20,7 +20,7 @@ const getViewAds = async ({ id }) => {
         const data = await response.json();
 
         // 5. Kembalikan data yang dibutuhkan
-        if (data && data.data.unique_id) {
+        if (data && data.data && data.data.unique_id) {
             return data.data; // Kembalikan data jika valid
         } else {
             return null; // BAGUS: Kembalikan null jika data kosong atau tidak valid
@@ -35,13 +35,14 @@ const getViewAds = async ({ id }) => {
 
 const getViewAdsList = async ({ id }) => {
     try {
-        // 1. Buat URL lengkap ke endpoint API
+        // 1. Buat URL lengkap ke endpoint API (tanpa query key)
         const apiUrl = `${process.env.API_URL}/ads/view/all/1/${id}`;
 
-        // Tambahkan query parameter untuk key
-        const apiUrlWithKey = `${apiUrl}?key=${process.env.SECRET_KEY}`;
-
-        const response = await fetch(apiUrlWithKey, {
+        const response = await fetch(apiUrl, {
+            // Tambahkan x-api-key di headers
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 300 },
         });
 
@@ -67,8 +68,6 @@ const getViewAdsList = async ({ id }) => {
         return null;
     }
 };
-
-
 
 export {
     getViewAds,
