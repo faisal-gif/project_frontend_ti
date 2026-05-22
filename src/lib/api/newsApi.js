@@ -47,7 +47,9 @@ const getAllNewsServer = async (
         // 1. Siapkan URL dan query parameters
         const baseUrl = process.env.API_URL;
         const apiUrl = new URL(`${baseUrl}/all_news/`);
-        const params = { news_type, offset, limit, cat_id, title, editor_id, key: process.env.SECRET_KEY, };
+        
+        // HAPUS "key" dari daftar params ini
+        const params = { news_type, offset, limit, cat_id, title, editor_id };
 
         // Tambahkan parameter ke URL hanya jika nilainya ada
         Object.entries(params).forEach(([key, value]) => {
@@ -58,6 +60,10 @@ const getAllNewsServer = async (
 
         const response = await fetch(apiUrl.toString(), {
             method: 'GET',
+            // TAMBAHKAN HEADERS x-api-key di sini
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
             next: { revalidate: 60 },
         });
 

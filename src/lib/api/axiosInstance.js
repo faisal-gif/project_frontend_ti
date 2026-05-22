@@ -15,7 +15,7 @@ export const clientAxios = axios.create({
 export const serverAxios = axios.create({
   baseURL: process.env.API_URL,
   headers: {
-    'x-api-key':process.env.SECRET_KEY,
+    'x-api-key': process.env.SECRET_KEY,
     'Content-Type': 'application/json',
   },
 });
