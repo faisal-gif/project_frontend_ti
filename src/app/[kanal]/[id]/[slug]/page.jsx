@@ -1,4 +1,4 @@
-import { getAllNewsServer, getNewsDetail, getRelatedNews } from '@/lib/api/newsApi';
+import { getAllNewsServer, getBajaJugaNews, getNewsDetail, getRelatedNews } from '@/lib/api/newsApi';
 import React, { cache } from 'react'
 import NewsDetailClient from './NewsDetailClient';
 import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
@@ -9,6 +9,24 @@ import { getWriterKopiTimes } from '@/lib/api/kopiTimesApi';
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
 });
+
+// --- MULAI PENAMBAHAN CACHE UNTUK RELATED NEWS ---
+const getCachedRelatedNews = cache(async (tagSlug, catId) => {
+    try {
+        const data = await getBajaJugaNews({
+            news_type: 'tag',
+            title: tagSlug,
+            cat_id: catId,
+            offset: 0,
+            limit: 5
+        });
+        return data || [];
+    } catch (error) {
+        console.error("Gagal mengambil berita terkait di server:", error);
+        return [];
+    }
+});
+// --- AKHIR PENAMBAHAN ---
 
 export const revalidate = 60;
 
@@ -92,6 +110,15 @@ export default async function page({ params }) {
 
     const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
+    // --- MULAI LOGIC RELATED NEWS DI SERVER ---
+    const tags = initialNewsDetail.news_tags ? initialNewsDetail.news_tags.split(',') : [];
+    const firstTag = tags.length > 0 ? tags[0].trim() : null;
+
+    let relatedNewsData = await getCachedRelatedNews(firstTag, initialNewsDetail.catnews_id);
+    // Filter agar berita yang sedang dibaca tidak muncul
+    relatedNewsData = relatedNewsData.filter(item => item.news_id !== initialNewsDetail.news_id);
+    // --- AKHIR LOGIC RELATED NEWS ---
+
     // --- MULAI PENAMBAHAN SCHEMA ---
     const schemaData = {
         '@context': 'https://schema.org',
@@ -140,7 +167,9 @@ export default async function page({ params }) {
             <NewsDetailClient initialView={viewResult?.newViewCount}
                 initialNewsDetail={newsDetailForClient}
                 initialWriter={writer}
-                initialWriterKopiTimes={writerKopiTimes} />
+                initialWriterKopiTimes={writerKopiTimes} 
+                initialRelatedNews={relatedNewsData}
+                />
         </>
     );
 }
