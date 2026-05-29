@@ -25,7 +25,7 @@ import AjpCard from '@/components/AJPCard';
 
 // import KopiTimesCard from '@/components/KopiTimesCard';
 
-function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initialWriterKopiTimes, initialRelatedNews }) {
+function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initialWriterKopiTimes }) {
 
     const [size, setSize] = useState(2);
     const [newsView] = useState(initialView);
@@ -34,7 +34,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
     const [writerDetail] = useState(initialWriter);
     const [writerKopiTimes, setWriterKopiTimes] = useState(initialWriterKopiTimes);
 
-   const [relatedNews] = useState(initialRelatedNews || []);
+    const [relatedNews, setRelatedNews] = useState();
 
     const [editorDetail, setEditorDetail] = useState(null);
     const [focusDetail, setFocusDetail] = useState(null);
@@ -45,8 +45,40 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
     const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "");
 
-    // Hooks selalu dipanggil, logic conditional di dalam
+    useEffect(() => {
+        const fetchRelated = async () => {
+            if (newsDetail) {
+                // Ambil semua tag, lalu pilih yang pertama
+                const tags = newsDetail.news_tags ? newsDetail.news_tags.split(',') : [];
+                const firstTag = tags.length > 0 ? tags[0].trim() : null;
 
+                // Ubah tag pertama menjadi slug untuk parameter 'title' (berdasarkan logika API sebelumnya)
+                const tagSlug = firstTag;
+
+                try {
+                    const data = await getBajaJugaNews({
+                        news_type: 'tag',
+                        title: tagSlug,           // Digunakan jika news_type adalah 'tag'
+                        cat_id: newsDetail.catnews_id, // Digunakan sebagai fallback jika tag < 5
+                        offset: 0,
+                        limit: 5
+                    });
+
+                    // Opsional: Filter agar berita yang sedang dibaca tidak muncul di "Baca Juga"
+                    const filteredData = data.filter(item => item.news_id !== newsDetail.news_id);
+
+                    setRelatedNews(filteredData);
+                } catch (error) {
+                    console.error("Gagal mengambil berita terkait:", error);
+                }
+            }
+        };
+
+        fetchRelated();
+    }, [newsDetail]);
+
+    // Hooks selalu dipanggil, logic conditional di dalam
+    
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
