@@ -18,7 +18,7 @@ const nextConfig = {
 
     ],
     formats: ["image/webp"],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // cache image di server Next selama 30 hari
+    minimumCacheTTL: 60 * 60, // cache image di server Next selama 30 hari
   },
 
   experimental: {
