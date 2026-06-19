@@ -78,7 +78,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
     // }, [newsDetail]);
 
     // Hooks selalu dipanggil, logic conditional di dalam
-    
+
     useEffect(() => {
         if (newsDetail) {
             getEditorDetail({ slug: newsDetail.editor_alias }).then(setEditorDetail).catch(console.error);
@@ -613,15 +613,17 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
                     <div className=" sticky top-28">
 
+
+                        <div className='flex items-center justify-center my-2'>
+                            <GoogleAds size='inline_rectangle' slot='6216992041' />
+                        </div>
+
                         <PopularNews />
 
                         <div className='flex items-center justify-center my-6'>
                             <GoogleAds size='inline_rectangle' slot='6216992041' />
                         </div>
 
-                        <div className='flex items-center justify-center'>
-                            <GoogleAds size='inline_rectangle' slot='6216992041' />
-                        </div>
                     </div>
                 </aside>
             </div>
