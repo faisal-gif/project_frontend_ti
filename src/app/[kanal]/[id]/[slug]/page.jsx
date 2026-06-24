@@ -10,6 +10,14 @@ const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
 });
 
+// Fungsi bantuan untuk mengecek apakah jadwal tayang masih di masa depan
+const isFutureNews = (dateString) => {
+    if (!dateString) return false;
+    const publishDate = new Date(dateString.replace(' ', 'T') + '+07:00');
+    const now = new Date();
+    return publishDate > now;
+};
+
 export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
@@ -20,11 +28,14 @@ export async function generateMetadata({ params }) {
         notFound();
     }
 
-    // --- MULAI PENAMBAHAN REDIRECT EXTERNAL URL ---
+    // --- BLOKIR AKSES JIKA BERITA BELUM WAKTUNYA TAYANG ---
+    if (isFutureNews(newsDetail.news_datepub)) {
+        notFound();
+    }
+
     if (newsDetail.external_url) {
         redirect(newsDetail.external_url);
     }
-    // --- AKHIR PENAMBAHAN ---
 
     const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
     const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
@@ -84,13 +95,18 @@ export default async function page({ params }) {
         notFound();
     }
 
-    const viewResult = await incrementView(initialNewsDetail.news_id);
-    
-    if (initialNewsDetail.external_url) {
-        permanentRedirect(initialNewsDetail.external_url,);
+    // --- BLOKIR AKSES JIKA BERITA BELUM WAKTUNYA TAYANG ---
+    if (isFutureNews(initialNewsDetail.news_datepub)) {
+        notFound();
     }
 
+    // Redirect diletakkan SEBELUM incrementView agar efisien
+    if (initialNewsDetail.external_url) {
+        permanentRedirect(initialNewsDetail.external_url);
+    }
 
+    // View hanya bertambah jika user benar-benar membaca di halaman ini (tidak 404 & tidak redirect)
+    const viewResult = await incrementView(initialNewsDetail.news_id);
 
     let writer = {};
 
@@ -101,7 +117,6 @@ export default async function page({ params }) {
 
     const correctedDateString = initialNewsDetail.news_datepub.replace(' ', 'T') + '+07:00';
 
-    // --- MULAI PENAMBAHAN SCHEMA ---
     const schemaData = {
         '@context': 'https://schema.org',
         '@type': 'NewsArticle',
@@ -119,7 +134,6 @@ export default async function page({ params }) {
         'author': {
             '@type': 'Person',
             'name': initialNewsDetail.news_writer,
-            // Jika Anda punya halaman profil penulis, URL-nya bisa ditambahkan di sini
             'url': `${process.env.NEXT_PUBLIC_URL}/writer/${initialNewsDetail.writer_slug}`
         },
         'publisher': {
@@ -127,15 +141,14 @@ export default async function page({ params }) {
             'name': 'TIMES Indonesia',
             'logo': {
                 '@type': 'ImageObject',
-                // GANTI DENGAN URL LOGO ANDA YANG VALID
-                'url': `${process.env.NEXT_PUBLIC_URL}/icon.png`,
+                'url': `${process.env.NEXT_PUBLIC_URL}/icon.png`, // Pastikan route logo ini valid
             }
         },
     };
 
     const newsDetailForClient = {
         ...initialNewsDetail,
-        news_datepub: correctedDateString, // Kirim tanggal yang sudah benar ke client
+        news_datepub: correctedDateString, 
     };
 
     return (
@@ -144,11 +157,12 @@ export default async function page({ params }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
-            {/* Kirim data yang sudah diperbaiki ke komponen client */}
-            <NewsDetailClient initialView={viewResult?.newViewCount}
+            <NewsDetailClient 
+                initialView={viewResult?.newViewCount}
                 initialNewsDetail={newsDetailForClient}
                 initialWriter={writer}
-                initialWriterKopiTimes={writerKopiTimes} />
+                initialWriterKopiTimes={writerKopiTimes} 
+            />
         </>
     );
 }
