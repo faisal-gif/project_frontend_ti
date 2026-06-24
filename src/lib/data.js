@@ -47,8 +47,8 @@ export const getEntertainmentNewsServer = async () => {
 
 export const getLipsusNewsServer = async () => {
   return await getAllNewsServer({
-    news_type: "tag",
-    title: "liputan_khusus",
+    news_type: "cat",
+    cat_id: 52,
     offset: 0,
     limit: 5,
   });
@@ -56,8 +56,8 @@ export const getLipsusNewsServer = async () => {
 
 export const getLipsusNewsClient = async () => {
   return await getAllNews({
-    news_type: "tag",
-    title: "liputan_khusus",
+    news_type: "cat",
+    cat_id: 52,
     offset: 0,
     limit: 5,
   });
@@ -131,7 +131,7 @@ export const getNewsFirstSectionsServer = async () => {
       title: "Liputan Khusus",
       news: lipsusNews,
       layout: 'reverse',
-      url: '/tag/lipsus',
+      url: '/kanal/liputan-khusus',
     },
   ];
 };

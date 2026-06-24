@@ -20,10 +20,14 @@ export async function generateMetadata({ params }) {
         notFound();
     }
 
+    // --- MULAI PENAMBAHAN REDIRECT EXTERNAL URL ---
+    if (newsDetail.external_url) {
+        redirect(newsDetail.external_url);
+    }
+    // --- AKHIR PENAMBAHAN ---
+
     const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
     const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
-
-
 
     const urlPathFromParams = `/${kanal}/${id}/${slug}`;
     const correctUrl = newsDetail.url_ci4 || '';
@@ -37,7 +41,6 @@ export async function generateMetadata({ params }) {
         description: newsDetail.news_description,
         keywords: newsDetail.news_tags,
         authors: [{ name: newsDetail.news_writer, url: 'https://timesindonesia.co.id' }],
-        keywords: newsDetail.news_tags,
         lastModified: correctedDateString,
         alternates: {
             canonical: canonicalUrl,
@@ -77,10 +80,14 @@ export default async function page({ params }) {
 
     const initialNewsDetail = await getNews(id);
 
-
     if (!initialNewsDetail) {
         notFound();
     }
+
+    if (initialNewsDetail.external_url) {
+        redirect(initialNewsDetail.external_url);
+    }
+
     const viewResult = await incrementView(initialNewsDetail.news_id);
 
     let writer = {};
@@ -123,7 +130,6 @@ export default async function page({ params }) {
             }
         },
     };
-
 
     const newsDetailForClient = {
         ...initialNewsDetail,
