@@ -84,11 +84,13 @@ export default async function page({ params }) {
         notFound();
     }
 
+    const viewResult = await incrementView(initialNewsDetail.news_id);
+    
     if (initialNewsDetail.external_url) {
-        redirect(initialNewsDetail.external_url);
+        permanentRedirect(initialNewsDetail.external_url,);
     }
 
-    const viewResult = await incrementView(initialNewsDetail.news_id);
+
 
     let writer = {};
 
