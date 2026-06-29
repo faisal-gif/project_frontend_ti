@@ -155,7 +155,7 @@ function Home({
             <div className="mx-auto max-w-6xl">
                 <div className='hidden md:flex items-center justify-center mb-8'>
                     <Suspense fallback={<div className="w-[970px] h-[250px] bg-gray-100 animate-pulse rounded"></div>}>
-                        <AsyncGoogleAds promise={initialAdsLeaderboard1Promise} size="leaderboard" slot='6315037307' />
+                        <AsyncGoogleAds promise={initialAdsLeaderboard1Promise} size="top-banner" slot='6315037307' />
                     </Suspense>
                 </div>
             </div>
@@ -175,7 +175,7 @@ function Home({
             <div className="hidden md:block mx-auto max-w-6xl">
                 <div className='flex items-center justify-center mb-8'>
                     <Suspense fallback={<div className="w-[970px] h-[250px] bg-gray-100 animate-pulse rounded"></div>}>
-                        <AsyncGoogleAds promise={initialAdsLeaderboard2Promise} size="leaderboard" slot='6315037307' />
+                        <AsyncGoogleAds promise={initialAdsLeaderboard2Promise} size="top-banner" slot='6315037307' />
                     </Suspense>
                 </div>
             </div>
