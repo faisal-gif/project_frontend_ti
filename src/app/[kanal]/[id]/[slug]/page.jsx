@@ -100,13 +100,15 @@ export default async function page({ params }) {
         notFound();
     }
 
+
+    // View hanya bertambah jika user benar-benar membaca di halaman ini (tidak 404 & tidak redirect)
+    const viewResult = await incrementView(initialNewsDetail.news_id);
+
+
     // Redirect diletakkan SEBELUM incrementView agar efisien
     if (initialNewsDetail.external_url) {
         permanentRedirect(initialNewsDetail.external_url);
     }
-
-    // View hanya bertambah jika user benar-benar membaca di halaman ini (tidak 404 & tidak redirect)
-    const viewResult = await incrementView(initialNewsDetail.news_id);
 
     let writer = {};
 
@@ -148,7 +150,7 @@ export default async function page({ params }) {
 
     const newsDetailForClient = {
         ...initialNewsDetail,
-        news_datepub: correctedDateString, 
+        news_datepub: correctedDateString,
     };
 
     return (
@@ -157,11 +159,11 @@ export default async function page({ params }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
-            <NewsDetailClient 
+            <NewsDetailClient
                 initialView={viewResult?.newViewCount}
                 initialNewsDetail={newsDetailForClient}
                 initialWriter={writer}
-                initialWriterKopiTimes={writerKopiTimes} 
+                initialWriterKopiTimes={writerKopiTimes}
             />
         </>
     );
