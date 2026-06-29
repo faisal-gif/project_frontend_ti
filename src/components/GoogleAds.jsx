@@ -61,22 +61,18 @@ export default function GoogleAds({
     }, [isVisible, adsEksternal, activeSlot]);
 
     return (
-        <div className="flex justify-center w-full my-4">
-            {/* Container utama dengan relative positioning */}
+        <div className="flex justify-center w-full my-4 overflow-hidden">
+            {/* Container utama dengan relative positioning dan proteksi max-width agar tidak merusak layout mobile */}
             <div 
                 ref={adRef} 
-                className="relative overflow-hidden bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center"
+                className="relative bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center max-w-full"
                 style={{ 
                     width: currentConfig.width, 
                     height: currentConfig.height,
-                    minWidth: currentConfig.width,
-                    minHeight: currentConfig.height
+                    minWidth: 'min-content', // Mencegah CLS (Cumulative Layout Shift)
                 }} 
             >
-                {/* SKELETON LOADER (Placeholder)
-                  Posisi absolute agar berada di dasar (background).
-                  Menggunakan animate-pulse untuk efek loading berkedip halus.
-                */}
+                {/* SKELETON LOADER */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 animate-pulse pointer-events-none">
                     <svg className="w-6 h-6 mb-2 text-gray-300 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
@@ -84,24 +80,23 @@ export default function GoogleAds({
                     <span className="text-[10px] uppercase tracking-widest font-medium">Advertisement</span>
                 </div>
 
-                {/* KONTEN IKLAN
-                  Posisi relative dengan z-10 agar berada di atas placeholder.
-                */}
+                {/* KONTEN IKLAN */}
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                     {adsEksternal ? (
                         <a
                             href={`//ads-track.times.co.id/click/${btoa(adsEksternal.unique_id)}/${btoa(5)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block w-full h-full"
+                            className="block w-full h-full relative" // relative ditambahkan di sini untuk child <Image fill />
                         >
                             <Image
                                 src={type === 'mobile' ? adsEksternal.m_img : adsEksternal.d_img}
                                 alt="Advertisement"
                                 fill
-                                sizes="(max-width: 768px) 100vw, 300px"
+                                sizes="(max-width: 768px) 100vw, 100vw" // Disesuaikan agar lebih aman
                                 className="object-contain"
                                 priority={false}
+                                unoptimized={true} // 💡 KUNCI: Matikan kompresi Next.js agar gambar S3 tetap tajam!
                             />
                         </a>
                     ) : (
