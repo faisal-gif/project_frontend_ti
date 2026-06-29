@@ -155,7 +155,7 @@ function Home({
             <div className="mx-auto max-w-6xl">
                 <div className='hidden md:flex items-center justify-center mb-8'>
                     <Suspense fallback={<div className="w-[970px] h-[250px] bg-gray-100 animate-pulse rounded"></div>}>
-                        <AsyncGoogleAds promise={initialAdsLeaderboard1Promise} size="top_banner" slot='6315037307' />
+                        <AsyncGoogleAds promise={initialAdsLeaderboard1Promise} size="leaderboard" slot='6315037307' />
                     </Suspense>
                 </div>
             </div>
@@ -163,7 +163,7 @@ function Home({
             {/* --- RECTANGLE LEADERBOARD 1 (Mobile) --- */}
             <div className='flex md:hidden items-center justify-center'>
                 <Suspense fallback={<div className="w-[336px] h-[400px] bg-gray-100 animate-pulse rounded"></div>}>
-                    <AsyncGoogleAds promise={initialAdsRectangleLeaderboard1Promise} size='rectangle' type='mobile' slot='6315037307' />
+                    <AsyncGoogleAds promise={initialAdsRectangleLeaderboard1Promise} size='inline_rectangle' type='mobile' slot='6315037307' />
                 </Suspense>
             </div>
 
@@ -175,7 +175,7 @@ function Home({
             <div className="hidden md:block mx-auto max-w-6xl">
                 <div className='flex items-center justify-center mb-8'>
                     <Suspense fallback={<div className="w-[970px] h-[250px] bg-gray-100 animate-pulse rounded"></div>}>
-                        <AsyncGoogleAds promise={initialAdsLeaderboard2Promise} size="top_banner" slot='6315037307' />
+                        <AsyncGoogleAds promise={initialAdsLeaderboard2Promise} size="leaderboard" slot='6315037307' />
                     </Suspense>
                 </div>
             </div>
@@ -183,7 +183,7 @@ function Home({
             {/* --- RECTANGLE LEADERBOARD 2 (Mobile) --- */}
             <div className='flex md:hidden items-center justify-center'>
                 <Suspense fallback={<div className="w-[336px] h-[400px] bg-gray-100 animate-pulse rounded"></div>}>
-                    <AsyncGoogleAds promise={initialAdsRectangleLeaderboard2Promise} size='rectangle' type='mobile' slot='6315037307' />
+                    <AsyncGoogleAds promise={initialAdsRectangleLeaderboard2Promise} size='inline_rectangle' type='mobile' slot='6315037307' />
                 </Suspense>
             </div>
 
