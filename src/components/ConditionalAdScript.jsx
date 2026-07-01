@@ -1,7 +1,6 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Script from 'next/script';
 import { useState, useEffect } from 'react';
 
 const DISABLED_AD_PATHS = [
@@ -32,25 +31,21 @@ const DISABLED_AD_PATHS = [
 
 export default function ConditionalAdScript() {
     const pathname = usePathname();
-
-    const [loadAds, setLoadAds] = useState(true);
+    // Ubah menjadi false agar script tidak otomatis ter-load sebelum ada interaksi
+    const [loadAds, setLoadAds] = useState(false); 
 
     useEffect(() => {
-        // Fungsi untuk memicu download JS Iklan
         const triggerAds = () => {
             setLoadAds(true);
-            // Bersihkan event listener agar tidak jalan berkali-kali
             window.removeEventListener('scroll', triggerAds);
             window.removeEventListener('touchstart', triggerAds);
             window.removeEventListener('mousemove', triggerAds);
         };
 
-        // Pasang pendeteksi: Iklan baru didownload kalau user gerak/scroll!
         window.addEventListener('scroll', triggerAds, { once: true });
         window.addEventListener('touchstart', triggerAds, { once: true });
         window.addEventListener('mousemove', triggerAds, { once: true });
 
-        // Fallback: Kalau user diam saja selama 5 detik, paksa load iklannya
         const timer = setTimeout(() => {
             triggerAds();
         }, 5000);
@@ -63,26 +58,26 @@ export default function ConditionalAdScript() {
         };
     }, []);
 
-    // Jika belum ada interaksi, JANGAN render script Adsense
-    // if (!loadAds) return null;
+    useEffect(() => {
+        const isDisabled = DISABLED_AD_PATHS.some(prefix =>
+            pathname.startsWith(prefix)
+        );
 
-    // Cek apakah URL saat ini dimulai dengan salah satu path yang dilarang
-    const isDisabled = DISABLED_AD_PATHS.some(prefix =>
-        pathname.startsWith(prefix)
-    );
+        // Jika path dilarang atau user belum interaksi, batalkan eksekusi
+        if (isDisabled || !loadAds) return;
 
-    // Jika ya (ini halaman berita/penulis/dll), jangan render script (return null)
-    if (isDisabled) {
-        return null;
-    }
+        // Gunakan DOM Manipulation untuk menyisipkan script murni (tanpa campur tangan Next.js)
+        const scriptId = 'adsbygoogle-init';
+        if (!document.getElementById(scriptId)) {
+            const script = document.createElement('script');
+            script.id = scriptId;
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            document.head.appendChild(script);
+        }
+    }, [pathname, loadAds]); // Effect ini akan berjalan ulang jika URL berubah atau loadAds aktif
 
-    // Jika tidak (ini halaman homepage, dll), baru render script iklannya
-    return (
-        <Script
-            id="adsbygoogle-init"
-            strategy="afterInteractive"
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259519132704244"
-        />
-    );
+    // Komponen ini cukup mengembalikan null, karena script ditambahkan langsung ke <head>
+    return null; 
 }
