@@ -108,7 +108,7 @@ export default function GoogleAds({
                                     width: currentConfig.width,
                                     height: currentConfig.height,
                                 }}
-                                data-ad-client="pub-2259519132704244"
+                                data-ad-client="ca-pub-2259519132704244"
                                 data-ad-slot={activeSlot}
                             ></ins>
                         )
