@@ -12,6 +12,7 @@ import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
+import LipsusSection from '@/components/LipsusSection';
 
 // Dynamic Imports (Aman karena berada di Below the Fold)
 const FirstHightlightNewsSection = dynamic(() => import('@/components/FirstHightlightNewsSection'));
@@ -54,6 +55,12 @@ function AsyncSecondSections({ promise }) {
             <FirstHightlightNewsSection url={section.url} title={section.title} news={section.news} layout={section.layout} />
         </div>
     ));
+}
+
+function AsyncLipsusSections({ promise }) {
+    const lipsus = promise ? use(promise) : [];
+    if (!lipsus || lipsus.length === 0) return null;
+    return <LipsusSection lipsus={lipsus} />;
 }
 
 function AsyncWansusNews({ promise }) {
@@ -99,6 +106,7 @@ function Home({
     newsFirstSectionsPromise,
     newsSecondSectionsPromise,
     allNewsPromise,
+    lipsusNewsPromise,
     wansusNewsPromise,
     initialCekFaktaNewsPromise,
     initialAdsLeaderboard1Promise,
@@ -151,6 +159,10 @@ function Home({
                 </Suspense>
             </div>
 
+            <section className="bg-gradient-to-r from-[#800b19] to-[#3e154f] px-4 py-8 bg-">
+                <AsyncLipsusSections promise={lipsusNewsPromise} />
+            </section>
+
             {/* --- LEADERBOARD 1 --- */}
             <div className="mx-auto max-w-6xl">
                 <div className='hidden md:flex items-center justify-center mb-8'>
@@ -170,6 +182,8 @@ function Home({
             <div className="mx-auto max-w-6xl px-4 py-8">
                 <EKoranSection />
             </div>
+
+
 
             {/* --- LEADERBOARD 2 --- */}
             <div className="hidden md:block mx-auto max-w-6xl">
@@ -250,16 +264,16 @@ function Home({
                     <div className="order-2 md:order-1 md:col-span-4 lg:col-span-4">
                         <LastestNewsSection />
                     </div>
-                    
+
                     <div className="order-1 md:order-2 md:block md:col-span-2 lg:col-span-2">
                         <PopularNews />
-                        
+
                         <div className='flex items-center justify-center mb-8'>
                             <Suspense fallback={<div className="w-[336px] h-[280px] bg-gray-100 animate-pulse rounded"></div>}>
                                 <AsyncGoogleAds promise={initialAdsRectangle10Promise} size='inline_rectangle' slot='9639204649' />
                             </Suspense>
                         </div>
-                        
+
                         <div>
                             <Suspense fallback={<div className="h-[400px] w-full bg-gray-100 animate-pulse rounded"></div>}>
                                 <AsyncCekFakta promise={initialCekFaktaNewsPromise} />
