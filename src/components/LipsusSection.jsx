@@ -14,7 +14,7 @@ function LipsusSection({ lipsus = [] }) {
 
             <div className="flex items-center justify-between mb-2">
                 <h2 className="flex gap-2 items-center text-2xl font-bold text-white">
-                    <Image src="/logo_lipsus3.png" className="object-contain" alt="Logo" width={80} height={50} />
+                    <Image src="/logo_lipsus3.png" className="object-contain" alt="Logo" width={60} height={50} />
                     LIPUTAN KHUSUS
                 </h2>
                

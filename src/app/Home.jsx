@@ -159,7 +159,7 @@ function Home({
                 </Suspense>
             </div>
 
-            <section className="bg-gradient-to-r from-[#800b19] to-[#3e154f] py-8 ">
+            <section className="bg-gradient-to-r from-[#800b19] to-[#3e154f] py-4 px-4">
                 <AsyncLipsusSections promise={lipsusNewsPromise} />
             </section>
 
