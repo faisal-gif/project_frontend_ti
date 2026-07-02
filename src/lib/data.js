@@ -104,7 +104,7 @@ export const getLipsusNewsServer = async () => {
     news_type: "cat",
     cat_id: 52,
     offset: 0,
-    limit: 3,
+    limit: 5,
   });
 };
 
