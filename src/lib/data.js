@@ -45,19 +45,19 @@ export const getEntertainmentNewsServer = async () => {
   });
 };
 
-export const getLipsusNewsServer = async () => {
+export const getPendidikanNewsServer = async () => {
   return await getAllNewsServer({
     news_type: "cat",
-    cat_id: 52,
+    cat_id: 9,
     offset: 0,
     limit: 5,
   });
 };
 
-export const getLipsusNewsClient = async () => {
+export const getPendidikanNewsClient = async () => {
   return await getAllNews({
     news_type: "cat",
-    cat_id: 52,
+    cat_id: 9,
     offset: 0,
     limit: 5,
   });
@@ -99,18 +99,27 @@ export const getCekFaktaNewsServer = async () => {
   });
 };
 
+export const getLipsusNewsServer = async () => {
+  return await getAllNewsServer({
+    news_type: "cat",
+    cat_id: 52,
+    offset: 0,
+    limit: 3,
+  });
+};
+
 // --- UBAH FUNGSI INI ---
 export const getNewsFirstSectionsServer = async () => {
   // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
   const sportsPromise = getSportsNewsServer();
   const businessPromise = getBusinessNewsServer();
-  const lipsusPromise = getLipsusNewsServer();
+  const pendidikanPromise = getPendidikanNewsServer();
 
   // 2. Jalankan semua promise secara bersamaan
-  const [sportsNews, businessNews, lipsusNews] = await Promise.all([
+  const [sportsNews, businessNews, pendidikanNews] = await Promise.all([
     sportsPromise,
     businessPromise,
-    lipsusPromise,
+    pendidikanPromise,
   ]);
 
   // 3. Susun hasilnya setelah semua data diterima
@@ -128,10 +137,10 @@ export const getNewsFirstSectionsServer = async () => {
       url: '/kanal/politik',
     },
     {
-      title: "Liputan Khusus",
-      news: lipsusNews,
+      title: "Pendidikan",
+      news: pendidikanNews,
       layout: 'reverse',
-      url: '/kanal/liputan-khusus',
+      url: '/kanal/pendidikan',
     },
   ];
 };
@@ -140,13 +149,13 @@ export const getNewsFirstSectionsClient = async () => {
   // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises
   const sportsPromise = getSportsNewsClient();
   const businessPromise = getBusinessNewsClient();
-  const lipsusPromise = getLipsusNewsClient();
+  const pendidikanPromise = getPendidikanNewsClient();
 
   // 2. Jalankan semua promise secara bersamaan
-  const [sportsNews, businessNews, lipsusNews] = await Promise.all([
+  const [sportsNews, businessNews, pendidikanNews] = await Promise.all([
     sportsPromise,
     businessPromise,
-    lipsusPromise,
+    pendidikanPromise,
   ]);
 
   // 3. Susun hasilnya setelah semua data diterima
@@ -162,8 +171,8 @@ export const getNewsFirstSectionsClient = async () => {
       layout: 'grid',
     },
     {
-      title: "Liputan Khusus",
-      news: lipsusNews,
+      title: "Pendidikan",
+      news: pendidikanNews,
       layout: 'reverse',
     },
   ];

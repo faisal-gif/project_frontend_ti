@@ -4,6 +4,7 @@ import React from 'react'
 import Carousel from './ui/Carousel';
 import CardImageSkeleton from './ui/CardImageSkeleton';
 import LandscapeNewsCard from './LandscapeNewsCard';
+import Image from 'next/image';
 
 
 function LipsusSection({ lipsus = [] }) {
@@ -13,7 +14,7 @@ function LipsusSection({ lipsus = [] }) {
 
             <div className="flex items-center justify-between mb-8">
                 <h2 className="flex gap-2 items-center text-2xl font-bold text-white">
-                    <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
+                    <Image src="/logo_lipsus3.png" className="object-contain" alt="Logo" width={80} height={50} />
                     LIPUTAN KHUSUS
                 </h2>
                
@@ -42,9 +43,9 @@ function LipsusSection({ lipsus = [] }) {
                     {lipsus.map((article, index) => (
                         <Carousel.Item
                             key={index}
-                            className="pl-4 min-w-0 shrink-0 grow-0 basis-11/12 sm:basis-1/2 md:basis-1/3 lg:basis-1/3"
+                            className=" min-w-0 shrink-0 grow-0 basis-11/12 sm:basis-1/2 md:basis-1/3 lg:basis-1/3"
                         >
-                            <div className="p-1 h-full">
+                            <div className=" h-full">
                                 <LandscapeNewsCard
                                     index={index}
                                     image={article.news_image_new}
