@@ -21,24 +21,41 @@ const getAllNews = async (
 };
 
 const getAllNewsIndex = async (
-    { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
+    { news_type = 'google', offset = 0, limit = 100, cat_id, title, editor_id, after_id, date_query, with_content } = {}
 ) => {
     try {
-        const response = await clientAxios.get("news/all-index", {
-            params: {
-                news_type: news_type,
-                cat_id: cat_id,
-                offset: offset,
-                title: title,
-                limit: limit,
-                editor_id: editor_id
-            },
+        const baseUrl = process.env.API_URL;
+        const apiUrl = new URL(`${baseUrl}/all_news_index/`);
+ 
+        const params = { news_type, offset, limit, cat_id, title, editor_id, after_id, date_query, with_content };
+ 
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== undefined && value !== null && value !== '') {
+                apiUrl.searchParams.append(key, value);
+            }
         });
-        return response.data.data;
+ 
+        const response = await fetch(apiUrl.toString(), {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.SECRET_KEY
+            },
+            next: { revalidate: 60 },
+        });
+ 
+        if (!response.ok) {
+            throw new Error(`API call failed with status: ${response.status}`);
+        }
+ 
+        const data = await response.json();
+        return Array.isArray(data?.data) ? data.data : [];
+ 
     } catch (error) {
-        console.log(error);
+        console.error("Error fetching news index:", error);
+        return [];
     }
 };
+
 
 const getAllNewsServer = async (
     { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }

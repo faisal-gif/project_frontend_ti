@@ -17,26 +17,26 @@ function character_limiter(str, limit) {
 }
 
 function setLocusNews(content, city) {
-    const cityText = city ? `<strong>${city.trim().toUpperCase()}</strong>  - ` : ''; 
+    const cityText = city ? `<strong>${city.trim().toUpperCase()}</strong>  - ` : '';
 
     let result = content;
 
     if (cityText) {
-        const firstPIndex = content.indexOf('<p>'); 
-        
+        const firstPIndex = content.indexOf('<p>');
+
         const afterFirstPIndex = firstPIndex + 3;
-        
+
         if (firstPIndex !== -1) {
-            const beforeP = content.substring(0, firstPIndex);          
-            const afterP = content.substring(afterFirstPIndex); 
-            
+            const beforeP = content.substring(0, firstPIndex);
+            const afterP = content.substring(afterFirstPIndex);
+
             result = `${beforeP}<p>${cityText} ${afterP}`;
         } else {
             result = `${cityText} ${content}`;
         }
     }
-    
-   
+
+
     return result;
 }
 
@@ -52,7 +52,7 @@ export async function GET(request, { params }) {
 
     try {
         kanal = await getKanalDetail({ slug });
-        news = await getAllNewsIndex({ news_type: 'cat', cat_id: kanal.catnews_id, offset: 0, limit: 60 }) || [];
+        news = await getAllNewsIndex({ news_type: 'cat', cat_id: kanal.catnews_id, offset: 0, limit: 60, with_content: 1 }) || [];
     } catch (error) {
         console.error("Error fetch focus:", error);
         news = [];
@@ -97,7 +97,7 @@ export async function GET(request, { params }) {
 </rss>`;
 
     return new Response(rssFeed, {
-      headers: {
+        headers: {
             'Content-Type': 'application/xml; charset=utf-8',
         },
     });

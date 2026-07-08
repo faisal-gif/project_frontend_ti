@@ -1,11 +1,10 @@
 import { getAllNewsIndex } from "@/lib/api/newsApi";
 
-export const dynamic = "force-dynamic"; 
+export const dynamic = "force-dynamic";
 
 function xmlConvert(str) {
-    // Tambahkan pengaman: jika str kosong/null, kembalikan string kosong
-    if (!str) return ""; 
-    return str
+    if (!str) return "";        // <-- tambahkan baris ini
+    return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -20,7 +19,7 @@ export async function GET() {
         news = await getAllNewsIndex({ offset: 0, limit: 500 }) || [];
     } catch (error) {
         console.error("Error fetch focus:", error);
-        news = []; 
+        news = [];
     }
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -30,7 +29,7 @@ export async function GET() {
             .map((item) => {
                 // Formatting tanggal (pastikan format defaultnya memang "YYYY-MM-DD HH:MM:SS")
                 const dateMod = item.news_datepub ? item.news_datepub.replace(' ', 'T') + '+07:00' : '';
-                
+
                 // Amankan pembacaan properti objek
                 const city = item.news_city ? item.news_city.toLowerCase() : '';
                 const tags = item.news_tags || '';
@@ -60,7 +59,7 @@ export async function GET() {
         headers: {
             "Content-Type": "application/xml",
             // Cache control untuk memastikan browser/bot tidak meng-cache file ini secara paksa
-            "Cache-Control": "s-maxage=0, stale-while-revalidate", 
+            "Cache-Control": "s-maxage=0, stale-while-revalidate",
         },
     });
 }
