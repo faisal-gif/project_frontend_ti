@@ -471,6 +471,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                                     fill
                                                     className="object-contain"
                                                     priority
+                                                    unoptimized
                                                     fetchPriority="high"
                                                     sizes="(max-width: 768px) 340px , 750px"
                                                     data-adbro-processed='true'
