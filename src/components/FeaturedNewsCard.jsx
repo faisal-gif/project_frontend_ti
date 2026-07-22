@@ -50,7 +50,7 @@ function FeaturedNewsCard({
                                 <div className="avatar avatar-placeholder">
                                     <div className="bg-neutral text-neutral-content w-5 rounded-full">
                                         <span className="text-xs md:text-sm">
-                                            {source.charAt(0).toUpperCase()}
+                                            {source?.charAt(0).toUpperCase() || ''}
                                         </span>
                                     </div>
                                 </div>
