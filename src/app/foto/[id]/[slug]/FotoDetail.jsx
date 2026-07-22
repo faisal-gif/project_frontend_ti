@@ -2,27 +2,60 @@
 import ArticleContent from '@/components/ArticleContent';
 import EkoranNewsDetailCard from '@/components/EkoranNewsDetailCard';
 import GoogleAds from '@/components/GoogleAds';
-import PopularNews from '@/components/PopularNews';
+
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
 import { getFotoSlide } from '@/lib/api/fotoApi';
-import { Eye, LayoutGrid, Image as ImageIcon, Maximize2, Share2, Volume2 } from 'lucide-react';
+import { Eye, Image as ImageIcon, LayoutGrid, Maximize2, Share2, Volume2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import React, { useEffect, useState } from 'react';
-import Lightbox from 'yet-another-react-lightbox';
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
-
-import 'yet-another-react-lightbox/styles.css';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import ModalShare from '@/components/ModalShare';
 import FormattedDate from '@/utils/date/FormattedDate';
 import ClientOnly from '@/components/ClientOnly';
 import FormattedViews from '@/utils/view/FormattedViews';
+import PhotoLightbox from '@/components/Photolightbox ';
+
+const ROW_TARGET_HEIGHT = 260;
+const ROW_GAP = 8;
+const DEFAULT_RATIO = 3 / 2;
+
+/**
+ * Membagi daftar foto menjadi baris-baris dengan tinggi seragam
+ * (justified / Flickr style). Lebar tiap foto mengikuti rasio aslinya.
+ */
+function buildJustifiedRows(items, containerWidth, targetHeight, gap) {
+    if (!containerWidth || items.length === 0) return [];
+
+    const rows = [];
+    let current = [];
+    let ratioSum = 0;
+
+    items.forEach((item) => {
+        current.push(item);
+        ratioSum += item.ratio;
+
+        const gapTotal = gap * (current.length - 1);
+        const projectedHeight = (containerWidth - gapTotal) / ratioSum;
+
+        if (projectedHeight < targetHeight) {
+            rows.push({ items: current, height: projectedHeight });
+            current = [];
+            ratioSum = 0;
+        }
+    });
+
+    if (current.length > 0) {
+        const gapTotal = gap * (current.length - 1);
+        const naturalHeight = (containerWidth - gapTotal) / ratioSum;
+        rows.push({ items: current, height: Math.min(naturalHeight, targetHeight) });
+    }
+
+    return rows;
+}
 
 function FotoDetail({ initialFotoDetail, initialWriter }) {
     const [size, setSize] = useState(2);
@@ -32,6 +65,10 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
     const [foto, setFoto] = useState([]);
     const [index, setIndex] = useState(0);
     const [open, setOpen] = useState(false);
+
+    const [ratios, setRatios] = useState({});
+    const [containerWidth, setContainerWidth] = useState(0);
+    const galleryRef = useRef(null);
 
     useEffect(() => {
         if (fotoDetail) {
@@ -44,6 +81,27 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
             getFotoSlide({ id: fotoDetail.gal_id }).then(setFoto).catch(console.error);
         }
     }, [fotoDetail]);
+
+    // Ukur lebar kontainer galeri (untuk justified layout di desktop)
+    useEffect(() => {
+        const el = galleryRef.current;
+        if (!el || typeof ResizeObserver === 'undefined') return;
+
+        const ro = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                setContainerWidth(entry.contentRect.width);
+            }
+        });
+        ro.observe(el);
+        return () => ro.disconnect();
+    }, [foto.length]);
+
+    // Simpan rasio asli tiap foto saat gambar selesai dimuat
+    const handleImageLoad = useCallback((key, event) => {
+        const { naturalWidth, naturalHeight } = event.currentTarget;
+        if (!naturalWidth || !naturalHeight) return;
+        setRatios((prev) => (prev[key] ? prev : { ...prev, [key]: naturalWidth / naturalHeight }));
+    }, []);
 
     const tim = [
         { name: fotoDetail?.gal_pewarta || '', role: 'Fotografer', foto: writerDetail?.image || null, url: `/writer/${fotoDetail?.writer_slug}` || '' },
@@ -69,11 +127,20 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
         setOpen(true);
     };
 
-    const coverImage = foto[0]?.gi_image || fotoDetail.news_image_new;
+    const coverImage = foto[0]?.gi_image;
     const galleryRest = foto.slice(1);
 
+    // Data untuk justified: gabungkan foto dengan rasionya
+    const justifiedItems = galleryRest.map((f, i) => {
+        const realIndex = i + 1;
+        const key = f.gi_id ?? realIndex;
+        return { foto: f, key, realIndex, ratio: ratios[key] || DEFAULT_RATIO };
+    });
+
+    const rows = buildJustifiedRows(justifiedItems, containerWidth, ROW_TARGET_HEIGHT, ROW_GAP);
+
     return (
-        <div className="max-w-6xl mx-auto px-4 lg:px-8 py-24 ">
+        <div className="max-w-5xl mx-auto px-4 lg:px-8 py-24">
             <div className="hidden md:flex items-center justify-center">
                 <GoogleAds size="top_banner" slot="6315037307" />
             </div>
@@ -85,19 +152,19 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
             <div className="breadcrumbs text-sm my-6">
                 <ul>
                     <li className="hover:text-[#b41d1d]"><Link href={'/'}>Home</Link></li>
-                    <li className="hover:text-[#b41d1d] "><Link href={`/foto`}>Foto</Link></li>
+                    <li className="hover:text-[#b41d1d]"><Link href={`/foto`}>Foto</Link></li>
                     <li className="text-[#b41d1d] font-semibold"><Link href={`${fotoDetail.url_ci4}`}>{fotoDetail.gal_title}</Link></li>
                 </ul>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_80px_320px] gap-8 mt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_80px] gap-8 mt-10">
                 {!fotoDetail ? (
                     <NewsDetailSkeleton />
                 ) : (
                     <>
-                        <main className="col-span-1">
+                        <main className="col-span-1 min-w-0">
                             <article>
-                                {/* ===== MAGAZINE COVER: judul overlay di atas foto pertama ===== */}
+                                {/* ===== MAGAZINE COVER ===== */}
                                 <div className="relative overflow-hidden rounded-2xl bg-neutral-900 aspect-[16/10] md:aspect-[16/9]">
                                     {coverImage && (
                                         <button
@@ -110,23 +177,20 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                                 alt={fotoDetail.gal_title}
                                                 fill
                                                 priority
-                                                sizes="(max-width: 1024px) 100vw, 900px"
+                                                sizes="(max-width: 1024px) 100vw, 960px"
                                                 className="object-cover"
                                             />
                                         </button>
                                     )}
 
-                                    {/* Gradient supaya teks terbaca */}
                                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
 
-                                    {/* Counter foto */}
                                     {foto.length > 0 && (
                                         <div className="pointer-events-none absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-xs text-white backdrop-blur-sm">
                                             <ImageIcon size={13} /> {foto.length} foto
                                         </div>
                                     )}
 
-                                    {/* Overlay judul + meta */}
                                     <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-7">
                                         <span className="mb-3 inline-block rounded-full bg-[#b41d1d] px-4 py-1 text-xs font-medium text-white">
                                             {fotoDetail.galcat_title}
@@ -153,19 +217,17 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                     </div>
                                 </div>
 
-                                {/* Caption foto sampul */}
                                 {foto[0]?.gi_caption && (
                                     <p className="mt-2 text-sm text-base-content/50">{foto[0].gi_caption}</p>
                                 )}
 
-                                {/* ===== DESKRIPSI + BARIS AKSI ===== */}
+                                {/* ===== DESKRIPSI + AKSI ===== */}
                                 <div className="mt-5 flex flex-col gap-4 border-b border-base-content/20 pb-5">
                                     <p className="text-base leading-relaxed text-base-content/70 md:text-lg">
                                         {fotoDetail.gal_description}
                                     </p>
 
                                     <div className="flex items-center justify-between">
-                                        {/* Tim redaksi */}
                                         <div className="dropdown">
                                             <button tabIndex={0} className="flex cursor-pointer flex-row items-center gap-3 text-sm font-semibold">
                                                 <div className="avatar-group -space-x-6 rtl:space-x-reverse">
@@ -215,7 +277,6 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                             </ul>
                                         </div>
 
-                                        {/* Aksi (mobile) */}
                                         <div className="lg:hidden">
                                             <Card className="flex flex-row items-center py-2">
                                                 <div className="dropdown dropdown-end">
@@ -255,73 +316,105 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                     </div>
                                 </div>
 
-                                {/* ===== MOSAIC GALLERY (foto selain sampul) ===== */}
+                                {/* ===== GALERI ===== */}
                                 {galleryRest.length > 0 && (
-                                    <div className="mt-8">
+                                    <section className="mt-8">
                                         <div className="mb-3 flex items-center gap-2">
                                             <LayoutGrid size={16} className="text-base-content/60" />
                                             <span className="text-sm font-semibold text-base-content/70">Galeri Foto</span>
                                         </div>
-                                        <div className="columns-2 gap-3 md:columns-3 [column-fill:_balance]">
-                                            {galleryRest.map((f, i) => {
-                                                const realIndex = i + 1;
-                                                return (
+
+                                        {/* --- MOBILE: editorial scroll --- */}
+                                        <div className="flex flex-col gap-8 md:hidden">
+                                            {justifiedItems.map(({ foto: f, key, realIndex }) => (
+                                                <figure key={key} className="m-0">
                                                     <button
-                                                        key={f.gi_id ?? realIndex}
                                                         onClick={() => openAt(realIndex)}
                                                         aria-label={`Perbesar foto ${realIndex + 1}`}
-                                                        className="group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded-xl bg-neutral-100 cursor-zoom-in"
+                                                        className="block w-full overflow-hidden rounded-xl bg-neutral-100 cursor-zoom-in"
                                                     >
                                                         <img
                                                             src={f.gi_image}
                                                             alt={f.gi_caption || `Foto ${realIndex + 1}`}
                                                             loading="lazy"
-                                                            className="h-auto w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                                                            onLoad={(e) => handleImageLoad(key, e)}
+                                                            className="h-auto w-full object-cover"
                                                         />
-                                                        <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                            <div className="flex w-full items-end justify-between gap-2 p-3">
-                                                                {f.gi_caption ? (
-                                                                    <span className="line-clamp-2 text-xs leading-snug text-white/90">
-                                                                        {f.gi_caption}
-                                                                    </span>
-                                                                ) : (
-                                                                    <span />
-                                                                )}
-                                                                <Maximize2 className="h-4 w-4 shrink-0 text-white" />
-                                                            </div>
-                                                        </div>
                                                     </button>
-                                                );
-                                            })}
+                                                    {f.gi_caption && (
+                                                        <figcaption className="mt-2 text-sm leading-relaxed text-base-content/60">
+                                                            {f.gi_caption}
+                                                        </figcaption>
+                                                    )}
+                                                </figure>
+                                            ))}
                                         </div>
+
+                                        {/* --- DESKTOP: justified gallery --- */}
+                                        <div ref={galleryRef} className="hidden md:block">
+                                            {containerWidth > 0 &&
+                                                rows.map((row, rowIdx) => (
+                                                    <div
+                                                        key={rowIdx}
+                                                        className="flex"
+                                                        style={{ gap: `${ROW_GAP}px`, marginBottom: `${ROW_GAP}px` }}
+                                                    >
+                                                        {row.items.map(({ foto: f, key, realIndex, ratio }) => (
+                                                            <button
+                                                                key={key}
+                                                                onClick={() => openAt(realIndex)}
+                                                                aria-label={`Perbesar foto ${realIndex + 1}`}
+                                                                className="group relative overflow-hidden rounded-lg bg-neutral-100 cursor-zoom-in"
+                                                                style={{
+                                                                    height: `${row.height}px`,
+                                                                    width: `${row.height * ratio}px`,
+                                                                    flexGrow: 0,
+                                                                    flexShrink: 0,
+                                                                }}
+                                                            >
+                                                                <img
+                                                                    src={f.gi_image}
+                                                                    alt={f.gi_caption || `Foto ${realIndex + 1}`}
+                                                                    loading="lazy"
+                                                                    onLoad={(e) => handleImageLoad(key, e)}
+                                                                    className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]"
+                                                                />
+                                                                <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                                    <div className="flex w-full items-end justify-between gap-2 p-3">
+                                                                        {f.gi_caption ? (
+                                                                            <span className="line-clamp-2 text-xs leading-snug text-white/90">
+                                                                                {f.gi_caption}
+                                                                            </span>
+                                                                        ) : (
+                                                                            <span />
+                                                                        )}
+                                                                        <Maximize2 className="h-4 w-4 shrink-0 text-white" />
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                ))}
+
+                                            {/* Probe tersembunyi: memicu onLoad supaya rasio terbaca */}
+                                            {containerWidth === 0 &&
+                                                justifiedItems.map(({ foto: f, key }) => (
+                                                    <img
+                                                        key={`probe-${key}`}
+                                                        src={f.gi_image}
+                                                        alt=""
+                                                        aria-hidden="true"
+                                                        onLoad={(e) => handleImageLoad(key, e)}
+                                                        className="h-0 w-0 opacity-0"
+                                                    />
+                                                ))}
+                                        </div>
+
                                         <p className="mt-2 text-xs text-base-content/50">
                                             {foto.length} foto · klik untuk memperbesar
                                         </p>
-                                    </div>
+                                    </section>
                                 )}
-
-                                {/* Fullscreen lightbox */}
-                                <Lightbox
-                                    open={open}
-                                    close={() => setOpen(false)}
-                                    index={index}
-                                    slides={foto}
-                                    plugins={[Thumbnails, Slideshow]}
-                                    render={{
-                                        slide: ({ slide }) => (
-                                            <div className="relative h-[80vh] w-full">
-                                                <Image
-                                                    src={slide.gi_image}
-                                                    alt={slide.gi_caption || slide.gi_id}
-                                                    fill
-                                                    sizes="(max-width: 900px) 100vw, 900px"
-                                                    className="object-contain"
-                                                />
-                                            </div>
-                                        ),
-                                    }}
-                                    on={{ view: ({ index }) => setIndex(index) }}
-                                />
 
                                 {/* ===== CONTENT ===== */}
                                 <ArticleContent
@@ -365,6 +458,10 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                             </article>
 
                             <EkoranNewsDetailCard />
+
+                            <div className="mt-8 flex items-center justify-center">
+                                <GoogleAds size="inline_rectangle" />
+                            </div>
                         </main>
 
                         {/* Sticky action rail (desktop) */}
@@ -406,16 +503,16 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                         </div>
                     </>
                 )}
-
-                <aside className="hidden lg:block w-80">
-                    <div className="sticky top-28">
-                        <PopularNews />
-                        <div className="flex items-center justify-center">
-                            <GoogleAds size="inline_rectangle" />
-                        </div>
-                    </div>
-                </aside>
             </div>
+
+            {/* Lightbox custom */}
+            <PhotoLightbox
+                open={open}
+                index={index}
+                slides={foto}
+                onClose={() => setOpen(false)}
+                onIndexChange={setIndex}
+            />
 
             <ModalShare title={fotoDetail?.gal_title} url={`${process.env.NEXT_PUBLIC_URL}${initialFotoDetail.url_ci4}`} />
         </div>
