@@ -206,7 +206,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                 ) : (
                     <>
                         <main className="col-span-1" >
-                            <article className="rounded-lg overflow-hidden">
+                           <article className="rounded-lg md:overflow-hidden">
                                 <Link href={`/kanal/${newsDetail.catnews_slug}`} className="btn btn-sm bg-[#b41d1d] text-white py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
                                 </Link>
@@ -451,7 +451,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                 <div className="flex flex-col md:flex-row gap-6">
                                     <div className='flex-1'>
                                         {/* Header Image */}
-                                        <div className="flex flex-col justify-center items-center">
+                                        <div className="flex flex-col justify-center md:items-center">
                                             {focusDetail && focusDetail.focnews_image_body && (
                                                 <Image
                                                     src={focusDetail.focnews_image_body}
@@ -464,16 +464,16 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
                                                 />
                                             )}
-                                            <div className="w-[340px] h-[252px] md:w-[750px] md:h-[500px] relative">
+                                            <div className="relative h-[252px] w-screen -mx-4 md:w-[750px] md:h-[500px] md:mx-0">
                                                 <Image
                                                     src={newsDetail.news_image_new}
                                                     alt={newsDetail.news_title}
                                                     fill
-                                                    className="object-contain"
+                                                    className="object-cover md:object-contain"
                                                     priority
                                                     unoptimized
                                                     fetchPriority="high"
-                                                    sizes="(max-width: 768px) 340px , 750px"
+                                                    sizes="(max-width: 768px) 100vw, 750px"
                                                     data-adbro-processed='true'
                                                 />
                                             </div>
