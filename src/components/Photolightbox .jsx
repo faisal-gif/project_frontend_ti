@@ -128,7 +128,7 @@ export default function PhotoLightbox({ open, index, slides = [], onClose, onInd
             onClick={onClose}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className={`fixed inset-0 z-[999] flex flex-col bg-black/95 transition-opacity duration-200 ease-out ${
+            className={`fixed inset-0 z-[999] flex flex-col bg-black/90 backdrop-blur-xl transition-opacity duration-200 ease-out supports-[backdrop-filter]:bg-black/60 ${
                 entered ? 'opacity-100' : 'opacity-0'
             }`}
         >
@@ -240,7 +240,14 @@ function PhotoFrame({ src, alt, direction }) {
                 transform: shown ? 'translateX(0)' : `translateX(${offset})`,
             }}
         >
-            <Image src={src} alt={alt} fill priority sizes="100vw" className="object-contain" />
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-contain drop-shadow-[0_8px_40px_rgba(0,0,0,0.55)]"
+            />
         </div>
     );
 }
