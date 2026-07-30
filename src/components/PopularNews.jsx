@@ -22,10 +22,10 @@ export default function PopularNews() {
     }
 
     return (
-        <div className="bg-white shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-[3px] p-5 mb-6">
+        <div className="bg-base-100 shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-[3px] p-5 mb-6">
             <div className="flex items-center gap-2 mb-4">
                 <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
-                <h3 className="text-lg font-semibold text-[#2A2A2A]">Terpopuler</h3>
+                <h3 className="text-lg font-semibold text-base-content">Terpopuler</h3>
             </div>
 
             <div className="space-y-4">
@@ -33,7 +33,7 @@ export default function PopularNews() {
                     <Link
                         key={index}
                         href={article.url_ci4}
-                        className="block hover:bg-gray-50 transition-colors rounded p-2 -m-2"
+                        className="block hover:bg-base-200 transition-colors rounded p-2 -m-2"
                     >
                         <div className="flex items-start gap-3">
                             <span className="text-2xl font-bold text-[#C31815] min-w-[30px]">
@@ -41,7 +41,7 @@ export default function PopularNews() {
                             </span>
                             <div className="flex-1">
                                 <div className='flex flex-row justify-between items-center gap-2 '>
-                                    <h4 className="text-xs line-clamp-2 md:line-clamp-none md:text-sm  font-medium text-[#2A2A2A] leading-5 mb-2 hover:text-[#C31815] transition-colors">
+                                    <h4 className="text-xs line-clamp-2 md:line-clamp-none md:text-sm  font-medium text-base-content leading-5 mb-2 hover:text-[#C31815] transition-colors">
                                         {article.news_title}
                                     </h4>
                                     <div className="w-20 h-16 flex-shrink-0 relative">
@@ -54,7 +54,7 @@ export default function PopularNews() {
                                         />
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-3 text-xs text-[#2A2A2A] opacity-70">
+                                <div className="flex items-center gap-3 text-xs text-base-content opacity-70">
                                     <span>
                                         <ClientOnly>
                                             <FormattedDate dateString={article.news_datepub} />

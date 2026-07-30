@@ -3,7 +3,7 @@ import React from 'react';
 
 const PopularNewsSkeleton = () => {
     return (
-        <div className="w-80 bg-white shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-[3px] p-5 mb-6">
+        <div className="w-80 bg-base-100 shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-[3px] p-5 mb-6">
             <div className="flex items-center gap-2 mb-4">
                 <div className="w-1 h-6 bg-gray-300 rounded-full"></div>
                 <div className="h-6 bg-gray-300 rounded w-1/3"></div>

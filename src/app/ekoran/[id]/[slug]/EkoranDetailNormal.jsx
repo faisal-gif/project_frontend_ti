@@ -132,11 +132,11 @@ function EkoranDetailNormal() {
             Beranda
           </Link>
           <span>/</span>
-          <Link href="/ekoran" className="hover:text-black/60 transition-colors">
+          <Link href="/ekoran" className="hover:text-base-content/70 transition-colors">
             Ekoran
           </Link>
           <span>/</span>
-          <span className="text-black/60">Detail</span>
+          <span className="text-base-content/70">Detail</span>
         </div>
 
       </div>
@@ -253,7 +253,7 @@ function EkoranDetailNormal() {
                   <h1 className="text-xl font-bold text-foreground mb-1">
                     {ekoranArticle?.title}
                   </h1>
-                  <p className="text-sm text-black/60">
+                  <p className="text-sm text-base-content/70">
                     Berita Terkini & Terpercaya 
                   </p>
                 </div>
@@ -262,17 +262,17 @@ function EkoranDetailNormal() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3">
                   <Calendar className="h-4 w-4 text-[#b51d1d]" />
-                  <span className="text-sm text-black/60">
+                  <span className="text-sm text-base-content/70">
                     {ekoranArticle?.date}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Eye className="h-4 w-4 text-[#b51d1d]" />
-                  <span className="text-sm text-black/60">
+                  <span className="text-sm text-base-content/70">
                     {ekoranArticle?.views.toLocaleString()} kali dibaca
                   </span>
                 </div>
-                <div className="flex justify-between text-sm text-black/60">
+                <div className="flex justify-between text-sm text-base-content/70">
                   <span>{ekoranArticle?.pages} halaman</span>
                   <span>{ekoranArticle?.size}</span>
                 </div>

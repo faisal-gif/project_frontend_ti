@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 import DrawerAutoClose from "@/components/DrawerAutoClose";
 import BackToTop from "@/components/BackToTop";
 import ConditionalAdScript from '@/components/ConditionalAdScript';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const MobileListMenu = dynamic(() => import('@/components/MobileListMenu'))
 const MobileMenuKanal = dynamic(() => import('@/components/MobileMenuKanal'))
@@ -70,8 +71,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" data-theme="light" className='scroll-smooth'>
+    <html lang="id" className='scroll-smooth' suppressHydrationWarning>
       <head>
+        {/* Set tema sebelum paint agar tidak berkedip (FOUC) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          }}
+        />
+
         {/* Extra SEO */}
         <meta name="city" content="Jakarta" />
         <meta name="language" content="id" />
@@ -146,10 +154,10 @@ export default function RootLayout({ children }) {
 
                   </div>
 
-                  {/* Search */}
-                  <div children="">
+                  {/* Search + Toggle Tema */}
+                  <div className="flex items-center">
                     <SearchDropdown />
-
+                    <ThemeToggle />
                   </div>
                 </div>
               </div>
@@ -181,7 +189,7 @@ export default function RootLayout({ children }) {
           </div>
           <div className="drawer-side z-[9999]">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu text-black bg-base-200  min-h-full w-72">
+            <ul className="menu text-base-content bg-base-200  min-h-full w-72">
               <li className="text-xl font-bold text-white mb-6">
                 <Link href={'/'}>
                   <Image

@@ -40,7 +40,7 @@ function PageStaticMenu() {
                 <Hash size={16} />
                 <h3 className="text-lg font-semibold "> Halaman</h3>
             </Card>
-            <Card className="bg-white shadow-xl rounded-lg  w-full space-y-2 p-4">
+            <Card className="bg-base-100 shadow-xl rounded-lg  w-full space-y-2 p-4">
                 {menuItems.map((item) => (
                     <Link href={item.url} key={item.title} className="btn btn-ghost flex flex-row items-center justify-start gap-2 text-sm text-muted-foreground hover:text-[#C31815] transition-colors duration-200">
                         <item.icon size={16} />

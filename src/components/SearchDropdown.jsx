@@ -150,7 +150,7 @@ const SearchDropdown = () => {
         tabIndex={0}
         // Hapus tabIndex=0 dari sini, karena content seharusnya bukan fokus utama, 
         // tapi untuk membantu menutup dropdown di DaisyUI
-        className="dropdown-content menu bg-white rounded-box w-80 mt-3 shadow-xl p-3 z-50" // Tambahkan z-index tinggi
+        className="dropdown-content menu bg-base-100 rounded-box w-80 mt-3 shadow-xl p-3 z-50" // Tambahkan z-index tinggi
       >
         {/* Search box */}
         <form onSubmit={(e) => { e.preventDefault(); handleSearchSubmit(); }} className="relative mb-2">

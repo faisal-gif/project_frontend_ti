@@ -225,7 +225,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                     </h1>
 
                                     {/* Description */}
-                                    <h2 className="text-sm md:text-lg text-gray-600 my-4 leading-relaxed italic">
+                                    <h2 className="text-sm md:text-lg text-base-content/70 my-4 leading-relaxed italic">
                                         {newsDetail.news_description}
                                     </h2>
                                 </div>
@@ -396,7 +396,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                                     Tim Redaksi
                                                 </span>
                                             </button>
-                                            <ul tabIndex={0} className="dropdown-content menu bg-white rounded-sm w-80 shadow">
+                                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-sm w-80 shadow">
                                                 {
                                                     tim.map((tim, index) => (
                                                         tim.name && (
@@ -478,7 +478,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                                 />
                                             </div>
                                         </div>
-                                        <figcaption className="mt-2 text-sm italic text-gray-600 text-center ">{newsDetail.news_caption} </figcaption>
+                                        <figcaption className="mt-2 text-sm italic text-base-content/70 text-center ">{newsDetail.news_caption} </figcaption>
                                         <div className='w-1/2 max-w-xs mx-auto mt-4'>
                                             <input
                                                 type="range"

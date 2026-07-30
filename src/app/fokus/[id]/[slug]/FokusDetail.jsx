@@ -141,19 +141,19 @@ function FokusDetail({ InitialFokusDetail }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                 <div className="text-center p-6 bg-base-100 rounded-lg shadow-lg">
                     <div className="text-2xl font-bold text-[#7a0f1f] mb-2">200.000+</div>
-                    <div className="text-black/60 text-sm">Total Artikel</div>
+                    <div className="text-base-content/70 text-sm">Total Artikel</div>
                 </div>
                 <div className="text-center p-6 bg-base-100 rounded-lg shadow-lg">
                     <div className="text-2xl font-bold text-[#7a0f1f] mb-2">12</div>
-                    <div className="text-black/60 text-sm">Hari Ini</div>
+                    <div className="text-base-content/70 text-sm">Hari Ini</div>
                 </div>
                 <div className="text-center p-6 bg-base-100 rounded-lg shadow-lg">
                     <div className="text-2xl font-bold text-[#7a0f1f] mb-2">5</div>
-                    <div className="text-black/60 text-sm">Pakar Kontributor</div>
+                    <div className="text-base-content/70 text-sm">Pakar Kontributor</div>
                 </div>
                 <div className="text-center p-6 bg-base-100 rounded-lg shadow-lg">
                     <div className="text-2xl font-bold text-[#7a0f1f] mb-2">89%</div>
-                    <div className="text-black/60 text-sm">Rating Kredibilitas</div>
+                    <div className="text-base-content/70 text-sm">Rating Kredibilitas</div>
                 </div>
             </div>
 

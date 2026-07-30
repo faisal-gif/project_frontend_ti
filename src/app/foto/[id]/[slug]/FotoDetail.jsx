@@ -252,7 +252,7 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                                 </span>
                                                 <span className="md:hidden">Tim Redaksi</span>
                                             </button>
-                                            <ul tabIndex={0} className="dropdown-content menu w-80 rounded-sm bg-white shadow">
+                                            <ul tabIndex={0} className="dropdown-content menu w-80 rounded-sm bg-base-100 shadow">
                                                 {tim.map((t, i) =>
                                                     t.name ? (
                                                         <li key={i}>
@@ -281,7 +281,7 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                             <Card className="flex flex-row items-center py-2">
                                                 <div className="dropdown dropdown-end">
                                                     <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold">Aa</button>
-                                                    <div tabIndex={0} className="dropdown-content w-52 rounded-box bg-white p-3 shadow">
+                                                    <div tabIndex={0} className="dropdown-content w-52 rounded-box bg-base-100 p-3 shadow">
                                                         <input
                                                             type="range"
                                                             min={1}
@@ -469,7 +469,7 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                             <Card className="sticky top-28 mt-8 flex flex-col items-center gap-4 py-2 shadow-md">
                                 <div className="dropdown dropdown-left">
                                     <button tabIndex={0} className="btn btn-ghost text-lg font-bold">Aa</button>
-                                    <div tabIndex={0} className="dropdown-content w-52 rounded-box bg-white p-3 shadow">
+                                    <div tabIndex={0} className="dropdown-content w-52 rounded-box bg-base-100 p-3 shadow">
                                         <input
                                             type="range"
                                             min={1}

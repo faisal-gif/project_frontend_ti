@@ -86,7 +86,7 @@ const WeatherCard = () => {
   });
 
   return (
-    <Card className="border-0 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+    <Card className="border border-base-300 bg-base-200 p-4">
       {state.status === 'loading' && (
         <div className="py-4 text-center text-sm text-muted-foreground animate-pulse">
           Memuat cuaca…
@@ -105,7 +105,7 @@ const WeatherCard = () => {
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Lokasi + tanggal */}
             <div>
-              <div className="flex items-center gap-1.5 text-lg font-bold text-red-800">
+              <div className="flex items-center gap-1.5 text-lg font-bold text-base-content">
                 <MapPin className="h-5 w-5" />
                 {state.city}
               </div>
@@ -114,7 +114,7 @@ const WeatherCard = () => {
 
             {/* Suhu + kondisi */}
             <div className="flex items-center gap-3">
-              <Icon className="h-14 w-14 text-gray-600" />
+              <Icon className="h-14 w-14 text-base-content/80" />
               <div>
                 <div className="text-4xl font-light leading-none text-blue-600">
                   {Math.round(state.data.temperature_2m)}°C
@@ -126,20 +126,20 @@ const WeatherCard = () => {
             {/* Detail */}
             <div className="flex gap-5 text-center">
               <div className="flex flex-col items-center">
-                <Wind className="mb-1 h-5 w-5 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">
+                <Wind className="mb-1 h-5 w-5 text-base-content/70" />
+                <span className="text-sm font-medium text-base-content">
                   {state.data.wind_speed_10m} km/h
                 </span>
               </div>
               <div className="flex flex-col items-center">
                 <Droplets className="mb-1 h-5 w-5 text-blue-600" />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-base-content">
                   {state.data.relative_humidity_2m}%
                 </span>
               </div>
               <div className="flex flex-col items-center">
-                <Eye className="mb-1 h-5 w-5 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">
+                <Eye className="mb-1 h-5 w-5 text-base-content/70" />
+                <span className="text-sm font-medium text-base-content">
                   {Math.round(state.data.visibility / 1000)} km
                 </span>
               </div>

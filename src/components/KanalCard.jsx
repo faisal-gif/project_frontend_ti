@@ -13,10 +13,10 @@ function KanalCard({ id, name, url, description, news_count,Icon }) {
                             <Icon className="w-6 h-6 text-[#7a0f1f]" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <h3 className="text-lg font-semibold text-black group-hover:text-[#7a0f1f] transition-colors">
+                            <h3 className="text-lg font-semibold text-base-content group-hover:text-[#7a0f1f] transition-colors">
                                 {name}
                             </h3>
-                            <p className="text-sm text-black/60 mt-1 line-clamp-2">
+                            <p className="text-sm text-base-content/70 mt-1 line-clamp-2">
                                 {description}
                             </p>
                             {news_count && (

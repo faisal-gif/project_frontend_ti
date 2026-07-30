@@ -7,7 +7,7 @@ function AjpCard() {
         <>
             {/* AJP Contribution Card - Light Theme */}
             <div className="mt-10 mb-8 p-4 bg-slate-50 rounded-3xl shadow-inner">
-                <div className="relative overflow-hidden bg-white border-2 border-[#15803d]/20 rounded-2xl p-6 shadow-lg">
+                <div className="relative overflow-hidden bg-base-100 border-2 border-[#15803d]/20 rounded-2xl p-6 shadow-lg">
                     {/* Decorative elements - Green/Gold */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#15803d]/20 to-[#ca8a04]/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#ca8a04]/15 to-[#15803d]/15 rounded-full blur-2xl"></div>

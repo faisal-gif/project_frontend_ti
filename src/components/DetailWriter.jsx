@@ -14,7 +14,7 @@ function DetailWriter({ authorData }) {
         <div>
 
             {/* Author Profile Section */}
-            <Card className="bg-white shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-2xl p-8 mb-8">
+            <Card className="bg-base-100 shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-2xl p-8 mb-8">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                     <div className="avatar avatar-placeholder">
                         {authorData.image ? (
@@ -33,7 +33,7 @@ function DetailWriter({ authorData }) {
 
                     <div className="flex-1">
                         <h1 className="text-xl md:text-3xl font-bold text-foreground mb-2">{authorData.name}</h1>
-                        <p className="text-black/50 mb-4 leading-relaxed">
+                        <p className="text-base-content/60 mb-4 leading-relaxed">
                             {authorData.bio ? authorData.bio : "Penulis TIMES Indonesia"}
                         </p>
 
@@ -45,7 +45,7 @@ function DetailWriter({ authorData }) {
                             ))}
                         </div> */}
 
-                        <div className="flex flex-wrap gap-6 text-sm text-black/50">
+                        <div className="flex flex-wrap gap-6 text-sm text-base-content/60">
                             {/* <div className="flex items-center gap-2">
                                 <span className="font-semibold text-foreground">180</span>
                                 <span>Artikel</span>

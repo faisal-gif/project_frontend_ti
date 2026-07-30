@@ -48,7 +48,7 @@ function NewsCard({
                             <h3 className="text-sm font-semibold text-foreground line-clamp-3 md:line-clamp-2 leading-tight mb-2 hover:text-red-600 transition-colors duration-200">
                                 {title}
                             </h3>
-                            <p className="hidden md:line-clamp-2 text-black/50 text-xs leading-relaxed mb-3">
+                            <p className="hidden md:line-clamp-2 text-base-content/60 text-xs leading-relaxed mb-3">
                                 {description}
                             </p>
                         </div>

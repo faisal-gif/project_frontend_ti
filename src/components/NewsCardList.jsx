@@ -52,7 +52,7 @@ function NewsCardAuto({
                         <h3 className="font-semibold text-foreground text-sm leading-tight line-clamp-3 hover:text-red-600 md:font-bold md:text-base md:line-clamp-2 md:group-hover:text-[#7a0f1f] transition-colors mb-2 md:mb-3">
                             {title}
                         </h3>
-                        <p className="text-black/50 text-xs leading-relaxed mb-3 line-clamp-2 md:text-muted-foreground md:line-clamp-3 hidden md:block ">
+                        <p className="text-base-content/60 text-xs leading-relaxed mb-3 line-clamp-2 md:text-muted-foreground md:line-clamp-3 hidden md:block ">
                             {description}
                         </p>
                     </div>

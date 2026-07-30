@@ -8,7 +8,7 @@ import FormattedViews from '@/utils/view/FormattedViews'
 
 function LandscapeNewsCard({ index, image, title, url, datepub, pageviews }) {
     return (
-        <Card key={index} className="w-full max-w-sm group bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 ease-in-out">
+        <Card key={index} className="w-full max-w-sm group bg-base-100 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 ease-in-out">
             <a href={url} target="_blank" rel="noopener noreferrer" className="block h-full">
                 <div className="relative overflow-hidden h-56 w-full">
                     <Image

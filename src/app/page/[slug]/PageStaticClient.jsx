@@ -23,7 +23,7 @@ function PageStaticClient({ InitialPageDetail }) {
                             <h3 className="text-lg font-semibold text-white ">{pageDetail?.page_name}</h3>
                         </Card>
                         <div className='prose prose-lg max-w-none'>
-                            <div className="bg-white rounded-lg shadow-sm border px-4 py-2">
+                            <div className="bg-base-100 rounded-lg shadow-sm border px-4 py-2">
                              < div dangerouslySetInnerHTML={{ __html: pageDetail?.page_isi }} />
                             </div>
                         </div>

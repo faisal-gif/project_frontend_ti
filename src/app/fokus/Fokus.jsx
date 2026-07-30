@@ -94,7 +94,7 @@ function Fokus() {
                         <h2 className="text-2xl font-bold text-foreground mb-2">
                             {focus.length > 0 ? focus[0].focnews_title : 'Memuat....'}
                         </h2>
-                        <p className="text-black/60 mb-4">
+                        <p className="text-base-content/70 mb-4">
                             {focus.length > 0 ? focus[0].focnews_description : 'Memuat....'}
                         </p>
                         {focus.length > 0 ? (

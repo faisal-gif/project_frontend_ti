@@ -117,7 +117,7 @@ const ArticleContent = ({
                 className="block w-full rounded-lg mx-auto"
               />
               {captionNodes.length > 0 && (
-                <figcaption className="mt-2 text-sm italic text-gray-600 text-center">
+                <figcaption className="mt-2 text-sm italic text-base-content/70 text-center">
                   {domToReact(captionNodes, { replace: transform })}
                 </figcaption>
               )}
