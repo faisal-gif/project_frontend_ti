@@ -1,5 +1,4 @@
 'use client'
-import { apiGallery } from '@/lib/api';
 import React, { useEffect, useState } from 'react'
 import Carousel from './ui/Carousel';
 import FotografiCard from './FotografiCard';
