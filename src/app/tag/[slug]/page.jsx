@@ -29,6 +29,11 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${tagTitle} - TIMES Indonesia`,
+    // Halaman tag = agregasi tipis: jangan diindeks, tapi tetap follow agar link ke artikel mengalir
+    robots: { index: false, follow: true },
+    alternates: {
+      canonical: `https://timesindonesia.co.id/tag/${slug}`,
+    },
     openGraph: {
       locale: 'id_ID',
       title: tagTitle,
@@ -42,7 +47,7 @@ export async function generateMetadata({ params }) {
         },
       ],
       type: "website",
-      url: `https://timesindonesia.co.id/tag/${tagTitle}`,
+      url: `https://timesindonesia.co.id/tag/${slug}`,
       siteName: 'TIMES Indonesia',
     },
     twitter: {

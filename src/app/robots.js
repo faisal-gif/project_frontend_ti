@@ -5,23 +5,23 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/search/*', '/search*', '/tag/*', '/tag*']
+        disallow: ['/search/*', '/search*']
       },
       {
         userAgent: 'SemrushBot',
         crawlDelay: 10,
         allow: '/',
-        disallow: ['/search/*', '/search*', '/tag/*', '/tag*']
+        disallow: ['/search/*', '/search*']
       },
       {
         userAgent: 'SerpstatBot',
         crawlDelay: 10,
         allow: '/',
-        disallow: ['/search/*', '/search*', '/tag/*', '/tag*']
+        disallow: ['/search/*', '/search*']
       },
 
 
     ],
-    sitemap: 'https://www.timesindonesia.co.id/sitemap.xml',
+    sitemap: 'https://timesindonesia.co.id/sitemap.xml',
   }
 }
