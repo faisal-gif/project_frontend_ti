@@ -149,7 +149,7 @@ function Ekoran() {
                             <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg">
                                 <a
                                     href={'https://www.whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D'}
-                                    className="btn btn-md flex-1 bg-green-500 hover:bg-green-600 text-white border-0 rounded-xl h-12 py-2 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                    className="btn btn-md flex-1 bg-green-700 hover:bg-green-800 text-white border-0 rounded-xl h-12 py-2 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                                     target='_blank'
                                 >
                                     <MessageCircle className="h-5 w-5 mr-2" />

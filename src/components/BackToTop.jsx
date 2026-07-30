@@ -64,7 +64,7 @@ export default function BackToTop() {
                         <Link
                             href={"https://www.whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D"}
                             // 6. Tambahkan padding di kanan (pr-8) untuk memberi ruang bagi tombol X
-                            className="p-3 pr-8 rounded-lg bg-green-500 text-white shadow-lg hover:bg-green-900 transition flex items-center gap-2"
+                            className="p-3 pr-8 rounded-lg bg-green-700 text-white shadow-lg hover:bg-green-900 transition flex items-center gap-2"
                             aria-label="Whatsapp Channel"
                         >
                             <FaWhatsapp className="ml-5" size={18} />

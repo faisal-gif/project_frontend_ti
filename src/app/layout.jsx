@@ -172,9 +172,9 @@ export default function RootLayout({ children }) {
 
             <TopLoader />
             {/* Page content here */}
-            <div className="my-12">
+            <main className="my-12">
               {children}
-            </div>
+            </main>
 
             {/* Footer */}
             <Footer />
