@@ -21,7 +21,7 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizeCss: true,
+    inlineCss: true,
     cssChunking: true,
     optimizePackageImports: ['react-icons'],
   },
