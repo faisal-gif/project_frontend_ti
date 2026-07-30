@@ -11,6 +11,7 @@ import HeadlineCardSkeleton from '@/components/ui/HeadlineCardSkeleton';
 // Imports Statis (TIDAK BOLEH DYNAMIC karena berada di Above the Fold / LCP)
 import FirstHighlightHorizontalNewsSection from '@/components/FirstHighlightHorizontalNewsSection';
 import TopikPilihanWidget from '@/components/TopikPilihanWidget';
+import WeatherCard from '@/components/WeatherCard';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import LipsusSection from '@/components/LipsusSection';
 
@@ -136,6 +137,11 @@ function Home({
                 <div className='md:hidden flex items-center justify-center'>
                     <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' />
                 </div>
+            </div>
+
+            {/* --- CUACA (Card, di atas headline) --- */}
+            <div className="mx-auto max-w-6xl px-4 pb-6">
+                <WeatherCard />
             </div>
 
             {/* --- HERO SECTION --- */}
