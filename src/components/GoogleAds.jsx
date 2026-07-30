@@ -11,6 +11,7 @@ export default function GoogleAds({
     const adRef = useRef(null);
     const adPushed = useRef(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [adLoaded, setAdLoaded] = useState(false);
 
     const adConfigs = {
         inline_rectangle: { width: "336px", height: "280px", slotId: "5922452344" },
@@ -57,6 +58,20 @@ export default function GoogleAds({
                     console.error("Adsense error", e);
                 }
             }
+
+            // Sembunyikan skeleton begitu AdSense menandai slot (filled/unfilled),
+            // supaya placeholder gelap tidak terlihat di belakang iklan.
+            const el = adRef.current;
+            if (el) {
+                const obs = new MutationObserver(() => {
+                    const ins = el.querySelector("ins.adsbygoogle");
+                    if (ins && ins.getAttribute("data-ad-status")) {
+                        setAdLoaded(true);
+                        obs.disconnect();
+                    }
+                });
+                obs.observe(el, { attributes: true, subtree: true, attributeFilter: ["data-ad-status"] });
+            }
         }
     }, [isVisible, adsEksternal, activeSlot]);
 
@@ -65,20 +80,22 @@ export default function GoogleAds({
             {/* Container utama dengan relative positioning dan proteksi max-width agar tidak merusak layout mobile */}
             <div 
                 ref={adRef} 
-                className="relative bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center max-w-full"
+                className="relative overflow-hidden bg-base-200 rounded-lg flex items-center justify-center max-w-full"
                 style={{ 
                     width: currentConfig.width, 
                     height: currentConfig.height,
                     minWidth: 'min-content', // Mencegah CLS (Cumulative Layout Shift)
                 }} 
             >
-                {/* SKELETON LOADER */}
+                {/* SKELETON LOADER — hilang setelah iklan termuat */}
+                {!adLoaded && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 animate-pulse pointer-events-none">
                     <svg className="w-6 h-6 mb-2 text-gray-300 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
                     </svg>
                     <span className="text-[10px] uppercase tracking-widest font-medium">Advertisement</span>
                 </div>
+                )}
 
                 {/* KONTEN IKLAN */}
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
