@@ -134,12 +134,8 @@ function Home({
                 <div className='hidden md:flex items-center justify-center'>
                     <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='6315037307' />
                 </div>
-
-                {/* --- RECTANGLE Premium (Mobile) --- */}
-                <div className='flex md:hidden items-center justify-center'>
-                    <Suspense fallback={<div className="w-[336px] h-[400px] bg-gray-100 animate-pulse rounded"></div>}>
-                        <AsyncGoogleAds promise={initialAdsRectangleLeaderboard1Promise} size='inline_rectangle' type='mobile' slot='6315037307' />
-                    </Suspense>
+                <div className='md:hidden flex items-center justify-center'>
+                    <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' />
                 </div>
             </div>
 
@@ -183,11 +179,11 @@ function Home({
             </div>
 
             {/* --- RECTANGLE LEADERBOARD 1 (Mobile) --- */}
-            {/* <div className='flex md:hidden items-center justify-center'>
+            <div className='flex md:hidden items-center justify-center'>
                 <Suspense fallback={<div className="w-[336px] h-[400px] bg-gray-100 animate-pulse rounded"></div>}>
                     <AsyncGoogleAds promise={initialAdsRectangleLeaderboard1Promise} size='inline_rectangle' type='mobile' slot='6315037307' />
                 </Suspense>
-            </div> */}
+            </div>
 
             <div className="mx-auto max-w-6xl px-4 py-8">
                 <EKoranSection />
