@@ -2,6 +2,9 @@ import React from 'react'
 import EkoranDetailStory from './EkoranDetailStory'
 import { getDetailEkoran } from '@/lib/api/ekoran';
 
+// Edisi koran statis setelah terbit → cache halaman (ISR), pangkas TTFB/LCP.
+export const revalidate = 3600;
+
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
