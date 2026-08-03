@@ -41,7 +41,7 @@ function MobileMenuKanal() {
                                 <li key={channel.id} className="py-1 ">
                                     <Link className={`whitespace-nowrap transition-colors ${pathname === channel.url
                                         ? "text-[#b41d1d] font-semibold"
-                                        : "text-neutral hover:text-[#b41d1d]"}`} href={channel.url}>
+                                        : "text-base-content hover:text-[#b41d1d]"}`} href={channel.url}>
                                         {channel.name}
                                     </Link>
                                 </li>

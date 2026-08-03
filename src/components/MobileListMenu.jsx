@@ -16,7 +16,7 @@ function MobileListMenu() {
                         <li key={item.id} className="py-1 ">
                             <Link className={`whitespace-nowrap transition-colors ${isActive
                                 ? "text-[#b41d1d] font-semibold"
-                                : "text-neutral hover:text-[#b41d1d]"
+                                : "text-base-content hover:text-[#b41d1d]"
                                 }`} href={item.href}>
                                 {item.name}
                             </Link>
