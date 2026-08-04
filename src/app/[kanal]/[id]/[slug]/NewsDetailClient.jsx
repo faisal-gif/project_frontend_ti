@@ -505,6 +505,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                             readAlsoArticles={relatedNews}
                                             lokus={newsDetail.news_city}
                                             url={newsDetail.url_ci4}
+                                            affiliate={newsDetail.affiliate}
                                             className="mt-8 prose prose-sm sm:prose-base md:prose-lg max-w-none prose-a:text-red-800 prose-a:no-underline"
                                         />
 

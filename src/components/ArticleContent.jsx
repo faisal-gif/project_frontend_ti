@@ -4,6 +4,7 @@ import ReadAlso from './ReadAlso.jsx';
 // import LazyAdopAd from './LazyAdopAd.jsx';
 import GoogleAds from './GoogleAds.jsx';
 import SurveyWidget from './SurveyWidget.jsx';
+import AffiliateCard from './AffiliateCard.jsx';
 
 /**
  * Convert inline style string to React style object
@@ -22,7 +23,8 @@ const ArticleContent = ({
   getTextSizeClasses,
   lokus = '',
   className = '',
-  url = ''
+  url = '',
+  affiliate = null
 }) => {
   let paragraphCount = 0;
 
@@ -272,6 +274,16 @@ const ArticleContent = ({
       className={`prose prose-img:rounded-lg prose-img:mx-auto max-w-none w-full mx-auto ${className}`}
       onCopy={handleCopy}
     >
+      {/* Kartu afiliasi (float kanan) — ditaruh sebelum konten agar teks membungkus */}
+      {affiliate && (
+        <AffiliateCard
+          image={affiliate.product_image}
+          title={affiliate.product_title}
+          description={affiliate.product_description}
+          url={affiliate.affiliate_link}
+        />
+      )}
+
       {sanitizedHtml ? parse(sanitizedHtml, { replace: transform }) : null}
 
       <p className="italic text-foreground text-base md:text-lg">
