@@ -154,8 +154,8 @@ const SearchDropdown = () => {
       >
         {/* Search box */}
         <form onSubmit={(e) => { e.preventDefault(); handleSearchSubmit(); }} className="relative mb-2">
-          <label className="input w-full flex items-center gap-2 border border-gray-300 focus-within:border-blue-500 rounded-lg p-2">
-            <Search className="text-gray-500 w-5 h-5 flex-shrink-0" />
+          <label className="input w-full flex items-center gap-2 border border-base-300 focus-within:border-blue-500 rounded-lg p-2">
+            <Search className="text-base-content/60 w-5 h-5 flex-shrink-0" />
             <input
               ref={inputRef}
               type="search" // Lebih semantik daripada 'text'
@@ -163,7 +163,7 @@ const SearchDropdown = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               // onKeyDown={handleKeyDown} // Pindahkan logic submit ke <form onSubmit>
-              className="grow outline-none bg-transparent text-gray-800 placeholder-gray-400"
+              className="grow outline-none bg-transparent text-base-content placeholder-base-content/40"
               aria-label="Input pencarian berita"
             />
             {/* Tombol Clear Query */}
@@ -171,7 +171,7 @@ const SearchDropdown = () => {
               <button
                 type="button"
                 onClick={clearSearch}
-                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors"
+                className="text-base-content/60 hover:text-base-content p-1 rounded-full hover:bg-base-200 transition-colors"
                 aria-label="Bersihkan pencarian"
               >
                 <X className="w-4 h-4" />
@@ -187,11 +187,11 @@ const SearchDropdown = () => {
               <div className="flex justify-center items-center py-4">
                 {/* Skeleton/Spinner Sederhana */}
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-                <span className="text-sm text-gray-500 ml-2">Mencari...</span>
+                <span className="text-sm text-base-content/60 ml-2">Mencari...</span>
               </div>
             ) : results.length > 0 ? (
               <>
-                <div className="text-xs font-semibold text-gray-600 mb-2 px-2 border-b pb-1">
+                <div className="text-xs font-semibold text-base-content/70 mb-2 px-2 border-b pb-1">
                   {results.length} hasil teratas
                 </div>
                 {results.map((result) => (
@@ -200,20 +200,20 @@ const SearchDropdown = () => {
                     // Pastikan url_ci4 adalah path yang valid (misalnya /berita/id-judul)
                     href={result.url_ci4} 
                     onClick={handleResultClick}
-                    className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group"
+                    className="flex items-start gap-3 p-2 hover:bg-base-200 rounded-lg transition-colors group"
                   >
                     <img
                       src={result.news_image_new}
                       alt={result.news_title}
                       // Tambahkan error handling jika gambar tidak bisa dimuat (opsional)
                       onError={(e) => { e.target.onerror = null; e.target.src = '/placeholder-image.jpg'; }}
-                      className="w-12 h-12 object-cover rounded-md flex-shrink-0 border border-gray-100"
+                      className="w-12 h-12 object-cover rounded-md flex-shrink-0 border border-base-300"
                     />
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-sm font-medium text-gray-900 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-sm font-medium text-base-content line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
                         {result.news_title}
                       </h3>
-                      <span className="inline-block mt-1 text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full font-medium">
+                      <span className="inline-block mt-1 text-xs text-blue-500 bg-blue-500/10 px-2 py-0.5 rounded-full font-medium">
                         {result.cat_title}
                       </span>
                     </div>
@@ -230,13 +230,13 @@ const SearchDropdown = () => {
                  </div>
               </>
             ) : (
-              <div className="text-sm text-gray-500 px-2 py-4 text-center">
+              <div className="text-sm text-base-content/60 px-2 py-4 text-center">
                 Tidak ada hasil ditemukan.
               </div>
             )}
           </div>
         ) : (
-             <div className="text-sm text-gray-500 px-2 py-4 text-center">
+             <div className="text-sm text-base-content/60 px-2 py-4 text-center">
                 Mulai ketik untuk mencari berita.
             </div>
         )}
