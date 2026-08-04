@@ -7,6 +7,7 @@ export default function GoogleAds({
     adsEksternal = null,
     customSlot = null,
     type = 'desktop',
+    priority = false, // true hanya untuk ad above-the-fold (LCP), mis. premium top banner
 }) {
     const adRef = useRef(null);
     const adPushed = useRef(false);
@@ -112,7 +113,7 @@ export default function GoogleAds({
                                 fill
                                 sizes="(max-width: 768px) 100vw, 100vw" // Disesuaikan agar lebih aman
                                 className="object-contain"
-                                priority={false}
+                                priority={priority}
                                 quality={75}
                                 // GIF (animasi) dibiarkan apa adanya agar animasinya tak hilang;
                                 // PNG/JPG dioptimalkan Next → WebP, hemat ~192 KiB

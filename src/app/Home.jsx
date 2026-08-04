@@ -132,10 +132,10 @@ function Home({
             {/* --- IKLAN PREMIUM (Tampil Instan) --- */}
             <div className='max-w-6xl mx-auto gap-6 pt-28 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center'>
-                    <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='6315037307' />
+                    <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='6315037307' priority />
                 </div>
                 <div className='md:hidden flex items-center justify-center'>
-                    <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' />
+                    <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' priority />
                 </div>
             </div>
 
