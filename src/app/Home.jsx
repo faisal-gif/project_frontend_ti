@@ -24,6 +24,7 @@ const PopularNews = dynamic(() => import('@/components/PopularNews'));
 const CekFaktaCard = dynamic(() => import('@/components/CekFaktaCard'));
 const EventWidget = dynamic(() => import('@/components/EventWidget'));
 const GoogleAds = dynamic(() => import('@/components/GoogleAds'));
+const CommerceSection = dynamic(() => import('@/components/CommerceSection'));
 const AdsCarouselGroup = dynamic(() => import('@/components/AdsCarouselGroup'));
 const LazyAdsRectangleCarousel = dynamic(() => import('@/components/AdsRectangleCarousel'));
 
@@ -70,6 +71,12 @@ function AsyncWansusNews({ promise }) {
     return <FirstHighlightHorizontalNewsSection url='/kanal/wawancara-khusus/' articles={news} />;
 }
 
+function AsyncCommerce({ promise }) {
+    const news = promise ? use(promise) : [];
+    if (!news || news.length === 0) return null;
+    return <CommerceSection news={news} />;
+}
+
 function AsyncCekFakta({ promise }) {
     const news = promise ? use(promise) : [];
     return <CekFaktaCard CekFaktaNews={news} />;
@@ -106,6 +113,7 @@ function Home({
     // --- PROMISES (Below the Fold) ---
     newsFirstSectionsPromise,
     newsSecondSectionsPromise,
+    commerceNewsPromise,
     allNewsPromise,
     lipsusNewsPromise,
     wansusNewsPromise,
@@ -211,6 +219,13 @@ function Home({
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3">
                 <Suspense fallback={[1, 2, 3].map((i) => <div key={i} className="space-y-8"><FirstHighlightNewsSectionSkeleton /></div>)}>
                     <AsyncSecondSections promise={newsSecondSectionsPromise} />
+                </Suspense>
+            </div>
+
+            {/* --- COMMERCE / AFFILIATE SHOPEE --- */}
+            <div className="mx-auto max-w-6xl px-4 py-8">
+                <Suspense fallback={<div className="h-[360px] w-full bg-gray-100 animate-pulse rounded-2xl"></div>}>
+                    <AsyncCommerce promise={commerceNewsPromise} />
                 </Suspense>
             </div>
 

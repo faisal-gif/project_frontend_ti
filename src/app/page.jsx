@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './Home';
 import {
   getCekFaktaNewsServer,
+  getCommerceNewsServer,
   getLipsusNewsServer,
   getNewsFirstSectionsServer,
   getNewsSecondSectionsServer,
@@ -42,6 +43,7 @@ export default async function Page() { // Biasakan menggunakan huruf kapital unt
   const secondSectionsPromise = getNewsSecondSectionsServer();
   const lipsusPromise = getLipsusNewsServer();
   const wansusPromise = getWansusNewsServer();
+  const commerceNewsPromise = getCommerceNewsServer();
   const allNewsPromise = getAllNewsServer({ news_type: "all", offset: 0, limit: 4 });
   const headlineNewsPromise = getAllNewsServer({ news_type: "headline", offset: 0, limit: 10 });
   const cekFaktaNewsPromise = getCekFaktaNewsServer();
@@ -94,6 +96,7 @@ export default async function Page() { // Biasakan menggunakan huruf kapital unt
         // --- DATA PROMISE (Di-unwrap menggunakan use() dan Suspense di Home.jsx) ---
         newsFirstSectionsPromise={firstSectionsPromise}
         newsSecondSectionsPromise={secondSectionsPromise}
+        commerceNewsPromise={commerceNewsPromise}
         lipsusNewsPromise={lipsusPromise}
         wansusNewsPromise={wansusPromise}
         allNewsPromise={allNewsPromise}

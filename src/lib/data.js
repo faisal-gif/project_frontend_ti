@@ -108,6 +108,15 @@ export const getLipsusNewsServer = async () => {
   });
 };
 
+export const getCommerceNewsServer = async () => {
+  return await getAllNewsServer({
+    news_type: "cat",
+    cat_id: 35,
+    offset: 0,
+    limit: 8,
+  });
+};
+
 // --- UBAH FUNGSI INI ---
 export const getNewsFirstSectionsServer = async () => {
   // 1. Panggil semua fungsi tanpa 'await' untuk mendapatkan promises

@@ -114,6 +114,7 @@ export default function GoogleAds({
                                 sizes="(max-width: 768px) 100vw, 100vw" // Disesuaikan agar lebih aman
                                 className="object-contain"
                                 priority={priority}
+                                fetchPriority={priority ? 'high' : undefined}
                                 quality={75}
                                 // GIF (animasi) dibiarkan apa adanya agar animasinya tak hilang;
                                 // PNG/JPG dioptimalkan Next → WebP, hemat ~192 KiB
