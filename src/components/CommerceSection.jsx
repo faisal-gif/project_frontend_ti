@@ -34,7 +34,7 @@ function CommerceSection({ news = [] }) {
                         </div>
                     </div>
                     <Link
-                        href="/kanal/commerce"
+                        href="/kanal/news-commerce"
                         className="hidden md:inline-flex items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-bold text-[#EE4D2D] transition hover:bg-white/90"
                     >
                         Lihat Semua <ArrowRight className="h-4 w-4" />
