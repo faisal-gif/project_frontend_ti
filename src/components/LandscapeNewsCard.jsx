@@ -13,10 +13,11 @@ function LandscapeNewsCard({ index, image, title, url, datepub, pageviews }) {
                 <div className="relative overflow-hidden h-56 w-full">
                     <Image
                         src={image}
-                        alt="Video thumbnail"
+                        alt={title}
                         width={750}
                         height={350}
                         quality={40}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         loading='lazy'
                         className="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300"
                     />
