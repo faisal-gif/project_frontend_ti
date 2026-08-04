@@ -5,6 +5,7 @@ import Carousel from './ui/Carousel';
 import CardImageSkeleton from './ui/CardImageSkeleton';
 import LandscapeNewsCard from './LandscapeNewsCard';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 function LipsusSection({ lipsus = [] }) {
@@ -13,11 +14,13 @@ function LipsusSection({ lipsus = [] }) {
         <div className="max-w-6xl mx-auto">
 
             <div className="flex items-center justify-between mb-2">
-                <h2 className="flex gap-2 items-center text-2xl font-bold text-white">
-                    <Image src="/logo_lipsus3.png" className="object-contain" alt="Logo" width={60} height={50} />
-                    LIPUTAN KHUSUS
-                </h2>
-               
+                <Link href="https://lipsus.times.co.id/" target="_blank" rel="noopener noreferrer" className="text-sm md:text-base font-semibold text-[#15803d] hover:underline">
+                    <h2 className="flex gap-2 items-center text-2xl font-bold text-white">
+                        <Image src="/logo_lipsus3.png" className="object-contain" alt="Logo" width={60} height={50} />
+                        LIPUTAN KHUSUS
+                    </h2>
+                </Link>
+
             </div>
 
             <Carousel opts={{ align: "start", loop: true }} className="w-full">
