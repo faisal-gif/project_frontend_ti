@@ -51,7 +51,7 @@ export default function FirstHightlightNewsSection({ title, url = '/', index = 1
                                     alt={news[0].news_title}
                                     fill
                                     loading='lazy'
-                                    quality={80}
+                                    quality={65}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />

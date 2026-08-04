@@ -113,7 +113,10 @@ export default function GoogleAds({
                                 sizes="(max-width: 768px) 100vw, 100vw" // Disesuaikan agar lebih aman
                                 className="object-contain"
                                 priority={false}
-                                unoptimized={true} // 💡 KUNCI: Matikan kompresi Next.js agar gambar S3 tetap tajam!
+                                quality={75}
+                                // GIF (animasi) dibiarkan apa adanya agar animasinya tak hilang;
+                                // PNG/JPG dioptimalkan Next → WebP, hemat ~192 KiB
+                                unoptimized={/\.gif(\?|$)/i.test(type === 'mobile' ? adsEksternal.m_img : adsEksternal.d_img)}
                             />
                         </a>
                     ) : (
