@@ -11,7 +11,7 @@ export default function AffiliateCard({ image, title, description, url }) {
 
   return (
     // not-prose: cegah gaya typography (prose) merusak kartu.
-    // Mobile: block full-width. Desktop (md+): float kanan, teks membungkus.
+    // HP: blok rapi full-width. Desktop (md+): float kanan, teks membungkus.
     <aside className="not-prose clear-both mb-4 w-full overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-md md:float-right md:mb-3 md:ml-5 md:w-64">
       <a
         href={url}
