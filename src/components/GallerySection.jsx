@@ -1,73 +1,56 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import Carousel from './ui/Carousel';
 import FotografiCard from './FotografiCard';
 import Link from 'next/link';
-import Autoplay from 'embla-carousel-autoplay';
+import { Camera } from 'lucide-react';
 import { getAllFoto } from '@/lib/api/fotoApi';
-import FotografiCardSkeleton from './ui/FotografiCardSkeleton';
 
 
 function GallerySection() {
     const [gallery, setGallery] = useState([]);
 
     useEffect(() => {
-        getAllFoto({ news_type: 'all', offset: 0, limit: 10 }).then(setGallery).catch(console.error);
+        getAllFoto({ news_type: 'all', offset: 0, limit: 9 }).then(setGallery).catch(console.error);
     }, []);
+
+    const loading = gallery.length === 0;
+    // Mosaic bento: item pertama jadi hero 2x2, sisanya 1x1.
+    const cellClass = (i) => i === 0 ? 'md:col-span-2 md:row-span-2' : '';
 
     return (
         <>
-
             <div className="flex items-center justify-between mb-8">
                 <h2 className="flex gap-2 items-center text-2xl font-bold text-foreground">
-                    <div className="w-1 h-6 bg-[#C31815] rounded-full"></div>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#C31815] text-white">
+                        <Camera className="h-5 w-5" />
+                    </span>
                     TIMES FOTO
                 </h2>
-                <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <Link href={'/foto'} className="text-sm text-neutral hover:text-[#b41d1d] hover:font-semibold">Lebih Banyak</Link>
-                </button>
+                <Link href={'/foto'} className="text-sm text-neutral hover:text-[#b41d1d] hover:font-semibold transition-colors">
+                    Lebih Banyak
+                </Link>
             </div>
 
-            <Carousel opts={{ align: "start", loop: true }} className="w-full" plugins={[Autoplay()]}>
-                <Carousel.Content className="-ml-4">
-
-                    {
-                        gallery.length === 0 && (
-                            [1, 2, 3, 4, 5].map((index) => (
-                                <Carousel.Item
-                                    key={index}
-                                    className="pl-4 min-w-0 shrink-0 grow-0 basis-9/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
-                                >
-                                    <div className="p-1 h-full">
-                                        <FotografiCardSkeleton />
-                                    </div>
-                                </Carousel.Item>
-                            ))
-                        )
-                    }
-
-                    {gallery.map((article, index) => (
-                        <Carousel.Item
-                            key={index}
-                            className="pl-4 min-w-0 shrink-0 grow-0 basis-8/12 sm:basis-1/2 md:basis-1/4 lg:basis-1/5"
-                        >
-                            <div className="p-1 h-full">
-                                <FotografiCard
-                                    datepub={article.gal_datepub}
-                                    gal_cover={article.gal_cover}
-                                    gal_title={article.gal_title}
-                                    gal_view={Number(article.gal_view)}
-                                    url={article.url_ci4}
-                                />
-                            </div>
-                        </Carousel.Item>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[150px] md:auto-rows-[175px]">
+                {loading
+                    ? [...Array(9)].map((_, i) => (
+                        <div key={i} className={`h-full w-full animate-pulse rounded-lg bg-gray-200 ${cellClass(i)}`} />
+                    ))
+                    : gallery.map((article, i) => (
+                        <div key={article.gal_id ?? i} className={`h-full ${cellClass(i)}`}>
+                            <FotografiCard
+                                fill
+                                datepub={article.gal_datepub}
+                                gal_cover={article.gal_cover}
+                                gal_title={article.gal_title}
+                                gal_view={Number(article.gal_view)}
+                                category={article.galcat_title}
+                                url={article.url_ci4}
+                            />
+                        </div>
                     ))}
-                </Carousel.Content>
-                <Carousel.Previous position="outer" />
-                <Carousel.Next position="outer" />
-            </Carousel>
-
+            </div>
         </>
     )
 }
