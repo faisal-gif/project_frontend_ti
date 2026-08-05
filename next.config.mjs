@@ -14,8 +14,6 @@ const nextConfig = {
       { protocol: "https", hostname: "img.youtube.com", pathname: "/**" },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "kopi.times.co.id", pathname: "/**" },
-      { protocol: "https", hostname: "cf.shopee.co.id", pathname: "/**" },
-      { protocol: "https", hostname: "**.susercontent.com", pathname: "/**" },
 
     ],
     formats: ["image/webp"],

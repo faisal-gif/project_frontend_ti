@@ -281,6 +281,7 @@ const ArticleContent = ({
           title={affiliate.product_title}
           description={affiliate.product_description}
           url={affiliate.affiliate_link}
+          platform={affiliate.platform}
         />
       )}
 
