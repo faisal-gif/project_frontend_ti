@@ -57,6 +57,11 @@ export default function BackToTop() {
                     <ArrowUpFromDot size={16} />
                 </Button>
 
+                {/* Slot mini-card afiliasi — diisi via portal dari AffiliateCard.
+                    display:contents → saat kosong tak menambah gap; saat terisi,
+                    kartunya jadi item flex di urutan ini (setelah scroll button). */}
+                <div id="affiliate-float-slot" className="contents" />
+
                 {/* 4. Bungkus tombol WhatsApp dengan conditional rendering */}
                 {isWaVisible && (
                     // 5. Buat wrapper 'relative'

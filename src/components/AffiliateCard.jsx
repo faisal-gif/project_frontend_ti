@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { ExternalLink, X } from 'lucide-react';
 
 /**
@@ -39,9 +40,12 @@ export default function AffiliateCard({ image, title, description, url, platform
   const [floatImgOk, setFloatImgOk] = useState(true);
   const [showFloat, setShowFloat] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [slot, setSlot] = useState(null);
   const ref = useRef(null);
 
   useEffect(() => {
+    // Slot di dalam BackToTop tempat mini-card diportal (biar urut & tak tabrakan).
+    setSlot(document.getElementById('affiliate-float-slot'));
     const el = ref.current;
     if (!el) return;
     // Tampilkan mini-card hanya jika kartu utama sudah tergulung ke ATAS layar.
@@ -107,42 +111,44 @@ export default function AffiliateCard({ image, title, description, url, platform
         </a>
       </aside>
 
-      {/* === MINI-CARD (muncul saat kartu utama dilewati) === */}
-      {showFloat && !dismissed && (
-        <div className="not-prose fixed bottom-24 right-4 z-40 flex w-64 max-w-[85vw] items-center gap-2 rounded-xl border border-base-300 bg-base-100 p-2 shadow-lg">
-          <a
-            href={url}
-            target="_blank"
-            rel="sponsored nofollow noopener"
-            className="flex min-w-0 flex-1 items-center gap-2"
-          >
-            {image && floatImgOk && (
-              <img
-                src={image}
-                alt=""
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                onError={() => setFloatImgOk(false)}
-                className="shrink-0 rounded-lg"
-                style={{ height: '3rem', width: '3rem', objectFit: 'cover', margin: 0 }}
-              />
-            )}
-            <span className="min-w-0 flex-1">
-              <span className="block truncate text-xs font-semibold text-base-content">{title || label}</span>
-              <span className={`mt-0.5 inline-block rounded px-1.5 py-0.5 text-[10px] font-bold text-white ${cls}`}>
-                {label}
+      {/* === MINI-CARD — diportal ke stack BackToTop (urut: scroll button, ini, WhatsApp) === */}
+      {showFloat && !dismissed && slot &&
+        createPortal(
+          <div className="not-prose flex w-56 max-w-[80vw] items-center gap-2 rounded-xl border border-base-300 bg-base-100 p-2 shadow-lg">
+            <a
+              href={url}
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="flex min-w-0 flex-1 items-center gap-2"
+            >
+              {image && floatImgOk && (
+                <img
+                  src={image}
+                  alt=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  onError={() => setFloatImgOk(false)}
+                  className="shrink-0 rounded-lg"
+                  style={{ height: '2.75rem', width: '2.75rem', objectFit: 'cover', margin: 0 }}
+                />
+              )}
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-xs font-semibold text-base-content">{title || label}</span>
+                <span className={`mt-0.5 inline-block rounded px-1.5 py-0.5 text-[10px] font-bold text-white ${cls}`}>
+                  {label}
+                </span>
               </span>
-            </span>
-          </a>
-          <button
-            onClick={() => setDismissed(true)}
-            aria-label="Tutup"
-            className="shrink-0 rounded p-1 text-base-content/50 transition hover:bg-base-200 hover:text-base-content"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-      )}
+            </a>
+            <button
+              onClick={() => setDismissed(true)}
+              aria-label="Tutup"
+              className="shrink-0 rounded p-1 text-base-content/50 transition hover:bg-base-200 hover:text-base-content"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>,
+          slot
+        )}
     </>
   );
 }
