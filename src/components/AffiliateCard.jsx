@@ -114,38 +114,45 @@ export default function AffiliateCard({ image, title, description, url, platform
       {/* === MINI-CARD — diportal ke stack BackToTop (urut: scroll button, ini, WhatsApp) === */}
       {showFloat && !dismissed && slot &&
         createPortal(
-          <div className="not-prose flex w-56 max-w-[80vw] items-center gap-2 rounded-xl border border-base-300 bg-base-100 p-2 shadow-lg">
-            <a
-              href={url}
-              target="_blank"
-              rel="sponsored nofollow noopener"
-              className="flex min-w-0 flex-1 items-center gap-2"
-            >
-              {image && floatImgOk && (
-                <img
-                  src={image}
-                  alt=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  onError={() => setFloatImgOk(false)}
-                  className="shrink-0 rounded-lg"
-                  style={{ height: '2.75rem', width: '2.75rem', objectFit: 'cover', margin: 0 }}
-                />
-              )}
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-xs font-semibold text-base-content">{title || label}</span>
-                <span className={`mt-0.5 inline-block rounded px-1.5 py-0.5 text-[10px] font-bold text-white ${cls}`}>
-                  {label}
-                </span>
-              </span>
-            </a>
+          <div className="not-prose relative w-64 max-w-[85vw] overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-xl ring-1 ring-black/5 animate-[affiliateFloatIn_0.25s_ease-out]">
+            {/* Tombol tutup (di luar <a> agar tak jadi interaktif bertingkat) */}
             <button
               onClick={() => setDismissed(true)}
               aria-label="Tutup"
-              className="shrink-0 rounded p-1 text-base-content/50 transition hover:bg-base-200 hover:text-base-content"
+              className="absolute right-1.5 top-1.5 z-10 rounded-full bg-base-100/80 p-0.5 text-base-content/50 shadow-sm backdrop-blur transition hover:text-base-content"
             >
-              <X className="h-4 w-4" />
+              <X className="h-3.5 w-3.5" />
             </button>
+
+            <a href={url} target="_blank" rel="sponsored nofollow noopener" className="group block">
+              <div className="flex items-center gap-2.5 p-2.5">
+                {image && floatImgOk && (
+                  <img
+                    src={image}
+                    alt=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    onError={() => setFloatImgOk(false)}
+                    className="shrink-0 rounded-lg ring-1 ring-base-300"
+                    style={{ height: '4.5rem', width: '4.5rem', objectFit: 'cover', margin: 0 }}
+                  />
+                )}
+                <span className="min-w-0 flex-1 pr-4">
+                  <span className="block text-[10px] font-bold uppercase tracking-wide text-base-content/40">
+                    Rekomendasi
+                  </span>
+                  <span className="mt-0.5 block line-clamp-2 text-xs font-semibold leading-snug text-base-content transition-colors group-hover:text-[#C31815]">
+                    {title || label}
+                  </span>
+                </span>
+              </div>
+
+              {/* CTA berwarna platform, full-width */}
+              <span className={`flex items-center justify-center gap-1.5 py-2 text-xs font-bold text-white transition group-hover:brightness-95 ${cls}`}>
+                <ExternalLink className="h-4 w-4" />
+                {label}
+              </span>
+            </a>
           </div>,
           slot
         )}

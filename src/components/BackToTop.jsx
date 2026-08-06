@@ -60,7 +60,7 @@ export default function BackToTop() {
                 {/* Slot mini-card afiliasi — diisi via portal dari AffiliateCard.
                     display:contents → saat kosong tak menambah gap; saat terisi,
                     kartunya jadi item flex di urutan ini (setelah scroll button). */}
-                <div id="affiliate-float-slot" className="contents" />
+                <div id="affiliate-float-slot" className="contents transition-all duration-300 ease-in-out" />
 
                 {/* 4. Bungkus tombol WhatsApp dengan conditional rendering */}
                 {isWaVisible && (
