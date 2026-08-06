@@ -35,22 +35,18 @@ function platformInfo(platform, url = '') {
   return { label: 'Kunjungi', cls: 'bg-[#C31815]' };
 }
 
-export default function AffiliateCard({ image, title, description, url, platform, variant = 'inline' }) {
+export default function AffiliateCard({ image, title, description, url, platform }) {
   const [imgOk, setImgOk] = useState(true);
   if (!url) return null;
 
   const { label, cls } = platformInfo(platform, url);
 
-  // 'sidebar' = blok full-width di sidebar sticky (desktop).
-  // 'inline'  = di badan artikel: HP blok, tablet float kanan; disembunyikan di
-  //             desktop (lg+) karena versi sidebar yang tampil.
-  const wrap =
-    variant === 'sidebar'
-      ? 'mb-4 w-full overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-md'
-      : 'not-prose clear-both mb-4 w-full overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-md md:float-right md:mb-3 md:ml-5 md:w-64 lg:hidden';
-
   return (
-    <aside className={wrap}>
+    // not-prose: cegah gaya typography merusak kartu.
+    // HP: blok full-width dalam alur (tanpa sticky agar tak menutupi teks).
+    // Desktop (md+): float kanan + sticky → teks membungkus DAN kartu ikut scroll
+    // (menempel di top-24) selama artikel masih tampil, seperti Float Menu.
+    <aside className="not-prose clear-both mb-4 w-full overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-md md:float-right md:sticky md:top-24 md:mb-3 md:ml-5 md:w-64">
       <a href={url} target="_blank" rel="sponsored nofollow noopener" className="group block">
         {image && imgOk && (
           <div className="relative aspect-square w-full bg-base-200">
