@@ -59,7 +59,7 @@ export default function AffiliateCard({ image, title, description, url, platform
               onError={() => setImgOk(false)}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
             />
-            {(platform == "shopee" || platform == "tokopedia") && (
+            {(platform.toLowerCase() == "shopee" || platform.toLowerCase() == "tokopedia") && (
               <span className="absolute left-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
                 Afiliasi
               </span>
