@@ -1,5 +1,6 @@
 'use client';
 import ArticleContent from '@/components/ArticleContent';
+import AffiliateCard from '@/components/AffiliateCard';
 import EkoranNewsDetailCard from '@/components/EkoranNewsDetailCard';
 
 import GoogleAds from '@/components/GoogleAds';
@@ -615,6 +616,16 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
                     <div className=" sticky top-28">
 
+                        {newsDetail.affiliate && (
+                            <AffiliateCard
+                                variant="sidebar"
+                                image={newsDetail.affiliate.product_image}
+                                title={newsDetail.affiliate.product_title}
+                                description={newsDetail.affiliate.product_description}
+                                url={newsDetail.affiliate.affiliate_link}
+                                platform={newsDetail.affiliate.platform}
+                            />
+                        )}
 
                         <div className='flex items-center justify-center my-2'>
                             <GoogleAds size='inline_rectangle' slot='6216992041' />
