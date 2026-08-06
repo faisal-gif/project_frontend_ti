@@ -96,7 +96,7 @@ function EditorClient({ initialEditorDetail }) {
             <div className="mb-8">
                 {editorDetail && (
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-1 h-8 bg-neutral rounded-full"></div>
+                        <div className="w-1.5 h-8 bg-gradient-to-b from-primary to-secondary rounded-full"></div>
                         <h2 className="text-lg md:text-2xl font-bold text-foreground">
                             Artikel yang disunting oleh {editorDetail.editor_name}
                         </h2>

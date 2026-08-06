@@ -1,12 +1,9 @@
 'use client'
 import DetailWriter from '@/components/DetailWriter';
-import NewsCard from '@/components/NewsCard';
 import PopularNews from '@/components/PopularNews';
-import LastestNewsCardSkeleton from '@/components/ui/LastestNewsCardSkeleton';
 import WriterFotoList from '@/components/WriterFotoList';
 import WriterNewsList from '@/components/WriterNewsList';
-import { getAllNews } from '@/lib/api/newsApi';
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 function WriterClient({ initialWriterDetail }) {
 
@@ -26,7 +23,7 @@ function WriterClient({ initialWriterDetail }) {
             <div className="mb-8">
                 {writerDetail && (
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-1 h-8 bg-neutral rounded-full"></div>
+                        <div className="w-1.5 h-8 bg-gradient-to-b from-primary to-secondary rounded-full"></div>
                         <h2 className="text-lg md:text-2xl font-bold text-foreground">
                             Artikel yang ditulis oleh {writerDetail.name}
                         </h2>
@@ -46,7 +43,7 @@ function WriterClient({ initialWriterDetail }) {
                         </div>
 
                     </div>
-                    <div className="hidden md:block md:col-span-2 md:">
+                    <div className="hidden lg:block lg:col-span-2">
                         <PopularNews />
                     </div>
 

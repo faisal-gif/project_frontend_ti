@@ -1,74 +1,21 @@
-
-import React from 'react'
-import Card from './ui/Card';
-import FormattedDate from '@/utils/date/FormattedDate';
+import React from 'react';
+import { PenLine } from 'lucide-react';
+import AuthorProfileCard from './AuthorProfileCard';
 
 function DetailWriter({ authorData }) {
-
-
     if (!authorData) {
         return null;
     }
 
     return (
-        <div>
-
-            {/* Author Profile Section */}
-            <Card className="bg-base-100 shadow-[0px_2px_14px_rgba(42,42,42,0.24)] rounded-2xl p-8 mb-8">
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                    <div className="avatar avatar-placeholder">
-                        {authorData.image ? (
-                            <div className="w-28 h-32 bg-neutral rounded-sm">
-                                <img src={authorData.image} alt={authorData.name} />
-                            </div>
-                        ) : (
-                            <div className="bg-neutral text-neutral-content w-28 rounded-full flex items-center justify-center">
-                                <span className="text-5xl">
-                                    {authorData.name.charAt(0).toUpperCase()}
-                                </span>
-
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="flex-1">
-                        <h1 className="text-xl md:text-3xl font-bold text-foreground mb-2">{authorData.name}</h1>
-                        <p className="text-base-content/60 mb-4 leading-relaxed">
-                            {authorData.bio ? authorData.bio : "Penulis TIMES Indonesia"}
-                        </p>
-
-                        {/* <div className="flex flex-wrap gap-2 mb-4">
-                            {authorData.expertise.map((skill) => (
-                                <Badge key={skill} variant="secondary" className="text-xs">
-                                    {skill}
-                                </Badge>
-                            ))}
-                        </div> */}
-
-                        <div className="flex flex-wrap gap-6 text-sm text-base-content/60">
-                            {/* <div className="flex items-center gap-2">
-                                <span className="font-semibold text-foreground">180</span>
-                                <span>Artikel</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="font-semibold text-foreground">100</span>
-                                <span>Pengikut</span>
-                            </div> */}
-                            {
-                                // authorData.datejoin && (
-                                //     <div>Bergabung sejak  <FormattedDate dateString={authorData.datejoin} /> </div>
-                                // )
-                            }
-
-                        </div>
-                    </div>
-                </div>
-            </Card>
-
-
-
-        </div>
-    )
+        <AuthorProfileCard
+            name={authorData.name}
+            image={authorData.image}
+            bio={authorData.bio}
+            roleLabel="Jurnalis"
+            RoleIcon={PenLine}
+        />
+    );
 }
 
-export default DetailWriter
+export default DetailWriter;
