@@ -67,9 +67,11 @@ export default function AffiliateCard({ image, title, description, url, platform
 
         <div className="p-3">
           {(!image || !imgOk) && (
+            (platform == "shopee" || platform == "tokopedia") && (
             <span className="mb-1 inline-block rounded bg-base-200 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-base-content/60">
               Afiliasi
             </span>
+            )
           )}
           {title && (
             <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-base-content transition-colors group-hover:text-[#C31815]">
