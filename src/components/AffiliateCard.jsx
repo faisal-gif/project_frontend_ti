@@ -59,18 +59,20 @@ export default function AffiliateCard({ image, title, description, url, platform
               onError={() => setImgOk(false)}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
             />
-            <span className="absolute left-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
-              Afiliasi
-            </span>
+            {(platform == "shopee" || platform == "tokopedia") && (
+              <span className="absolute left-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
+                Afiliasi
+              </span>
+            )}
           </div>
         )}
 
         <div className="p-3">
           {(!image || !imgOk) && (
             (platform == "shopee" || platform == "tokopedia") && (
-            <span className="mb-1 inline-block rounded bg-base-200 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-base-content/60">
-              Afiliasi
-            </span>
+              <span className="mb-1 inline-block rounded bg-base-200 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-base-content/60">
+                Afiliasi
+              </span>
             )
           )}
           {title && (
