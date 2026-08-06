@@ -206,7 +206,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                 ) : (
                     <>
                         <main className="col-span-1" >
-                           <article className="rounded-lg md:overflow-hidden">
+                           <article className="rounded-lg">
                                 <Link href={`/kanal/${newsDetail.catnews_slug}`} className="btn btn-sm bg-[#b41d1d] text-white py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
                                 </Link>

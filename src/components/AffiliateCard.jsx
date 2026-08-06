@@ -46,7 +46,7 @@ export default function AffiliateCard({ image, title, description, url, platform
     // HP: blok full-width dalam alur (tanpa sticky agar tak menutupi teks).
     // Desktop (md+): float kanan + sticky → teks membungkus DAN kartu ikut scroll
     // (menempel di top-24) selama artikel masih tampil, seperti Float Menu.
-    <aside className="not-prose clear-both mb-4 w-full overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-md md:float-right md:sticky md:top-24 md:mb-3 md:ml-5 md:w-64">
+    <aside className="not-prose clear-both mb-4 w-full overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-md md:float-right md:sticky md:top-28 md:mb-3 md:ml-5 md:w-64">
       <a href={url} target="_blank" rel="sponsored nofollow noopener" className="group block">
         {image && imgOk && (
           <div className="relative aspect-square w-full bg-base-200">
