@@ -10,6 +10,9 @@ import DrawerAutoClose from "@/components/DrawerAutoClose";
 import BackToTop from "@/components/BackToTop";
 import ConditionalAdScript from '@/components/ConditionalAdScript';
 import ThemeToggle from '@/components/ThemeToggle';
+import GoogleAds from "@/components/GoogleAds";
+import MobileWelcomeAd from "@/components/MobileWelcomeAd";
+import { getViewAds } from "@/lib/api/adsApi";
 
 const MobileListMenu = dynamic(() => import('@/components/MobileListMenu'))
 const MobileMenuKanal = dynamic(() => import('@/components/MobileMenuKanal'))
@@ -69,7 +72,10 @@ export const metadata = {
 };
 
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Welcome ad (mobile, di atas navbar). Digate ke homepage di dalam MobileWelcomeAd.
+  const welcomeAd = await getViewAds({ id: 43 });
+
   return (
     <html lang="id" className='scroll-smooth' suppressHydrationWarning>
       <head>
@@ -108,8 +114,13 @@ export default function RootLayout({ children }) {
         <div className="drawer">
           <input id="drawer-nav" type="checkbox" aria-label="Drawer toggle" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
+            {/* Welcome Ad (mobile) — di atas navbar, hanya homepage */}
+            <MobileWelcomeAd>
+              <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={welcomeAd} slot='9639204649' priority />
+            </MobileWelcomeAd>
+
             {/* Navbar */}
-            <div id="site-header" className="fixed top-0 w-full z-[80]">
+            <div id="site-header" className="sticky top-0 w-full z-[80]">
               {/* Navbar Atas */}
               <div className="navbar bg-gradient-to-r from-[#800b19] to-[#3e154f] backdrop-blur-sm shadow-sm border-b border-[#7a0f1f]">
                 <div className="max-w-6xl w-full md:px-4 mx-auto flex gap-4 justify-between items-center">

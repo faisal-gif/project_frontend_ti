@@ -1,17 +1,19 @@
 'use client'
 
 import React, { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { X } from 'lucide-react'
 
-// Interstitial ala Kompas mobile: iklan setinggi ~1 layar di paling atas.
-// Tombol X membuang blok ini sehingga konten di bawahnya naik ke atas.
-// md:hidden -> desktop tidak terpengaruh.
+// Interstitial ala Kompas mobile: iklan di paling atas, DI ATAS navbar.
+// Navbar (sticky) duduk tepat di bawahnya dan tetap terlihat, lalu menempel saat scroll.
+// Digate ke homepage ('/') saja meski dideklarasikan di layout. md:hidden -> desktop tak terpengaruh.
 function MobileWelcomeAd({ children }) {
+    const pathname = usePathname()
     const [open, setOpen] = useState(true)
-    if (!open) return null
+    if (pathname !== '/' || !open) return null
 
     return (
-        <section className="md:hidden relative z-[90] -mt-12 flex min-h-[100svh] flex-col bg-base-100 px-4 pt-3">
+        <section className="md:hidden relative flex flex-col min-h-[calc(100svh-8rem)] bg-base-100 px-4 pt-3">
             <div className="flex items-center justify-between pb-3">
                 <span className="text-xs font-semibold text-base-content/70">
                     Iklan — Scroll ke bawah untuk melanjutkan
