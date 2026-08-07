@@ -10,7 +10,6 @@ import DrawerAutoClose from "@/components/DrawerAutoClose";
 import BackToTop from "@/components/BackToTop";
 import ConditionalAdScript from '@/components/ConditionalAdScript';
 import ThemeToggle from '@/components/ThemeToggle';
-import GoogleAds from "@/components/GoogleAds";
 import MobileWelcomeAd from "@/components/MobileWelcomeAd";
 import { getViewAds } from "@/lib/api/adsApi";
 
@@ -114,10 +113,8 @@ export default async function RootLayout({ children }) {
         <div className="drawer">
           <input id="drawer-nav" type="checkbox" aria-label="Drawer toggle" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
-            {/* Welcome Ad (mobile) — di atas navbar, hanya homepage */}
-            <MobileWelcomeAd>
-              <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={welcomeAd} slot='9639204649' priority />
-            </MobileWelcomeAd>
+            {/* Welcome Ad (mobile) — di atas navbar, home + detail berita. Isi iklan per-halaman diatur di dalam komponen. */}
+            <MobileWelcomeAd premiumAd={welcomeAd} />
 
             {/* Navbar */}
             <div id="site-header" className="sticky top-0 w-full z-[80]">
@@ -191,7 +188,8 @@ export default async function RootLayout({ children }) {
 
             <TopLoader />
             {/* Page content here */}
-            <main className="my-12">
+            {/* pt-12 (bukan mt-12): jarak atas jadi padding di dalam bg opak, supaya welcome ad tak mengintip di celah bawah navbar */}
+            <main className="relative z-[20] mb-12 pt-12 bg-base-100">
               {children}
             </main>
 

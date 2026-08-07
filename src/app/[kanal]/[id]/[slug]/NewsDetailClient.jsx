@@ -150,43 +150,14 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                 </a>
                             </div>
                         </div>
-
-                        <div className='md:hidden flex items-center justify-center'>
-                            <div
-                                className="relative"
-                                style={{
-                                    width: 336,
-                                    height: 280,
-                                }}
-                            >
-                                <a
-                                    href={'https://kopi.times.co.id/'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full h-full relative"
-                                >
-                                    <Image
-                                        src={'https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/06/05/iklan-kopi-times-nv996oli.webp'}
-                                        alt="Advertisement"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 300px"
-                                        className="object-contain"
-                                        priority={false}
-                                    />
-                                </a>
-                            </div>
-                        </div>
-
+                        {/* Top banner mobile dihapus: welcome ad (di atas navbar) sudah jadi iklan teratas di mobile. */}
                     </>
                 ) : (
                     <>
                         <div className='hidden md:flex items-center justify-center'>
                             <GoogleAds size='top_banner' slot='6315037307' />
                         </div>
-
-                        <div className='md:hidden flex items-center justify-center'>
-                            <GoogleAds size='inline_rectangle' slot='9639204649' />
-                        </div>
+                        {/* Top banner mobile dihapus: welcome ad (di atas navbar) sudah jadi iklan teratas di mobile. */}
                     </>
                 )
             }
