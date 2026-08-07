@@ -14,6 +14,7 @@ import TopikPilihanWidget from '@/components/TopikPilihanWidget';
 import WeatherCard from '@/components/WeatherCard';
 import HeadlineNewsHome from '@/components/HeadlineNewsHome';
 import LipsusSection from '@/components/LipsusSection';
+import MobileWelcomeAd from '@/components/MobileWelcomeAd';
 
 // Dynamic Imports (Aman karena berada di Below the Fold)
 const FirstHightlightNewsSection = dynamic(() => import('@/components/FirstHightlightNewsSection'));
@@ -137,13 +138,16 @@ function Home({
 
     return (
         <div className="">
+            {/* --- WELCOME AD MOBILE (di atas navbar, ala Kompas) --- */}
+            <MobileWelcomeAd>
+                <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' priority />
+            </MobileWelcomeAd>
+
             {/* --- IKLAN PREMIUM (Tampil Instan) --- */}
+            {/* Di mobile blok ini kosong: hanya penyangga jarak navbar saat welcome ad ditutup. */}
             <div className='max-w-6xl mx-auto gap-6 pt-28 pb-8 px-4'>
                 <div className='hidden md:flex items-center justify-center'>
                     <GoogleAds size='top_banner' adsEksternal={initialAdsPremium} slot='6315037307' priority />
-                </div>
-                <div className='md:hidden flex items-center justify-center'>
-                    <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={initialAdsPremiumMobile} slot='9639204649' priority />
                 </div>
             </div>
 
