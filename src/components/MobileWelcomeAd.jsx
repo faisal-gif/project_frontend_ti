@@ -12,8 +12,10 @@ function MobileWelcomeAd({ children }) {
     const [open, setOpen] = useState(true)
     if (pathname !== '/' || !open) return null
 
+    // -mb-[100px] = tinggi navbar mobile: menarik navbar (z-80) naik menimpa iklan saat di-scroll (ala Kompas).
+    // ponytail: angka tinggi navbar; kalau tinggi navbar berubah, samakan nilainya.
     return (
-        <section className="md:hidden relative flex flex-col min-h-[calc(100svh-8rem)] bg-base-100 px-4 pt-3">
+        <section className="md:hidden relative z-[10] -mb-[100px] flex flex-col min-h-[calc(100svh-8rem)] bg-base-100 px-4 pt-3">
             <div className="flex items-center justify-between pb-3">
                 <span className="text-xs font-semibold text-base-content/70">
                     Iklan — Scroll ke bawah untuk melanjutkan
