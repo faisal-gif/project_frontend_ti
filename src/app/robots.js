@@ -8,6 +8,11 @@ export default function robots() {
         disallow: ['/search/*', '/search*']
       },
       {
+        userAgent: 'meta-externalads',
+        allow: '/',
+        disallow: ['/search*', '/amp/', '/tag/'],
+      },
+      {
         userAgent: 'SemrushBot',
         crawlDelay: 10,
         allow: '/',
