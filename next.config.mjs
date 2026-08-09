@@ -3,6 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "cdn2.timesmedia.co.id", pathname: "/**" },
       { protocol: "https", hostname: "cdn-1.timesmedia.co.id", pathname: "/**" },
