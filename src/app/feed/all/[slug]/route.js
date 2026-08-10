@@ -4,7 +4,7 @@ import { getAllNews, getAllNewsIndex } from "@/lib/api/newsApi";
 export const dynamic = "force-dynamic"; // sitemap selalu runtime
 
 function xmlConvert(str) {
-    return str
+    return String(str ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -13,10 +13,11 @@ function xmlConvert(str) {
 }
 
 function character_limiter(str, limit) {
-    return str.substring(0, limit);
+    return String(str ?? '').substring(0, limit);
 }
 
 function setLocusNews(content, city) {
+    content = content ?? '';
     const cityText = city ? `<strong>${city.trim().toUpperCase()}</strong>  - ` : '';
 
     let result = content;
@@ -91,7 +92,7 @@ export async function GET(request, { params }) {
     <description><![CDATA[Berita Positif Terbaru dan Terkini]]></description>
     <link>${process.env.NEXT_PUBLIC_URL}</link>
  
-    <pubDate>${new Date(news[0].news_datepub).toUTCString().replace(' GMT', ' +0000')}</pubDate>
+    <pubDate>${new Date(news[0]?.news_datepub ?? Date.now()).toUTCString().replace(' GMT', ' +0000')}</pubDate>
     ${rssItems}
   </channel>
 </rss>`;
