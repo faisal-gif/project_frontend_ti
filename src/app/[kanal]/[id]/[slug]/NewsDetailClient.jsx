@@ -221,7 +221,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                     </div>
 
                                     {
-                                        newsDetail.catnews_slug === 'kopi-times' && (
+                                        (newsDetail.catnews_slug === 'kopi-times' || newsDetail.catnews_slug === 'forum-guru' || newsDetail.catnews_slug === 'forum-mahasiswa' || newsDetail.catnews_slug === 'forum-dosen') && (
                                             writerKopiTimes && (
                                                 <div className="flex items-center gap-2 ml-2">
                                                     <div className="avatar" >

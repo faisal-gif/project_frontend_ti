@@ -19,7 +19,11 @@ const BLOCKED_USER_AGENTS = [
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const userAgent = request.headers.get('user-agent') || '';
-  const ip = request.ip || 'unknown';
+  const ip =
+    request.headers.get('cf-connecting-ip') ||
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.ip ||
+    'unknown';
 
 
   console.log(`[REQUEST_LOG] Path: ${pathname} | IP: ${ip} | User-Agent: ${userAgent}`);
