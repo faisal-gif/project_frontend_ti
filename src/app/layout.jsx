@@ -188,13 +188,15 @@ export default async function RootLayout({ children }) {
 
             <TopLoader />
             {/* Page content here */}
-            {/* pt-12 (bukan mt-12): jarak atas jadi padding di dalam bg opak, supaya welcome ad tak mengintip di celah bawah navbar */}
-            <main className="relative z-[20] mb-12 pt-12 bg-base-100">
+            {/* py-12 sebagai padding (bukan margin) di dalam bg opak, supaya welcome ad (fixed, z-10) tak mengintip di celah atas/bawah main */}
+            <main className="relative z-[20] py-12 bg-base-100">
               {children}
             </main>
 
-            {/* Footer */}
-            <Footer />
+            {/* Footer: z-[20] + bg opak sendiri, agar menutupi welcome ad (fixed) saat scroll ke bawah */}
+            <div className="relative z-[20]">
+              <Footer />
+            </div>
           </div>
           <div className="drawer-side z-[9999]">
             <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>

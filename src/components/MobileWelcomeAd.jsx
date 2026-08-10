@@ -54,25 +54,21 @@ function AdContent({ pathname, premiumAd }) {
 function MobileWelcomeAd({ premiumAd }) {
     const pathname = usePathname()
     const [open, setOpen] = useState(() => isAdRoute(pathname))
-    const isPopRef = useRef(false)          // true bila navigasi via tombol back/forward
-    const lastPathRef = useRef(pathname)     // guard render-ganda strict-mode
+    const seenRef = useRef(new Set([pathname])) // path yang sudah dilihat (awal dianggap sudah)
+    const lastPathRef = useRef(pathname)         // guard render-ganda strict-mode
 
-    // Tandai navigasi history (back/forward) — iklan tak boleh muncul saat back.
-    useEffect(() => {
-        const onPop = () => { isPopRef.current = true }
-        window.addEventListener('popstate', onPop)
-        return () => window.removeEventListener('popstate', onPop)
-    }, [])
-
-    // Navigasi LINK (push, mis. klik "Baca juga") -> tampil + refresh iklan.
-    // Tombol back/forward (popstate) -> jangan tampil. Load awal ditangani useState.
+    // Tampil di halaman iklan yang BELUM pernah dilihat (mis. klik "Baca juga" ke artikel baru).
+    // Back/forward ke halaman yang sudah dilihat -> tak tampil (deterministik, tanpa race popstate).
     useEffect(() => {
         if (lastPathRef.current === pathname) return // render-ganda strict-mode / bukan navigasi
         lastPathRef.current = pathname
         if (!isAdRoute(pathname)) { setOpen(false); return }
-        const viaBack = isPopRef.current
-        isPopRef.current = false
-        setOpen(!viaBack)
+        if (seenRef.current.has(pathname)) { setOpen(false); return } // sudah dilihat (mis. back)
+        seenRef.current.add(pathname)
+        setOpen(true)
+        // Next App Router scroll ke konten (judul), melewati welcome ad. Paksa ke atas
+        // supaya iklannya terlihat. rAF agar menang setelah scroll internal Next.
+        requestAnimationFrame(() => window.scrollTo(0, 0))
     }, [pathname])
 
     if (!isAdRoute(pathname) || !open) return null
