@@ -54,20 +54,25 @@ function AdContent({ pathname, premiumAd }) {
 function MobileWelcomeAd({ premiumAd }) {
     const pathname = usePathname()
     const [open, setOpen] = useState(() => isAdRoute(pathname))
-    const seenRef = useRef(new Set())          // path yang sudah pernah ditampilkan sesi ini
-    const shownPathRef = useRef(pathname)       // path yang sedang tampil (guard strict-mode)
+    const isPopRef = useRef(false)          // true bila navigasi via tombol back/forward
+    const lastPathRef = useRef(pathname)     // guard render-ganda strict-mode
 
-    // Tampil sekali tiap masuk halaman iklan BARU. Saat back/forward ke halaman
-    // yang sudah pernah dilihat, jangan tampil lagi (tak nag).
+    // Tandai navigasi history (back/forward) — iklan tak boleh muncul saat back.
     useEffect(() => {
+        const onPop = () => { isPopRef.current = true }
+        window.addEventListener('popstate', onPop)
+        return () => window.removeEventListener('popstate', onPop)
+    }, [])
+
+    // Navigasi LINK (push, mis. klik "Baca juga") -> tampil + refresh iklan.
+    // Tombol back/forward (popstate) -> jangan tampil. Load awal ditangani useState.
+    useEffect(() => {
+        if (lastPathRef.current === pathname) return // render-ganda strict-mode / bukan navigasi
+        lastPathRef.current = pathname
         if (!isAdRoute(pathname)) { setOpen(false); return }
-        if (seenRef.current.has(pathname)) {
-            if (shownPathRef.current !== pathname) setOpen(false) // guard render-ganda strict-mode
-            return
-        }
-        seenRef.current.add(pathname)
-        shownPathRef.current = pathname
-        setOpen(true)
+        const viaBack = isPopRef.current
+        isPopRef.current = false
+        setOpen(!viaBack)
     }, [pathname])
 
     if (!isAdRoute(pathname) || !open) return null
@@ -89,7 +94,8 @@ function MobileWelcomeAd({ premiumAd }) {
                     </button>
                 </div>
                 <div className="flex flex-1 items-start justify-center">
-                    <AdContent pathname={pathname} premiumAd={premiumAd} />
+                    {/* key={pathname}: remount tiap ganti halaman supaya iklan (AdSense/gambar) benar-benar refresh */}
+                    <AdContent key={pathname} pathname={pathname} premiumAd={premiumAd} />
                 </div>
             </div>
             {/* Spacer: menyediakan ruang alur setinggi iklan supaya navbar & konten mulai di bawahnya */}
