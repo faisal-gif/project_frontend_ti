@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { X } from 'lucide-react'
 import Image from 'next/image'
@@ -53,9 +53,23 @@ function AdContent({ pathname, premiumAd }) {
 // Spacer mendorong navbar & konten mulai di bawah iklan. md:hidden -> desktop tak terpengaruh.
 function MobileWelcomeAd({ premiumAd }) {
     const pathname = usePathname()
-    const [open, setOpen] = useState(true)
-    // Muncul lagi tiap ganti halaman (mis. masuk detail berita), meski sebelumnya ditutup.
-    useEffect(() => { setOpen(true) }, [pathname])
+    const [open, setOpen] = useState(() => isAdRoute(pathname))
+    const seenRef = useRef(new Set())          // path yang sudah pernah ditampilkan sesi ini
+    const shownPathRef = useRef(pathname)       // path yang sedang tampil (guard strict-mode)
+
+    // Tampil sekali tiap masuk halaman iklan BARU. Saat back/forward ke halaman
+    // yang sudah pernah dilihat, jangan tampil lagi (tak nag).
+    useEffect(() => {
+        if (!isAdRoute(pathname)) { setOpen(false); return }
+        if (seenRef.current.has(pathname)) {
+            if (shownPathRef.current !== pathname) setOpen(false) // guard render-ganda strict-mode
+            return
+        }
+        seenRef.current.add(pathname)
+        shownPathRef.current = pathname
+        setOpen(true)
+    }, [pathname])
+
     if (!isAdRoute(pathname) || !open) return null
 
     return (
