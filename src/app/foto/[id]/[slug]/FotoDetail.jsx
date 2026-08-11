@@ -106,7 +106,6 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
     const tim = [
         { name: fotoDetail?.gal_pewarta || '', role: 'Fotografer', foto: writerDetail?.image || null, url: `/writer/${fotoDetail?.writer_slug}` || '' },
         { name: editorDetail?.editor_name || '', role: 'Editor', foto: editorDetail?.editor_image || null, url: `/editor/${fotoDetail?.editor_alias}` || '' },
-        { name: fotoDetail?.publisher_name || '', role: 'Publisher', foto: null, url: '' },
     ];
 
     const getTextSizeClasses = () => {
