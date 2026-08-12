@@ -15,8 +15,8 @@ function GallerySection() {
     }, []);
 
     const loading = gallery.length === 0;
-    // Mosaic bento: item pertama jadi hero 2x2, sisanya 1x1.
-    const cellClass = (i) => i === 0 ? 'md:col-span-2 md:row-span-2' : '';
+    // Mosaic bento: item pertama jadi hero 2x2 (termasuk mobile), sisanya 1x1.
+    const cellClass = (i) => i === 0 ? 'col-span-2 row-span-2' : '';
 
     return (
         <>

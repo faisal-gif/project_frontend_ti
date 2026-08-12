@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { ZoomIn, ZoomOut, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
@@ -8,39 +8,12 @@ import Button from "./ui/Button";
 
 export default function EkoranReader({ ekoranArticle }) {
     const [currentPage, setCurrentPage] = useState(1);
-    const [progress, setProgress] = useState(0);
-    const autoProgressRef = useRef(null);
     const touchStartX = useRef(null);
     const [scale, setScale] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const lastPageChange = useRef(Date.now());
     const [showDescription, setShowDescription] = useState(false);
 
-
-    // ====================
-    // Auto Progress
-    // ====================
-    useEffect(() => {
-        if (scale > 1) {
-            clearInterval(autoProgressRef.current);
-            return;
-        }
-
-        clearInterval(autoProgressRef.current);
-        setProgress(0);
-
-        autoProgressRef.current = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) {
-                    goToNextPage();
-                    return 0;
-                }
-                return prev + 1;
-            });
-        }, 100);
-
-        return () => clearInterval(autoProgressRef.current);
-    }, [scale]);
 
     // ====================
     // Navigasi Halaman
@@ -95,15 +68,8 @@ export default function EkoranReader({ ekoranArticle }) {
                         className="h-1 flex-1 bg-white/30 rounded-full overflow-hidden"
                     >
                         <div
-                            className="h-full bg-white transition-all duration-100"
-                            style={{
-                                width:
-                                    i + 1 < currentPage
-                                        ? "100%"
-                                        : i + 1 === currentPage
-                                            ? `${progress}%`
-                                            : "0%",
-                            }}
+                            className="h-full bg-white transition-all duration-300"
+                            style={{ width: i + 1 <= currentPage ? "100%" : "0%" }}
                         />
                     </div>
                 ))}
