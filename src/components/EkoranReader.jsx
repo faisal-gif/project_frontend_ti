@@ -150,7 +150,8 @@ export default function EkoranReader({ ekoranArticle }) {
                                         className="object-contain select-none"
                                         priority
                                         draggable={false}
-                                        onLoadingComplete={() => setIsLoading(false)}
+                                        onLoad={() => setIsLoading(false)}
+                                        onError={() => setIsLoading(false)}
                                     />
 
                                 </div>

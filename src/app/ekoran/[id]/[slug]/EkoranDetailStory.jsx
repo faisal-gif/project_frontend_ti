@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 
 import {
     Share2,
@@ -15,6 +16,17 @@ import ClientOnly from '@/components/ClientOnly';
 function EkoranDetailStory({ InitialEkoranDetail }) {
 
     const navigate = useRouter();
+
+    // Portal ke <body> agar overlay lepas dari stacking context <main> (z-20)
+    // dan benar-benar menutupi header sticky (z-80) — story fullscreen ala WhatsApp.
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+        // Kunci scroll body selama story terbuka
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = prev; };
+    }, []);
 
     // Mock data for the e-koran edition
     const [ekoranDetail] = useState(InitialEkoranDetail);
@@ -90,7 +102,9 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
         );
     }
 
-    return (
+    if (!mounted) return null;
+
+    return createPortal(
         <div className="fixed inset-0 bg-black flex items-center justify-center z-[99999]">
             {/* Story Progress Bar */}
             <div className="absolute top-4 left-4 right-4 z-20">
@@ -123,7 +137,8 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
 
             <EkoranReader ekoranArticle={ekoranArticle} />
             <ModalShare title={ekoranArticle.title} url={`${process.env.NEXT_PUBLIC_URL}${ekoranArticle.link}`} />
-        </div>
+        </div>,
+        document.body
     )
 }
 
