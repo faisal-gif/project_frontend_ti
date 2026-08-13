@@ -9,6 +9,8 @@ const getViewAds = async ({ id }) => {
                 'x-api-key': process.env.SECRET_KEY
             },
             next: { revalidate: 300 },
+            // Timeout: iklan opsional, jangan tahan render/build kalau API lambat.
+            signal: AbortSignal.timeout(5000),
         });
 
         // 3. Cek jika respons dari server tidak berhasil (misal: 404 Not Found)
@@ -27,8 +29,8 @@ const getViewAds = async ({ id }) => {
         }
 
     } catch (error) {
-        // 6. Tangani error dan kembalikan null agar halaman bisa menampilkan pesan "tidak ditemukan"
-        console.error(`Error fetching news detail for id ${id}:`, error);
+        // 6. Tangani error dan kembalikan null agar iklan cukup disembunyikan.
+        console.error(`Error fetching ad for id ${id}:`, error);
         return null;
     }
 };
@@ -44,6 +46,8 @@ const getViewAdsList = async ({ id }) => {
                 'x-api-key': process.env.SECRET_KEY
             },
             next: { revalidate: 300 },
+            // Timeout: iklan opsional, jangan tahan render/build kalau API lambat.
+            signal: AbortSignal.timeout(5000),
         });
 
 
@@ -63,8 +67,8 @@ const getViewAdsList = async ({ id }) => {
         }
 
     } catch (error) {
-        // 6. Tangani error dan kembalikan null agar halaman bisa menampilkan pesan "tidak ditemukan"
-        console.error(`Error fetching news detail for id ${id}:`, error);
+        // 6. Tangani error dan kembalikan null agar iklan cukup disembunyikan.
+        console.error(`Error fetching ad list for id ${id}:`, error);
         return null;
     }
 };
