@@ -299,13 +299,14 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                                     </div>
                                                 </div>
                                                 <div className="dropdown dropdown-end">
-                                                    <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold">
+                                                    <button tabIndex={0} aria-label="Dengarkan artikel" className="btn btn-ghost btn-sm text-sm font-bold">
                                                         <Volume2 className="h-5 w-5 cursor-pointer" />
                                                     </button>
                                                 </div>
                                                 <div>
                                                     <button
                                                         onClick={() => document.getElementById('modal_share').showModal()}
+                                                        aria-label="Bagikan"
                                                         className="btn btn-ghost btn-sm text-sm font-bold"
                                                     >
                                                         <Share2 className="h-5 w-5 cursor-pointer" />
@@ -487,13 +488,14 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                     </div>
                                 </div>
                                 <div className="dropdown dropdown-end">
-                                    <button tabIndex={0} className="btn btn-ghost text-lg font-bold">
+                                    <button tabIndex={0} aria-label="Dengarkan artikel" className="btn btn-ghost text-lg font-bold">
                                         <Volume2 className="h-5 w-5" />
                                     </button>
                                 </div>
                                 <div>
                                     <button
                                         onClick={() => document.getElementById('modal_share').showModal()}
+                                        aria-label="Bagikan"
                                         className="btn btn-ghost text-lg font-bold"
                                     >
                                         <Share2 className="h-5 w-5 cursor-pointer" />

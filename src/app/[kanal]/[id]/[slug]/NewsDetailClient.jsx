@@ -410,10 +410,10 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                         <div className='lg:hidden'>
                                             <Card className="  py-2 flex flex-row items-center">
                                                 <div className="dropdown dropdown-end">
-                                                    <button tabIndex={0} className="btn btn-ghost btn-sm text-sm font-bold"><Volume2 className="w-5 h-5 cursor-pointer" /></button>
+                                                    <button tabIndex={0} aria-label="Dengarkan artikel" className="btn btn-ghost btn-sm text-sm font-bold"><Volume2 className="w-5 h-5 cursor-pointer" /></button>
                                                 </div>
                                                 <div>
-                                                    <button onClick={() => document.getElementById('modal_share').showModal()} className="btn btn-ghost btn-sm text-sm font-bold"><Share2 className="w-5 h-5 cursor-pointer" /></button>
+                                                    <button onClick={() => document.getElementById('modal_share').showModal()} aria-label="Bagikan" className="btn btn-ghost btn-sm text-sm font-bold"><Share2 className="w-5 h-5 cursor-pointer" /></button>
                                                 </div>
                                             </Card>
                                         </div>

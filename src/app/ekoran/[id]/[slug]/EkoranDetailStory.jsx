@@ -130,7 +130,7 @@ function EkoranDetailStory({ InitialEkoranDetail }) {
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <button onClick={() => document.getElementById('modal_share').showModal()} className="btn btn-ghost btn-sm text-sm font-bold text-white hover:bg-white/20"><Share2 className="w-5 h-5 cursor-pointer" /></button>
+                        <button onClick={() => document.getElementById('modal_share').showModal()} aria-label="Bagikan" className="btn btn-ghost btn-sm text-sm font-bold text-white hover:bg-white/20"><Share2 className="w-5 h-5 cursor-pointer" /></button>
                     </div>
                 </div>
             </div>
