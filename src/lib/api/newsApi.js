@@ -59,15 +59,15 @@ const getAllNewsIndex = async (
 
 
 const getAllNewsServer = async (
-    { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
+    { news_type = 'all', offset = 0, limit = 10, cat_id, cat_slug, title, editor_id }
 ) => {
     try {
         // 1. Siapkan URL dan query parameters
         const baseUrl = process.env.API_URL;
         const apiUrl = new URL(`${baseUrl}/all_news/`);
-        
+
         // HAPUS "key" dari daftar params ini
-        const params = { news_type, offset, limit, cat_id, title, editor_id };
+        const params = { news_type, offset, limit, cat_id, cat_slug, title, editor_id };
 
         // Tambahkan parameter ke URL hanya jika nilainya ada
         Object.entries(params).forEach(([key, value]) => {
