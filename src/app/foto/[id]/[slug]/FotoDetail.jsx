@@ -283,6 +283,7 @@ function FotoDetail({ initialFotoDetail, initialWriter }) {
                                                     <div tabIndex={0} className="dropdown-content w-52 rounded-box bg-base-100 p-3 shadow">
                                                         <input
                                                             type="range"
+                                                            aria-label="Ukuran teks"
                                                             min={1}
                                                             max="3"
                                                             value={size}

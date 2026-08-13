@@ -453,6 +453,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                         <div className='w-1/2 max-w-xs mx-auto mt-4'>
                                             <input
                                                 type="range"
+                                                aria-label="Ukuran teks"
                                                 min={1}
                                                 max="3"
                                                 value={size}

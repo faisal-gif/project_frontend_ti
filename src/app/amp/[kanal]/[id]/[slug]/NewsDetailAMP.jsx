@@ -217,6 +217,7 @@ function NewsDetailAMP({
                                     <div className='w-1/2 max-w-xs mx-auto my-2'>
                                         <input
                                             type="range"
+                                            aria-label="Ukuran teks"
                                             min={1}
                                             max="3"
                                             defaultValue="2" // Gunakan defaultValue
