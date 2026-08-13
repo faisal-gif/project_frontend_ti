@@ -1,5 +1,6 @@
 import React from 'react'
 import Kanal from './Kanal'
+import { getKanalTree } from '@/lib/api/kanalApi'
 
 export const metadata = {
   title: "Kanal TIMES Indonesia - Berita Positif Terbaru dan Terkini",
@@ -25,13 +26,12 @@ export const metadata = {
 };
 
 
-function page() {
+export default async function page() {
+  const channels = await getKanalTree();
 
   return (
     <div>
-      <Kanal />
+      <Kanal channels={channels} />
     </div>
   )
 }
-
-export default page

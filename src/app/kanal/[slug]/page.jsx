@@ -53,6 +53,6 @@ export default async function page({params}) {
   const { slug } = await params;
   const kanalDetail = await getKanalDetail({ slug });
   return (
-    <KanalDetail InitialKanalDetail={kanalDetail} />
+    <KanalDetail InitialKanalDetail={kanalDetail} slug={slug} />
   )
 }

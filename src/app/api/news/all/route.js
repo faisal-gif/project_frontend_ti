@@ -7,6 +7,7 @@ export async function GET(req) {
     const offset = searchParams.get("offset") || 0;
     const news_type = searchParams.get("news_type") || 'all';
     const cat_id = searchParams.get("cat_id") || '';
+    const cat_slug = searchParams.get("cat_slug") || '';
     const title = searchParams.get("title") || '';
     const editor_id = searchParams.get("editor_id") || '';
 
@@ -15,6 +16,7 @@ export async function GET(req) {
             params: {
                 news_type,
                 cat_id,
+                cat_slug,
                 offset,
                 title,
                 limit,

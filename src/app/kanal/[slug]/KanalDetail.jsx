@@ -8,12 +8,14 @@ import Link from 'next/link';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-function KanalDetail({ InitialKanalDetail }) {
+function KanalDetail({ InitialKanalDetail, slug }) {
 
   const [viewMode, setViewMode] = useState('grid');
 
   const [detailKanal, setDetailKanal] = useState(InitialKanalDetail);
-  const [kanalNews, setKanalNews] = useState([]);
+  const children = detailKanal?.children || []
+  const [activeSlug, setActiveSlug] = useState(slug)
+  const [kanalNews, setKanalNews] = useState([])
   const [offset, setOffset] = useState(0)
   const [limit] = useState(9)
   const [loadCount, setLoadCount] = useState(1)
@@ -21,12 +23,13 @@ function KanalDetail({ InitialKanalDetail }) {
   const [isLoading, setIsLoading] = useState(false)
   const loaderRef = useRef(null)
 
-  const fetchNews = async (currentOffset, detailKanal) => {
+  const fetchNews = async (currentOffset) => {
     try {
       setIsLoading(true)
+      // cat_tree: berita kanal aktif + semua sub-kanal (turunannya)
       const res = await getAllNews({
-        news_type: 'cat',
-        cat_id: detailKanal.catnews_id,
+        news_type: 'cat_tree',
+        cat_slug: activeSlug,
         limit: limit,
         offset: currentOffset,
       });
@@ -51,9 +54,19 @@ function KanalDetail({ InitialKanalDetail }) {
   }
 
   useEffect(() => {
-    if (!detailKanal) return;
-    fetchNews(offset, detailKanal)
-  }, [offset, detailKanal])
+    if (!activeSlug) return;
+    fetchNews(offset)
+  }, [offset, activeSlug])
+
+  // Ganti filter sub-kanal: reset daftar & offset lalu fetch ulang.
+  const handleFilter = (nextSlug) => {
+    if (nextSlug === activeSlug) return;
+    setKanalNews([])
+    setOffset(0)
+    setHasMore(true)
+    setLoadCount(1)
+    setActiveSlug(nextSlug)
+  }
 
   const handleObserver = useCallback((entries) => {
     const target = entries[0]
@@ -115,6 +128,31 @@ function KanalDetail({ InitialKanalDetail }) {
           </div>
         </div>
       </div>
+
+      {/* Filter Sub-Kanal */}
+      {children.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          <button
+            onClick={() => handleFilter(slug)}
+            className={`text-sm font-medium px-4 py-1.5 rounded-full transition-colors ${activeSlug === slug
+              ? 'bg-[#7a0f1f] text-white'
+              : 'bg-[#7a0f1f]/8 text-[#7a0f1f] hover:bg-[#7a0f1f]/15'}`}
+          >
+            Semua
+          </button>
+          {children.map((child) => (
+            <button
+              key={child.catnews_id}
+              onClick={() => handleFilter(child.catnews_slug)}
+              className={`text-sm font-medium px-4 py-1.5 rounded-full transition-colors ${activeSlug === child.catnews_slug
+                ? 'bg-[#7a0f1f] text-white'
+                : 'bg-[#7a0f1f]/8 text-[#7a0f1f] hover:bg-[#7a0f1f]/15'}`}
+            >
+              {child.catnews_title}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">

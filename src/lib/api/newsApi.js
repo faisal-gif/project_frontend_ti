@@ -1,13 +1,14 @@
 import { clientAxios, serverAxios } from "./axiosInstance";
 
 const getAllNews = async (
-    { news_type = 'all', offset = 0, limit = 10, cat_id, title, editor_id }
+    { news_type = 'all', offset = 0, limit = 10, cat_id, cat_slug, title, editor_id }
 ) => {
     try {
         const response = await clientAxios.get("news/all", {
             params: {
                 news_type: news_type,
                 cat_id: cat_id,
+                cat_slug: cat_slug,
                 offset: offset,
                 title: title,
                 limit: limit,

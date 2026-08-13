@@ -1,5 +1,4 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
     ShoppingBag, Smile, AlertCircle, Landmark, MapPin, Globe, Vote, LineChart,
     Building2, Heart, Music2, Plane, Utensils, Cpu, Trophy, Car, BookOpen,
@@ -8,8 +7,7 @@ import {
     UserRound, ShieldQuestion, Shield,
     RectangleGoggles
 } from "lucide-react"
-import KanalCard from '@/components/KanalCard';
-import { getAllKanal } from '@/lib/api/kanalApi';
+import KanalTreeCard from '@/components/KanalTreeCard';
 import GoogleAds from '@/components/GoogleAds';
 import Link from 'next/link';
 
@@ -54,24 +52,9 @@ const categoryIcons = {
     "ketahanan-informasi": Shield,
 }
 
-function Kanal() {
+function Kanal({ channels = [] }) {
 
-    const [channels, setChannels] = useState([]);
-
-    useEffect(() => {
-        getAllKanal().then(setChannels).catch(console.error);
-    }, []);
-
-    // Slugs to exclude
-    const excludedSlugs = [
-        "kopi-times-opini",
-        "kopi-times-forum-dosen",
-        "kopi-times-resensi",
-        "kopi-times-forum-guru",
-        "kopi-times-jurnal",
-        "kopi-times-forum-mahasiswa",
-    ];
-
+    const visibleChannels = channels;
 
     return (
         <main className="max-w-6xl  mx-auto px-4 py-18">
@@ -104,7 +87,7 @@ function Kanal() {
             {/* Stats Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <div className="text-center p-6 rounded-lg shadow-lg">
-                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">9+</div>
+                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">{visibleChannels.length}+</div>
                     <h3 className="text-muted-foreground">Kanal Berita</h3>
                 </div>
                 <div className="text-center p-6 rounded-lg shadow-lg">
@@ -117,37 +100,27 @@ function Kanal() {
                 </div>
             </div>
 
-            {channels.length === 0 ? (
+            {visibleChannels.length === 0 ? (
                 <div className="text-center py-12">
-                    <div className="flex justify-center mb-4">
-                        <svg className="animate-spin h-8 w-8 text-[#7a0f1f]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                        </svg>
-                    </div>
-                    <h2 className="text-2xl font-bold">Loading Kanal...</h2>
-                    <p className="text-muted-foreground">Tunggu sistem sedang menyiapkan data.</p>
+                    <h2 className="text-2xl font-bold">Kanal belum tersedia</h2>
+                    <p className="text-muted-foreground">Coba muat ulang beberapa saat lagi.</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {channels
-                        .filter(channel => !excludedSlugs.includes(channel.slug))
-                        .map((channel) => {
-                            const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
-                            return (
-                                <KanalCard
-                                    key={channel.id}
-                                    id={channel.id}
-                                    name={channel.name}
-                                    slug={channel.slug}
-                                    url={channel.url}
-                                    description={channel.description}
-                                    news_count={channel.news_count}
-                                    Icon={Icon} // lempar ke card
-                                />
-                            )
-                        }
-                        )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                    {visibleChannels.map((channel) => {
+                        const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
+                        const children = channel.children || []
+                        return (
+                            <KanalTreeCard
+                                key={channel.id}
+                                name={channel.name}
+                                url={channel.url}
+                                description={channel.description}
+                                children={children}
+                                Icon={Icon}
+                            />
+                        )
+                    })}
                 </div>
             )}
 
