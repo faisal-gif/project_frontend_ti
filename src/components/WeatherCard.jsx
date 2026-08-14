@@ -63,23 +63,32 @@ function getCoords() {
 const WeatherCard = () => {
   const [state, setState] = useState({ status: 'loading', data: null, city: '' });
 
+  // Muat cuaca untuk sebuah lokasi. useGps=true → reverse-geocode nama kota.
+  const loadWeather = async (loc, useGps, signal) => {
+    const [current, city] = await Promise.all([
+      fetchWeather(loc, signal),
+      useGps ? fetchCity(loc, signal) : Promise.resolve(loc.city),
+    ]);
+    setState({ status: 'ok', data: current, city: city || 'Lokasi Anda' });
+  };
+
+  // Saat load: langsung tampilkan cuaca Jakarta (fallback), TANPA minta izin lokasi.
   useEffect(() => {
     const ctrl = new AbortController();
-    (async () => {
-      try {
-        const gps = await getCoords();
-        const loc = gps ? { ...gps, city: null } : FALLBACK;
-        const [current, city] = await Promise.all([
-          fetchWeather(loc, ctrl.signal),
-          gps ? fetchCity(loc, ctrl.signal) : Promise.resolve(FALLBACK.city),
-        ]);
-        setState({ status: 'ok', data: current, city: city || 'Lokasi Anda' });
-      } catch (e) {
-        if (e.name !== 'AbortError') setState({ status: 'error', data: null, city: '' });
-      }
-    })();
+    loadWeather(FALLBACK, false, ctrl.signal).catch((e) => {
+      if (e.name !== 'AbortError') setState({ status: 'error', data: null, city: '' });
+    });
     return () => ctrl.abort();
   }, []);
+
+  // Izin geolokasi diminta HANYA saat user menekan tombol (bukan saat page load).
+  const useMyLocation = async () => {
+    const gps = await getCoords();
+    if (!gps) return; // ditolak/gagal → tetap pakai cuaca fallback
+    try {
+      await loadWeather({ ...gps, city: null }, true);
+    } catch { /* biarkan cuaca fallback */ }
+  };
 
   const today = new Date().toLocaleDateString('id-ID', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
@@ -110,6 +119,12 @@ const WeatherCard = () => {
                 {state.city}
               </div>
               <p className="text-sm text-muted-foreground">{today}</p>
+              <button
+                onClick={useMyLocation}
+                className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-[#7a0f1f] hover:underline"
+              >
+                <MapPin className="h-3.5 w-3.5" /> Gunakan lokasiku
+              </button>
             </div>
 
             {/* Suhu + kondisi */}
