@@ -100,7 +100,9 @@ function AsyncAdsCarouselGroup({ promise }) {
 }
 
 function AsyncAdsList({ promise }) {
-    const adsList = promise ? use(promise) : [];
+    const resolved = promise ? use(promise) : [];
+    const adsList = Array.isArray(resolved) ? resolved : []; // getViewAdsList bisa null saat timeout
+    if (adsList.length === 0) return null;
     return (
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3">
             {adsList.map((ads, index) => (
