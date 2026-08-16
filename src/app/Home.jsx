@@ -99,6 +99,21 @@ function AsyncAdsCarouselGroup({ promise }) {
     return <AdsCarouselGroup adsArray={Array.isArray(adsArray) ? adsArray : []} />;
 }
 
+function AsyncAdsList({ promise }) {
+    const adsList = promise ? use(promise) : [];
+    return (
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3">
+            {adsList.map((ads, index) => (
+                <div key={index} className="mb-4">
+                    <Suspense fallback={<div className="h-[280px] w-full bg-gray-50 animate-pulse"></div>}>
+                       <GoogleAds size='inline_rectangle' adsEksternal={ads} slot='9639204649' />
+                    </Suspense>
+                </div>
+            ))}
+        </div>
+    );
+}
+
 
 // =========================================================================
 // KOMPONEN UTAMA
@@ -134,6 +149,9 @@ function Home({
     initialAdsRectangleLeaderboard1Promise,
     initialAdsRectangleLeaderboard2Promise,
 }) {
+
+  
+
 
     return (
         <div className="">
@@ -261,10 +279,16 @@ function Home({
 
             <EventWidget />
 
+            
             {/* --- ADS RECTANGLE CAROUSEL 3 --- */}
             <Suspense fallback={<div className="h-[280px] w-full bg-gray-50 animate-pulse"></div>}>
-                <AsyncAdsCarousel p1={initialAdsRectangle7Promise} p2={initialAdsRectangle8Promise} p3={initialAdsRectangle9Promise} />
+                {/* <AsyncAdsCarousel p1={initialAdsRectangle7Promise} p2={initialAdsRectangle8Promise} p3={initialAdsRectangle9Promise} /> */}
+                <AsyncAdsList promise={initialAdsRectangle7Promise} />
             </Suspense>
+
+
+            
+           
 
             {/* --- GALLERY SECTION --- */}
             <section className="max-w-6xl mx-auto px-4 py-8 border-t-2 border-base-300">

@@ -58,7 +58,7 @@ export default async function Page() { // Biasakan menggunakan huruf kapital unt
   const adsRectangle4Promise = getViewAds({ id: 93 });
   const adsRectangle5Promise = getViewAds({ id: 94 });
   const adsRectangle6Promise = getViewAds({ id: 95 });
-  const adsRectangle7Promise = getViewAds({ id: 96 });
+  const adsRectangle7Promise = getViewAdsList({ id: 96 });
   const adsRectangle8Promise = getViewAds({ id: 97 });
   const adsRectangle9Promise = getViewAds({ id: 98 });
   const adsRectangle10Promise = getViewAds({ id: 99 });
