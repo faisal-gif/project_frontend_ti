@@ -158,6 +158,9 @@ function Footer() {
           <a href="https://wan-ifra.org/" target="_blank" rel="noopener noreferrer">
             <Image src="/logo-wanifra.png" alt="Logo WANIFRA" width={100} height={50} className="object-contain" />
           </a>
+          <a href="https://integrity.times.co.id/" target="_blank" rel="noopener noreferrer">
+            <Image src="/logo-integrity.png" alt="Logo Integrity" width={100} height={50} className="object-contain" />
+          </a>
           <a href="https://amsi.or.id/" target="_blank" rel="noopener noreferrer">
             <Image src="/logo-amsi.png" alt="Logo AMSI" width={100} height={50} className="object-contain" />
           </a>
