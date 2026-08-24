@@ -154,7 +154,7 @@ function Footer() {
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <h3 className="text-white/85 mb-6 font-bold text-center">Member Of</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4  place-items-center justify-center items-center">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4  place-items-center justify-center items-center">
           <a href="https://wan-ifra.org/" target="_blank" rel="noopener noreferrer">
             <Image src="/logo-wanifra.png" alt="Logo WANIFRA" width={100} height={50} className="object-contain" />
           </a>
