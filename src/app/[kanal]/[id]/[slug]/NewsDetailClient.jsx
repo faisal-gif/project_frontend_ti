@@ -177,7 +177,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                 ) : (
                     <>
                         <main className="col-span-1" >
-                           <article className="rounded-lg md:overflow-hidden">
+                            <article className="rounded-lg md:overflow-hidden">
                                 <Link href={`/kanal/${newsDetail.catnews_slug}`} className="btn btn-sm bg-[#b41d1d] text-white py-1 rounded-full text-sm font-medium">
                                     {newsDetail.catnews_title}
                                 </Link>
@@ -221,7 +221,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                     </div>
 
                                     {
-                                        (newsDetail.catnews_slug === 'kopi-times' || newsDetail.catnews_slug === 'kopi-times-forum-guru' || newsDetail.catnews_slug === 'kopi-times-forum-mahasiswa' || newsDetail.catnews_slug === 'kopi-times-forum-dosen') || newsDetail.catnews_slug === 'kopi-times-opini') && (
+                                        (newsDetail.catnews_slug === 'kopi-times' || newsDetail.catnews_slug === 'kopi-times-forum-guru' || newsDetail.catnews_slug === 'kopi-times-forum-mahasiswa' || newsDetail.catnews_slug === 'kopi-times-forum-dosen') || (newsDetail.catnews_slug === 'kopi-times-opini') && (
                                             writerKopiTimes && (
                                                 <div className="flex items-center gap-2 ml-2">
                                                     <div className="avatar" >
