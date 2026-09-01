@@ -27,6 +27,9 @@ import AjpCard from '@/components/AJPCard';
 
 function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initialWriterKopiTimes }) {
 
+
+    
+
     const [size, setSize] = useState(2);
     const [newsView] = useState(initialView);
     const [newsDetail] = useState(initialNewsDetail);
@@ -221,7 +224,7 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
                                     </div>
 
                                     {
-                                        (newsDetail.catnews_slug === 'kopi-times' || newsDetail.catnews_slug === 'kopi-times-forum-guru' || newsDetail.catnews_slug === 'kopi-times-forum-mahasiswa' || newsDetail.catnews_slug === 'kopi-times-forum-dosen') || (newsDetail.catnews_slug === 'kopi-times-opini') && (
+                                        (newsDetail.catnews_slug == 'kopi-times' || newsDetail.catnews_slug === 'kopi-times-forum-guru' || newsDetail.catnews_slug === 'kopi-times-forum-mahasiswa' || newsDetail.catnews_slug === 'kopi-times-forum-dosen' || newsDetail.catnews_slug === 'kopi-times-opini') && (
                                             writerKopiTimes && (
                                                 <div className="flex items-center gap-2 ml-2">
                                                     <div className="avatar" >
