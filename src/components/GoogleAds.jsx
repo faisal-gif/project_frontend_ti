@@ -24,7 +24,7 @@ export default function GoogleAds({
         leaderboard: { width: "728px", height: "90px", slotId: "3831475624" },
         skyscraper: { width: "120px", height: "600px", slotId: "3831475624" },
         wide_skyscraper: { width: "160px", height: "600px", slotId: "3831475624" },
-        half_page_ad: { width: "300px", height: "600px", slotId: "3831475624" },
+        half_page_ad: { width: "300px", height: "600px", slotId: "6015577100" },
     };
 
     const currentConfig = adConfigs[size] || adConfigs.inline_rectangle;
