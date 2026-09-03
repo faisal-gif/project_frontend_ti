@@ -44,7 +44,7 @@ function AdContent({ pathname, premiumAd }) {
             </a>
         )
     }
-    return <GoogleAds size='inline_rectangle' slot='9639204649' />
+    return <GoogleAds size='half_page_ad' slot='6015577100' />
 }
 
 // Interstitial ala Kompas mobile (homepage + detail berita):
