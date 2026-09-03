@@ -23,7 +23,7 @@ function isAdRoute(pathname) {
 function AdContent({ pathname, premiumAd }) {
     const segs = pathname.split('/').filter(Boolean)
     if (segs.length === 0) {
-        return <GoogleAds size='inline_rectangle' type='mobile' adsEksternal={premiumAd} slot='9639204649' priority />
+        return <GoogleAds size='half_page_ad' type='mobile' adsEksternal={premiumAd} slot='6015577100' priority />
     }
     if (segs[0] === 'kopi-times') {
         return (
