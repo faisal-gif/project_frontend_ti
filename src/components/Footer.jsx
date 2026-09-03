@@ -186,7 +186,7 @@ function Footer() {
       {/* Bottom Footer */}
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-center text-xs md:text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 items-center justify-center text-xs md:text-sm">
             <Link href="/page/tentang-kami" className="text-white/65 hover:text-[#b51d1d] transition-colors">Tentang Kami</Link>
             <Link href="/page/redaksi" className="text-white/65 hover:text-[#b51d1d] transition-colors">Redaksi</Link>
             <Link href="/page/info-iklan" className="text-white/65 hover:text-[#b51d1d] transition-colors">Info Iklan</Link>
