@@ -149,7 +149,7 @@ export default async function RootLayout({ children }) {
                   <div className="lg:flex-1 flex items-center gap-6">
                     <Link href={'/'}>
                       <Image
-                        src="/logo.png"
+                        src="/logo-default.png"
                         alt="News Logo"
                         className="h-10 w-auto object-contain mx-auto lg:mx-0"
                         width={200}
@@ -204,7 +204,7 @@ export default async function RootLayout({ children }) {
               <li className="text-xl font-bold text-white mb-6">
                 <Link href={'/'}>
                   <Image
-                    src="/logo_white.png"
+                    src="/logo-default.png"
                     alt="News Logo"
                     className="h-10 w-auto object-contain mx-auto lg:mx-0"
                     width={200}
