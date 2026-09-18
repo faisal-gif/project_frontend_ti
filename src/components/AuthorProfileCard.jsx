@@ -11,11 +11,14 @@ function AuthorProfileCard({ name, image, bio, roleLabel, RoleIcon }) {
 
     return (
         <Card className="relative overflow-hidden bg-base-100 border border-base-200 shadow-[0_10px_35px_rgba(0,0,0,0.10)] rounded-3xl mb-8">
-            {/* Banner gradien */}
-            <div className="h-24 md:h-28 bg-gradient-to-r from-primary via-primary to-secondary" />
+            {/* Banner gradien — lebih tinggi di desktop agar nama & badge muat di atasnya */}
+            <div className="h-24 md:h-36 bg-gradient-to-r from-primary via-primary to-secondary" />
 
             <div className="px-6 md:px-8 pb-8">
-                <div className="flex flex-col md:flex-row gap-5 md:gap-6 md:items-center -mt-14 md:-mt-16">
+                {/* Baris avatar + nama + badge.
+                    Desktop: nama & badge berada DI ATAS gradient (teks putih).
+                    Mobile : nama & badge turun ke area putih (teks gelap). */}
+                <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-6 -mt-14 md:-mt-20">
                     {/* Avatar */}
                     <div className="shrink-0">
                         {image ? (
@@ -31,20 +34,22 @@ function AuthorProfileCard({ name, image, bio, roleLabel, RoleIcon }) {
                         )}
                     </div>
 
-                    {/* Nama + peran + bio */}
-                    <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-3 mb-2">
-                            <h1 className="text-2xl md:text-3xl font-bold text-foreground">{name}</h1>
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-base-100 text-primary ring-1 ring-primary/20 shadow-sm px-3 py-1 text-xs font-semibold">
-                                {RoleIcon && <RoleIcon className="w-3.5 h-3.5" />}
-                                {roleLabel}
-                            </span>
-                        </div>
-                        <p className="text-base-content/60 leading-relaxed max-w-2xl">
-                            {bio || `${roleLabel} TIMES Indonesia`}
-                        </p>
+                    {/* Nama + peran */}
+                    <div className="flex flex-wrap items-center gap-3 md:pb-3">
+                        <h1 className="text-2xl md:text-3xl font-bold text-foreground md:text-white md:drop-shadow-sm">
+                            {name}
+                        </h1>
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-base-100 text-primary ring-1 ring-primary/20 shadow-sm px-3 py-1 text-xs font-semibold">
+                            {RoleIcon && <RoleIcon className="w-3.5 h-3.5" />}
+                            {roleLabel}
+                        </span>
                     </div>
                 </div>
+
+                {/* Bio — selalu di area putih (bukan gradient) */}
+                <p className="mt-4 md:mt-5 text-base-content/60 leading-relaxed max-w-2xl [text-wrap:balance]">
+                    {bio || `${roleLabel} TIMES Indonesia`}
+                </p>
             </div>
         </Card>
     );

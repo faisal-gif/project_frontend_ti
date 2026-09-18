@@ -8,7 +8,7 @@ import PopularNews from '@/components/PopularNews';
 import Card from '@/components/ui/Card';
 import NewsDetailSkeleton from '@/components/ui/NewsDetailSkeleton';
 import { getEditorDetail } from '@/lib/api/editor';
-import { Eye, Share2, Volume2 } from 'lucide-react';
+import { Eye, Share2, Volume2, PenLine, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -512,40 +512,48 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
 
                                 {writerDetail && newsDetail.writer_slug && (
                                     <div className="mt-8 pt-6 border-t border-base-content/20">
-                                        <Card className="bg-gradient-to-r from-[#800b19] to-[#3e154f] p-9 flex md:flex-row flex-col items-center gap-8">
-                                            <div className="avatar avatar-placeholder"  >
+                                        <Link
+                                            href={`/writer/${writerDetail.slug}`}
+                                            className="group block overflow-hidden rounded-2xl bg-gradient-to-r from-[#800b19] to-[#3e154f] p-6 shadow-lg transition-shadow hover:shadow-xl"
+                                        >
+                                            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+                                                {/* Avatar */}
                                                 {writerDetail.image ? (
-                                                    <div className="w-20 bg-neutral rounded-full">
+                                                    <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full ring-2 ring-white/30">
                                                         <Image
                                                             src={writerDetail.image}
-                                                            alt={writerDetail.name}
-                                                            width={64}
-                                                            height={64}
-                                                            loading='lazy'
+                                                            alt={writerDetail.name || newsDetail?.news_writer || 'Penulis'}
+                                                            fill
+                                                            sizes="72px"
+                                                            className="object-cover"
+                                                            loading="lazy"
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div className="bg-neutral text-neutral-content w-20 rounded-full flex items-center justify-center">
-                                                        <span className="text-3xl">
-                                                            {writerDetail.name.charAt(0).toUpperCase()}
-                                                        </span>
+                                                    <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-white/15 text-3xl font-semibold text-white ring-2 ring-white/30">
+                                                        {(newsDetail?.news_writer || writerDetail.name || 'T').charAt(0).toUpperCase()}
                                                     </div>
                                                 )}
+
+                                                {/* Info */}
+                                                <div className="min-w-0 flex-1">
+                                                    <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-white/60">
+                                                        <PenLine className="h-3.5 w-3.5" />
+                                                        Penulis
+                                                    </div>
+                                                    <h3 className="mt-0.5 text-lg font-bold text-white decoration-white/40 underline-offset-4 group-hover:underline">
+                                                        {newsDetail?.news_writer}
+                                                    </h3>
+                                                    <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-white/80">
+                                                        {writerDetail.bio || 'Penulis TIMES Indonesia.'}
+                                                    </p>
+                                                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-white/90">
+                                                        Lihat profil
+                                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div className='flex flex-col justify-center'>
-                                                <span className='text-sm text-base-200/60'>Penulis</span>
-                                                <span className='text-lg font-semibold text-white'>
-                                                    {newsDetail?.news_writer}
-                                                </span>
-                                                <span className='text-sm text-white/80 mt-2'>
-                                                    {writerDetail.bio ? writerDetail.bio :
-                                                        " Penulis TIMES Indonesia."}
-                                                </span>
-
-                                            </div>
-
-                                        </Card>
-
+                                        </Link>
                                     </div>
                                 )}
 

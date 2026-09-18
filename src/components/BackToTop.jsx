@@ -62,27 +62,32 @@ export default function BackToTop() {
                     kartunya jadi item flex di urutan ini (setelah scroll button). */}
                 <div id="affiliate-float-slot" className="contents transition-all duration-300 ease-in-out" />
 
-                {/* 4. Bungkus tombol WhatsApp dengan conditional rendering */}
+                {/* Tombol WhatsApp: default hanya logo bulat, melebar ke kiri saat hover */}
                 {isWaVisible && (
-                    // 5. Buat wrapper 'relative'
-                    <div className="relative indicator">
+                    <div className="group relative">
                         <Link
                             href={"https://www.whatsapp.com/channel/0029VaFG7TP29757xsqaDd2D"}
-                            // 6. Tambahkan padding di kanan (pr-8) untuk memberi ruang bagi tombol X
-                            className="p-3 pr-8 rounded-lg bg-green-700 text-white shadow-lg hover:bg-green-900 transition flex items-center gap-2"
-                            aria-label="Whatsapp Channel"
+                            className="flex items-center rounded-full bg-green-700 text-white shadow-lg transition-all duration-200 hover:bg-green-800 hover:shadow-xl active:scale-90"
+                            aria-label="Channel WhatsApp TIMES Indonesia"
                         >
-                            <FaWhatsapp className="ml-5" size={18} />
-                            <div className="text-sm font-semibold space-y-1 leading-tight flex flex-col">
-                                <span>Berita Terkini, Eksklusif </span>
-                                <span>di WhatsApp TIMES Indonesia</span>
-                            </div>
+                            {/* Teks — lebar 0 & tersembunyi, muncul melebar ke kiri saat hover */}
+                            <span className="max-w-0 overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover:max-w-[240px] group-hover:pl-4 group-hover:opacity-100">
+                                <span className="block whitespace-nowrap text-sm font-semibold leading-tight">
+                                    Berita Terkini, Eksklusif
+                                    <br />
+                                    di WhatsApp TIMES Indonesia
+                                </span>
+                            </span>
+                            {/* Logo — jangkar tetap di kanan */}
+                            <span className="flex h-12 w-12 shrink-0 items-center justify-center">
+                                <FaWhatsapp size={22} />
+                            </span>
                         </Link>
-                        
-                        {/* 7. Tombol Close (X) */}
+
+                        {/* Tombol Close (X) — muncul saat hover */}
                         <button
                             onClick={closeWaButton}
-                            className="indicator-item btn btn-xs btn-active btn-circle bg-[#b41d1d] text-white hover:bg-[#7b0f1f] "
+                            className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#b41d1d] text-white shadow opacity-0 pointer-events-none transition-opacity hover:bg-[#7b0f1f] group-hover:opacity-100 group-hover:pointer-events-auto"
                             aria-label="Tutup"
                         >
                             <X size={12} />
