@@ -1,46 +1,52 @@
 import Link from 'next/link'
 import React from 'react'
-import Button from './ui/Button'
+import { PenLine, ArrowUpRight, Quote } from 'lucide-react'
 
 function KopiTimesCard() {
     return (
-        <>
-            {/* Writer Subscription Card */}
-            <div className="mt-10 mb-8">
-                <div className="relative overflow-hidden bg-gradient-to-br from-[#121a2d] to-[#1a2540] border-2 border-[#b41d1d]/30 rounded-2xl p-4">
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#b41d1d]/20 to-[#121a2d]/20 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#b41d1d]/15 to-[#121a2d]/15 rounded-full blur-2xl"></div>
+        <div className="mt-10 mb-8">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#800b19] to-[#3e154f] p-6 md:p-8 shadow-lg">
+                {/* Watermark kutipan (dekorasi halus, bukan blur-blob) */}
+                <Quote
+                    aria-hidden
+                    className="pointer-events-none absolute -right-3 -top-3 h-28 w-28 rotate-180 text-white/5"
+                    strokeWidth={1.5}
+                />
 
-                    <div className="relative flex flex-col md:flex-row items-center gap-6">
-                      
-                        {/* Content */}
-                        <div className="flex-1 text-center md:text-left">
-                            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                               Ruang Menulis untuk Indonesia 
-                            </h3>
-                            <p className="text-sm text-gray-300 mb-0 md:mb-0">
-                                Kopi TIMES adalah ruang kolaboratif bagi siapa saja yang ingin menyuarakan ide, pengalaman, dan pemikiran kepada publik luas. Di sini, tulisan lahir dari beragam latar belakang: akademisi, mahasiswa, guru, santri, profesional, pelaku UMKM, pegiat komunitas, aktivis, birokrat, politisi, seniman, hingga warga biasa yang peduli pada isu di sekitarnya.
-                            </p>
-                        </div>
+                <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                    <div className="max-w-2xl text-center md:text-left">
+                        {/* Eyebrow */}
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white/80 ring-1 ring-white/15">
+                            <PenLine className="h-3.5 w-3.5" />
+                            Kopi TIMES
+                        </span>
 
-                        {/* CTA Button */}
-                        <div className="shrink-0">
-                            <a target='_blank' href="https://kopi.times.co.id/">
-                                <Button size="lg" className="bg-gradient-to-r from-[#b41d1d] to-[#d42828] hover:opacity-90 text-white gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                                    </svg>
-                                    Daftar Disini
-                                </Button>
-                            </a>
-                        </div>
+                        <h3 className="mt-3 text-2xl md:text-3xl font-bold text-white [text-wrap:balance]">
+                            Ruang Menulis untuk Indonesia
+                        </h3>
+
+                        <p className="mt-2 text-sm md:text-base leading-relaxed text-white/75 [text-wrap:pretty]">
+                            Ruang kolaboratif untuk menyuarakan ide dan pemikiran ke publik — terbuka bagi
+                            akademisi, mahasiswa, guru, profesional, pegiat komunitas, hingga warga yang
+                            peduli pada isu di sekitarnya.
+                        </p>
                     </div>
 
-                  
+                    {/* CTA */}
+                    <div className="shrink-0">
+                        <Link
+                            href="https://kopi.times.co.id/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#800b19] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:scale-95"
+                        >
+                            Tulis di Kopi TIMES
+                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </Link>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

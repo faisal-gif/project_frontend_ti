@@ -125,44 +125,44 @@ function NewsDetailClient({ initialView, initialNewsDetail, initialWriter, initi
         <div className="max-w-6xl mx-auto px-4 py-24 ">
 
             {
-                newsDetail.catnews_slug === 'kopi-times' ? (
-                    <>
-                        <div className='hidden md:flex items-center justify-center mb-6'>
-                            <div
-                                className="relative"
-                                style={{
-                                    width: 970,
-                                    height: 250,
-                                }}
-                            >
-                                <a
-                                    href={'https://kopi.times.co.id/'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full h-full relative"
-                                >
+                // newsDetail.catnews_slug === 'kopi-times' ? (
+                //     <>
+                //         <div className='hidden md:flex items-center justify-center mb-6'>
+                //             <div
+                //                 className="relative"
+                //                 style={{
+                //                     width: 970,
+                //                     height: 250,
+                //                 }}
+                //             >
+                //                 <a
+                //                     href={'https://kopi.times.co.id/'}
+                //                     target="_blank"
+                //                     rel="noopener noreferrer"
+                //                     className="block w-full h-full relative"
+                //                 >
 
-                                    <Image
-                                        src={'https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/06/05/iklan-kopi-times-nv996oli.webp'}
-                                        alt="Advertisement"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 300px"
-                                        className="object-contain"
-                                        priority={false}
-                                    />
-                                </a>
-                            </div>
-                        </div>
-                        {/* Top banner mobile dihapus: welcome ad (di atas navbar) sudah jadi iklan teratas di mobile. */}
-                    </>
-                ) : (
-                    <>
-                        <div className='hidden md:flex items-center justify-center'>
-                            <GoogleAds size='top_banner' slot='6315037307' />
-                        </div>
-                        {/* Top banner mobile dihapus: welcome ad (di atas navbar) sudah jadi iklan teratas di mobile. */}
-                    </>
-                )
+                //                     <Image
+                //                         src={'https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/06/05/iklan-kopi-times-nv996oli.webp'}
+                //                         alt="Advertisement"
+                //                         fill
+                //                         sizes="(max-width: 768px) 100vw, 300px"
+                //                         className="object-contain"
+                //                         priority={false}
+                //                     />
+                //                 </a>
+                //             </div>
+                //         </div>
+                //         {/* Top banner mobile dihapus: welcome ad (di atas navbar) sudah jadi iklan teratas di mobile. */}
+                //     </>
+                // ) : (
+                //     <>
+                //         <div className='hidden md:flex items-center justify-center'>
+                //             <GoogleAds size='top_banner' slot='6315037307' />
+                //         </div>
+                //         {/* Top banner mobile dihapus: welcome ad (di atas navbar) sudah jadi iklan teratas di mobile. */}
+                //     </>
+                // )
             }
 
 
