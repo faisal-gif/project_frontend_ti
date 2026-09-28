@@ -8,13 +8,11 @@ import Link from 'next/link';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-function KanalDetail({ InitialKanalDetail, slug }) {
+function KanalDetail({ InitialKanalDetail }) {
 
   const [viewMode, setViewMode] = useState('grid');
 
   const [detailKanal, setDetailKanal] = useState(InitialKanalDetail);
-  const children = detailKanal?.children || []
-  const [activeSlug, setActiveSlug] = useState(slug)
   const [kanalNews, setKanalNews] = useState([])
   const [offset, setOffset] = useState(0)
   const [limit] = useState(9)
@@ -24,12 +22,13 @@ function KanalDetail({ InitialKanalDetail, slug }) {
   const loaderRef = useRef(null)
 
   const fetchNews = async (currentOffset) => {
+    if (!detailKanal) return;
     try {
       setIsLoading(true)
-      // cat_tree: berita kanal aktif + semua sub-kanal (turunannya)
+      // Hanya berita kanal ini sendiri (tanpa gabung sub-kanal).
       const res = await getAllNews({
-        news_type: 'cat_tree',
-        cat_slug: activeSlug,
+        news_type: 'cat',
+        cat_id: detailKanal.catnews_id,
         limit: limit,
         offset: currentOffset,
       });
@@ -54,19 +53,9 @@ function KanalDetail({ InitialKanalDetail, slug }) {
   }
 
   useEffect(() => {
-    if (!activeSlug) return;
+    if (!detailKanal) return;
     fetchNews(offset)
-  }, [offset, activeSlug])
-
-  // Ganti filter sub-kanal: reset daftar & offset lalu fetch ulang.
-  const handleFilter = (nextSlug) => {
-    if (nextSlug === activeSlug) return;
-    setKanalNews([])
-    setOffset(0)
-    setHasMore(true)
-    setLoadCount(1)
-    setActiveSlug(nextSlug)
-  }
+  }, [offset, detailKanal])
 
   const handleObserver = useCallback((entries) => {
     const target = entries[0]
@@ -128,31 +117,6 @@ function KanalDetail({ InitialKanalDetail, slug }) {
           </div>
         </div>
       </div>
-
-      {/* Filter Sub-Kanal */}
-      {children.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-8">
-          <button
-            onClick={() => handleFilter(slug)}
-            className={`text-sm font-medium px-4 py-1.5 rounded-full transition-colors ${activeSlug === slug
-              ? 'bg-[#7a0f1f] text-white'
-              : 'bg-[#7a0f1f]/8 text-[#7a0f1f] hover:bg-[#7a0f1f]/15'}`}
-          >
-            Semua
-          </button>
-          {children.map((child) => (
-            <button
-              key={child.catnews_id}
-              onClick={() => handleFilter(child.catnews_slug)}
-              className={`text-sm font-medium px-4 py-1.5 rounded-full transition-colors ${activeSlug === child.catnews_slug
-                ? 'bg-[#7a0f1f] text-white'
-                : 'bg-[#7a0f1f]/8 text-[#7a0f1f] hover:bg-[#7a0f1f]/15'}`}
-            >
-              {child.catnews_title}
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
