@@ -7,7 +7,7 @@ import {
     UserRound, ShieldQuestion, Shield,
     RectangleGoggles
 } from "lucide-react"
-import KanalTreeCard from '@/components/KanalTreeCard';
+import KanalCard from '@/components/KanalCard';
 import GoogleAds from '@/components/GoogleAds';
 import Link from 'next/link';
 
@@ -109,14 +109,14 @@ function Kanal({ channels = [] }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                     {visibleChannels.map((channel) => {
                         const Icon = categoryIcons[channel.slug] || AlertCircle // fallback
-                        const children = channel.children || []
                         return (
-                            <KanalTreeCard
+                            <KanalCard
                                 key={channel.id}
+                                id={channel.id}
                                 name={channel.name}
+                                slug={channel.slug}
                                 url={channel.url}
                                 description={channel.description}
-                                children={children}
                                 Icon={Icon}
                             />
                         )
