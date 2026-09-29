@@ -25,25 +25,25 @@ function AdContent({ pathname, premiumAd }) {
     if (segs.length === 0) {
         return <GoogleAds size='half_page_ad' type='mobile' adsEksternal={premiumAd} slot='6015577100' priority />
     }
-    if (segs[0] === 'kopi-times') {
-        return (
-            <a
-                href="https://kopi.times.co.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block"
-                style={{ width: 336, height: 280 }}
-            >
-                <Image
-                    src="https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/06/05/iklan-kopi-times-nv996oli.webp"
-                    alt="Advertisement"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 300px"
-                    className="object-contain"
-                />
-            </a>
-        )
-    }
+    // if (segs[0] === 'kopi-times') {
+    //     return (
+    //         <a
+    //             href="https://kopi.times.co.id/"
+    //             target="_blank"
+    //             rel="noopener noreferrer"
+    //             className="relative block"
+    //             style={{ width: 336, height: 280 }}
+    //         >
+    //             <Image
+    //                 src="https://cdn2.timesmedia.co.id/cdn-times/uploads/advertisement/2026/06/05/iklan-kopi-times-nv996oli.webp"
+    //                 alt="Advertisement"
+    //                 fill
+    //                 sizes="(max-width: 768px) 100vw, 300px"
+    //                 className="object-contain"
+    //             />
+    //         </a>
+    //     )
+    // }
     return <GoogleAds size='half_page_ad' slot='6015577100' />
 }
 
