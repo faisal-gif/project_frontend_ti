@@ -27,11 +27,11 @@ export const metadata = {
 
 
 export default async function page() {
-  const channels = await getKanalTree();
+  const { channels, total } = await getKanalTree();
 
   return (
     <div>
-      <Kanal channels={channels} />
+      <Kanal channels={channels} totalArticles={total} />
     </div>
   )
 }

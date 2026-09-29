@@ -25,14 +25,18 @@ const getKanalDetail = async ({ slug }) => {
     }
 };
 
-// Kanal bersarang (parent > children) untuk halaman /kanal. Server-side (serverAxios).
+// Kanal untuk halaman /kanal. Server-side (serverAxios).
+// total_artikel = total artikel seluruh kanal (sibling dari data di response).
 const getKanalTree = async () => {
     try {
         const response = await serverAxios.get("/kanal/", { params: { tree: 1 } });
-        return response.data.data;
+        return {
+            channels: response.data.data || [],
+            total: Number(response.data.total_artikel) || 0,
+        };
     } catch (error) {
         console.log(error);
-        return [];
+        return { channels: [], total: 0 };
     }
 };
 

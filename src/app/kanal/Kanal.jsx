@@ -52,7 +52,7 @@ const categoryIcons = {
     "ketahanan-informasi": Shield,
 }
 
-function Kanal({ channels = [] }) {
+function Kanal({ channels = [], totalArticles = 0 }) {
 
     const visibleChannels = channels;
 
@@ -91,7 +91,9 @@ function Kanal({ channels = [] }) {
                     <h3 className="text-muted-foreground">Kanal Berita</h3>
                 </div>
                 <div className="text-center p-6 rounded-lg shadow-lg">
-                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">800.000+</div>
+                    <div className="text-3xl font-bold text-[#7a0f1f] mb-2">
+                        {totalArticles > 0 ? `${totalArticles.toLocaleString('id-ID')}+` : '—'}
+                    </div>
                     <h3 className="text-muted-foreground">Total Artikel</h3>
                 </div>
                 <div className="text-center p-6 rounded-lg shadow-lg">
