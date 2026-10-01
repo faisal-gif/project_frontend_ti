@@ -126,14 +126,13 @@ export default async function RootLayout({ children }) {
                   <div className="flex-none md:hidden">
                     <label
                       htmlFor="drawer-nav"
+                      aria-label="open sidebar"
                       className="btn btn-ghost hover:bg-white/30 text-white"
                     >
-                      <span className="sr-only">Buka menu</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        aria-hidden="true"
                         className="inline-block h-6 w-6 stroke-current"
                       >
                         <path
@@ -200,7 +199,7 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
           <div className="drawer-side z-[9999]">
-            <label htmlFor="drawer-nav" className="drawer-overlay"><span className="sr-only">Tutup menu</span></label>
+            <label htmlFor="drawer-nav" aria-label="close sidebar" className="drawer-overlay"></label>
             <ul className="menu text-base-content bg-base-200  min-h-full w-72">
               <li className="text-xl font-bold text-white mb-6">
                 <Link href={'/'}>
