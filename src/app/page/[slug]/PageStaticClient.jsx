@@ -4,7 +4,7 @@ import Card from '@/components/ui/Card'
 import { Hash, User } from "lucide-react";
 import Link from 'next/link';
 import React, { useMemo, useState } from 'react'
-import DOMPurify from 'isomorphic-dompurify';
+// import DOMPurify from 'isomorphic-dompurify';
 
 
 function PageStaticClient({ InitialPageDetail }) {
