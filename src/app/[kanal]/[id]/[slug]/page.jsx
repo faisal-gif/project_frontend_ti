@@ -5,6 +5,7 @@ import { getWriterDetail, getWriterDetailServer } from '@/lib/api/jurnalist';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import { incrementView } from '@/lib/actions/updateView';
 import { getWriterKopiTimes } from '@/lib/api/kopiTimesApi';
+import { sanitizeArticleHtml } from '@/lib/sanitizeHtml';
 
 const getNews = cache(async (id) => {
     return await getNewsDetail({ id });
@@ -151,6 +152,8 @@ export default async function page({ params }) {
     const newsDetailForClient = {
         ...initialNewsDetail,
         news_datepub: correctedDateString,
+        // Sanitasi body artikel di server (cegah stored XSS: javascript: href, iframe asing, srcdoc, on*).
+        news_content: sanitizeArticleHtml(initialNewsDetail.news_content),
     };
 
     return (

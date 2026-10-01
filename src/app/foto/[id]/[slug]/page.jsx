@@ -2,6 +2,7 @@ import { getFotoDetail } from '@/lib/api/fotoApi';
 import React, { cache } from 'react'
 import FotoDetail from './FotoDetail';
 import { getWriterDetailServer } from '@/lib/api/jurnalist';
+import { sanitizeArticleHtml } from '@/lib/sanitizeHtml';
 
 const getFoto = cache(async (id) => {
   return await getFotoDetail({ id });
@@ -67,7 +68,10 @@ export default async function page({ params }) {
     writer = await getWriterDetailServer({ slug: fotoDetail.writer_slug });
   }
 
+  // Sanitasi konten galeri di server (cegah stored XSS) sebelum dirender di client.
+  const safeFotoDetail = { ...fotoDetail, gal_content: sanitizeArticleHtml(fotoDetail.gal_content) };
+
   return (
-    <FotoDetail initialFotoDetail={fotoDetail} initialWriter={writer} />
+    <FotoDetail initialFotoDetail={safeFotoDetail} initialWriter={writer} />
   )
 }
