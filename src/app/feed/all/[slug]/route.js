@@ -12,6 +12,11 @@ function xmlConvert(str) {
         .replace(/'/g, '&apos;');
 }
 
+// Netralkan "]]>" agar konten tak bisa keluar dari blok CDATA (injeksi XML/feed).
+function cdata(str) {
+    return String(str ?? '').replace(/]]>/g, ']]]]><![CDATA[>');
+}
+
 function character_limiter(str, limit) {
     return String(str ?? '').substring(0, limit);
 }
@@ -71,10 +76,10 @@ export async function GET(request, { params }) {
 
         return `
       <item>
-        <title><![CDATA[${r.news_title}]]></title>
-        <description><![CDATA[${character_limiter(r.news_description, 200)}]]></description>
+        <title><![CDATA[${cdata(r.news_title)}]]></title>
+        <description><![CDATA[${cdata(character_limiter(r.news_description, 200))}]]></description>
         <link>${newsUrl}</link>
-        <content:encoded><![CDATA[${content}]]></content:encoded>
+        <content:encoded><![CDATA[${cdata(content)}]]></content:encoded>
         <dc:creator><![CDATA[${creator}]]></dc:creator>
         <enclosure url="${imageUrl}" length="0" type="image/jpeg"/>
         <guid>${newsUrl}</guid>
@@ -88,7 +93,7 @@ export async function GET(request, { params }) {
     const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
-    <title><![CDATA[RSS Feed TIMES Indonesia - ${kanal.catnews_title}]]></title>
+    <title><![CDATA[RSS Feed TIMES Indonesia - ${cdata(kanal.catnews_title)}]]></title>
     <description><![CDATA[Berita Positif Terbaru dan Terkini]]></description>
     <link>${process.env.NEXT_PUBLIC_URL}</link>
  

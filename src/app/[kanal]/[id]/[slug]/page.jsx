@@ -157,7 +157,8 @@ export default async function page({ params }) {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+                // Escape < → < agar judul/penulis yang memuat "</script>" tak bisa breakout (XSS).
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData).replace(/</g, '\\u003c') }}
             />
             <NewsDetailClient
                 initialView={viewResult?.newViewCount}

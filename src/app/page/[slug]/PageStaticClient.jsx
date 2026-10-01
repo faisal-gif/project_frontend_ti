@@ -3,12 +3,16 @@ import PageStaticMenu from '@/components/PageStaticMenu';
 import Card from '@/components/ui/Card'
 import { Hash, User } from "lucide-react";
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
+import DOMPurify from 'isomorphic-dompurify';
 
 
 function PageStaticClient({ InitialPageDetail }) {
 
     const [pageDetail, setPageDetail] = useState(InitialPageDetail);
+
+    // Sanitasi HTML statis untuk cegah stored XSS.
+    const safeHtml = useMemo(() => DOMPurify.sanitize(pageDetail?.page_isi || ''), [pageDetail?.page_isi]);
 
     return (
         <main className="pt-6">
@@ -24,7 +28,7 @@ function PageStaticClient({ InitialPageDetail }) {
                         </Card>
                         <div className='prose prose-lg max-w-none'>
                             <div className="bg-base-100 rounded-lg shadow-sm border px-4 py-2">
-                             < div dangerouslySetInnerHTML={{ __html: pageDetail?.page_isi }} />
+                             <div dangerouslySetInnerHTML={{ __html: safeHtml }} />
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import DOMPurify from 'isomorphic-dompurify';
 
 
 import FormattedDate from '@/utils/date/FormattedDate';
@@ -246,8 +247,8 @@ function NewsDetailAMP({
                                             articleState.size == 3 ? 'text-xl md:text-xl' :
                                             'text-base md:text-lg'
                                         }`"
-                                        // Asumsi `news_content` sudah di-sanitize di server
-                                        dangerouslySetInnerHTML={{ __html: newsDetail.news_content }}
+                                        // Sanitasi HTML untuk cegah stored XSS (mis. <img onerror>).
+                                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(newsDetail.news_content || '') }}
                                     />
                                     {/* Catatan: readAlsoArticles tidak bisa disisipkan seperti di client.
                                       Jika ini penting, logic penyisipan harus terjadi di server 
