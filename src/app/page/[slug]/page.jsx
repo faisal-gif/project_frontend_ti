@@ -2,6 +2,7 @@
 import { getPageDetail } from '@/lib/api/pageStatic';
 import React from 'react'
 import PageStaticClient from './PageStaticClient';
+import { sanitizeArticleHtml } from '@/lib/sanitizeHtml';
 
 
 export async function generateMetadata({ params }) {
@@ -55,7 +56,13 @@ export async function generateMetadata({ params }) {
 export default async function page({params}) {
   const { slug } = await params;
   const pageDetail = await getPageDetail({ slug });
+
+  // Sanitasi HTML statis di server (cegah stored XSS) sebelum dikirim ke client.
+  const safePageDetail = pageDetail
+    ? { ...pageDetail, page_isi: sanitizeArticleHtml(pageDetail.page_isi) }
+    : pageDetail;
+
   return (
-    <PageStaticClient InitialPageDetail={pageDetail} />
+    <PageStaticClient InitialPageDetail={safePageDetail} />
   )
 }
