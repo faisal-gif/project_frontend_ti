@@ -41,11 +41,15 @@ export async function generateMetadata({ params }) {
     const correctedDateString = newsDetail.news_datepub.replace(' ', 'T') + '+07:00';
     const canonicalUrl = `${process.env.NEXT_PUBLIC_URL}${newsDetail.url_ci4 || ''}`;
 
-    const urlPathFromParams = `/${kanal}/${id}/${slug}`;
+    // slug kini optional catch-all: bisa undefined (judul Arab → url_ci4 tanpa slug) atau array.
+    const slugPath = Array.isArray(slug) ? slug.join('/') : (slug || '');
+    const urlPathFromParams = `/${kanal}/${id}${slugPath ? `/${slugPath}` : ''}`;
     const correctUrl = newsDetail.url_ci4 || '';
 
-    if (newsDetail.url_ci4 !== urlPathFromParams) {
-        permanentRedirect(correctUrl);
+    // Bandingkan tanpa trailing slash agar "/kanal/id/" (slug kosong) tidak loop redirect.
+    const stripSlash = (s) => (s || '').replace(/\/+$/, '');
+    if (stripSlash(newsDetail.url_ci4) !== stripSlash(urlPathFromParams)) {
+        permanentRedirect(stripSlash(correctUrl) || '/');
     }
 
     return {
