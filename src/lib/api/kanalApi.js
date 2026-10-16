@@ -6,7 +6,7 @@ const getAllKanal = async () => {
         const response = await clientAxios.get("/kanal/all");
         return response.data.data;
     } catch (error) {
-        console.log(error);
+        console.error(`getAllKanal failed: ${error.message}`);
     }
 };
 
@@ -21,7 +21,7 @@ const getKanalDetail = async ({ slug }) => {
             parents: response.data.parents || [],
         };
     } catch (error) {
-        console.log(error);
+        console.error(`getKanalDetail(${slug}) failed: ${error.message}`);
     }
 };
 
@@ -35,7 +35,7 @@ const getKanalTree = async () => {
             total: Number(response.data.total_artikel) || 0,
         };
     } catch (error) {
-        console.log(error);
+        console.error(`getKanalTree failed: ${error.message}`);
         return { channels: [], total: 0 };
     }
 };

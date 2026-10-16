@@ -30,7 +30,7 @@ const getViewAds = async ({ id }) => {
 
     } catch (error) {
         // 6. Tangani error dan kembalikan null agar iklan cukup disembunyikan.
-        console.error(`Error fetching ad for id ${id}:`, error);
+        console.error(`Error fetching ad for id ${id}: ${error.name}: ${error.message}`);
         return null;
     }
 };
@@ -68,7 +68,7 @@ const getViewAdsList = async ({ id }) => {
 
     } catch (error) {
         // 6. Tangani error dan kembalikan null agar iklan cukup disembunyikan.
-        console.error(`Error fetching ad list for id ${id}:`, error);
+        console.error(`Error fetching ad list for id ${id}: ${error.name}: ${error.message}`);
         return null;
     }
 };
