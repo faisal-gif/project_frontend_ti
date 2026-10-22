@@ -8,11 +8,14 @@ import Link from 'next/link';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-function KanalDetail({ InitialKanalDetail }) {
+function KanalDetail({ InitialKanalDetail, slug }) {
 
   const [viewMode, setViewMode] = useState('grid');
 
   const [detailKanal, setDetailKanal] = useState(InitialKanalDetail);
+  const children = detailKanal?.children || []
+  // activeFilter: 'all' (induk + semua sub), 'parent' (induk saja), atau slug sub tertentu.
+  const [activeFilter, setActiveFilter] = useState('all')
   const [kanalNews, setKanalNews] = useState([])
   const [offset, setOffset] = useState(0)
   const [limit] = useState(9)
@@ -25,13 +28,12 @@ function KanalDetail({ InitialKanalDetail }) {
     if (!detailKanal) return;
     try {
       setIsLoading(true)
-      // Hanya berita kanal ini sendiri (tanpa gabung sub-kanal).
-      const res = await getAllNews({
-        news_type: 'cat',
-        cat_id: detailKanal.catnews_id,
-        limit: limit,
-        offset: currentOffset,
-      });
+      // 'parent' → hanya berita kanal induk (cat). Selain itu cat_tree:
+      // 'all' → induk + semua sub; <slug sub> → sub itu + turunannya.
+      const params = activeFilter === 'parent'
+        ? { news_type: 'cat', cat_id: detailKanal.catnews_id }
+        : { news_type: 'cat_tree', cat_slug: activeFilter === 'all' ? slug : activeFilter }
+      const res = await getAllNews({ ...params, limit, offset: currentOffset });
       const newData = res || []
 
       // Filter duplikat berdasarkan news_id
@@ -55,7 +57,17 @@ function KanalDetail({ InitialKanalDetail }) {
   useEffect(() => {
     if (!detailKanal) return;
     fetchNews(offset)
-  }, [offset, detailKanal])
+  }, [offset, activeFilter, detailKanal])
+
+  // Ganti filter: reset daftar & offset lalu fetch ulang.
+  const handleFilter = (nextFilter) => {
+    if (nextFilter === activeFilter) return;
+    setKanalNews([])
+    setOffset(0)
+    setHasMore(true)
+    setLoadCount(1)
+    setActiveFilter(nextFilter)
+  }
 
   const handleObserver = useCallback((entries) => {
     const target = entries[0]
@@ -118,6 +130,27 @@ function KanalDetail({ InitialKanalDetail }) {
         </div>
       </div>
 
+      {/* Filter: Semua, Induk (parent), lalu tiap Sub-kanal */}
+      {children.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          {[
+            { key: 'all', label: 'Semua' },
+            { key: 'parent', label: detailKanal?.catnews_title },
+            ...children.map((child) => ({ key: child.catnews_slug, label: child.catnews_title })),
+          ].map((f) => (
+            <button
+              key={f.key}
+              onClick={() => handleFilter(f.key)}
+              className={`text-sm font-medium px-4 py-1.5 rounded-full transition-colors ${activeFilter === f.key
+                ? 'bg-[#7a0f1f] text-white'
+                : 'bg-[#7a0f1f]/8 text-[#7a0f1f] hover:bg-[#7a0f1f]/15'}`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <h2 className="text-xl md:text-2xl font-bold text-base-content/70">
@@ -175,6 +208,9 @@ function KanalDetail({ InitialKanalDetail }) {
                 views={Number(news.pageviews)}
                 url={news.url_ci4}
                 category={news.cat_title}
+                badge={children.length > 0
+                  ? (news.cat_title === detailKanal?.catnews_title ? 'Induk' : 'Sub')
+                  : undefined}
               />
             ))}
           </div>

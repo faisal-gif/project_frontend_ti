@@ -2,6 +2,11 @@
 
 const nextConfig = {
   reactStrictMode: true,
+
+  // Prerender halaman (mis. "/") menunggu banyak call API. Saat API lambat,
+  // default 60s terlampaui → build GAGAL total. Naikkan ke 180s agar build
+  // tetap selesai (halaman tetap ISR, slow call cuma kena saat build/regen).
+  staticPageGenerationTimeout: 180,
   images: {
     unoptimized: true,
     remotePatterns: [

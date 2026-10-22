@@ -2,6 +2,11 @@ import React from 'react'
 import Kanal from './Kanal'
 import { getKanalTree } from '@/lib/api/kanalApi'
 
+// ISR: endpoint getKanalTree berat (hitung total_artikel ~497rb). Cache 1 jam +
+// stale-while-revalidate → user selalu dapat versi cache, endpoint berat cuma
+// kena ≤1×/jam di background, dan halaman tetap tampil walau regen gagal.
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Kanal TIMES Indonesia - Berita Positif Terbaru dan Terkini",
   description: "Portal berita positif yang menyajikan informasi terkini tentang peristiwa, cek fakta, ekoran, politik, entertainment, kuliner, gaya hidup, wisata, dan kopi times",

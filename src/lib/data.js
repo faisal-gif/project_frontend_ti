@@ -82,9 +82,10 @@ export const getIndoPositifNewsServer = async () => {
 };
 
 export const getKopiTimesNewsServer = async () => {
+  // cat_tree: Kopi Times punya children (Opini, Resensi, Forum, dll) — tarik semua.
   return await getAllNewsServer({
-    news_type: "cat",
-    cat_id: 15,
+    news_type: "cat_tree",
+    cat_slug: "kopi-times",
     offset: 0,
     limit: 5,
   });

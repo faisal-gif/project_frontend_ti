@@ -15,6 +15,7 @@ function NewsCard({
     image,
     url,
     category,
+    badge, // opsional: penanda "Induk"/"Sub" pada halaman kanal tree
     layout = "grid", // "grid" atau "list"
     priority = false,
 }) {
@@ -88,11 +89,18 @@ function NewsCard({
                                 quality={priority ? 70 : 60}// Kualitas lebih baik untuk LCP
                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
-                            {category && (
-                                <div className="absolute top-4 left-4">
-                                    <span className="bg-[#7a0f1f] text-white px-3 py-1 rounded-full text-xs font-medium">
-                                        {category}
-                                    </span>
+                            {(category || badge) && (
+                                <div className="absolute top-4 left-4 flex items-center gap-2">
+                                    {category && (
+                                        <span className="bg-[#7a0f1f] text-white px-3 py-1 rounded-full text-xs font-medium">
+                                            {category}
+                                        </span>
+                                    )}
+                                    {badge && (
+                                        <span className="bg-white/90 text-[#7a0f1f] px-2 py-1 rounded-full text-[10px] font-semibold ring-1 ring-[#7a0f1f]/20">
+                                            {badge}
+                                        </span>
+                                    )}
                                 </div>
                             )}
                         </div>

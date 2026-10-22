@@ -29,7 +29,9 @@ const getKanalDetail = async ({ slug }) => {
 // total_artikel = total artikel seluruh kanal (sibling dari data di response).
 const getKanalTree = async () => {
     try {
-        const response = await serverAxios.get("/kanal/", { params: { tree: 1 } });
+        // timeout 30s khusus: endpoint ini berat (hitung total_artikel) & hanya
+        // dipanggil di background ISR (/kanal, revalidate 1 jam), jadi tak menahan user.
+        const response = await serverAxios.get("/kanal/", { params: { tree: 1 }, timeout: 30000 });
         return {
             channels: response.data.data || [],
             total: Number(response.data.total_artikel) || 0,
